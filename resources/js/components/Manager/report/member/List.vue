@@ -72,7 +72,7 @@
                           <th>Agent</th>
                           <th>S.N</th>
                           <th v-for="(data,index) in getAllName" :key="data.id">
-                            {{data}}{{index}}
+                            {{data}}
                           </th>
                         </tr>
                       </thead>
@@ -226,7 +226,8 @@
         }]
       })
       .then((response)=>{
-        this.$router.push('/report/member')
+        this.state.isSending = false;
+        // this.$router.push('/report/member')
         Toast.fire({
           icon: 'success',
           title: 'Detail Added successfully'

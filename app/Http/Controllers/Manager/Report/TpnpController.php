@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Detail;
 use Auth;
 use Response;
+use App\Exports\Manager\PurchaseExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TpnpController extends Controller
 {
@@ -61,7 +63,7 @@ class TpnpController extends Controller
     }
 
     public function fileExport(Request $request){
-        dd($request);
+        // dd($request);
         $current_date = date("Y-m-d");
         $filename = 'purchaseReport'.$current_date.'.xlsx';
         return Excel::download(new PurchaseExport($request->start_date, $request->end_date), $filename);
