@@ -42,10 +42,11 @@ class AgentHasController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->amount,$request->kista_id,$request->agent_id);
+        // dd($request->amount,$request->kista_id,$request->agent_id,$request->discount_type);
         $amount = $request->amount;
         $kista_id = $request->kista_id;
         $agent_id = $request->agent_id;
+        $discount_type = $request->discount_type;
         $count = AgentHasCommision::where('kista_id',$kista_id)
                                     ->where('agent_id',$agent_id)
                                     ->count();
@@ -53,6 +54,7 @@ class AgentHasController extends Controller
             AgentHasCommision::create([
                 'agent_id' => $agent_id,
                 'commission' => $amount,
+                'commission_type' => $discount_type,
                 'kista_id' => $kista_id,
                 'date' => date("Y-m-d"),
                 'date_np' => date("Y-m-d"),
@@ -68,6 +70,7 @@ class AgentHasController extends Controller
             $datas = AgentHasCommision::findOrFail($data_id);
             $datas->update([
                 'commission' => $amount,
+                'commission_type' => $discount_type,
                 'updated_by' => Auth::user()->id,
             ]);
             return ['message' => 'Data Updated'];

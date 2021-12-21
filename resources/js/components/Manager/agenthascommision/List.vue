@@ -46,7 +46,7 @@
                         <th>SN</th>
                         <th>Kista Name</th>
                         <th>Status</th>
-                        <th>Commsion(in %)</th>
+                        <th>Commsion(% or Rs)</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -59,11 +59,10 @@
                           
                         </td>
                         <td class="col-md-1" v-if="detail.get_commision != null ">
-                          <!-- <span><i class="nav-icon fas fa-check-circle text-success"></i></span>
-                          {{detail.get_commision.commission}}% -->
                           <span v-for="(data,index) in detail.get_commision ">
                             <span v-if="data.agent_id == agentid">
-                              {{data.commission}}%
+                              {{data.commission}}
+                              <span v-if="data.commission_type == '1'"> %</span><span v-else> Rs</span>
                             </span>
                           </span>
                         </td>
@@ -73,23 +72,18 @@
                         <td class="col-md-3">
                           <input type="text" class="form-control" v-model="amount[index]" autocomplete="off">
 
+                            <input type="radio" id="discountpercent[index]" value="1" v-model="status[index]" >
+                            <label for="discountpercent[index]">%</label>
+
+                            <input type="radio" id="discountrs[index]" value="2" v-model="status[index]">
+                            <label for="discountrs[index]">Rs</label>
+
                         </td>
-                       <!--  <td v-for="(data,index) in getAllAgentCommision" :key="detail.id">
-                          {{data}}
-                        </td> -->
                         <td class="col-md-1">
-                          <button type="submit" class="btn btn-success btn-block" @click="storeData(detail.id, amount[index])">Save</button>
+                          <button type="submit" class="btn btn-success btn-block" @click="storeData(detail.id, amount[index], status[index])">Save</button>
                         </td>
                       </tr>
                     </tbody>
-                    <!-- <tfoot>
-                      <tr>
-                       <td colspan="2"></td>
-                        <td>
-                          <button type="submit" class="btn btn-success btn-block">Save</button>
-                        </td>
-                      </tr>
-                    </tfoot> -->
                   </table>
                 </div>
               </div>
@@ -112,7 +106,8 @@
       return{
             luckydraw_id: '',
             amount:[],
-            agentid :'',
+            agentid:'',
+            status:[],
         }
     },
     mounted(){
@@ -130,12 +125,13 @@
         var b = this.$store.getters.getSelectKistaCommision
         if(b.length == 0) return [];
         this.agentid = b[1];
-        console.log(b[0]);
+        this.status = b[0].map(function (kd, i) {
+          return 1;
+        });
         return b[0];
       },
       getAllAgentCommision(){
         var c = this.$store.getters.getAgentCommision
-        // console.log(c[0]);
         return c[0];
       }
     },
@@ -169,9 +165,10 @@
         .catch(()=>{
         })
       },
-      storeData(kistId,amount){
+      storeData(kistId,amount,status){
         axios.post('/manager/agent/commision',{
               amount: amount,
+              discount_type: status,
               kista_id: kistId,
               agent_id: this.$route.params.agentid,
           })
@@ -189,6 +186,7 @@
               title: 'Detail Added successfully'
             })
           }
+          location.reload()
         })
         .catch(()=>{
         })

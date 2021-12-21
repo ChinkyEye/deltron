@@ -43,34 +43,41 @@ class AgentController extends Controller
         if($request->has('agentid') && $request->get('agentid')!="")
         {            
             $posts = $posts->where('agent_id',$request->agentid);
-            // $total = $posts->sum('amount');
         }
         if($request->has('type') && $request->get('type')!="")
         {            
             $posts = $posts->where('lottery_status',$request->type);
             $amount = $posts->sum('amount');
+
+            $count = $posts->count();
+
             $findkistacommision = AgentHasCommision::where('agent_id',$request->agentid)->where('kista_id',$request->kistaid)->value('commission');
-            $commisionamount = ($findkistacommision / 100) * $amount ; 
+
+            $findcommisiontype = AgentHasCommision::where('agent_id',$request->agentid)->where('kista_id',$request->kistaid)->value('commission_type');
+
+            if($findcommisiontype == '1'){
+                $commisionamount = ($findkistacommision / 100) * $amount ; 
+            }elseif ($findcommisiontype == '2' ) {
+                $commisionamount = $findkistacommision * $count ;
+            }
             $total = $amount ; 
             $totalwithcommision = $amount + $commisionamount; 
-            // dd($findkistacommision);
-            // dd($withcommision,$total);
         }
     
-          $posts = $posts->with('getClientInfo')->paginate(30);
-          $response = [
-             'pagination' => [
-                 'total' => $posts->total(),
-                 'per_page' => $posts->perPage(),
-                 'current_page' => $posts->currentPage(),
-                 'last_page' => $posts->lastPage(),
-                 'from' => $posts->firstItem(),
-                 'to' => $posts->lastItem()
-             ],
-             'agentreports' => $posts,
-             'commisionamount' => $commisionamount,
-         ];
-         return response()->json($response);
+        $posts = $posts->with('getClientInfo')->paginate(30);
+        $response = [
+            'pagination' => [
+                'total' => $posts->total(),
+                'per_page' => $posts->perPage(),
+                'current_page' => $posts->currentPage(),
+                'last_page' => $posts->lastPage(),
+                'from' => $posts->firstItem(),
+                'to' => $posts->lastItem()
+            ],
+            'agentreports' => $posts,
+            'commisionamount' => $commisionamount,
+        ];
+        return response()->json($response);
     }
 
     /**
