@@ -77,6 +77,9 @@ Route::group(["middleware" => 'manager'], function(){
     Route::get('/manager/mdetail','Manager\DetailController@detail');
     Route::resource('/manager/detail','Manager\DetailController');
 
+    Route::get('/manager/payment','Manager\PaymentController@payment');
+    Route::post('/manager/payment','Manager\PaymentController@store');
+
     //remaining
     Route::resource('/manager/remaining','Manager\RemainingController');
 

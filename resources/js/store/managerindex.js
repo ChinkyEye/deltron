@@ -11,6 +11,7 @@ export default{
 		subagent:[],
 		agentcommision:[],
 		detail:[],
+		payment:[],
 		kistadetail:[],
 		remaining:[],
 		expense:[],
@@ -73,6 +74,9 @@ export default{
 		},
 		getDetail(state){
 			return state.detail
+		},
+		getPayment(state){
+			return state.payment
 		},
 		getKistaDetail(state){
 			return state.kistadetail
@@ -226,6 +230,13 @@ export default{
 			axios.get("/manager/mdetail/"+"?agentid="+params[0]+"&kistaid="+params[1])
 				.then((response)=>{
 					context.commit('details', [response.data])
+				})
+		},
+		allPayment(context, params){
+			// console.log(params);
+			axios.get("/manager/payment/"+"?agentid="+params[0]+"&kistaid="+params[1]+"&luckydrawid="+params[2])
+				.then((response)=>{
+					context.commit('payments', [response.data])
 				})
 		},
 		allKistaDetail(context, params){
@@ -460,6 +471,9 @@ export default{
 		},
 		details(state, data){
 			return state.detail = data
+		},
+		payments(state, data){
+			return state.payment = data
 		},
 		kistadetails(state, data){
 			return state.kistadetail = data

@@ -76,6 +76,8 @@ import BookingEdit from './components/Manager/booking/Edit.vue'
 import Record from './components/Manager/record/List.vue'
 import RecordNew from './components/Manager/record/New.vue'
 import RecordEdit from './components/Manager/record/Edit.vue'
+
+import Payment from './components/Manager/payment/List.vue'
 	
 // report
 import Report from './components/Manager/report/List.vue'
@@ -293,6 +295,12 @@ export const routes = [
 	{
 		path:'/record/:recordid/edit',
 		component: RecordEdit
+	},
+
+	//payment
+	{
+		path:'/payment',
+		component: Payment
 	},
 
 	//report

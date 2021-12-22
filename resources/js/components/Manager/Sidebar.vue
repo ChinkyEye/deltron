@@ -140,6 +140,14 @@
         </p>
       </router-link>
     </li>
+    <li class="nav-item">
+      <router-link to="/payment" class="nav-link">
+        <i class="nav-icon fab fa-bootstrap"></i>
+        <p>
+          Payment
+        </p>
+      </router-link>
+    </li>
     
   </ul>
 </template>

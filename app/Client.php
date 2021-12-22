@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Client extends Model
 {
@@ -22,6 +23,24 @@ class Client extends Model
     {
         return $this->belongsTo('App\Detail','id','client_id')->where('lottery_status','1')->groupBy('client_id')->selectRaw('client_id,Count(lottery_status) as total');
     }
+
+    public function getPayment()
+    {
+        return $this->hasMany('App\Detail','client_id')->select('id','client_id','kista_id');
+    }
+    // public function getPayment()
+    // {
+    //     return $this->hasOne('App\Detail','client_id');
+    // }
+
+    // public function getPayments($kistaid)
+    // {
+    //     return $this->getPayment()->where('kista_id',$kistaid);
+    // }
+    // public function getPayment()
+    // {
+    //     return $this->belongsTo('App\Detail','id','client_id')->with('getKistaInfo');
+    // }
  
   
 }
