@@ -80,7 +80,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="(data,index) in getAllTpnpReport" :key="data.id">
+                          <span v-for="(data,index) in getAllTpnpReport" :key="data.id"></span>
+                          <tr>
                             <td>{{notplayed}}</td>
                             <td>Rs.{{notplayedamount}}</td>
                           </tr>

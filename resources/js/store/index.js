@@ -8,6 +8,7 @@ export default{
 		selectmanager:[],
 		selectmluckydraw:[],
 		detail:[],
+		tpnpreport:[],
 		
 	},
 	getters:{
@@ -34,7 +35,10 @@ export default{
 		},
 		getSelectManager(state){
 			return state.selectmanager
-		}
+		},
+		getTpnpReport(state){
+			return state.tpnpreport
+		},
 		
 	},
 	actions:{
@@ -91,7 +95,17 @@ export default{
 				// console.log(response);
 					context.commit('selectmanagers', [response.data.selectmanagers])
 				})
-		}
+		},
+		allTpnpReport(context, params){
+			axios.get("/home/report/tpnp/"+"?kistaid="+params[0]+"&luckydrawid="+params[1]+"&managerid="+params[2])
+				.then((response)=>{
+					context.commit('tpnpreports', [response.data.played,
+												response.data.notplayed,
+												response.data.playedamount,
+												response.data.notplayamount,
+												response.data.leave])
+				})
+		},
 
 
 		
@@ -120,7 +134,10 @@ export default{
 		},
 		selectmanagers(state, data){
 			return state.selectmanager = data
-		}
+		},
+		tpnpreports(state, data){
+			return state.tpnpreport = data
+		},
 		
 	}
 }

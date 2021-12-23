@@ -55,6 +55,66 @@
                 </div>
               </div><!-- /.card-header -->
               <div class="card-body">
+                <div id="printMe">
+                  <div class="row">
+                    <div class="table-responsive col-sm-5">
+                      <table class="table table-bordered table-hover table-sm m-0">
+                        <thead class="table-primary">                  
+                          <tr>
+                            <th colspan="2" class="text-center">Paid</th>
+                          </tr>
+                          <tr>
+                            <th>Count(people)</th>
+                            <th>Total Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{{played}}</td>
+                            <td>Rs.{{playedamount}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="table-responsive col-sm-5">
+                      <table class="table table-bordered table-hover table-sm m-0">
+                        <thead class="table-primary"> 
+                          <tr>
+                            <th colspan="2" class="text-center">Not Paid</th>
+                          </tr>                 
+                          <tr>
+                            <th>Count(people)</th>
+                            <th>Total Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <span v-for="(data,index) in getAllTpnpReport" :key="data.id"></span>
+                          <tr>
+                            <td>{{notplayed}}</td>
+                            <td>Rs.{{notplayedamount}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="table-responsive col-sm-2">
+                      <table class="table table-bordered table-hover table-sm m-0">
+                        <thead class="table-primary"> 
+                          <tr>
+                            <th colspan="1" class="text-center">Leave</th>
+                          </tr>                 
+                          <tr>
+                            <th class="text-center">Count(people)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-center">no:{{leave}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
                 
               </div>
             </div>
@@ -141,7 +201,7 @@
       },
       searchdata()
       {
-        this.$store.dispatch("allTpnpReport", [this.kista_id,this.luckydraw_id]);
+        this.$store.dispatch("allTpnpReport", [this.kista_id,this.luckydraw_id,this.manager_id]);
       },
       print () {
         this.$htmlToPaper('printMe');

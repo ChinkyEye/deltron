@@ -41,6 +41,9 @@ Route::group(["middleware" => 'admin'], function(){
     Route::get('/home/mdetail','Admin\DetailController@detail');
     Route::get('/home/detail/revise/{id}/{lotteryStatus}', 'Admin\DetailController@revise');
 
+    //report
+    Route::get('/home/report/tpnp','Admin\Report\TpnpController@tpnpreport');
+
 
 });
 

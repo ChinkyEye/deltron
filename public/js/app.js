@@ -2896,6 +2896,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2967,7 +3027,7 @@ __webpack_require__.r(__webpack_exports__);
       this.luckydrawChange();
     },
     searchdata: function searchdata() {
-      this.$store.dispatch("allTpnpReport", [this.kista_id, this.luckydraw_id]);
+      this.$store.dispatch("allTpnpReport", [this.kista_id, this.luckydraw_id, this.manager_id]);
     },
     print: function print() {
       this.$htmlToPaper('printMe');
@@ -88747,7 +88807,89 @@ var render = function () {
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { attrs: { id: "printMe" } }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "table-responsive col-sm-5" }, [
+                      _c(
+                        "table",
+                        {
+                          staticClass:
+                            "table table-bordered table-hover table-sm m-0",
+                        },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("tbody", [
+                            _c("tr", [
+                              _c("td", [_vm._v(_vm._s(_vm.played))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v("Rs." + _vm._s(_vm.playedamount)),
+                              ]),
+                            ]),
+                          ]),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "table-responsive col-sm-5" }, [
+                      _c(
+                        "table",
+                        {
+                          staticClass:
+                            "table table-bordered table-hover table-sm m-0",
+                        },
+                        [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            [
+                              _vm._l(
+                                _vm.getAllTpnpReport,
+                                function (data, index) {
+                                  return _c("span", { key: data.id })
+                                }
+                              ),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v(_vm._s(_vm.notplayed))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v("Rs." + _vm._s(_vm.notplayedamount)),
+                                ]),
+                              ]),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "table-responsive col-sm-2" }, [
+                      _c(
+                        "table",
+                        {
+                          staticClass:
+                            "table table-bordered table-hover table-sm m-0",
+                        },
+                        [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("tbody", [
+                            _c("tr", [
+                              _c("td", { staticClass: "text-center" }, [
+                                _vm._v("no:" + _vm._s(_vm.leave)),
+                              ]),
+                            ]),
+                          ]),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                ]),
+              ]),
             ]),
           ]),
         ]),
@@ -88762,6 +88904,58 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-6" }, [
       _c("h5", { staticClass: "m-0 text-dark" }, [_vm._v("TPNP Report")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "table-primary" }, [
+      _c("tr", [
+        _c("th", { staticClass: "text-center", attrs: { colspan: "2" } }, [
+          _vm._v("Paid"),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", [_vm._v("Count(people)")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total Amount")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "table-primary" }, [
+      _c("tr", [
+        _c("th", { staticClass: "text-center", attrs: { colspan: "2" } }, [
+          _vm._v("Not Paid"),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", [_vm._v("Count(people)")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total Amount")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "table-primary" }, [
+      _c("tr", [
+        _c("th", { staticClass: "text-center", attrs: { colspan: "1" } }, [
+          _vm._v("Leave"),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticClass: "text-center" }, [_vm._v("Count(people)")]),
+      ]),
     ])
   },
 ]
@@ -106816,7 +107010,8 @@ __webpack_require__.r(__webpack_exports__);
     selectagent: [],
     selectmanager: [],
     selectmluckydraw: [],
-    detail: []
+    detail: [],
+    tpnpreport: []
   },
   getters: {
     getDashboard: function getDashboard(state) {
@@ -106842,6 +107037,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getSelectManager: function getSelectManager(state) {
       return state.selectmanager;
+    },
+    getTpnpReport: function getTpnpReport(state) {
+      return state.tpnpreport;
     }
   },
   actions: {
@@ -106889,6 +107087,11 @@ __webpack_require__.r(__webpack_exports__);
         // console.log(response);
         context.commit('selectmanagers', [response.data.selectmanagers]);
       });
+    },
+    allTpnpReport: function allTpnpReport(context, params) {
+      axios.get("/home/report/tpnp/" + "?kistaid=" + params[0] + "&luckydrawid=" + params[1] + "&managerid=" + params[2]).then(function (response) {
+        context.commit('tpnpreports', [response.data.played, response.data.notplayed, response.data.playedamount, response.data.notplayamount, response.data.leave]);
+      });
     }
   },
   mutations: {
@@ -106915,6 +107118,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectmanagers: function selectmanagers(state, data) {
       return state.selectmanager = data;
+    },
+    tpnpreports: function tpnpreports(state, data) {
+      return state.tpnpreport = data;
     }
   }
 });
