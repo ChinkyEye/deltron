@@ -55,7 +55,6 @@ class MemberExport implements  FromView,WithEvents,WithColumnWidths
             $posts = $posts->where('agent_id',$agent_id);
         }
         $posts = $posts->with('getClientDetail','getAgent','getCount')->get();
-        // dd($posts);
         return view('manager.report.memberreport.memberexport',[
             'posts' => $posts,
             'kista_name' => $kista_name,

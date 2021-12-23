@@ -142,7 +142,7 @@
     </li>
     <li class="nav-item">
       <router-link to="/payment" class="nav-link">
-        <i class="nav-icon fab fa-bootstrap"></i>
+        <i class="nav-icon fas fa-handshake"></i>
         <p>
           Payment
         </p>
