@@ -44,7 +44,7 @@ class TpnpController extends Controller
                         ->where('lottery_status',1)
                         ->where('kista_id',$request->kistaid)
                         ->where('luckydraw_id',$request->luckydrawid)
-                        ->sum('amount');
+                        ->sum('remaining');
 
         $leave_count = Detail::orderBy('id','DESC')
                                 ->where('lottery_status',3)

@@ -315,7 +315,11 @@ export default{
 		allTpnpReport(context, params){
 			axios.get("/manager/report/tpnp/"+"?kistaid="+params[0]+"&luckydrawid="+params[1])
 				.then((response)=>{
-					context.commit('tpnpreports', [response.data.played,response.data.notplayed,response.data.playedamount,response.data.notplayamount,response.data.leave])
+					context.commit('tpnpreports', [response.data.played,
+												response.data.notplayed,
+												response.data.playedamount,
+												response.data.notplayamount,
+												response.data.leave])
 				})
 		},
 		allTpnplReport(context, params){

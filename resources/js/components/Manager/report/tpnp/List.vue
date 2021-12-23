@@ -160,7 +160,7 @@
       },
       getAllTpnpReport(){
         var c = this.$store.getters.getTpnpReport
-        // console.log(c);
+        console.log(c[3]);
         this.played = c[0];
         this.notplayed = c[1];
         this.playedamount = c[2];

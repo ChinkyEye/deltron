@@ -177,12 +177,19 @@ class DetailController extends Controller
         //
     }
     public function revise($id, $lotteryStatus){
+        $remaining = Detail::where('id',$id)->value('remaining');
+        $amount = Detail::where('id',$id)->value('amount');
+        // dd($amount);
         $user = Detail::findOrFail($id);
         if($lotteryStatus == '2'){
             $user->lottery_status = 1;
+            $user->amount = $remaining;
+            $user->remaining = $amount;
         }
         elseif($lotteryStatus == '1'){
             $user->lottery_status = 2;
+            $user->amount = $remaining;
+            $user->remaining = $amount;
         }
         $user->update();
     }
