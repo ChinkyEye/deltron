@@ -8,8 +8,15 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use App\Client;
+use App\Booking;
+use Auth;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class PreviewExport implements FromCollection, WithHeadings,WithEvents,WithColumnWidths
+
+// class PreviewExport implements FromCollection, WithHeadings,WithEvents,WithColumnWidths
+class PreviewExport implements  FromView,WithEvents,WithColumnWidths
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -22,39 +29,95 @@ class PreviewExport implements FromCollection, WithHeadings,WithEvents,WithColum
       if($search!="") $this->search = $search;
     }
 
-    public function collection()
+    public function view(): View
     {
-        $posts = Client::orderBy('id','DESC');
+        $search = $this->search;
+        $agent_id = $this->agent_id;
+
+        $booking = Booking::where('created_by',Auth::user()->id)->where('is_active','1')
+                            ->pluck('booked_serialno');
+        $booking_array = [];
+        foreach ($booking as $key => $child) {
+                $booking_array[] = $child;
+
+        }
+        $posts = Client::orderBy('id','DESC')
+                        ->where('created_by', Auth::user()->id);
+        $total = Client::orderBy('id','DESC')
+                        ->where('created_by', Auth::user()->id);
+        $left = [];
+        for ($i=0001; $i < 7000 ; $i++) { 
+            $left[]= str_pad($i, 4, '0', STR_PAD_LEFT);
+        } 
+        $allocated = Client::orderBy('id','DESC')
+                            ->where('created_by',Auth::user()->id)
+                            ->pluck('serial_no');
+        $array = array_diff($left,$allocated->toArray(),$booking_array);
+
+        //new added
+        $common_value = array_intersect($allocated->toArray(),$booking_array);
+        $booking_arrays = array_diff($booking_array,$common_value);
+        //end of new added
+
+        if(empty($this->search))
+        {            
+            $posts = $posts;
+        }
+        else{
+            $search = $this->search;
+            $posts = $posts->where('serial_no',$search);
+            $total = $total->where('serial_no',$search);
+        }
         if($this->agent_id != NULL)
         {            
-            $posts = $posts->where('agent_id', 'LIKE',"%{$this->agent_id}%");
-        }
-        if($this->search != NULL)
-        {            
-            $posts = $posts->where('serial_no', 'LIKE',"%{$this->search}%");
+             $posts = $posts->where('agent_id',$agent_id);
+             $total = $total->where('agent_id',$agent_id);
         }
         $posts = $posts->get();
-        $actualdata = $posts->map(function($post){
-            return [$post->name,$post->serial_no];
-        });
-        return $actualdata;
+        $total = $total->count();
+        return view('manager.report.previewreport.previewexport',[
+            'previewreports' => $posts,
+            'total' => $total,
+            'array' => $array,
+            'booking_array' => $booking_arrays,
+        ]);
+
+
     }
-    public function headings(): array
-    {
-        return
-        [
-            [
-                "Scheme Management System",
-            ],
-            [
-                "Biratnagar".",Morang",
-            ],
-            [
-             'Members Name',
-             'Available Serial No',
-            ]
-        ];
-    }
+
+    // public function collection()
+    // {
+    //     $posts = Client::orderBy('id','DESC');
+    //     if($this->agent_id != NULL)
+    //     {            
+    //         $posts = $posts->where('agent_id', 'LIKE',"%{$this->agent_id}%");
+    //     }
+    //     if($this->search != NULL)
+    //     {            
+    //         $posts = $posts->where('serial_no', 'LIKE',"%{$this->search}%");
+    //     }
+    //     $posts = $posts->get();
+    //     $actualdata = $posts->map(function($post){
+    //         return [$post->name,$post->serial_no];
+    //     });
+    //     return $actualdata;
+    // }
+    // public function headings(): array
+    // {
+    //     return
+    //     [
+    //         [
+    //             "Scheme Management System",
+    //         ],
+    //         [
+    //             "Biratnagar".",Morang",
+    //         ],
+    //         [
+    //          'Members Name',
+    //          'Available Serial No',
+    //         ]
+    //     ];
+    // }
     public function registerEvents(): array
     {
         return [
