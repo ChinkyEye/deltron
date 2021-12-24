@@ -98,6 +98,9 @@
                           <span class="badge badge-warning text-info float-sm-right" v-if="play.lottery_prize != null ">{{play.lottery_prize}} is allocated</span>  -->
                           </span>
                           <span class="text-warning" v-if="play.lottery_status == '3'">Leave</span>
+                          <span class="float-right">
+                          <a href="" @click.prevent="editClientDetail(play.id, play.lottery_status)" class="btn btn-xs btn-outline-success" title="Click to Revise"><i class="fas fa-undo"></i></a>
+                          </span>
                         </td>
                       </tr>
                     </tbody>
@@ -224,6 +227,48 @@
             });
           }
         });
+      },
+      editClientDetail(id,lotteryStatus){
+        var that = this;
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, change it!',
+          cancelButtonText: 'No, cancel!',
+          buttonsStyling: true
+        }).then(function (isConfirm) {
+          if(isConfirm.value === true) {
+            axios.get('/manager/detail/revise/'+id+'/'+lotteryStatus)
+            .then((response)=>
+              {
+              Toast.fire({
+                icon: 'success',
+                title: 'Data Changed successfully'
+              })
+              window.location.reload();
+              this.$store.dispatch("allDetail", [0,0,0]);
+              // this.$router.push('/home/revise');
+              // this.$router.go()
+               // this.$store.dispatch("allDetail",[0,0]);
+            })
+            .catch((response)=>{
+              // Toast.fire({
+              //   icon: 'error',
+              //   title: 'Something went wrong'
+              // })
+            })
+          }
+          else{
+            Toast.fire({
+              icon: 'error',
+              title: ' not Changed'
+            })
+          }
+        })
       },
 
 
