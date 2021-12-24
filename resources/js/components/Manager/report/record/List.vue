@@ -58,6 +58,7 @@
                       <th width="10">SN</th>
                       <th class="text-left">Topic</th>
                       <th>Description</th>
+                      <th>Info</th>
                       <th>Date</th>
                       <th>Amount</th>
                     </tr>
@@ -67,6 +68,7 @@
                       <td>{{index+1}}</td>
                       <td class="text-left">{{data.title}}</td>
                       <td>{{data.description}}</td>
+                      <td>{{data.get_lucky_draw.name}} | {{data.get_kista.name}}</td>
                       <td>
                           {{data.date_np}} 
                           <span class="badge badge-warning text-danger">{{data.created_at  | formatDate}}</span>
@@ -76,7 +78,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colspan="4">Total:</td>
+                      <td colspan="5">Total:</td>
                       <td>{{total}}</td>
                     </tr>
                   </tfoot>

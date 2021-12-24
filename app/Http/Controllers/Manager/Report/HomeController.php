@@ -27,17 +27,9 @@ class HomeController extends Controller
         $purchase_count = Purchase::where('date',$current_date)->where('is_active','1')->count();
         $incomeexpenditure_count = IncomeExpenditure::where('date',$current_date)->where('is_active','1')->count();
         $expenditure_count = IncomeExpenditure::where('expenditure_type','1')->where('is_active','1')->count();
-        $record_count = Record::where('date',$current_date)->where('is_active','1')->count();
+        $record_count = Record::where('is_active','1')->count();
+        // $record_count = Record::where('date',$current_date)->where('is_active','1')->count();
         $member_count = Client::where('date',$current_date)->where('is_active','1')->count();
-        // dd($incomeexpenditure_count);
-        // $order_count = Order_detail::where('date_en',$current_date)->where('is_active','1')->count();
-        // $stock_level_count = Product::where('date_en',$current_date)->where('is_active','1')->count();
-        // $counter_count = User::where('user_type','4')->where('is_active','1')->count();
-        // $bill_count = Order_detail::where('is_active','1')->count();
-        // $bill_ageing_count = Order_detail::where('notify_day',$current_date)->where('is_active','1')->count();
-        // $purchase_return = ProductHasReturn::where('date_en',$current_date)->count();
-        // $top_item_sale = Order::where('date_en',$current_date)->count();
-        // $top_item_customer = Order_detail::where('date_en',$current_date)->count();
         $response = [
            'tpnp_count' => $tpnp_count,
            'lotteryprize_count' => $lotteryprize_count,

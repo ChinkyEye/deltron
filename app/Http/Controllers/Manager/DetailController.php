@@ -23,36 +23,38 @@ class DetailController extends Controller
         $agentid = $request->agentid;
         $kistaid = $request->kistaid;
         $search = $request->search;
+
         $posts = Detail::orderBy('id','DESC')
                         ->where('created_by', Auth::user()->id)
-                        ->where('agent_id',$agentid)
-                        ->where('kista_id',$kistaid)
-                        ->whereHas('getClientInfo', function(Builder $query) use ($search){
-                           $query->where('serial_no', 'LIKE',"%{$search}%"); 
-                        })
-                        ->with('getClientInfo')
-                        ->get();
-        // if(empty($request->search))
-        // {            
-        //     $posts = $posts;
-        // }
-        // else{
-        //     $search = $request->search;
-        //     $posts = $posts->whereHas('getClientInfo', function(Builder $query) use ($search){
-        //                       $query->where('serial_no', 'LIKE',"%{$search}%");
-        //                     });
-        // }                
-        // if($request->has('agentid') && $request->get('agentid')!="")
-        // {            
-        //     $posts = $posts->where('agent_id',$request->agentid);
-        // }  
+                        ->where('kista_id',$kistaid);
+        if(empty($request->search))
+        {            
+            $posts = $posts;
+        }
+        else{
+            $search = $request->search;
+            $posts = $posts->whereHas('getClientInfo', function(Builder $query) use ($search){
+                              $query->where('name', 'LIKE',"%{$search}%")
+                                    ->orwhere('serial_no','LIKE',"%{$search}%");
+                            });
+        }
+        if($request->has('agentid') && $request->get('agentid')!="")
+        {            
+            $agent_id = $request->agentid;
+            $posts = $posts->whereHas('getClientInfo', function(Builder $query) use ($agent_id){
+                              $query->where('agent_id', $agent_id);
+                            });
+        }
         // if($request->has('kistaid') && $request->get('kistaid')!="")
         // {            
-        //     $posts = $posts->where('agent_id',$request->kistaid);
-        // }  
-        // $posts = $posts->with('getClientInfo')->get();              
+        //     $kista_id = $request->kistaid;
+        //     $posts = $posts->whereHas('getClientInfo', function(Builder $query) use ($kista_id){
+        //                       $query->where('kista_id', $kista_id);
+        //                     });
+        // }
+        $posts = $posts->with('getClientInfo','getAgentInfo')->get();
         $response = [
-            'kistadetails' => $posts
+            'kistadetails' => $posts,
         ];
         return response()->json($response);
     }
@@ -86,12 +88,6 @@ class DetailController extends Controller
             'status' => $status,
         ];
         return response()->json($response);
-        // $response = [
-        //     'details' => $posts,
-        //     'kista_amount' => 200,
-
-        // ];
-        // return response()->json($response);
     }
 
     /**

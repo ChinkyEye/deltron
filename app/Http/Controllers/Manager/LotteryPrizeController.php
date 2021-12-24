@@ -12,9 +12,52 @@ class LotteryPrizeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
+        $posts = Detail::orderBy('id','DESC')
+                        ->where('created_by', Auth::user()->id)
+                        ->where('lottery_prize','!=','Null');
+        $total = 0;
+        if(empty($request->search))
+        {            
+            $posts = $posts;
+        }
+        else{
+            $search = $request->search;
+            $posts = $posts->whereHas('getClientInfo', function(Builder $query) use ($search){
+                              $query->where('name', 'LIKE',"%{$search}%")
+                                    ->orwhere('serial_no','LIKE',"%{$search}%");
+                            });
+        }
+        if($request->has('luckydrawid') && $request->get('luckydrawid')!="")
+        {            
+            $luckydraw_id = $request->luckydrawid;
+            $posts = $posts->whereHas('getClientInfo', function(Builder $query) use ($luckydraw_id){
+                              $query->where('luckydraw_id', $luckydraw_id);
+                            });
+        }
+        if($request->has('kistaid') && $request->get('kistaid')!="")
+        {            
+            $kista_id = $request->kistaid;
+            $posts = $posts->whereHas('getClientInfo', function(Builder $query) use ($kista_id){
+                              $query->where('kista_id', $kista_id);
+                            });
+        }
+        $posts = $posts->with('getClientInfo')->paginate(30);
+        $response = [
+            'pagination' => [
+                'total' => $posts->total(),
+                'per_page' => $posts->perPage(),
+                'current_page' => $posts->currentPage(),
+                'last_page' => $posts->lastPage(),
+                'from' => $posts->firstItem(),
+                'to' => $posts->lastItem()
+            ],
+            'lotteryprizereports' => $posts,
+            'total' => $total,
+        ];
+        return response()->json($response);
     }
 
     /**

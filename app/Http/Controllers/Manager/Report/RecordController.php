@@ -27,7 +27,7 @@ class RecordController extends Controller
                                     ->whereBetween('date', [$request->date1, $request->date2])
                                     ->sum('amount');
         }
-        $posts = $posts->paginate(30);
+        $posts = $posts->with('getKista','getLuckyDraw')->paginate(30);
         $response = [
              'pagination' => [
                  'total' => $posts->total(),

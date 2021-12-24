@@ -104,7 +104,7 @@
         <router-link to="/report/record">
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>0</h3>
+              <h3>{{record_count}}</h3>
               <p>Record Report</p>
             </div>
           </div>
@@ -164,7 +164,7 @@ export default{
             getAllOrder(){
                 var bvar = this.$store.getters.getReportDashboard;
                 if(bvar.length == 0) return [];
-                // console.log(bvar[0].tpnp_count);
+                console.log(bvar[0].record_count);
                 this.tpnp_count = bvar[0].tpnp_count;
                 this.tpnpl_count = bvar[0].tpnp_count;
                 this.agent_count = bvar[0].tpnp_count;
@@ -174,14 +174,6 @@ export default{
                 this.expenditure_count = bvar[0].expenditure_count;
                 this.record_count = bvar[0].record_count;
                 this.member_count = bvar[0].member_count;
-                // this.order_count = bvar[0].order_count;
-                // this.stock_level_count = bvar[0].stock_level_count;
-                // this.counter_count = bvar[0].counter_count;
-                // this.bill_count = bvar[0].bill_count;
-                // this.bill_ageing_count = bvar[0].bill_ageing_count;
-                // this.purchase_return_count = bvar[0].purchase_return_count;
-                // this.top_item_sale = bvar[0].top_item_sale;
-                // this.top_item_customer = bvar[0].top_item_customer;
             }
         },
         methods:{

@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h5 class="m-0 text-dark">Serail No: List</h5>
+        <h5 class="m-0 text-dark">Serial No: List</h5>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -36,7 +36,7 @@
                 </select>
               </div>
               <div class="form-group col-md m-md-0">
-                <input type="text" id="search" class="form-control" v-model="search" placeholder="Search by serail no" @keyup="searchByno">
+                <input type="text" id="search" class="form-control" v-model="search" placeholder="Search by serial no" @keyup="searchByno">
               </div>
             </div>
           </div>

@@ -61,7 +61,7 @@
                       <tr>
                         <th width="10">SN</th>
                         <th class="text-left">Name</th>
-                        <!-- <th>Amount</th> -->
+                        <th>Agent</th>
                         <th>Allocate Prize</th>
                       </tr>
                     </thead>
@@ -69,8 +69,9 @@
                       <tr v-for="(play,ind) in getAllDetail" :key="play.id">
                         <td>{{ind+1}}</td>
                         <td class="text-left">
-                          <span class="text-primary">{{play.get_client_info.name}}</span>
+                          <span class="text-primary">{{play.get_client_info.name}}({{play.get_client_info.serial_no}})</span>
                         </td>
+                        <td class="text-left">{{play.get_agent_info.name}}</td>
                         <td>
                           <span class="text-danger" v-if="play.lottery_status == '1'">UnPaid {{play.amount}}</span>
                           <span class="text-primary" v-if="play.lottery_status == '2'">Paid {{play.amount}}
@@ -185,6 +186,7 @@
                   title: 'Detail Updated successfully'
                 });
               }
+              location.reload();
             })["catch"](function () {});
           } else {
             Toast.fire({

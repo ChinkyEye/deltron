@@ -41,6 +41,7 @@
                       <tr>
                         <th width="10">SN</th>
                         <th>Topic</th>
+                        <th>Description</th>
                         <th>Amount</th>
                         <th>Info</th>
                         <th>Status</th>
@@ -52,6 +53,7 @@
                       <tr v-for="(data,index) in getAllRecord" :key="data.id" :class="colorchange(data.is_active)">
                         <td>{{index+1}}</td>
                         <td>{{data.title}}</td>
+                        <td>{{data.description}}</td>
                         <td>{{data.amount}}</td>
                         <td>{{data.get_lucky_draw.name}} | {{data.get_kista.name}}</td>
                         <td v-if="data.is_active == '0'">Inactive <a href="javascript:void(0)" @click.prevent="RecordStatus(data.id, data.is_active)" title="Click to Publish"><i class="nav-icon fas fa-times-circle text-danger"></i></a></td>
