@@ -34,7 +34,7 @@ class PaymentController extends Controller
 
         $checkDetail = Detail::where('agent_id',$agentid)->where('kista_id',$kistaid)->count();
         $posts = Client::orderBy('id','DESC')
-                            ->select('id','name','agent_id','is_leave')
+                            ->select('id','name','agent_id','is_leave','serial_no')
                             ->where('agent_id',$agentid)
                             // ->with('getPayment')
                             ->with(array('getPayment'=>function($query) use ($kistaid){

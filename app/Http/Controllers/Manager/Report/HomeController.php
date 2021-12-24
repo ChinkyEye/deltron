@@ -24,11 +24,10 @@ class HomeController extends Controller
         $current_date = date("Y-m-d");
         $tpnp_count = Detail::where('date',$current_date)->where('is_active','1')->count();
         $lotteryprize_count = Detail::where('lottery_prize', '!=' , null)->count();
-        $purchase_count = Purchase::where('date',$current_date)->where('is_active','1')->count();
+        $purchase_count = Purchase::where('is_active','1')->count();
         $incomeexpenditure_count = IncomeExpenditure::where('date',$current_date)->where('is_active','1')->count();
         $expenditure_count = IncomeExpenditure::where('expenditure_type','1')->where('is_active','1')->count();
         $record_count = Record::where('is_active','1')->count();
-        // $record_count = Record::where('date',$current_date)->where('is_active','1')->count();
         $member_count = Client::where('date',$current_date)->where('is_active','1')->count();
         $response = [
            'tpnp_count' => $tpnp_count,
@@ -38,14 +37,6 @@ class HomeController extends Controller
            'expenditure_count' => $expenditure_count,
            'record_count' => $record_count,
            'member_count' => $member_count,
-           // 'order_count' => $order_count,
-           // 'stock_level_count' => $stock_level_count,
-           // 'counter_count' => $counter_count,
-           // 'bill_count' => $bill_count,
-           // 'bill_ageing_count' => $bill_ageing_count,
-           // 'purchase_return_count' => $purchase_return,
-           // 'top_item_sale' => $top_item_sale,
-           // 'top_item_customer' => $top_item_customer,
         ];
         return response()->json($response);
     }

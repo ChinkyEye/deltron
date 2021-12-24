@@ -59,20 +59,18 @@
                       <tr>
                         <th width="10">SN</th>
                         <th class="text-left">Name</th>
-                        <!-- <th>Amount</th> -->
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <!-- <tbody class="text-center" v-if="status == false"> -->
                     <tbody class="text-center">
                       <tr v-for="(detail,index) in getAllDetail" :key="detail.id">
                         <td>{{index+1}}</td>
                         <td class="text-left">
                           <input type="hidden" class="form-control" name="id" v-model="detail.id">
-                          <span class="text-primary">{{detail.name}}</span>
+                          <span class="text-primary">{{detail.name}} ({{detail.serial_no}})</span>
                         </td>
-                        <td v-if="detail.is_leave == '1'">
+                        <td v-if="detail.is_leave == '1'" class="text-left">
                           <input type="radio" id="unpaid[index]" value="1" v-model="lottery_status[index]" >
                           <label for="unpaid[index]">Unpay</label>
 
@@ -85,23 +83,9 @@
                         <td v-if="detail.is_leave == '0'">
                           <input type="radio"  id="leave" value="3" v-model="lottery_status[index]" ><label for="leave">Leave</label>
                         </td>
-                        <!-- {{detail.get_payment.length}} -->
                         <td class="col-md-1" v-if="detail.get_payment.length == 0">
                             <button type="submit" class="btn btn-success btn-block" @click="storeData(detail, amount[index], lottery_status[index])">Save</button>
                         </td>
-                        <!-- <td v-if="detail.get_payment == null">
-                          <span v-for="(data,index) in detail.get_payment ">
-                            {{detail.get_payment}}
-                            {{data.kista_id}}
-                            {{data}}
-                            <span v-if="data == null">
-                              <button type="submit" class="btn btn-success btn-block" @click="storeData(detail, amount[index], lottery_status[index])">Save</button>
-                            </span>
-                            <span v-else-if="data.kista_id != kistaid">
-                              <button type="submit" class="btn btn-success btn-block" @click="storeData(detail, amount[index], lottery_status[index])">Save</button>
-                            </span>
-                          </span>
-                        </td> -->
                       </tr>
                     </tbody>
                   </table>
