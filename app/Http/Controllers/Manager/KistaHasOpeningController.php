@@ -134,7 +134,7 @@ class KistaHasOpeningController extends Controller
                                         ->value('id');
            $datas = KistaHasOpening::findOrFail($data_id);
            $datas->update([
-            // 'amount' => $request['amount'],
+            'amount' => $request['amount'],
             'updated_by' => Auth::user()->id,
             ]);
            return ['message' => 'Data Updated'];

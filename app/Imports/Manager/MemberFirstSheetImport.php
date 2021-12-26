@@ -32,7 +32,6 @@ class MemberFirstSheetImport implements ToCollection
                 foreach (array_slice($collection->toArray(), 1) as $row) 
                 {
                     $last_part = array_key_last($row) + 1;
-                    // dd($last_part);
                     $agents = Agent::firstOrCreate([
                         'name' => $row[4],
                     ], [
@@ -63,14 +62,17 @@ class MemberFirstSheetImport implements ToCollection
                         'time' => date("H:i:s"),
                         'created_by' => Auth::user()->id,
                     ]);
+                    $kista  = Kista::where('luckydraw_id','1')->pluck('id');
+                    // dd($kista);
                     // 15 25
+                    $count = 0;
                     for ($i=6; $i < $last_part ; $i++) {
-                        // dd($i);
-                            // dd($row[$i]);
+                        $count++;
                         if($row[$i] != NULL){
                             $details = Detail::create([
                                 'luckydraw_id' => '1',
-                                'kista_id' => $i - 5,
+                                'kista_id' => $kista[$count],
+                                // 'kista_id' => $i - 5,
                                 'agent_id' =>$agents->id,
                                 'client_id' => $clients->id,
                                 'lottery_status' => '2',
@@ -279,7 +281,9 @@ class MemberFirstSheetImport implements ToCollection
                     //         'created_by' => Auth::user()->id,
                     //     ]);
                     // }
-                }   
+                }
+                    // dd($lol);
+
 
             });
         } catch(\Exception $e){

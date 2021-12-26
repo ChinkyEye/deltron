@@ -63,7 +63,7 @@
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody class="text-center">
+                    <tbody class="text-center" v-if="click">
                       <tr v-for="(detail,index) in getAllDetail" :key="detail.id">
                         <td>{{index+1}}</td>
                         <td class="text-left">
@@ -121,6 +121,7 @@
             count: '',
             kistaid:'',
             kistacount:'',
+            click:'',
         }
     },
 		mounted(){
@@ -241,6 +242,7 @@
       savedata()
       {
         this.$store.dispatch("allPayment", [this.agent_id,this.kista_id,this.luckydraw_id]);
+        this.click = true;
       },
     }
 	}

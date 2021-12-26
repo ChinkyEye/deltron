@@ -57,7 +57,7 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody v-if="click">
                         <tr v-for="(detail,index) in getAllKistaHasOpening" :key="detail.id">
                           <td>{{index+1}}</td>
                           <td>{{detail.name}}</td>
@@ -124,6 +124,7 @@
           totalExpenditure:'',
           closing_amount:'',
           status:'',
+          click:'',
         }
     },
     mounted(){
@@ -184,6 +185,7 @@
       {
         this.$store.dispatch("allKistaHasOpening", [this.luckydraw_id,this.kista_id]);
         this.lotteryId = this.luckydraw_id;
+        this.click = true;
       },
       updateAmount(kistaId,amount){
         axios.post('/manager/kistahasopening',{

@@ -20,7 +20,7 @@ class CreateAgentHasCommisionsTable extends Migration
             $table->unsignedBigInteger('kista_id');
             $table->foreign('kista_id')->references('id')->on('kistas');
             $table->float('commission', 8, 2);
-            $table->integer('discount_type');
+            $table->integer('commission_type');
             $table->string('date_np',10);
             $table->string('date',10);
             $table->string('time',8);
