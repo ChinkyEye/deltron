@@ -20,7 +20,7 @@ class BookingController extends Controller
     public function index(Request $request)
     {
         $posts = Agent::orderBy('id','DESC')->where('created_by', Auth::user()->id);
-        $posts = $posts->with('getBooking','getBookingLatest')->paginate(10); 
+        $posts = $posts->with('getBooking','getBookingLatest')->paginate(100); 
         $response = [
             'pagination' => [
                 'total' => $posts->total(),

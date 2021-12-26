@@ -71,7 +71,7 @@
                       </tr>
                     </tbody>
                   </table>
-
+                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
                 </div>
               </div>
             </div>

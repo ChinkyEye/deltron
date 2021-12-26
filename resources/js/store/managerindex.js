@@ -307,8 +307,7 @@ export default{
 		},
 
 		allClientList(context, params){
-			axios.get("/manager/clientlist")
-			axios.get("/manager/clientlist/"+"?agent_id="+params[0])
+			axios.get("/manager/clientlist/"+"?agent_id="+params[0]+"&page="+params[1])
 				.then((response)=>{
 					context.commit('clientlists', [response.data.clientlists.data,response.data.pagination])
 				})
@@ -442,7 +441,7 @@ export default{
 			axios.get("/manager/booking")
 				.then((response)=>{
 					// console.log(response.data.bookings);
-					context.commit('bookings', [response.data.bookings.data])
+					context.commit('bookings', [response.data.bookings.data,response.data.pagination])
 				})
 		}
 	},

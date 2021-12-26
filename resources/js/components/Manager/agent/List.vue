@@ -78,7 +78,7 @@
                       </tr>
                     </tbody>
                   </table>
-
+                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
                 </div>
               </div>
             </div>
@@ -115,6 +115,7 @@
       getAllAgent(){
         this.$Progress.start()
         var avar = this.$store.getters.getAgent;
+        // console.log(avar[1]);
         if(avar.length==2)
           this.pagination = avar[1];
         this.$Progress.finish()

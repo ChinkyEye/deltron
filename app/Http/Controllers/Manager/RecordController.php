@@ -19,7 +19,7 @@ class RecordController extends Controller
     {
         $posts = Record::orderBy('id','DESC')
                             ->where('created_by', Auth::user()->id);
-        $posts = $posts->with('getKista','getLuckyDraw')->paginate(15);
+        $posts = $posts->with('getKista','getLuckyDraw')->paginate(25);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),

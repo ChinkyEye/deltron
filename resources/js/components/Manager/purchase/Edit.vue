@@ -27,7 +27,7 @@
               <div class="col-8">
                 <div class="card card-primary">
                   <div class="card-header">
-                    <router-link to="/agent">
+                    <router-link to="/purchase">
                       <i class="fas fa-arrow-left" title="Click to go back"></i>
                     </router-link>
                   </div>

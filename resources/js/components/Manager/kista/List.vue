@@ -69,7 +69,7 @@
                       </tr>
                     </tbody>
                   </table>
-
+                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
                 </div>
               </div>
             </div>
@@ -106,6 +106,7 @@
       getALLLuckyDraw(){
         this.$Progress.start()
         var avar = this.$store.getters.getKista;
+        // console.log(avar);
         if(avar.length==2)
           this.pagination = avar[1];
         this.$Progress.finish()

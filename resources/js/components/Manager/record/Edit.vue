@@ -27,7 +27,7 @@
               <div class="col-8">
                 <div class="card card-primary">
                   <div class="card-header">
-                    <router-link to="/incomeexpenditurelist">
+                    <router-link to="/record">
                       <i class="fas fa-arrow-left" title="Click to go back"></i>
                     </router-link>
                   </div>

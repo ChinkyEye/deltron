@@ -50,9 +50,6 @@
                       </tr>
                     </thead>
                     <tbody class="text-center">
-                      <tr>
-                        
-                      </tr>
                       <tr v-for="(data,index) in getAllPurchase" :key="data.id" :class="colorchange(data.is_active)">
                         <td>{{index+1}}</td>
                         <td class="text-left">{{data.supplier_name}}</td>
@@ -72,7 +69,7 @@
                       </tr>
                     </tbody>
                   </table>
-
+                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
                 </div>
               </div>
             </div>

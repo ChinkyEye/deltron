@@ -26,7 +26,7 @@ class KistaController extends Controller
             $search = $request->search;
             $posts = $posts->where('name', 'LIKE',"%{$search}%");
         }
-        $posts = $posts->with('getLuckyDraw')->paginate(15);
+        $posts = $posts->with('getLuckyDraw')->paginate(25);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),

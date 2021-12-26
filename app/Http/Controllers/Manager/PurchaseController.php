@@ -18,7 +18,7 @@ class PurchaseController extends Controller
     {
         $posts = Purchase::orderBy('id','DESC')
                             ->where('created_by', Auth::user()->id);
-        $posts = $posts->paginate(15);
+        $posts = $posts->paginate(25);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),
