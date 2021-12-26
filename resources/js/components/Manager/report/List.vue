@@ -50,7 +50,7 @@
           </div>
         </router-link>
       </div>
-      <div class="col-lg-3 col-6">
+      <!-- <div class="col-lg-3 col-6">
         <router-link to="/report/expense">
           <div :class="stock_level_count == 0 ? 'small-box bg-primary' : 'small-box bg-danger'">
             <div class="inner">
@@ -59,10 +59,10 @@
             </div>
           </div>
         </router-link>
-      </div>
+      </div> -->
       <div class="col-lg-3 col-6">
         <router-link to="/report/lotteryprize">
-          <div class="small-box bg-info">
+          <div class="small-box bg-primary">
             <div class="inner">
               <h3>{{lotteryprize_count}}</h3>
               <p>Lottery Prize Report</p>
@@ -72,7 +72,7 @@
       </div>
       <div class="col-lg-3 col-6">
         <router-link to="/report/purchase">
-          <div class="small-box bg-success">
+          <div class="small-box bg-info">
             <div class="inner">
               <h3>{{purchase_count}}</h3>
               <p>Purchase Report</p>
@@ -82,7 +82,7 @@
       </div>
       <div class="col-lg-3 col-6">
         <router-link to="/report/incomeexpenditure">
-          <div class="small-box bg-warning">
+          <div class="small-box bg-success">
             <div class="inner">
               <h3>{{incomeexpenditure_count}}</h3>
               <p>Income Expenditure Report</p>
@@ -92,7 +92,7 @@
       </div>
       <div class="col-lg-3 col-6">
         <router-link to="/report/expenditure">
-          <div class="small-box bg-primary">
+          <div class="small-box bg-warning">
             <div class="inner">
               <h3>{{expenditure_count}}</h3>
               <p>Expenditure Report</p>
@@ -102,7 +102,7 @@
       </div>
       <div class="col-lg-3 col-6">
         <router-link to="/report/record">
-          <div class="small-box bg-info">
+          <div class="small-box bg-primary">
             <div class="inner">
               <h3>{{record_count}}</h3>
               <p>Record Report</p>
@@ -112,9 +112,9 @@
       </div>
       <div class="col-lg-3 col-6">
         <router-link to="/report/preview">
-          <div class="small-box bg-success">
+          <div class="small-box bg-info">
             <div class="inner">
-              <h3>0</h3>
+              <h3><i class="fas fa-arrow-alt-circle-down"></i></h3>
               <p>Preview(Serial No) Report</p>
             </div>
           </div>
@@ -122,7 +122,7 @@
       </div>
       <div class="col-lg-3 col-6">
         <router-link to="/report/member">
-          <div class="small-box bg-warning">
+          <div class="small-box bg-success">
             <div class="inner">
               <h3>{{member_count}}</h3>
               <p>Member Report</p>

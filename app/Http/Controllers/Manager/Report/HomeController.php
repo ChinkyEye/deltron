@@ -26,7 +26,7 @@ class HomeController extends Controller
         $lotteryprize_count = Detail::where('lottery_prize', '!=' , null)->count();
         $purchase_count = Purchase::where('is_active','1')->count();
         $incomeexpenditure_count = IncomeExpenditure::where('date',$current_date)->where('is_active','1')->count();
-        $expenditure_count = IncomeExpenditure::where('expenditure_type','1')->where('is_active','1')->count();
+        $expenditure_count = IncomeExpenditure::where('type','Expenditure')->where('is_active','1')->count();
         $record_count = Record::where('is_active','1')->count();
         $member_count = Client::where('date',$current_date)->where('is_active','1')->count();
         $response = [
