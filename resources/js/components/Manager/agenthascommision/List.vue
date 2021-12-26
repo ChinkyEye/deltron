@@ -72,11 +72,11 @@
                         <td class="col-md-3">
                           <input type="text" class="form-control" v-model="amount[index]" autocomplete="off">
 
-                            <input type="radio" id="discountpercent[index]" value="1" v-model="status[index]" >
-                            <label for="discountpercent[index]">%</label>
+                            <input type="radio" id="commissionpercent[index]" value="1" v-model="status[index]" >
+                            <label for="commissionpercent[index]">%</label>
 
-                            <input type="radio" id="discountrs[index]" value="2" v-model="status[index]">
-                            <label for="discountrs[index]">Rs</label>
+                            <input type="radio" id="commissionrs[index]" value="2" v-model="status[index]">
+                            <label for="commissionrs[index]">Rs</label>
 
                         </td>
                         <td class="col-md-1">
@@ -168,7 +168,7 @@
       storeData(kistId,amount,status){
         axios.post('/manager/agent/commision',{
               amount: amount,
-              discount_type: status,
+              commission_type: status,
               kista_id: kistId,
               agent_id: this.$route.params.agentid,
           })

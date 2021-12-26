@@ -301,7 +301,7 @@ export default{
 		allKistaHasOpening(context, params){
 			axios.get("/manager/kistahasopening/"+"?luckydrawid="+params[0]+"&kistaid="+params[1])
 				.then((response)=>{
-					console.log(response);
+					// console.log(response);
 					context.commit('kistahasopenings', [response.data])
 				})
 		},
