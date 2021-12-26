@@ -79,7 +79,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary" :disabled="state.isSending">{{state.isSending ? "Loading..." : "Update Client"}}</button>
+                      <button type="submit" class="btn btn-primary" :disabled="state.isSending">{{state.isSending ? "Loading..." : "Update Member"}}</button>
                     </div>
                   </form>
                 </div>
@@ -121,7 +121,7 @@
             name: '',
             address: '',
             phone: '',
-            serail_no:'',
+            serial_no:'',
             // lottery_no:'',
             date:moment(new Date()).format('YYYY-MM-DD'),
             // date: '',
@@ -137,6 +137,7 @@
       // this.$Progress.start()
     	axios.get(`/manager/client/${this.$route.params.clientid}/edit`)
     	.then((response)=>{
+        console.log(response);
     		this.form.fill(response.data.clients)
     	})
       this.$store.dispatch("allSelectLuckyDraw")

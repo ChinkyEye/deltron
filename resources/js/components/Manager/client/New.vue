@@ -88,7 +88,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary" :disabled="state.isSending">{{state.isSending ? "Loading..." : "Add Client"}}</button>
+                      <button type="submit" class="btn btn-primary" :disabled="state.isSending">{{state.isSending ? "Loading..." : "Add Member"}}</button>
                     </div>
                   </form>
                 </div>

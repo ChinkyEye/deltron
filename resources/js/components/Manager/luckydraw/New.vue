@@ -45,7 +45,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary" :disabled="state.isSending">{{state.isSending ? "Loading..." : "Add Detail"}}</button>
+                      <button type="submit" class="btn btn-primary" :disabled="state.isSending">{{state.isSending ? "Loading..." : "Create Scheme"}}</button>
                     </div>
                   </form>
                 </div>
