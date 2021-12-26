@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>{{ config('app.name') }}</title>
         {{-- <title>La</title> --}}
 
@@ -100,8 +99,8 @@
             </div> --}}
             <div class="content">
                 <div class="title m-b-md" style="color:green;">
-
-                   {{ config('app.name') }}
+                    Scheme Management System
+                   {{-- {{ config('app.name') }} --}}
                    {{-- <span style="color:danger"> {{ config('app.name') }} </span> --}}
                 </div>
 

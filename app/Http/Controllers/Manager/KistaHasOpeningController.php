@@ -23,6 +23,15 @@ class KistaHasOpeningController extends Controller
     {
         $luckydrawid = $request->luckydrawid;
         $kistaid = $request->kistaid;
+        $preId = Kista::where('luckydraw_id',$luckydrawid)
+                        ->where('id','<',$request->kistaid)
+                        ->orderBy('id','DESC')
+                        ->first();
+        if($preId == NULL){
+            $preid = '0';
+        }else{
+            $preid = $preId->id;
+        }
 
         $posts_income = IncomeExpenditure::orderBy('id','DESC')
                                     ->where('type','Income');
@@ -44,14 +53,21 @@ class KistaHasOpeningController extends Controller
         $check = KistaHasOpening::orderBy('created_at','DESC')
                                 ->where('luckydraw_id',$luckydrawid)
                                 ->where('kista_id',$kistaid)
-                                ->count();   
+                                ->count();
+       
         $counts = KistaHasOpening::orderBy('created_at','DESC')
                                 ->where('luckydraw_id',$luckydrawid)
-                                ->where('kista_id',$kistaid - 1)
+                                ->where('kista_id',$preid)
+                                // ->where('kista_id',$kistaid - 1)
                                 ->count();
         if($check == 0){
+            $check_amount = null;
             $status = true;
         }else{
+             $check_amount = KistaHasOpening::orderBy('created_at','DESC')
+                                ->where('luckydraw_id',$luckydrawid)
+                                ->where('kista_id',$kistaid)
+                                ->value('amount');
             $status = false;
         }                        
         if($counts == 0){
@@ -60,7 +76,8 @@ class KistaHasOpeningController extends Controller
         else{
         $latest_opening = KistaHasOpening::orderBy('created_at','DESC')
                                         ->where('luckydraw_id',$luckydrawid)
-                                        ->where('kista_id',$request->kistaid - 1)
+                                        ->where('kista_id',$preid)
+                                        // ->where('kista_id',$request->kistaid - 1)
                                         // ->latest()->first();
                                         ->value('amount');
                                         // dd($latest_opening);
@@ -87,6 +104,7 @@ class KistaHasOpeningController extends Controller
             'expenditure_total' => $expenditure_total,
             'bank_balance' => $bank_balance,
             'status' => $status,
+            'check_amount' => $check_amount,
         ];
         return response()->json($response);                        
     }

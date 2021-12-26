@@ -64,7 +64,14 @@
                           <td>{{totalIncome}}</td>
                           <td>{{totalExpenditure}}</td>
                           <td>
-                             <input type="text" class="form-control" v-model="closing_amount" autocomplete="off" readonly>
+                            <div class="row">
+                              <div class="col">
+                               <input type="text" class="form-control" v-model="closing_amount" autocomplete="off" readonly>
+                             </div>
+                             <div class="col-md-2">
+                               {{check_amount}} <span class="text-danger">(pre)</span>
+                             </div>
+                            </div>
                           </td>
                           <td v-if="status == true">
                             <button type="submit" class="btn btn-success btn-block"  @click="updateAmount(detail.id, closing_amount)">Save</button>
@@ -125,6 +132,7 @@
           closing_amount:'',
           status:'',
           click:'',
+          check_amount:'',
         }
     },
     mounted(){
@@ -148,10 +156,11 @@
         this.income_total = avar[0].income_total;
         this.bank_balance = avar[0].bank_balance;
         this.totalIncome = this.latest_income + this.income_total + parseInt(this.latest_opening);
-        console.log(this.latest_income,this.income_total,parseInt(this.latest_opening));
+        // console.log(this.latest_income,this.income_total,parseInt(this.latest_opening));
         this.totalExpenditure =  this.expenditure_total + this.bank_balance;
         this.closing_amount =  this.totalIncome - this.totalExpenditure;
         this.status = avar[0].status;
+        this.check_amount = avar[0].check_amount;
         return avar[0].kistas;
       },
     },

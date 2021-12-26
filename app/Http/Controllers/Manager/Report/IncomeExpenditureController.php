@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\IncomeExpenditure;
 use App\BankBalance;
 use App\Detail;
+use App\Kista;
 use App\KistaHasOpening;
 use Auth;
 use Response;
@@ -20,6 +21,8 @@ class IncomeExpenditureController extends Controller
      */
     public function index(Request $request)
     {
+
+        // dd($request->kistaid -1,$preId->id);
         $posts_income = IncomeExpenditure::orderBy('id','DESC')
                                     ->where('type','Income');
         $posts_expenditure = IncomeExpenditure::orderBy('id','DESC')
@@ -37,22 +40,32 @@ class IncomeExpenditureController extends Controller
                                     ->value('bank_name');
         $initial_opening = 0;
         $opening_amount = KistaHasOpening::where('created_by', Auth::user()->id);
+        $preId = Kista::where('created_by', Auth::user()->id);
 
 
         if($request->has('luckydrawid') && $request->get('luckydrawid')!="")
         {            
-            $posts_income = $posts_income->where('luckydraw_id', 'LIKE',"%{$request->luckydrawid}%");
+            $posts_income = $posts_income->where('luckydraw_id',$request->luckydrawid);
             $posts_expenditure = $posts_expenditure->where('luckydraw_id', 'LIKE',"%{$request->luckydrawid}%");
-            $latest_income = $latest_income->where('luckydraw_id', 'LIKE',"%{$request->luckydrawid}%");
+            $latest_income = $latest_income->where('luckydraw_id', $request->luckydrawid);
+            // $latest_income = $latest_income->where('luckydraw_id', 'LIKE',"%{$request->luckydrawid}%");
             $opening_amount = $opening_amount->where('luckydraw_id', 'LIKE',"%{$request->luckydrawid}%");
+            $preId = $preId->where('luckydraw_id',$request->luckydrawid);
         }
 
         if($request->has('kistaid') && $request->get('kistaid')!="")
         {   
-            $posts_income = $posts_income->where('kista_id', 'LIKE',"%{$request->kistaid}%");
+            $posts_income = $posts_income->where('kista_id',$request->kistaid);
             $posts_expenditure = $posts_expenditure->where('kista_id', 'LIKE',"%{$request->kistaid}%");
-            $latest_income = $latest_income->where('kista_id', 'LIKE',"%{$request->kistaid}%");
-            $opening_amount = $opening_amount->where('kista_id',$request->kistaid - 1);
+            $latest_income = $latest_income->where('kista_id', $request->kistaid);
+            // $latest_income = $latest_income->where('kista_id', 'LIKE',"%{$request->kistaid}%");
+            $preId = $preId->where('id','<',$request->kistaid)->orderBy('id','DESC')->first();
+            if($preId == NULL){
+                $preid = '0';
+            }else{
+                $preid = $preId->id;
+            }
+            $opening_amount = $opening_amount->where('kista_id',$preid);
         }
 
         if(($request->has('date1')) || ($request->has('date2')))
@@ -68,6 +81,7 @@ class IncomeExpenditureController extends Controller
         $expenditure_total =  $posts_expenditure->sum('amount');
         $latest_income = $latest_income->sum('amount');
         $opening_amount = $opening_amount->sum('amount');
+        // dd($opening_amount);
         $response = [
           'incomeexpenditurereports_income' => $posts_income,
           'incomeexpenditurereports_expenditure' => $posts_expenditure,

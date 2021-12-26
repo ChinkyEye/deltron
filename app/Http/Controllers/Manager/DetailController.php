@@ -214,6 +214,9 @@ class DetailController extends Controller
 
     public function revise($id, $lotteryStatus){
         $remaining = Detail::where('id',$id)->value('remaining');
+        $kista_id = Detail::where('id',$id)->value('kista_id');
+        // $amount = Kista::where('id',$kista_id)->value('amount');
+        // dd($kista_id,$amount);
         $amount = Detail::where('id',$id)->value('amount');
         // dd($amount);
         $user = Detail::findOrFail($id);

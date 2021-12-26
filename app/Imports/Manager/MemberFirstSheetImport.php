@@ -63,12 +63,12 @@ class MemberFirstSheetImport implements ToCollection
                         'created_by' => Auth::user()->id,
                     ]);
                     $kista  = Kista::where('luckydraw_id','1')->pluck('id');
-                    // dd($kista);
+                    $kista_amount = Kista::where('luckydraw_id','1')->pluck('amount');
+                    // dd($kista,$kista_amount);
                     // 15 25
                     $count = 0;
                     for ($i=6; $i < $last_part ; $i++) {
-                        $count++;
-                        if($row[$i] != NULL){
+                         if($row[$i] != NULL){
                             $details = Detail::create([
                                 'luckydraw_id' => '1',
                                 'kista_id' => $kista[$count],
@@ -87,19 +87,24 @@ class MemberFirstSheetImport implements ToCollection
                         else{
                             $details = Detail::create([
                                 'luckydraw_id' => '1',
-                                'kista_id' => $i - 5,
+                                'kista_id' => $kista[$count],
+                                // 'kista_id' => $i - 5,
                                 'agent_id' =>$agents->id,
                                 'client_id' => $clients->id,
                                 'lottery_status' => '1',
-                                'amount' => '',
-                                'remaining' => '0',
+                                'amount' => '0',
+                                'remaining' => $kista_amount[$count],
+                                // 'remaining' => '0',
                                 'date' => date("Y-m-d"),
                                 'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
                                 'time' => date("H:i:s"),
                                 'created_by' => Auth::user()->id,
                             ]);
                         }
+                        $count++;
+
                     }
+                    // dd($count);
                     
                     // $agents = Agent::firstOrCreate([
                     //     'name' => $row['agent_name'],
@@ -283,8 +288,6 @@ class MemberFirstSheetImport implements ToCollection
                     // }
                 }
                     // dd($lol);
-
-
             });
         } catch(\Exception $e){
             DB::rollback();
