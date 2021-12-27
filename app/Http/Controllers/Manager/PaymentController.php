@@ -97,8 +97,8 @@ class PaymentController extends Controller
             $datas->lottery_status = $lottery_data;
             $findkista = Kista::find($kista_id);
             if($lottery_data== '1'){
-                $datas->amount = $findkista->amount;
-                $datas->remaining = '0';
+                $datas->amount = '0';
+                $datas->remaining = $findkista->amount;
             }
             elseif($lottery_data =='2' && $amount != null){
                 $datas->amount = $amount;
