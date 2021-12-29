@@ -58,11 +58,10 @@
                       <tr>
                         <th width="10">SN</th>
                         <th class="text-left">Name</th>
-                        <!-- <th>Amount</th> -->
                         <th>Status</th>
                       </tr>
                     </thead>
-                    <tbody class="text-center"  v-if="status == false">
+                    <tbody class="text-center"  v-if="status == false && click">
                       <tr v-for="(detail,index) in getAllDetail" :key="detail.id">
                         <td>{{index+1}}</td>
                         <td class="text-left">
@@ -84,7 +83,7 @@
                         </td>
                       </tr>
                     </tbody>
-                    <tbody class="text-center" v-if="status == true">
+                    <tbody class="text-center" v-if="status == true && click">
                       <tr v-for="(play,ind) in getAllDetail" :key="play.id">
                         <td>{{ind+1}}</td>
                         <td class="text-left">
@@ -150,6 +149,7 @@
             comparisonvalue : '2',
             state: true,
             count: '',
+            click:'',
         }
     },
 		mounted(){
@@ -211,7 +211,8 @@
               luckydraw_id: that.luckydraw_id,
               kista_id: that.kista_id
             }).then(function (response) {
-              window.location.reload();
+              // window.location.reload();
+              this.$store.dispatch("allDetail");
               if (response) {
                 that.state.isSending = true;
                 Toast.fire({
@@ -285,6 +286,7 @@
       savedata()
       {
         this.$store.dispatch("allDetail", [this.agent_id,this.kista_id]);
+        this.click = true;
       },
     }
 	}

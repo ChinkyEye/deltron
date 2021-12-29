@@ -57,8 +57,6 @@
                         <td class="text-left">{{data.name}}</td>
                         <td class="text-left">{{data.address}}</td>
                         <td class="text-left">{{data.phone}}</td>
-                        <!-- <td class="text-left">{{data.commission}}</td> -->
-                        <!-- <td>{{data.get_kista.name}}</td> -->
                         <td v-if="data.is_active == '0'">Inactive <a href="javascript:void(0)" @click.prevent="AgentStatus(data.id, data.is_active)" title="Click to Publish"><i class="nav-icon fas fa-times-circle text-danger"></i></a></td>
                         <td v-else>Active <a href="javascript:void(0)" @click.prevent="AgentStatus(data.id, data.is_active)" title="Click to Unpublish"><i class="nav-icon fas fa-check-circle text-success"></i></a></td>
                         <td>
@@ -70,9 +68,9 @@
                           <router-link :to="`/agent/add/client/${data.id}`" class="btn btn-xs btn-outline-info" title="Add Member"><i class="fas fa-plus"></i></router-link> 
                           <router-link :to="`/agent/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i>
                           </router-link> 
-                          <a href="" @click.prevent="deleteLuckyDraw(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
+                          <a href="" @click.prevent="deleteLuckyDraw(data.id)" class="btn btn-xs btn-outline-danger" title="Click to delete"><i class="fas fa-trash-alt"></i></a>
                           
-                          <router-link :to="`/agent/commision/${data.id}`" class="btn btn-xs btn-outline-info"><i class="fas fa-coins"></i>
+                          <router-link :to="`/agent/commision/${data.id}`" class="btn btn-xs btn-outline-info" title="Click to add commission"><i class="fas fa-coins"></i>
                           </router-link> 
                         </td>
                       </tr>

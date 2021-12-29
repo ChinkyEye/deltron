@@ -43,6 +43,9 @@
           <div class="card-body">
             <div id="printMe">
               <div class="row">
+                <!-- <div class="col-md-12 text-center mb-2">
+                  <span>Preview Report</span>
+                </div> -->
                 <div class="table-responsive col-md">
                   <table class="table table-bordered table-hover table-sm m-0">
                     <thead class="table-primary">                  

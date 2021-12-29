@@ -108,7 +108,9 @@
       this.state.isSending = true;
       this.form.post('/manager/detail/prize')
       .then((response)=>{
-        this.$router.push(`/lotteryprize`)
+        this.$router.push(`/lotteryprize`);
+        // this.$store.dispatch("allKistaDetail");
+        location.reload();
         Toast.fire({
           icon: 'success',
           title: 'Prize Added successfully'
@@ -117,7 +119,7 @@
       .catch(()=>{
         this.state.isSending = false;
       })
-      this.resetForm();
+      // this.resetForm();
     },
     resetForm() {
       this.form.reset();

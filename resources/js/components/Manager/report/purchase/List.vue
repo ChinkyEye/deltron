@@ -51,7 +51,7 @@
           </div>
           <div class="card-body">
             <div id="printMe" class="row">
-              <div class="col-md-12 text-center">
+              <div class="col-md-12 text-center mb-2">
                 <span>Purchase Report</span>
               </div>
               <div class="table-responsive col-sm">

@@ -70,6 +70,9 @@
           </div>
           <div class="card-body">
             <div id="printMe" class="row">
+              <div class="col-md-12 text-center mb-2">
+                <span>Expenditure Report</span>
+              </div>
               <div class="table-responsive col-sm">
                 <table class="table table-bordered table-hover table-sm m-0">
                   <thead class="table-primary">                  

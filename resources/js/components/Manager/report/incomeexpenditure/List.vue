@@ -68,6 +68,9 @@
   <div class="card-body">
     <div id="printMe">
       <div class="row">
+        <div class="col-md-12 text-center mb-2">
+          <span>Income Expenditure Report</span>
+        </div>
         <div class="table-responsive col-sm-6">
           <table class="table table-bordered table-hover table-sm m-0">
             <thead class="table-primary">                  

@@ -80,7 +80,7 @@
                           <has-error :form="form" field="amount"></has-error>
                         </div>
                         <div class="form-group col-md-12">
-                          <label for="description">Description<code>*</code></label>
+                          <label for="description">Description</label>
                           <input type="text" class="form-control" id="description" placeholder="Add description" v-model="form.description" name="description" :class="{ 'is-invalid': form.errors.has('description') }" autocomplete="off">
                           <has-error :form="form" field="description"></has-error>
                         </div>

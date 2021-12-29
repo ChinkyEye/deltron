@@ -83,7 +83,8 @@
                         <td v-if="detail.is_leave == '0'">
                           <input type="radio"  id="leave" value="3" v-model="lottery_status[index]" ><label for="leave">Leave</label>
                         </td>
-                        <td class="col-md-1" v-if="detail.get_payment.length == 0">
+                        <!-- {{detail}} -->
+                        <td class="col-md-1" v-if="detail.get_payment.length == 0 && detail.is_leave != '0' ">
                             <button type="submit" class="btn btn-success btn-block" @click="storeData(detail, amount[index], lottery_status[index])">Save</button>
                         </td>
                       </tr>

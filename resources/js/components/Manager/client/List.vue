@@ -71,8 +71,7 @@
                         <td>
                           <router-link :to="`/client/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i></router-link> 
                           <a href="" @click.prevent="deleteClient(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
-                          <a href="" @click.prevent="editClient(data.id, data.is_leave)" class="btn btn-xs btn-outline-success"><i class="fa fa-times" aria-hidden="true"></i></a>
-                          <!-- <a href="" @click.prevent="editClient2(data.id, data.is_leave)" class="btn btn-xs btn-outline-success"><i class="fas fa-plus"></i></a> -->
+                          <a href="" @click.prevent="editClient(data.id, data.is_leave)" class="btn btn-xs btn-outline-success"><i class="fa fa-times" aria-hidden="true" title="Click to make member leave"></i></a>
                         </td>
                       </tr>
                     </tbody>
@@ -147,19 +146,7 @@
           'table-default': ids
         }
       },
-      // deleteClient(id){
-      //   axios.delete('/manager/client/'+id)
-      //    .then(()=>{
-      //         this.$store.dispatch("allClient", [0,0]);
-      //         Toast.fire({
-      //             icon: 'success',
-      //             title: 'Status changed successfully'
-      //         })
-      //     })
-      //     .catch(()=>{
-      //   })
-      // },
-       deleteClient(id){
+      deleteClient(id){
         var that = this;
         Swal.fire({
           title: 'Are you sure?',
@@ -196,49 +183,11 @@
           }
         })
       },
-
-      deleteClient2(id){
-        var that = this;
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!',
-          cancelButtonText: 'No, cancel!',
-          buttonsStyling: true
-        }).then(function (isConfirm) {
-          if(isConfirm.value === true) {
-            axios.delete('/manager/client/'+id)
-            .then((response)=>{
-              Toast.fire({
-                icon: 'success',
-                title: 'Data Deleted successfully'
-              })
-               this.$store.dispatch("allClient", [0,0,this.$route.params.agentid]);
-            })
-            .catch((response)=>{
-              Toast.fire({
-                icon: 'error',
-                title: 'Something went wrong'
-              })
-            })
-          }
-          else{
-            Toast.fire({
-              icon: 'error',
-              title: 'Setting not Deleted'
-            })
-          }
-        })
-      },
       editClient(id,leaveId){
         var that = this;
         Swal.fire({
           title: 'Are you sure?',
-          text: "You won't be able to revert this!",
+          text: "You want to make member leave!",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -254,14 +203,13 @@
                 icon: 'success',
                 title: 'Data Changed successfully'
               })
-               this.$store.dispatch("allClient", [0,0,this.$route.params.agentid]);
-              // that.$store.dispatch("allClient", [0,0]);
-              // that.$store.dispatch("allClient", [0,that.pagination.current_page,that.search,that.$route.params.agentid]);
+               that.$store.dispatch("allClient", [0,0,`${that.$route.params.agentid}`]);
             })
             .catch((response)=>{
-              Toast.fire({
-                icon: 'error',
-                title: 'Something went wrong'
+               // this.$store.dispatch("allClient", [0,0,`${that.$route.params.agentid}`]);
+               Toast.fire({
+                icon: 'success',
+                title: 'Data Changed successfully'
               })
             })
           }

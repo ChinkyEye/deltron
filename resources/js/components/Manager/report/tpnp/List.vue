@@ -49,6 +49,9 @@
               <div class="card-body">
                 <div id="printMe">
                   <div class="row">
+                    <div class="col-md-12 text-center mb-2">
+                      <span>TPNP Report</span>
+                    </div>
                     <div class="table-responsive col-sm-5">
                       <table class="table table-bordered table-hover table-sm m-0">
                         <thead class="table-primary">                  
