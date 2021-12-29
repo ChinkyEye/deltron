@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark xyz">Allocate Lottery Prize</h5>
+            <h5 class="m-0 text-dark xyz">Allocate Scheme Prize</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

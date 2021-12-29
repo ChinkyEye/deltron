@@ -35,9 +35,15 @@ class TpnplController extends Controller
                             });
         }
         if($request->has('type') && $request->get('type')!="")
-        {            
-            $posts = $posts->where('lottery_status',$request->type);
-            $total = $posts->sum('amount');
+        {    
+            if($request->type == '1'){
+                $posts = $posts->where('lottery_status',$request->type);
+                $total = $posts->sum('remaining');
+            }  
+            else{
+                $posts = $posts->where('lottery_status',$request->type);
+                $total = $posts->sum('amount');
+            }   
         }
   
           $posts = $posts->with('getClientInfo')->paginate(30);

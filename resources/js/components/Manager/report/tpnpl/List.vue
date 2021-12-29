@@ -37,7 +37,7 @@
               </div>
               <div class="form-group col-md">
                 <select class="form-control" id="kista_id" name="kista_id" v-model="kista_id"  @change="kistaChange"> 
-                  <option value="">Select one</option>
+                  <option value="">Select one kista</option>
                   <option :value="kista.id" v-for="kista in getAllKista">{{kista.name}}</option>
                 </select>
               </div>

@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h5 class="m-0 text-dark">Lottery Prize Report</h5>
+        <h5 class="m-0 text-dark">Scheme Prize Report</h5>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -36,7 +36,7 @@
               </div>
               <div class="form-group col-md">
                 <select class="form-control" id="kista_id" name="kista_id" v-model="kista_id"  @change="kistaChange"> 
-                  <option value="">Select one</option>
+                  <option value="">Select one kista</option>
                   <option :value="kista.id" v-for="kista in getAllKista">{{kista.name}}</option>
                 </select>
               </div>

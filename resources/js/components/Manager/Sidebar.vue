@@ -78,7 +78,7 @@
         <!-- <i class="nav-icon fas fa-comments-dollar"></i> -->
         <i class="nav-icon fas fa-award"></i>
         <p>
-          Lottery Prize
+          Scheme Prize
         </p>
       </router-link>
     </li>

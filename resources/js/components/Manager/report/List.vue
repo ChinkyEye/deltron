@@ -65,7 +65,7 @@
           <div class="small-box bg-primary">
             <div class="inner">
               <h3>{{lotteryprize_count}}</h3>
-              <p>Lottery Prize Report</p>
+              <p>Scheme Prize Report</p>
             </div>
           </div>
         </router-link>

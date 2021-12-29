@@ -66,7 +66,7 @@
                       <thead class="table-primary text-center">                  
                         <tr>
                           <th>Serial No</th>
-                          <th class="text-left">Client Name</th>
+                          <th class="text-left">Member Name</th>
                           <th>Address</th>
                           <th>Phone</th>
                           <th>Agent</th>

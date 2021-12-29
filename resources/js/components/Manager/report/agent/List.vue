@@ -37,13 +37,13 @@
                   </div>
                   <div class="form-group col-md">
                     <select class="form-control" id="kista_id" name="kista_id" v-model="kista_id"  @change="kistaChange"> 
-                      <option value="">Select one</option>
+                      <option value="">Select one kista</option>
                       <option :value="kista.id" v-for="kista in getAllKista">{{kista.name}}</option>
                     </select>
                   </div>
                   <div class="form-group col-md">
                     <select class="form-control" id="agent_id" name="agent_id" v-model="agent_id"  @change="agentChange"> 
-                      <option value="">Select one</option>
+                      <option value="">Select one agent</option>
                       <option :value="agent.id" v-for="agent in getAllAgent">{{agent.name}}</option>
                     </select>
                   </div>

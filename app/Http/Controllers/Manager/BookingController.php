@@ -160,17 +160,20 @@ class BookingController extends Controller
 
     public function check(Request $request,$id,$word)
     {
+        // dd($id,$word);
         $name = $word;
         $serial_no_check = Client::where('is_active','1')
                             ->where('serial_no','=',$name)
                             ->count(); 
                             // var_dump($serial_no_check); die();
-        $data = Booking::where('booked_serialno', 'LIKE',"%{$name}%")
+        $data = Booking::where('id',$id)
+                        ->where('booked_serialno', 'LIKE',"%{$name}%")
                         ->where('is_active','1')
                         // ->where('agent_id',$id)
                         ->count();
 
-        $agent_id = Booking::where('booked_serialno', 'LIKE',"%{$name}%")
+        $agent_id = Booking::where('id',$id)
+                        ->where('booked_serialno', 'LIKE',"%{$name}%")
                         ->where('agent_id',$id)
                         ->count();
 

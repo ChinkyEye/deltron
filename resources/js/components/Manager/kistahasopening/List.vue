@@ -27,13 +27,13 @@
                 <div class="row">
                   <div class="col-md">
                     <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" @change="luckydraw_change"> 
-                      <option value="">Select All Scheme</option>
+                      <option value="">Select one Scheme</option>
                       <option :value="luckydraw.id" v-for="luckydraw in getAllLuckydraw">{{luckydraw.name}}</option>
                     </select>
                   </div>
                   <div class="form-group col-md">
                     <select class="form-control" id="kista_id" name="kista_id" v-model="kista_id"  @change="kistaChange"> 
-                      <option value="">Select one</option>
+                      <option value="">Select one kista</option>
                       <option :value="kista.id" v-for="kista in getAllKista">{{kista.name}}</option>
                     </select>
                   </div>

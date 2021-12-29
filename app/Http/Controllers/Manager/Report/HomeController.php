@@ -22,13 +22,31 @@ class HomeController extends Controller
     public function loadDashboard()
     {
         $current_date = date("Y-m-d");
-        $tpnp_count = Detail::where('date',$current_date)->where('is_active','1')->count();
-        $lotteryprize_count = Detail::where('lottery_prize', '!=' , null)->count();
-        $purchase_count = Purchase::where('is_active','1')->count();
-        $incomeexpenditure_count = IncomeExpenditure::where('date',$current_date)->where('is_active','1')->count();
-        $expenditure_count = IncomeExpenditure::where('type','Expenditure')->where('is_active','1')->count();
-        $record_count = Record::where('is_active','1')->count();
-        $member_count = Client::where('date',$current_date)->where('is_active','1')->count();
+        $tpnp_count = Detail::where('date',$current_date)
+                            ->where('is_active','1')
+                            ->where('created_by', Auth::user()->id)
+                            ->count();
+        $lotteryprize_count = Detail::where('lottery_prize', '!=' , null)
+                                    ->where('created_by', Auth::user()->id)
+                                    ->count();
+        $purchase_count = Purchase::where('is_active','1')
+                                    ->where('created_by', Auth::user()->id)
+                                    ->count();
+        $incomeexpenditure_count = IncomeExpenditure::where('date',$current_date)
+                                                    ->where('is_active','1')
+                                                    ->where('created_by', Auth::user()->id)
+                                                    ->count();
+        $expenditure_count = IncomeExpenditure::where('type','Expenditure')
+                                                ->where('is_active','1')
+                                                ->where('created_by', Auth::user()->id)
+                                                ->count();
+        $record_count = Record::where('is_active','1')
+                                ->where('created_by', Auth::user()->id)
+                                ->count();
+        $member_count = Client::where('date',$current_date)
+                                ->where('is_active','1')
+                                ->where('created_by', Auth::user()->id)
+                                ->count();
         $response = [
            'tpnp_count' => $tpnp_count,
            'lotteryprize_count' => $lotteryprize_count,

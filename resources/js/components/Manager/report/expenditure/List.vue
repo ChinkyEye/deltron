@@ -31,7 +31,7 @@
             <div class="row">
               <div class="col-md">
                 <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" @change="luckydraw_change"> 
-                  <option value="">Select one Luckydraw</option>
+                  <option value="">Select one Scheme</option>
                   <option :value="luckydraw.id" v-for="luckydraw in getAllLuckydraw">{{luckydraw.name}}</option>
                 </select>
               </div>
