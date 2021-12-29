@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark">Add Income/Expendiyure Detail</h5>
+            <h5 class="m-0 text-dark">Add Income/Expenditure Detail</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Kista</li>
+              <li class="breadcrumb-item active">Income-Expense</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

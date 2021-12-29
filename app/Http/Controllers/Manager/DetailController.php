@@ -77,6 +77,7 @@ class DetailController extends Controller
             $posts = Client::orderBy('id','DESC')
                             ->select('id','name','agent_id','is_leave')
                             ->where('agent_id',$agentid)
+                            ->where('is_leave','1')
                             ->get();
             $kista = Kista::where('id',$kistaid)->value('amount');
             $status = False;
@@ -108,6 +109,7 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         // dd($request->lottery_status,$request->amount);
         // dd($request->agent_id,$request->luckydraw_id,$request->agent_id);
         $luckydraw_id = $request->luckydraw_id;
@@ -142,7 +144,8 @@ class DetailController extends Controller
                     }
                 }
                 else{
-                    $datas->amount = $findkista->amount;
+                    $datas->amount = '0';
+                    // $datas->amount = $findkista->amount;
                     $datas->remaining = '0';
                 }
                 $datas->date = date("Y-m-d");
