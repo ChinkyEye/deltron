@@ -47,7 +47,7 @@
                   <option disabled value="">Select one</option>
                   <option value="1">Unpaid</option>
                   <option value="2">Paid</option>
-                  <option value="3">Leave</option>
+                  <!-- <option value="3">Leave</option> -->
                 </select>
               </div>
               <div class="form-group col-md">
