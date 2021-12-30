@@ -24,7 +24,7 @@ class PurchaseController extends Controller
         {
             $posts = $posts->whereBetween('date', [$request->date1, $request->date2]);
         }
-        $posts = $posts->paginate(30);
+        $posts = $posts->paginate(100);
         $totalamount = Purchase::where('created_by', Auth::user()->id)->sum('amount');
           $response = [
              'pagination' => [

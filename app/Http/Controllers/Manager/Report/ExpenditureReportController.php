@@ -36,7 +36,7 @@ class ExpenditureReportController extends Controller
             $posts = $posts->where('expenditure_type',$request->expendituretype);
             $total = $posts->sum('amount');
         }
-        $posts = $posts->paginate(30);
+        $posts = $posts->paginate(100);
         $response = [
            'pagination' => [
                'total' => $posts->total(),

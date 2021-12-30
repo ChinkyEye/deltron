@@ -46,7 +46,7 @@ class TpnplController extends Controller
             }   
         }
   
-          $posts = $posts->with('getClientInfo')->paginate(30);
+          $posts = $posts->with('getClientInfo')->paginate(100);
           $response = [
              'pagination' => [
                  'total' => $posts->total(),

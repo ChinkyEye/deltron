@@ -46,7 +46,7 @@ class MemberController extends Controller
             $posts = $posts->where('agent_id',$request->agentid);
         }
 
-        $posts = $posts->with('getClientDetail','getAgent','getCount')->paginate(30);
+        $posts = $posts->with('getClientDetail','getAgent','getCount')->paginate(1000);
         $response = [
            'pagination' => [
                'total' => $posts->total(),

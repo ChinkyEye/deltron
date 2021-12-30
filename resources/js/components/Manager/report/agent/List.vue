@@ -31,7 +31,7 @@
                 <div class="row">
                   <div class="col-md">
                     <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" @change="luckydraw_change"> 
-                      <option value="">Select one Member</option>
+                      <option value="">Select one scheme</option>
                       <option :value="luckydraw.id" v-for="luckydraw in getAllLuckydraw">{{luckydraw.name}}</option>
                     </select>
                   </div>
@@ -92,6 +92,7 @@
                           </tr>
                         </tbody>
                       </table>
+                      <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
                     </div>
                     <div class="table-responsive col-sm-4">
                       <table class="table table-bordered table-hover table-sm m-0">
@@ -107,7 +108,7 @@
                         </tbody>
                       </table>
                     </div>
-                    <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
+                    <!-- <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination> -->
                   </div>
                 </div>
               </div>
@@ -162,7 +163,8 @@
       getAgentreport(){
         var avar = this.$store.getters.getAgentReport;
         this.commisionamount = parseFloat(avar[2]).toFixed(2);
-        if(avar.length==2)
+        console.log(avar.length);
+        if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];
 

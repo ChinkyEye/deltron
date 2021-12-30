@@ -123,26 +123,26 @@
 	
 </template>
 <script type="text/javascript">
-  // import pagination from '../../../components/PaginationComponent.vue';
+  import pagination from '../../../../components/PaginationComponent.vue';
 	export default{
 		name: "List",
     components: {
-      // pagination,
+      pagination,
     },
     data(){
       return{
-        form: new Form({
-          title:'',
-          file: null,
-        }),
-        state: {
-          isSending: false
-        },
-        imagePreview: null,
-        showPreview: false,
           pagination: {
             'current_page': 1
           },
+          form: new Form({
+            title:'',
+            file: null,
+          }),
+          state: {
+            isSending: false
+          },
+          imagePreview: null,
+          showPreview: false,
           luckydraw_id:'',
           agent_id: '',
           click: '',
@@ -157,7 +157,9 @@
       },
       getAllMember(){
         var d = this.$store.getters.getMemberReport
-        console.log(d[0]);
+        // console.log(d.length);
+         // if(d.length==5)
+         //  this.pagination = d[1];
         return d[0];
       },
       getAllName(){
@@ -183,7 +185,7 @@
       },
       savedata()
       {
-        this.$store.dispatch("allMemberReport", [this.luckydraw_id,this.agent_id]);
+        this.$store.dispatch("allMemberReport", [this.luckydraw_id,this.agent_id,this.pagination.current_page]);
       },
       searchSetting(){
         this.fetchPosts();

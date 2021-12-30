@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark">Add Lottery Prize</h5>
+            <h5 class="m-0 text-dark">Add Scheme Prize</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -39,7 +39,7 @@
                         <!-- <input type="hidden" class="form-control" id="name" v-model="form.kistaid" name="name"> -->
                         
                         <div class="form-group col-md-12">
-                          <label for="lottery_prize">Lottery Prize<code>*</code></label>
+                          <label for="lottery_prize">Scheme Prize<code>*</code></label>
                           <input type="text" class="form-control" id="lottery_prize" placeholder="Add lottery_prize" v-model="form.lottery_prize" name="lottery_prize" :class="{ 'is-invalid': form.errors.has('lottery_prize') }" autocomplete="off">
                           <has-error :form="form" field="lottery_prize"></has-error>
                         </div>

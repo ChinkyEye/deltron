@@ -414,7 +414,8 @@ export default{
 				})
 		},
 		allMemberReport(context, params){
-			axios.get("/manager/report/member/"+"?luckydrawid="+params[0]+"&agentid="+params[1])
+			// console.log(params);
+			axios.get("/manager/report/member/"+"?luckydrawid="+params[0]+"&agentid="+params[1]+"&page")
 				.then((response)=>{
 					context.commit('memberreports', [response.data.memberreports.data,
 													response.data.pagination,

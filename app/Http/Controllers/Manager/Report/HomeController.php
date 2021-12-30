@@ -9,6 +9,7 @@ use App\Purchase;
 use App\IncomeExpenditure;
 use App\Record;
 use App\Client;
+use App\Agent;
 use Auth;
 use Response;
 
@@ -47,6 +48,9 @@ class HomeController extends Controller
         $member_count = Client::where('is_active','1')
                                 ->where('created_by', Auth::user()->id)
                                 ->count();
+        $agent_count = Agent::where('is_active','1')
+                            ->where('created_by', Auth::user()->id)
+                            ->count();                        
         $response = [
            'tpnp_count' => $tpnp_count,
            'lotteryprize_count' => $lotteryprize_count,
@@ -55,6 +59,7 @@ class HomeController extends Controller
            'expenditure_count' => $expenditure_count,
            'record_count' => $record_count,
            'member_count' => $member_count,
+           'agent_count' => $agent_count,
         ];
         return response()->json($response);
     }

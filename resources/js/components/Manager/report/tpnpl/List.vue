@@ -83,6 +83,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
                 </div>
                 <div class="table-responsive col-sm-2">
                   <table class="table table-bordered table-hover table-sm m-0">
@@ -96,7 +97,6 @@
                         <td>Rs.{{total}}</td>
                       </tr>
                     </tbody>
-
                   </table>
                 </div>
               </div>
@@ -152,18 +152,12 @@
       },
       getAllTpnpreport(){
         var avar = this.$store.getters.getTpnplReport;
+        // console.log(avar.length);
+        // console.log(avar[1]);
         this.total = avar[2];
-        if(avar.length==2)
+        if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];
-        // console.log(bvar);
-        // if(bvar.length == 0) return [];
-        // var avar = bvar[0].tpnplreports.data;
-        // console.log(avar);
-        // this.cost_price = bvar[0].cost_price;
-        // if(bvar.length==2)
-        //   this.pagination = bvar[1];
-        // return bvar;
       },
     },
     methods:{
@@ -171,8 +165,6 @@
         this.pagechange();
         this.$store.dispatch("allSelectLuckyDraw")
         this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
-        // this.$store.dispatch("allTpnplReport", [this.luckydraw_id,this.kista_id]);
-
       },
       pagechange(){
         this.$Progress.start()

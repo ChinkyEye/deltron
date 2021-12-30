@@ -28,7 +28,7 @@
                 <div class="row">
                   <div class="col-md">
                     <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" name="luckydraw_id" @change="luckydrawChange"> 
-                      <option disabled value="">Select one lucky draw</option>
+                      <option disabled value="">Select one scheme</option>
                       <option :value="luckydraw.id" v-for="luckydraw in allSelectLuckyDraws">
                         {{luckydraw.name}}
                       </option>

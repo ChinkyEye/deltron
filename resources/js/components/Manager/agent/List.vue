@@ -113,7 +113,7 @@
       getAllAgent(){
         this.$Progress.start()
         var avar = this.$store.getters.getAgent;
-        // console.log(avar[1]);
+        // console.log(avar.length);
         if(avar.length==2)
           this.pagination = avar[1];
         this.$Progress.finish()

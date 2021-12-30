@@ -164,10 +164,10 @@ export default{
             getAllOrder(){
                 var bvar = this.$store.getters.getReportDashboard;
                 if(bvar.length == 0) return [];
-                console.log(bvar[0].record_count);
+                console.log(bvar[0]);
                 this.tpnp_count = bvar[0].tpnp_count;
                 this.tpnpl_count = bvar[0].tpnp_count;
-                this.agent_count = bvar[0].tpnp_count;
+                this.agent_count = bvar[0].agent_count;
                 this.lotteryprize_count = bvar[0].lotteryprize_count;
                 this.purchase_count = bvar[0].purchase_count;
                 this.incomeexpenditure_count = bvar[0].incomeexpenditure_count;
