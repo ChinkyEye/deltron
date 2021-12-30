@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use App\Client;
 use App\Booking;
+use App\User;
 use Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\View\View;
@@ -59,6 +60,9 @@ class PreviewExport implements  FromView,WithEvents,WithColumnWidths
         $booking_arrays = array_diff($booking_array,$common_value);
         //end of new added
 
+        $title = User::where('id', Auth::user()->id)
+                        ->value('name');
+
         if(empty($this->search))
         {            
             $posts = $posts;
@@ -80,6 +84,7 @@ class PreviewExport implements  FromView,WithEvents,WithColumnWidths
             'total' => $total,
             'array' => $array,
             'booking_array' => $booking_arrays,
+            'title' => $title
         ]);
 
 
@@ -153,13 +158,37 @@ class PreviewExport implements  FromView,WithEvents,WithColumnWidths
                       ->getAlignment()
                       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
+                $event->sheet->mergeCells('A3:C3');
+                $event->sheet
+                      ->getStyle('A3:C3')
+                      ->getFont()
+                      ->setBold(true)
+                      ->setSize(10)
+                      ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
+                $event->sheet
+                      ->getStyle('A3:C3')
+                      ->getAlignment()
+                      ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+                // $event->sheet->mergeCells('A4:C4');
+                // $event->sheet
+                //       ->getStyle('A4:C4')
+                //       ->getFont()
+                //       ->setBold(true)
+                //       ->setSize(14)
+                //       ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
+                // $event->sheet
+                //       ->getStyle('A4:C4')
+                //       ->getAlignment()
+                //       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
 
 
                 // content
-                $event->sheet->getStyle('A3:C3')->applyFromArray([
+                $event->sheet->getStyle('A4:C4')->applyFromArray([
                     'font' => [
                         'bold' => True,
-                        'size' => 12,
+                        'size' => 10,
                     ]
                 ]);
 
@@ -171,8 +200,9 @@ class PreviewExport implements  FromView,WithEvents,WithColumnWidths
     public function columnWidths(): array
     {
         return [
-            'A' => 25,
-            'B' => 35,
+            'A' => 10,
+            'B' => 50,
+            'C' => 25,
         ];
     }
 }

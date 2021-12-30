@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use App\Detail;
 use App\Client;
 use App\Kista;
+use App\User;
 use Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\View\View;
@@ -40,6 +41,8 @@ class MemberExport implements  FromView,WithEvents,WithColumnWidths
         $kista_name = Kista::where('luckydraw_id',$luckydraw_id)
                             ->where('is_active','1')
                             ->pluck('name');
+        $title = User::where('id', Auth::user()->id)
+                        ->value('name');                    
 
         $posts = Client::orderBy('id','DESC')
                          ->where('created_by', Auth::user()->id);
@@ -58,6 +61,7 @@ class MemberExport implements  FromView,WithEvents,WithColumnWidths
         return view('manager.report.memberreport.memberexport',[
             'posts' => $posts,
             'kista_name' => $kista_name,
+            'title' => $title,
         ]);
 
     }
@@ -97,8 +101,19 @@ class MemberExport implements  FromView,WithEvents,WithColumnWidths
                       ->getAlignment()
                       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
+                $event->sheet->mergeCells('A3:N3');
+                $event->sheet
+                      ->getStyle('A3:N3')
+                      ->getFont()
+                      ->setBold(true)
+                      ->setSize(10)
+                      ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
+                $event->sheet
+                      ->getStyle('A3:N3')
+                      ->getAlignment()
+                      ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);      
                 // content
-                $event->sheet->getStyle('A3:R3')->applyFromArray([
+                $event->sheet->getStyle('A4:R4')->applyFromArray([
                     'font' => [
                         'bold' => True,
                         'size' => 12,

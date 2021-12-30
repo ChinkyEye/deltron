@@ -10,8 +10,9 @@
   </head>
   <body>
     <div>
-      <p class="text-center">Scheme Management System</p>
-      <p class="text-center">Biratnagar,Morang</p>
+      <p class="text-center">{{$title}}</p>
+      <p class="text-center">Member Report</p>
+      <p>{{ date('Y') }}</p>
 
     </div>
     <table class="table table-bordered table-hover table-sm m-0">

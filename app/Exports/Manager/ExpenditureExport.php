@@ -9,9 +9,14 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use App\IncomeExpenditure;
+use App\User;
+use Auth;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
 
-class ExpenditureExport implements FromCollection, WithHeadings,WithEvents,WithColumnWidths
+class ExpenditureExport implements FromView,WithEvents,WithColumnWidths
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -25,63 +30,87 @@ class ExpenditureExport implements FromCollection, WithHeadings,WithEvents,WithC
       if($kista_id!="") $this->kista_id = $kista_id;
       if($expenditure_type!="") $this->expenditure_type = $expenditure_type;
     }
-    
-    public function collection()
+    public function view(): View
     {
-
-      $posts = IncomeExpenditure::orderBy('id','DESC')
+        $title = User::where('id', Auth::user()->id)
+                    ->value('name');
+        $posts = IncomeExpenditure::orderBy('id','DESC')
                                 ->where('type','Expenditure');
-      if($this->luckydraw_id != NULL)
-      {            
-        $posts = $posts->where('luckydraw_id', 'LIKE',"%{$this->luckydraw_id}%");
-      }
-      if($this->kista_id != NULL)
-      {            
-        $posts = $posts->where('kista_id', 'LIKE',"%{$this->kista_id}%");
-      }
-      if($this->expenditure_type != NULL)
-      {            
-        $posts = $posts->where('expenditure_type', 'LIKE',"%{$this->expenditure_type}%");
-      }
-      $posts = $posts->with('getLuckyDraw','getKista')->get();
-      $actualdata = $posts->map(function($post){
-        return [$post->getLuckyDraw->name.",".$post->getKista->name,$post->topic,$post->amount];
-      });
-      return $actualdata;
-
+        if($this->luckydraw_id != NULL)
+        {            
+            $posts = $posts->where('luckydraw_id', 'LIKE',"%{$this->luckydraw_id}%");
+        }
+        if($this->kista_id != NULL)
+        {            
+            $posts = $posts->where('kista_id', 'LIKE',"%{$this->kista_id}%");
+        }
+        if($this->expenditure_type != NULL)
+        {            
+            $posts = $posts->where('expenditure_type', 'LIKE',"%{$this->expenditure_type}%");
+        }
+        $posts = $posts->with('getLuckyDraw','getKista')->get();
+        return view('manager.report.expenditurereport.expenditureexport',[
+            'expenditurereports' => $posts,
+            'title' => $title,
+        ]);
     }
+    
+    // public function collection()
+    // {
 
-    public function headings(): array
-    {
-        return
-        [
-            [
-                // Setting::value('name'),
-                "Scheme Management System",
-            ],
-            [
-                // Setting::value('address').", Email: ".Setting::value('email').", Pan: ".Setting::value('pan').", Phone: ".Setting::value('phone'),
-                "Biratnagar".",Morang",
-            ],
-            // [
-            //     "Name: ".($this->name ? $this->name : 'All').
-            //     ", Supplier: ".($this->supplier_id ? User::where('id',$this->supplier_id)->value('name') : 'All').
-            //     ", Category: ".($this->category_id ? Category::where('id',$this->category_id)->value('name'): 'All'),
-            // ],    
+    //   $posts = IncomeExpenditure::orderBy('id','DESC')
+    //                             ->where('type','Expenditure');
+    //   if($this->luckydraw_id != NULL)
+    //   {            
+    //     $posts = $posts->where('luckydraw_id', 'LIKE',"%{$this->luckydraw_id}%");
+    //   }
+    //   if($this->kista_id != NULL)
+    //   {            
+    //     $posts = $posts->where('kista_id', 'LIKE',"%{$this->kista_id}%");
+    //   }
+    //   if($this->expenditure_type != NULL)
+    //   {            
+    //     $posts = $posts->where('expenditure_type', 'LIKE',"%{$this->expenditure_type}%");
+    //   }
+    //   $posts = $posts->with('getLuckyDraw','getKista')->get();
+    //   $actualdata = $posts->map(function($post){
+    //     return [$post->getLuckyDraw->name.",".$post->getKista->name,$post->topic,$post->amount];
+    //   });
+    //   return $actualdata;
+
+    // }
+
+    // public function headings(): array
+    // {
+    //     return
+    //     [
+    //         [
+    //             // Setting::value('name'),
+    //             "Scheme Management System",
+    //         ],
+    //         [
+    //             // Setting::value('address').", Email: ".Setting::value('email').", Pan: ".Setting::value('pan').", Phone: ".Setting::value('phone'),
+    //             "Biratnagar".",Morang",
+    //         ],
+    //         // [
+    //         //     "Name: ".($this->name ? $this->name : 'All').
+    //         //     ", Supplier: ".($this->supplier_id ? User::where('id',$this->supplier_id)->value('name') : 'All').
+    //         //     ", Category: ".($this->category_id ? Category::where('id',$this->category_id)->value('name'): 'All'),
+    //         // ],    
                
-            // [
+    //         // [
                 
-            //     " SubCategory: ".($this->subcategory_id ? SubCategory::where('id',$this->subcategory_id)->value('name') : 'All').
-            //     ", Start Date: ".($this->start_date ? $this->start_date : 'All').
-            //     ", End Date: ".($this->end_date ? $this->end_date : 'All'),
-            // ],
-            [
-             'Info',
-             'Expenditure Topic',
-             'Amount',
-            ]
-        ];
-    }
+    //         //     " SubCategory: ".($this->subcategory_id ? SubCategory::where('id',$this->subcategory_id)->value('name') : 'All').
+    //         //     ", Start Date: ".($this->start_date ? $this->start_date : 'All').
+    //         //     ", End Date: ".($this->end_date ? $this->end_date : 'All'),
+    //         // ],
+    //         [
+    //          'Info',
+    //          'Expenditure Topic',
+    //          'Amount',
+    //         ]
+    //     ];
+    // }
 
     public function registerEvents(): array
     {
@@ -118,6 +147,17 @@ class ExpenditureExport implements FromCollection, WithHeadings,WithEvents,WithC
                       ->getAlignment()
                       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
+                $event->sheet->mergeCells('A3:C3');
+                $event->sheet
+                      ->getStyle('A3:C3')
+                      ->getFont()
+                      ->setBold(true)
+                      ->setSize(10)
+                      ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
+                $event->sheet
+                      ->getStyle('A3:C3')
+                      ->getAlignment()
+                      ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 // $event->sheet->mergeCells('A3:I3');
                 // $event->sheet
                 //       ->getStyle('A3:I3')
@@ -144,7 +184,7 @@ class ExpenditureExport implements FromCollection, WithHeadings,WithEvents,WithC
 
 
                 // content
-                $event->sheet->getStyle('A3:C3')->applyFromArray([
+                $event->sheet->getStyle('A4:C4')->applyFromArray([
                     'font' => [
                         'bold' => True,
                         'size' => 12,
