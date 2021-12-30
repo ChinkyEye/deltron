@@ -75,8 +75,8 @@ class IncomeExpenditureController extends Controller
             $latest_income = $latest_income->whereBetween('date', [$request->date1, $request->date2]);
         }
 
-        $posts_income =  $posts_income->paginate(20);
-        $posts_expenditure =  $posts_expenditure->paginate(20);
+        $posts_income =  $posts_income->paginate(50);
+        $posts_expenditure =  $posts_expenditure->paginate(50);
         $income_total =  $posts_income->sum('amount');
         $expenditure_total =  $posts_expenditure->sum('amount');
         $latest_income = $latest_income->sum('amount');
@@ -131,8 +131,8 @@ class IncomeExpenditureController extends Controller
             $posts_expenditures = $posts_expenditures->whereBetween('date', [$request->date1, $request->date2]);
             $prev_income = $prev_income->whereBetween('date', [$request->date1, $request->date2]);
         }
-        $posts_incomes =  $posts_incomes->paginate(20);
-        $posts_expenditures =  $posts_expenditures->paginate(20);
+        $posts_incomes =  $posts_incomes->paginate(50);
+        $posts_expenditures =  $posts_expenditures->paginate(50);
         $income_totals =  $posts_incomes->sum('amount');
         $expenditure_totals =  $posts_expenditures->sum('amount');
         $prev_income =  $prev_income->sum('amount');
@@ -177,8 +177,8 @@ class IncomeExpenditureController extends Controller
             $latest_income = $latest_income->whereBetween('date', [$request->date1, $request->date2]);
         }
 
-        $posts_income =  $posts_income->paginate(20);
-        $posts_expenditure =  $posts_expenditure->paginate(20);
+        $posts_income =  $posts_income->paginate(50);
+        $posts_expenditure =  $posts_expenditure->paginate(50);
         $income_total =  $posts_income->sum('amount');
         $expenditure_total =  $posts_expenditure->sum('amount');
         $latest_income = $latest_income->sum('amount');
