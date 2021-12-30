@@ -12,9 +12,11 @@
     <div>
       <p class="text-center">Scheme Management System</p>
       <p class="text-center">Biratnagar,Morang</p>
-
     </div>
-    <div class="row">
+    <div class="card-body">
+      
+    </div>
+    {{-- <div class="row">
       <div class="table-responsive col-md">
         <table class="table table-bordered table-hover table-sm m-0">
           <thead class="table-primary">                  
@@ -70,7 +72,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -25,7 +25,7 @@ class ExpenseReportController extends Controller
                         ->where('created_by', Auth::user()->id)
                         ->where('luckydraw_id',$request->luckydrawid)
                         ->with('getExpense','getAmount');
-        $posts = $posts->paginate(30);
+        $posts = $posts->paginate(100);
         $totalamount = Detail::where('luckydraw_id',$request->luckydrawid)->sum('amount');
         $totalexpense = Expense::where('luckydraw_id',$request->luckydrawid)->sum('amount');
         // dd($totalamount);

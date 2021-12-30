@@ -42,6 +42,7 @@
                         <th width="10">SN</th>
                         <th class="text-left">Supplier Name</th>
                         <th>Item Name</th>
+                        <th>Description</th>
                         <th>Quantity</th>
                         <th>Amount</th>
                         <th>Status</th>
@@ -54,6 +55,7 @@
                         <td>{{index+1}}</td>
                         <td class="text-left">{{data.supplier_name}}</td>
                         <td>{{data.item_name}}</td>
+                        <td>{{data.description}}</td>
                         <td>{{data.quantity}}</td>
                         <td>{{data.amount}}</td>
                         <td v-if="data.is_active == '0'">Inactive <a href="javascript:void(0)" @click.prevent="PurchaseStatus(data.id, data.is_active)" title="Click to Publish"><i class="nav-icon fas fa-times-circle text-danger"></i></a></td>

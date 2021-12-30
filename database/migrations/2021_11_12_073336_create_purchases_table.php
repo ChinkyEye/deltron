@@ -20,6 +20,7 @@ class CreatePurchasesTable extends Migration
             $table->string('quantity');
             $table->string('amount');
             $table->string('rate')->nullable();
+            $table->string('description')->nullable();
             $table->string('date_np',10);
             $table->string('date',10);
             $table->string('time',8);

@@ -61,6 +61,7 @@
                       <th width="10">SN</th>
                       <th class="text-left">Supplier Name</th>
                       <th>Item Name</th>
+                      <th>Description</th>
                       <th>Purchase Date</th>
                       <th>Amount</th>
                     </tr>
@@ -70,6 +71,7 @@
                       <td>{{index+1}}</td>
                       <td class="text-left">{{data.supplier_name}}</td>
                       <td>{{data.item_name}}</td>
+                      <td>{{data.description}}</td>
                       <td>
                         <span class="badge badge-warning">{{data.date_np}}</span>
                       </td>
@@ -78,7 +80,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colspan="4">Total:</td>
+                      <td colspan="5">Total:</td>
                       <td>{{total}}</td>
                     </tr>
                   </tfoot>
