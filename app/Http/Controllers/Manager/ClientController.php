@@ -202,8 +202,16 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $this->validate($request, [
+        //     'name' => 'required',
+        // ]);
+        $request['slug'] = $this->helper->slug_converter($request['serial_no']).'-'.Auth::user()->id;
         $this->validate($request, [
             'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'slug' => 'required|unique:clients',
+            'serial_no' => 'required|size:4|between:0001,6999',
         ]);
         $datas = Client::findOrFail($id);
         $datas->update([

@@ -59,8 +59,10 @@
                         </div> -->
                         <div class="form-group col-md-12">
                           <label for="serial_no">Serial No:<code>*</code></label>
-                          <input type="text" class="form-control" id="serial_no" placeholder="Add serial_no" v-model="form.serial_no" name="serial_no" :class="{ 'is-invalid': form.errors.has('serial_no') }" autocomplete="off">
-                          <has-error :form="form" field="serial_no"></has-error>
+                          <!-- <input type="text" class="form-control" id="serial_no" placeholder="Add serial_no" v-model="form.serial_no" name="serial_no" :class="{ 'is-invalid': form.errors.has('serial_no') }" autocomplete="off">
+                          <has-error :form="form" field="serial_no"></has-error> -->
+                          <input type="text" class="form-control" id="serial_no" placeholder="Add serial_no" v-model="form.serial_no" name="serial_no" :class="{ 'is-invalid': form.errors.has('slug') }" autocomplete="off" v-on:change="changeSerial($event)">
+                          <has-error :form="form" field="slug"></has-error>
                         </div>
                         <div class="form-group col-md-6">
                           <label>Date</label>
