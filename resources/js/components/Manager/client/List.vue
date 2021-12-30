@@ -76,7 +76,7 @@
                       </tr>
                     </tbody>
                   </table>
-
+                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
                 </div>
               </div>
             </div>
@@ -113,9 +113,8 @@
     computed:{
       getALLClient(){
         var avar = this.$store.getters.getClient;
-        // console.log(avar[1]);
         this.agent_name = avar[0];
-        if(avar.length==2)
+        if(avar.length==3)
           this.pagination = avar[2];
         return avar[0];
       }

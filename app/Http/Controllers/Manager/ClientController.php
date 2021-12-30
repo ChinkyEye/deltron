@@ -28,7 +28,7 @@ class ClientController extends Controller
             $search = $request->search;
             $posts = $posts->where('name', 'LIKE',"%{$search}%");
         }
-        $posts = $posts->with('getAgent')->paginate(15);
+        $posts = $posts->with('getAgent')->paginate(30);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),
