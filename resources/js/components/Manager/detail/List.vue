@@ -211,8 +211,8 @@
               luckydraw_id: that.luckydraw_id,
               kista_id: that.kista_id
             }).then(function (response) {
-              // window.location.reload();
-              this.$store.dispatch("allDetail");
+              window.location.reload();
+              // that.$store.dispatch("allDetail");
               if (response) {
                 that.state.isSending = true;
                 Toast.fire({

@@ -136,7 +136,7 @@
       .catch(()=>{
         this.state.isSending = false;
       })
-      this.resetForm();
+      // this.resetForm();
     },
     resetForm() {
       this.form.reset();
