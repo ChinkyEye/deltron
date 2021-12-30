@@ -22,8 +22,8 @@ class HomeController extends Controller
     public function loadDashboard()
     {
         $current_date = date("Y-m-d");
-        $tpnp_count = Detail::where('date',$current_date)
-                            ->where('is_active','1')
+        // $tpnp_count = Detail::where('date',$current_date)
+        $tpnp_count = Detail::where('is_active','1')
                             ->where('created_by', Auth::user()->id)
                             ->count();
         $lotteryprize_count = Detail::where('lottery_prize', '!=' , null)
@@ -32,8 +32,8 @@ class HomeController extends Controller
         $purchase_count = Purchase::where('is_active','1')
                                     ->where('created_by', Auth::user()->id)
                                     ->count();
-        $incomeexpenditure_count = IncomeExpenditure::where('date',$current_date)
-                                                    ->where('is_active','1')
+        // $incomeexpenditure_count = IncomeExpenditure::where('date',$current_date)
+        $incomeexpenditure_count = IncomeExpenditure::where('is_active','1')
                                                     ->where('created_by', Auth::user()->id)
                                                     ->count();
         $expenditure_count = IncomeExpenditure::where('type','Expenditure')
@@ -43,8 +43,8 @@ class HomeController extends Controller
         $record_count = Record::where('is_active','1')
                                 ->where('created_by', Auth::user()->id)
                                 ->count();
-        $member_count = Client::where('date',$current_date)
-                                ->where('is_active','1')
+        // $member_count = Client::where('date',$current_date)
+        $member_count = Client::where('is_active','1')
                                 ->where('created_by', Auth::user()->id)
                                 ->count();
         $response = [

@@ -37,6 +37,7 @@
                   <form role="form" enctype="multipart/form-data" @submit.prevent="updateClient()">
                     <div class="card-body">
                       <div class="row">
+                        <input type="hidden" name="id" v-model="form.id">
                         <div class="form-group col-md-12">
                           <label for="name">Member Name <code>*</code></label>
                           <input type="text" class="form-control" id="name" placeholder="Add name" v-model="form.name" name="name" :class="{ 'is-invalid': form.errors.has('name') }" autocomplete="off">
@@ -119,6 +120,7 @@
     data(){
         return {
           form: new Form({
+            id:'',
             agent_id: '',
             name: '',
             address: '',

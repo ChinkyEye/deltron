@@ -205,12 +205,15 @@ class ClientController extends Controller
         // $this->validate($request, [
         //     'name' => 'required',
         // ]);
+        // dd($request,$id);
+        $ids = $request->id;
         $request['slug'] = $this->helper->slug_converter($request['serial_no']).'-'.Auth::user()->id;
         $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'slug' => 'required|unique:clients',
+            // 'slug' => 'required|unique:clients',
+            'slug' => 'required|unique:clients,slug,'.$ids,
             'serial_no' => 'required|size:4|between:0001,6999',
         ]);
         $datas = Client::findOrFail($id);
