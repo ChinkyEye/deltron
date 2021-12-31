@@ -20,12 +20,14 @@ class PurchaseController extends Controller
     public function index(Request $request)
     {
         $posts = Purchase::orderBy('id','DESC')->where('created_by', Auth::user()->id);
+        $totalamount = Purchase::where('created_by', Auth::user()->id);
         if(($request->has('date1')) || ($request->has('date2')))
         {
             $posts = $posts->whereBetween('date', [$request->date1, $request->date2]);
+            $totalamount = $totalamount->whereBetween('date', [$request->date1, $request->date2]);
         }
+        $totalamount = $totalamount->sum('amount');
         $posts = $posts->paginate(100);
-        $totalamount = Purchase::where('created_by', Auth::user()->id)->sum('amount');
           $response = [
              'pagination' => [
                  'total' => $posts->total(),

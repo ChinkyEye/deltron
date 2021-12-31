@@ -177,7 +177,7 @@ class ExpenditureExport implements FromView,WithEvents,WithColumnWidths
         return [
             'A' => 25,
             'B' => 35,
-            'C' => 35,            
+            // 'C' => 35,            
         ];
     }
 }

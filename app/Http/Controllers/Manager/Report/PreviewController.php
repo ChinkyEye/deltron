@@ -71,7 +71,7 @@ class PreviewController extends Controller
              $posts = $posts->where('agent_id',$request->agentid);
              $total = $total->where('agent_id',$request->agentid);
         }
-        $posts = $posts->paginate(30);
+        $posts = $posts->paginate(200);
         $total = $total->count();
         $response = [
             'pagination' => [

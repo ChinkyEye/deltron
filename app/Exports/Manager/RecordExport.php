@@ -36,7 +36,7 @@ class RecordExport implements FromView,WithEvents,WithColumnWidths
         {
             $posts = $posts->whereBetween('date', [$this->start_date, $this->end_date]);
         }
-        $posts = $posts->get();
+        $posts = $posts->with('getLuckyDraw','getKista')->get();
         return view('manager.report.recordreport.recordexport',[
             'recordreports' => $posts,
             'title' => $title,
@@ -145,8 +145,9 @@ class RecordExport implements FromView,WithEvents,WithColumnWidths
             'A'=>10,
             'B' => 20,
             'C' => 35,
-            // 'D' => 25,
+            'D' => 25,
             'E' => 25,
+            // 'F' => 25
         ];
     }
 }

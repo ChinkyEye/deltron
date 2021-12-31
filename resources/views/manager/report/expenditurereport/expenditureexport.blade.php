@@ -28,8 +28,8 @@
           <tbody>
             @foreach($expenditurereports as $index => $data)
             <tr>
-              <!-- <td>{{$indṬex+1}}</td> -->
-              <td>{{$data->getLuckyDraw->name}},{{$data->getKista->name}}</td>
+              {{-- <td>{{$index+1}}</td> --}}
+              <td>{{$data->getLuckyDraw->name}} | {{$data->getKista->name}}</td>
               <td>{{$data->topic}}</td>
               <td>{{$data->amount}}</td>
             </tr>

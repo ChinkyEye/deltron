@@ -149,7 +149,7 @@ class PurchaseExport implements FromView,WithEvents,WithColumnWidths
             'B' => 25,
             'C' => 35,
             'D' => 35,
-            'E' => 25,
+            // 'E' => 25,
             'F' => 25,
         ];
     }

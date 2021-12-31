@@ -11,7 +11,7 @@
   <body>
     <div>
       <h1 class="text-center">{{$title}}</h1>
-      <h3 class="text-center">Purchase Report({{$start_date}} - {{$end_date}})</h3>
+      <h3 class="text-center">Record Report({{$start_date}} -- {{$end_date}})</h3>
       <h6>{{ date('Y') }}</h6>
     </div>
     <div class="row">
@@ -22,8 +22,9 @@
               <th>SN</th>
               <th>Topic</th>
               <th>Description</th>
-              <th>Amount</th>
+              <th>Info</th>
               <th>Date</th>
+              <th>Amount</th>
             </tr>
           </thead>
           <tbody>
@@ -32,8 +33,9 @@
               <td>{{$index+1}}</td>
               <td>{{$data->title}}</td>
               <td>{{$data->description}}</td>
-              <td>{{$data->amount}}</td>
+              <td>{{$data->getLuckyDraw->name}} | {{$data->getKista->name}}</td>
               <td>{{$data->date_np}}</td>
+              <td>{{$data->amount}}</td>
             </tr>
             @endforeach
           </tbody>
