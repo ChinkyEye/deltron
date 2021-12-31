@@ -12,7 +12,7 @@
     <div>
       <p class="text-center">{{$title}}</p>
       <p class="text-center">Member Report</p>
-      <p>{{ date('Y') }}</p>
+      <p>{{$agent_name}}({{$scheme_name}}),{{ date('Y') }}</p>
 
     </div>
     <table class="table table-bordered table-hover table-sm m-0">
@@ -44,6 +44,8 @@
               <td>2</td>
               @elseif($data->getCount->total == 2)
               <td>3</td>
+              @else
+              <td></td>
               @endif
             @else
             <td>1</td>

@@ -10,7 +10,9 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use App\Detail;
 use App\Client;
 use App\Kista;
+use App\Agent;
 use App\User;
+use App\LuckyDraw;
 use Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\View\View;
@@ -42,7 +44,16 @@ class MemberExport implements  FromView,WithEvents,WithColumnWidths
                             ->where('is_active','1')
                             ->pluck('name');
         $title = User::where('id', Auth::user()->id)
-                        ->value('name');                    
+                        ->value('name'); 
+        $agent_name = Agent::where('is_active','1')
+                            ->where('created_by',Auth::user()->id)
+                            ->where('id',$agent_id)
+                            ->value('name');
+        $scheme_name = LuckyDraw::where('is_active','1')
+                                ->where('created_by', Auth::user()->id)
+                                ->where('id',$luckydraw_id)
+                                ->value('name');
+                                // dd($scheme_name);                                                       
 
         $posts = Client::orderBy('id','DESC')
                          ->where('created_by', Auth::user()->id);
@@ -62,6 +73,8 @@ class MemberExport implements  FromView,WithEvents,WithColumnWidths
             'posts' => $posts,
             'kista_name' => $kista_name,
             'title' => $title,
+            'agent_name' => $agent_name,
+            'scheme_name' => $scheme_name,
         ]);
 
     }

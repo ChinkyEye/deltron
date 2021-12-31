@@ -26,7 +26,7 @@
             <div class="row">
               <div>
                 <button @click="print" class="btn btn-primary rounded-0"><i class="fas fa-print">Print</i></button>
-               <button @click.prevent="memberreportexport()" class="btn btn-success rounded-0"><i class="fas fa-print" title="Export To Excel"></i> Excel</button>
+               <button @click.prevent="memberreportexport()" class="btn btn-success rounded-0" :disabled="click"><i class="fas fa-print" title="Export To Excel"></i>Excel</button>
               </div>
               <div class="ml-1">
                  <form role="form" enctype="multipart/form-data" @submit.prevent="addSlider()">
@@ -42,7 +42,7 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-md">
-                    <select class="form-control" id="luckydraw_id" v-model="luckydraw_id"> 
+                    <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" @change="LuckyDrawChange"> 
                       <option value="">Select One Scheme</option>
                       <option :value="luckydraw.id" v-for="luckydraw in getAllLuckydraw">{{luckydraw.name}}</option>
                     </select>
@@ -96,6 +96,9 @@
                             <span v-if ="data.get_count.total == 2">
                                 3
                             </span>
+                            <span v-else>
+                              
+                            </span>
                           </td>
                           <td v-else>
                             1
@@ -145,7 +148,7 @@
           showPreview: false,
           luckydraw_id:'',
           agent_id: '',
-          click: '',
+          click: true,
         }
     },
     mounted(){
@@ -157,9 +160,6 @@
       },
       getAllMember(){
         var d = this.$store.getters.getMemberReport
-        // console.log(d.length);
-         // if(d.length==5)
-         //  this.pagination = d[1];
         return d[0];
       },
       getAllName(){
@@ -182,6 +182,10 @@
       },
       agentChange(){
          this.$store.dispatch("allSelectAgent", [this.kista_id]);
+      },
+      LuckyDrawChange()
+      {
+        this.click = false;
       },
       savedata()
       {
