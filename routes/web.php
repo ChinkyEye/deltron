@@ -122,8 +122,11 @@ Route::group(["middleware" => 'manager'], function(){
     Route::get('/manager/report/agent','Manager\Report\AgentController@index');
     Route::get('/manager/report/expense','Manager\Report\ExpenseReportController@index');
     Route::get('/manager/report/lotteryprize','Manager\Report\LotteryPrizeController@index');
+
     Route::get('/manager/report/purchase','Manager\Report\PurchaseController@index');
     Route::get('/manager/report/purchase/export','Manager\Report\PurchaseController@fileExport');
+    Route::post('/manager/report/purchase/import','Manager\Report\PurchaseController@fileImport');
+
     Route::get('/manager/report/incomeexpenditure','Manager\Report\IncomeExpenditureController@index');
     Route::get('/manager/report/expenditure','Manager\Report\ExpenditureReportController@index');
     Route::get('/manager/report/expenditure/export','Manager\Report\ExpenditureReportController@fileExport');

@@ -23,10 +23,22 @@
       <!-- Left col -->
       <section class="col-lg-12 connectedSortable">
          <!-- main page load here -->
-        <button @click="print" class="btn btn-primary rounded-0"><i class="fas fa-print">Print</i></button>
-        <button @click.prevent="purchaseReportExport()" class="btn btn-success rounded-0"><i class="fas fa-print" title="Export To Excel"></i> Excel</button>
+        <div class="row">
+          <div>
+            <button @click="print" class="btn btn-primary rounded-0"><i class="fas fa-print">Print</i></button>
+            <button @click.prevent="purchaseReportExport()" class="btn btn-success rounded-0"><i class="fas fa-print" title="Export To Excel"></i> Excel</button>
+          </div>
+          <div class="ml-1">
+            <form role="form" enctype="multipart/form-data" @submit.prevent="addPurchase()">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary rounded-0" :disabled="state.isSending">{{state.isSending ? "Loading..." : "Import"}}</button>
+                <input type="file" class=""  id="file" name="file" @change="changePhoto($event)" :class="{ 'is-invalid': form.errors.has('file') }">
+                <has-error :form="form" field="file"></has-error>
+              </div>
+            </form>
+          </div>
+        </div>
         <div class="card card-info card-outline">
-
           <div class="card-header">
             <div class="row">
               <div class="form-group col-md-5">
@@ -116,6 +128,10 @@
         pagination: {
             'current_page': 1
           },
+          form: new Form({
+            title:'',
+            file: null,
+          }),
           luckydraw_id:'',
           cost_price:'',
           total:'',
@@ -124,6 +140,9 @@
           date:{
             start: moment().subtract(1,'months')._d, // Jan 16th, 2018
             end: new Date()    // Jan 19th, 2018
+          },
+          state: {
+            isSending: false
           },
           search:'',
         }
@@ -158,7 +177,32 @@
       },
       purchaseReportExport(){
         location.href = '/manager/report/purchase/export?start_date='+moment(this.date.start).format('YYYY-MM-DD')+'&end_date='+moment(this.date.end).format('YYYY-MM-DD');
-      }
+      },
+      addPurchase(){
+        this.state.isSending = true;
+        this.form.post('/manager/report/purchase/import',{
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          transformRequest: [function (data,headers){
+            return objectToFormData(data)
+          }]
+        })
+        .then((response)=>{
+          this.state.isSending = false;
+          Toast.fire({
+            icon: 'success',
+            title: 'Detail Added successfully'
+          })
+        })
+        .catch(()=>{
+          this.state.isSending = false;
+        })
+      },
+      changePhoto(event){
+        let file = event.target.files[0];
+        this.form.file = file;
+      },
    
     }
   }

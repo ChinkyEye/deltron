@@ -8,6 +8,7 @@ use App\Purchase;
 use Auth;
 use Response;
 use App\Exports\Manager\PurchaseExport;
+use App\Imports\Manager\PurchaseImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PurchaseController extends Controller
@@ -113,5 +114,13 @@ class PurchaseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fileImport(Request $request){
+        $this->validate($request, [
+          'file' => 'required|mimes:xlsx,xls',
+        ]);
+        Excel::import(new PurchaseImport, $request->file('file')->store('temp'));
+        return back()->with('success', 'Excel file imported successfully!');
     }
 }
