@@ -28,7 +28,7 @@
           <tbody>
             @foreach($expenditurereports as $index => $data)
             <tr>
-              <!-- <td>{{$index+1}}</td> -->
+              <!-- <td>{{$indṬex+1}}</td> -->
               <td>{{$data->getLuckyDraw->name}},{{$data->getKista->name}}</td>
               <td>{{$data->topic}}</td>
               <td>{{$data->amount}}</td>

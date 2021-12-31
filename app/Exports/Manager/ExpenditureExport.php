@@ -158,30 +158,6 @@ class ExpenditureExport implements FromView,WithEvents,WithColumnWidths
                       ->getStyle('A3:C3')
                       ->getAlignment()
                       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                // $event->sheet->mergeCells('A3:I3');
-                // $event->sheet
-                //       ->getStyle('A3:I3')
-                //       ->getFont()
-                //       ->setBold(true)
-                //       ->setSize(14)
-                //       ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
-                // $event->sheet
-                //       ->getStyle('A3:I3')
-                //       ->getAlignment()
-                //       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);   
-
-                // $event->sheet->mergeCells('A4:I4');
-                // $event->sheet
-                //       ->getStyle('A4:I4')
-                //       ->getFont()
-                //       ->setBold(true)
-                //       ->setSize(14)
-                //       ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
-                // $event->sheet
-                //       ->getStyle('A4:I4')
-                //       ->getAlignment()
-                //       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);       
-
 
                 // content
                 $event->sheet->getStyle('A4:C4')->applyFromArray([

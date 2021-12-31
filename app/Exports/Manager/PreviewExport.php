@@ -10,13 +10,13 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use App\Client;
 use App\Booking;
 use App\User;
+use App\Agent;
 use Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
 
-// class PreviewExport implements FromCollection, WithHeadings,WithEvents,WithColumnWidths
 class PreviewExport implements  FromView,WithEvents,WithColumnWidths
 {
     /**
@@ -62,6 +62,10 @@ class PreviewExport implements  FromView,WithEvents,WithColumnWidths
 
         $title = User::where('id', Auth::user()->id)
                         ->value('name');
+        $agent_name = Agent::where('is_active','1')
+                            ->where('created_by',Auth::user()->id)
+                            ->where('id',$agent_id)
+                            ->value('name');
 
         if(empty($this->search))
         {            
@@ -84,7 +88,8 @@ class PreviewExport implements  FromView,WithEvents,WithColumnWidths
             'total' => $total,
             'array' => $array,
             'booking_array' => $booking_arrays,
-            'title' => $title
+            'title' => $title,
+            'agent_name' => $agent_name,
         ]);
 
 

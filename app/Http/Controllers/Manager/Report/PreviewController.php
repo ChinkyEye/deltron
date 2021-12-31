@@ -9,6 +9,7 @@ use App\Booking;
 use Auth;
 use Response;
 use App\Exports\Manager\PreviewExport;
+use App\Exports\Manager\SerialNoExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
@@ -92,8 +93,10 @@ class PreviewController extends Controller
 
     public function fileExport(Request $request){
         $current_date = date("Y-m-d");
-        $filename = 'previewreports'.$current_date.'.xlsx';
-        return Excel::download(new PreviewExport($request->agent_id,$request->search), $filename);
+        $filename = 'serialnoreports'.$current_date.'.xlsx';
+        return Excel::download(new SerialNoExport($request->agent_id,$request->search), $filename);
+        // $filename = 'previewreports'.$current_date.'.xlsx';
+        // return Excel::download(new PreviewExport($request->agent_id,$request->search), $filename);
 
     }
 
