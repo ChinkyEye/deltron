@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Rules\MatchOldPassword;
+use App\Rules\PasswordField;
+use Exception;
+use Validator;
 use File;
 use App\User;
 use App\Manager;
@@ -166,5 +170,27 @@ class ManagerController extends Controller
         return response()->json([
           'selectmanagers'=>$managers
         ],200);
+    }
+
+    public function changePassword(PasswordField $request)
+    {
+        // dd($request->manager_id);
+        try{
+            User::find($request->manager_id)->update(['password'=> Hash::make($request->new_password)]);
+            $response = [
+                            'status' => true,
+                            'message' =>'password is changed !'
+                        ];
+        }
+        catch(Exception $e)
+        {
+            // dd($e->getMessage());
+            $response = [
+                            'status' => false,
+                            'message' => 'Something went wrong'
+                        ];
+        }
+        Auth::logout();
+        return $response;
     }
 }

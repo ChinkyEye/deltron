@@ -59,6 +59,9 @@
                           <div class="btn-group">
                             <router-link :to="`/manager/${manager.id}/edit`" class="btn btn-sm btn-flat btn-outline-primary"><i class="fas fa-pencil-alt" title="Click to edit"></i></router-link> 
                             <a href="" @click.prevent="deleteManager(manager.id)" class="btn btn-sm btn-flat btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
+                            <router-link :to="`/manager/${manager.id}/changepassword`" class="btn btn-sm btn-flat btn-outline-primary" title="click to change password">
+                              <i class="nav-icon fas fa-key"></i>
+                            </router-link>
                           </div>
                         </td>
                       </tr>

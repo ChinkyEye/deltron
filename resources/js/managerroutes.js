@@ -94,6 +94,10 @@ import RecordReport from './components/Manager/report/record/List.vue'
 import PreviewReport from './components/Manager/report/preview/List.vue'
 import MemberReport from './components/Manager/report/member/List.vue'
 
+//password change
+import ChangePassword from './components/Manager/Password.vue'
+
+
 export const routes = [
 	// dashboard
 	{
@@ -363,6 +367,10 @@ export const routes = [
 		path:'/report/member',
 		component: MemberReport,
 		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/changepassword',
+		component: ChangePassword
 	},
 
 

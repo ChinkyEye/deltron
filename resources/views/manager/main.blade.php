@@ -34,6 +34,15 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
+        {{-- <li class="nav-item">
+          <router-link :to="{ name: 'fiscalyear' }" class="nav-link"><i class="fas fa-cogs"></i>Fiscal Year</router-link>
+        </li> --}}
+        <li>
+          <router-link to="/changepassword" class="nav-link">
+            <i class="nav-icon fas fa-key"></i>
+            Change Password
+          </router-link>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-user"></i>

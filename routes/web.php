@@ -30,6 +30,7 @@ Route::group(["middleware" => 'admin'], function(){
     Route::post('/home/manager/{id}/update', 'Admin\ManagerController@update');
     Route::get('/home/manager/status/{id}/{status}', 'Admin\ManagerController@status');
     Route::get('/home/manager/select/getAllManager', 'Admin\ManagerController@getAllManager');
+    Route::post('/home/manager/change-password','Admin\ManagerController@changePassword')->name('changepassword');
 
     Route::get('/home/luckydraw/select/getAllLuckyDraw', 'Admin\LuckyDrawController@getAllLuckyDraw');
     Route::get('/home/luckydraw/mselect/getAllMLuckyDraw', 'Admin\LuckyDrawController@getAllMLuckyDraw');
@@ -50,6 +51,7 @@ Route::group(["middleware" => 'admin'], function(){
 Route::group(["middleware" => 'manager'], function(){
   // home routes
     Route::get('/manager', 'Manager\HomeController@index')->name('manager');
+    Route::post('/manager/change-password','Manager\HomeController@changePassword')->name('changepassword');
     Route::get('/manager/luckydraw/select/getAllLuckyDraw', 'Manager\LuckyDrawController@getAllLuckyDraw');
     Route::resource('/manager/luckydraw','Manager\LuckyDrawController');
     Route::get('/manager/luckydraw/status/{id}/{status}', 'Manager\LuckyDrawController@status');
