@@ -88641,56 +88641,6 @@ var render = function () {
                       "div",
                       { staticClass: "form-group" },
                       [
-                        _c("label", { attrs: { for: "current_password" } }, [
-                          _vm._v("Old Password"),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.current_password,
-                              expression: "form.current_password",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid":
-                              _vm.form.errors.has("current_password"),
-                          },
-                          attrs: {
-                            type: "password",
-                            id: "current_password",
-                            placeholder: "Please enter old Password",
-                            name: "current_password",
-                          },
-                          domProps: { value: _vm.form.current_password },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form,
-                                "current_password",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form, field: "current_password" },
-                        }),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
                         _c("label", { attrs: { for: "new_password" } }, [
                           _vm._v("New Password"),
                         ]),

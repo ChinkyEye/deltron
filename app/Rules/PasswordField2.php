@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 
-class PasswordField extends FormRequest
+class PasswordField2 extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class PasswordField extends FormRequest
     public function rules(Request $request)
     {
         return [
-            // 'current_password' => ['required', new MatchOldPassword],
+            'current_password' => ['required', new MatchOldPassword],
             'new_password' => ['required'],
             'new_password_confirmation' => ['same:new_password'],
         ];

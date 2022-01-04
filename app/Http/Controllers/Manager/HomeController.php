@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Rules\MatchOldPassword;
-use App\Rules\PasswordField;
+use App\Rules\PasswordField2;
 use Exception;
 use Validator;
 use File;
@@ -22,7 +22,7 @@ class HomeController extends Controller
         return view('manager.main');
     }
 
-    public function changePassword(PasswordField $request)
+    public function changePassword(PasswordField2 $request)
     {
         try{
             User::find(Auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);

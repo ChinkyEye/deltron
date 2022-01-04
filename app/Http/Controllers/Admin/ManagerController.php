@@ -190,7 +190,7 @@ class ManagerController extends Controller
                             'message' => 'Something went wrong'
                         ];
         }
-        Auth::logout();
+        // Auth::logout();
         return $response;
     }
 }

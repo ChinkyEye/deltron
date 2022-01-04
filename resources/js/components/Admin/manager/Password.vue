@@ -17,11 +17,11 @@
               <!-- <form role="form" enctype="multipart/form-data"> -->
               <form role="form" enctype="multipart/form-data" @submit.prevent="changePassword()">
                 <div class="card-body">
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="current_password">Old Password</label>
                     <input type="password" class="form-control" id="current_password" placeholder="Please enter old Password" v-model="form.current_password" name="current_password" :class="{ 'is-invalid': form.errors.has('current_password') }">
                     <has-error :form="form" field="current_password"></has-error>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <label for="new_password">New Password</label>
                     <input type="password" class="form-control" id="new_password" placeholder="Please enter new Password" v-model="form.new_password" name="new_password" :class="{ 'is-invalid': form.errors.has('new_password') }">
