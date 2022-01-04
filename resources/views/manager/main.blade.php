@@ -78,7 +78,9 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="#" class="brand-link">
-        <img src="{{ asset('image/IMG.jpg') }}" alt="Techware Logo" class="brand-image elevation-3">
+
+        <img :src="`/image/manager/thumbnail/{{Auth::user()->image_enc}}`" alt="Techware Logo" class="brand-image elevation-3">
+        {{-- <img src="{{ asset('image/IMG.jpg') }}" alt="Techware Logo" class="brand-image elevation-3"> --}}
         <span class="brand-text font-weight-light">Manager</span>
       </a>
 
