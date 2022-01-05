@@ -62,6 +62,7 @@
             <div id="printMe">
               <div class="row">
                 <div class="col-md-12 text-center mb-2">
+                  <span>{{auth_name}},{{auth_address}}</span><br>
                   <span>TPNPL Report</span>
                 </div>
                 <div class="table-responsive col-sm-10">
@@ -136,11 +137,21 @@
           date:{
             start: moment().subtract(1,'months')._d, // Jan 16th, 2018
             end: new Date()    // Jan 19th, 2018
-          }
+          },
+          auth_name:'',
+          auth_address:'',
+
         }
     },
     mounted(){
+      this.$Progress.start()
       this.fetchPosts();
+      axios.get(`/currentuser`)
+        .then((response)=>{
+          this.auth_name = response.data.currentuser.name;
+          this.auth_address = response.data.currentuser.address;
+      })
+      this.$Progress.finish()
     },
     computed:{
       getAllLuckydraw(){

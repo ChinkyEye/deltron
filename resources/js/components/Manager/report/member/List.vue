@@ -62,6 +62,7 @@
               <div class="card-body">
                 <div id="printMe">
                   <div class="col-md-12 text-center mb-2">
+                    <span>{{auth_name}},{{auth_address}}</span><br>
                     <span>Member Payment Report</span>
                   </div>
                   <div class="table-responsive">
@@ -149,10 +150,19 @@
           luckydraw_id:'',
           agent_id: '',
           click: true,
+          auth_name:'',
+          auth_address:'',
         }
     },
     mounted(){
-		this.fetchPosts();
+      this.$Progress.start()
+      this.fetchPosts();
+      axios.get(`/currentuser`)
+        .then((response)=>{
+          this.auth_name = response.data.currentuser.name;
+          this.auth_address = response.data.currentuser.address;
+      })
+      this.$Progress.finish()
 	  },
     computed:{
       getAllLuckydraw(){

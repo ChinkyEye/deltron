@@ -48,29 +48,12 @@
                   <option value="2">Indirect</option>
                 </select>
               </div>
-              <!-- <div class="form-group col-md-5">
-                <date-picker mode='range' v-model="date" lang="en" type="date" format="YYYY-MM-dd" v-on:input="dateChange" is-range>
-                  <template v-slot="{ inputValue, inputEvents }">
-                    <div class="flex justify-center items-center">
-                      <input
-                      :value="inputValue.start"
-                      v-on="inputEvents.start"
-                      class="border px-2 py-1 w-32 rounded focus:outline-none focus:border-indigo-300"
-                      /><i class="fas fa-arrow-right fa-fw"></i>
-                      <input
-                      :value="inputValue.end"
-                      v-on="inputEvents.end"
-                      class="border px-2 py-1 w-32 rounded focus:outline-none focus:border-indigo-300"
-                      />
-                    </div>
-                  </template>
-                </date-picker>
-              </div> -->
             </div>
           </div>
           <div class="card-body">
             <div id="printMe" class="row">
               <div class="col-md-12 text-center mb-2">
+                <span>{{auth_name}},{{auth_address}}</span><br>
                 <span>Expenditure Report</span>
               </div>
               <div class="table-responsive col-sm">
@@ -135,10 +118,19 @@
           },
           search:'',
           click: true,
+          auth_name:'',
+          auth_address:'',
         }
     },
     mounted(){
+      this.$Progress.start()
       this.fetchPosts();
+      axios.get(`/currentuser`)
+        .then((response)=>{
+          this.auth_name = response.data.currentuser.name;
+          this.auth_address = response.data.currentuser.address;
+      })
+      this.$Progress.finish()
     },
     computed:{
       getAllLuckydraw(){

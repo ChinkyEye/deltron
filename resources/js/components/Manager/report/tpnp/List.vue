@@ -50,6 +50,7 @@
                 <div id="printMe">
                   <div class="row">
                     <div class="col-md-12 text-center mb-2">
+                      <span>{{auth_name}},{{auth_address}}</span><br>
                       <span>TPNP Report</span>
                     </div>
                     <div class="table-responsive col-sm-5">
@@ -127,6 +128,7 @@
   import DatePicker from 'v-calendar/lib/components/date-picker.umd';
   import moment from 'moment'
   export default{
+    // props : ['test'],
     name: "List",
     components: {
       pagination,
@@ -148,10 +150,19 @@
           playedamount:'',
           notplayedamount:'',
           leave:'',
+          auth_name:'',
+          auth_address:'',
         }
     },
     mounted(){
+      this.$Progress.start()
       this.fetchPosts();
+      axios.get(`/currentuser`)
+        .then((response)=>{
+          this.auth_name = response.data.currentuser.name;
+          this.auth_address = response.data.currentuser.address;
+      })
+      this.$Progress.finish()
     },
     computed:{
       allSelectLuckyDraws(){
@@ -164,7 +175,7 @@
       },
       getAllTpnpReport(){
         var c = this.$store.getters.getTpnpReport
-        console.log(c[3]);
+        // console.log(c[3]);
         this.played = c[0];
         this.notplayed = c[1];
         this.playedamount = c[2];

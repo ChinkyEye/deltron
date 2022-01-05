@@ -69,6 +69,7 @@
     <div id="printMe">
       <div class="row">
         <div class="col-md-12 text-center mb-2">
+          <span>{{auth_name}},{{auth_address}}</span><br>
           <span>Income Expenditure Report</span>
         </div>
         <div class="table-responsive col-sm-6">
@@ -185,10 +186,19 @@
           income_total:'',
           expenditure_total:'',
           grandtotal2:'',
+          auth_name:'',
+          auth_address:'',
         }
     },
     mounted(){
+      this.$Progress.start()
       this.fetchPosts();
+      axios.get(`/currentuser`)
+        .then((response)=>{
+          this.auth_name = response.data.currentuser.name;
+          this.auth_address = response.data.currentuser.address;
+      })
+      this.$Progress.finish()
     },
     computed:{
       getAllLuckydraw(){

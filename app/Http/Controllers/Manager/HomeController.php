@@ -42,6 +42,13 @@ class HomeController extends Controller
         Auth::logout();
         return $response;
     }
+    public function currentuser()
+    {
+        $response = [
+            'currentuser' => Auth::user(),
+        ];
+        return $response;
+    }
 
     // public function changePassword(Request $request)
     // {

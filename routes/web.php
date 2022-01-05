@@ -52,6 +52,11 @@ Route::group(["middleware" => 'manager'], function(){
   // home routes
     Route::get('/manager', 'Manager\HomeController@index')->name('manager');
     Route::post('/manager/change-password','Manager\HomeController@changePassword')->name('changepassword');
+
+    //current user
+    Route::get('/currentuser','Manager\HomeController@currentuser');
+
+
     Route::get('/manager/luckydraw/select/getAllLuckyDraw', 'Manager\LuckyDrawController@getAllLuckyDraw');
     Route::resource('/manager/luckydraw','Manager\LuckyDrawController');
     Route::get('/manager/luckydraw/status/{id}/{status}', 'Manager\LuckyDrawController@status');
