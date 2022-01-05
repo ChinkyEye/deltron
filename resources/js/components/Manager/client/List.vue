@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark xyz">Member List</h5>
+            <h5 class="m-0 text-dark xyz"><span class="font-weight-bold">{{agent_name}}'s</span> Member List</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -109,11 +109,16 @@
     },
     mounted(){
 		this.fetchPosts();
+    axios.get(`/manager/agent_name/${this.$route.params.agentid}`)
+      .then((response)=>{
+        this.agent_name = response.data.agent_name.name;
+      })
+
 	  },
     computed:{
       getALLClient(){
         var avar = this.$store.getters.getClient;
-        this.agent_name = avar[0];
+        // this.agent_name = avar[0];
         if(avar.length==3)
           this.pagination = avar[2];
         return avar[0];

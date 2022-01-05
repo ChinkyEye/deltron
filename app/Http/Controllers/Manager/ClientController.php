@@ -193,6 +193,14 @@ class ClientController extends Controller
         ],200);
     }
 
+    public function agent_name($id)
+    {
+        $agent_name = Agent::findOrFail($id);
+        return response()->json([
+            'agent_name'=>$agent_name
+        ],200);
+    }
+
     /**
      * Update the specified resource in storage.
      *

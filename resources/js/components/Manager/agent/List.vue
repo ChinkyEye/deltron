@@ -65,7 +65,12 @@
                         </td>                        
                         <td>
                           <router-link :to="`/agent/add/subagent/${data.id}`" class="btn btn-xs btn-outline-danger" title="Add Sub Agent"><i class="fas fa-plus"></i></router-link> 
-                          <router-link :to="`/agent/add/client/${data.id}`" class="btn btn-xs btn-outline-info" title="Add Member"><i class="fas fa-plus"></i></router-link> 
+                          <router-link :to="`/agent/add/client/${data.id}`" class="btn btn-xs btn-outline-info" title="Add Member">
+                            <i class="fas fa-plus">
+                              <span v-if="data.count_member == null">0</span>
+                              <span v-else>{{data.count_member.total}}</span>
+                            </i>
+                          </router-link> 
                           <router-link :to="`/agent/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i>
                           </router-link> 
                           <a href="" @click.prevent="deleteLuckyDraw(data.id)" class="btn btn-xs btn-outline-danger" title="Click to delete"><i class="fas fa-trash-alt"></i></a>
@@ -113,7 +118,7 @@
       getAllAgent(){
         this.$Progress.start()
         var avar = this.$store.getters.getAgent;
-        // console.log(avar.length);
+        console.log(avar[0]);
         if(avar.length==2)
           this.pagination = avar[1];
         this.$Progress.finish()

@@ -21,8 +21,8 @@ class Agent extends Model
         return $this->hasOne(Booking::class,'agent_id')->select('id','agent_id','booked_serialno','is_active','date_np')->where('is_active','1');
     }
 
-
-    // public function getCommision(){
-    //     return $this->belongsTo(AgentHasCommision::class,'agent_id');
-    // }
+    public function countMember()
+    {
+        return $this->belongsTo(Client::class,'id','agent_id')->where('is_active','1')->groupBy('agent_id')->selectRaw('agent_id,Count(agent_id) as total');
+    }
 }

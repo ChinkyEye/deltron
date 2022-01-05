@@ -75,6 +75,7 @@ Route::group(["middleware" => 'manager'], function(){
 
     Route::get('/manager/agent/add/client/{id}', 'Manager\ClientController@clientlist');
     Route::resource('/manager/client','Manager\ClientController');
+    Route::get('/manager/agent_name/{id}', 'Manager\ClientController@agent_name');
     Route::get('/manager/client/status/{id}/{status}', 'Manager\ClientController@status');
     Route::get('/manager/client/leave/{id}/{leaveId}', 'Manager\ClientController@leave');
 
