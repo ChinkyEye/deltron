@@ -68,7 +68,11 @@ class MemberExport implements  FromView,WithEvents,WithColumnWidths
         {            
             $posts = $posts->where('agent_id',$agent_id);
         }
-        $posts = $posts->with('getClientDetail','getAgent','getCount')->get();
+        // $posts = $posts->with('getClientDetail','getAgent','getCount')->get();
+        $posts = $posts->with('getAgent','getCount') 
+                        ->with(array('getClientDetail'=>function($query) use ($luckydraw_id){
+                               $query->select()->where('luckydraw_id',$luckydraw_id);
+                           }))->get();
         return view('manager.report.memberreport.memberexport',[
             'posts' => $posts,
             'kista_name' => $kista_name,
