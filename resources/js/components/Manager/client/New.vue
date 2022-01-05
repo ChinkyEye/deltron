@@ -236,7 +236,8 @@
             Swal.fire({
              icon: 'error',
              title: 'Ops...',
-             text: 'Cant booked!',
+             text: 'Cant assigned!',
+             // text: 'Cant booked!',
              footer: '<a href>Please assign another name</a>'
            })
           }

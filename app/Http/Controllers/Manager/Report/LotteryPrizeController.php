@@ -48,7 +48,7 @@ class LotteryPrizeController extends Controller
                               $query->where('kista_id', $kista_id);
                             });
         }
-        $posts = $posts->with('getClientInfo','getAgentInfo')->paginate(50);
+        $posts = $posts->with('getClientInfo','getAgentInfo','getKistaInfo','getLuckydrawInfo')->paginate(50);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),

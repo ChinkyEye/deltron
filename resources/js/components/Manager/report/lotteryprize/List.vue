@@ -60,6 +60,7 @@
                     <tr>
                       <th>SN</th>
                       <th>Member</th>
+                      <th>Info</th>
                       <th>Agent</th>
                       <th>Allocated Prize</th>
                     </tr>
@@ -68,6 +69,7 @@
                     <tr v-for="(detail,index) in getAllPrizeReport" :key="detail.id">
                       <td>{{index+1}}</td>
                       <td>{{detail.get_client_info.name}} ({{detail.get_client_info.address}}, {{detail.get_client_info.phone}}) ({{detail.get_client_info.serial_no}})</td>
+                      <td>{{detail.get_luckydraw_info.name}} | {{detail.get_kista_info.name}}</td>
                       <td>{{detail.get_agent_info.name}}</td>
                       <td><span class="badge badge-warning text-danger">{{detail.lottery_prize}}</span></td>
                     </tr>

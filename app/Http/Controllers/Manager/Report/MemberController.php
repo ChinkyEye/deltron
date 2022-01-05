@@ -23,7 +23,6 @@ class MemberController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request);
         $luckydraw_id = $request->luckydrawid;
         $agent_id = $request->agentid;
         $kista_name = Kista::where('luckydraw_id',$luckydraw_id)
@@ -45,8 +44,10 @@ class MemberController extends Controller
         {            
             $posts = $posts->where('agent_id',$request->agentid);
         }
-
-        $posts = $posts->with('getClientDetail','getAgent','getCount')->paginate(1000);
+        $posts = $posts->with('getAgent','getCount')
+                        ->with(array('getClientDetail'=>function($query) use ($luckydraw_id){
+                               $query->select()->where('luckydraw_id',$luckydraw_id);
+                           }))->paginate(1000);
         $response = [
            'pagination' => [
                'total' => $posts->total(),

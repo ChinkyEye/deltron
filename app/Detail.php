@@ -24,5 +24,8 @@ class Detail extends Model
     public function getAgentInfo(){
         return $this->belongsTo(Agent::class,'agent_id')->select('id','name');
     }
+    public function getLuckydrawInfo(){
+        return $this->belongsTo(LuckyDraw::class,'luckydraw_id')->select('id','name');
+    }
 
 }
