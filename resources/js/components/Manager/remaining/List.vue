@@ -41,7 +41,8 @@
                       <tr>
                         <th width="10">SN</th>
                         <th>Name</th>
-                        <th>Kista</th>
+                        <th>Info</th>
+                        <!-- <th>Kista</th> -->
                         <th>Agent</th>
                         <th>Remaining Amount</th>
                         <th>Pay Amount</th>
@@ -53,12 +54,13 @@
                     	<tr v-for="(data,index) in getAllRemaining" :key="data.id" :class="colorchange(data.is_active)">
                     		<td>{{index+1}}</td>
                     		<td>{{data.get_client_info.name}}</td>
-                    		<td>{{data.get_kista_info.name}}</td>
+                        <td>{{data.get_luckydraw_info.name}} | {{data.get_kista_info.name}}</td>
+                    		<!-- <td>{{data.get_kista_info.name}}</td> -->
                     		<td>{{data.get_agent_info.name}}</td>
                     		<td>{{data.remaining}}</td>
                     		<td class="col-md-1">
                     			<input type="hidden" class="form-control" v-model="data.id">
-                    			 <input type="text" class="form-control" v-model="rec_amount[index]" autocomplete="off" @change="isExect($event,data.remaining)">
+                    			 <input type="text" class="form-control" v-model="rec_amount[index]" autocomplete="off" @change="isExect($event,data.remaining,index)">
                     			 <!-- <input type="text" class="form-control" v-model="rec_amount[index]" autocomplete="off" @change="isExect($event,data.remaining)"> -->
                     		</td>
                     		<td>
@@ -67,7 +69,7 @@
                     		</td>
                     		<td class="col-md-1">
                     			<!-- <button type="submit" class="btn btn-success btn-block"  @keypress="updateAmount(data.id, rec_amount[index])">Save</button> -->
-                    			<button type="submit" class="btn btn-success btn-block"  @click="updateAmount(data.id, rec_amount[index])">Save</button>
+                          <button type="submit" class="btn btn-success btn-block"  @click="updateAmount(data.id, rec_amount[index])" :disabled="state.isSending">Save</button>
                     		</td>
                     		
                     	</tr>
@@ -99,6 +101,9 @@
       return{
           pagination: {
             'current_page': 1
+          },
+          state: {
+            isSending: true
           },
           search: '',
           rec_amount:[],
@@ -225,15 +230,16 @@
         .catch(()=>{
         })
       },
-      isExect(event,amt){
+      isExect(event,amt,index){
       	let file = event.target.value;
       	let rem_amount = amt;
       	let p_amount = this.rec_amount
-        let value = parseInt(p_amount);
+        let value = parseInt(p_amount[index]);
+        // console.log(file,rem_amount,p_amount,value);
         // if(value > rem_amount){
-        if(value != rem_amount){
-          // this.state.isSending = true;
-          // alert("bitch");
+        if(value != rem_amount)
+        {
+          this.state.isSending = true;
           Swal.fire({
            icon: 'error',
            title: 'Please Enter the Exact remaining amount!',
@@ -241,8 +247,8 @@
            footer: '<a href>Why do I have this issue?</a>'
           })
         }
-		else{
-          // this.state.isSending = false;
+        else{
+          this.state.isSending = false;
 
         }
       }

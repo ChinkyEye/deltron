@@ -20,7 +20,7 @@ class RemainingController extends Controller
         $posts = Detail::where('is_remained','1')
                         ->where('created_by', Auth::user()->id)
                         ->where('rpaid_date',Null)
-                        ->with('getClientInfo','getKistaInfo','getAgentInfo')
+                        ->with('getClientInfo','getKistaInfo','getAgentInfo','getLuckydrawInfo')
                         ->get();
                         // dd($posts);
         $response = [
@@ -56,15 +56,17 @@ class RemainingController extends Controller
         $remaining = Detail::where('id', $detail_id)
                             ->value('remaining');
 
-        $total_amount = $data_amount + $amount;
-        $datas = Detail::findOrFail($data_id);
-        $datas->update([
-            'amount' => $total_amount,
-            'remaining' => $remaining-$amount,
-            'rpaid_date' => date("Y-m-d"),
-            'rpaid_date_np' => date("Y-m-d"),
-        ]);
-        return ['message' => 'Data Updated'];
+        if($amount == $remaining){
+            $total_amount = $data_amount + $amount;
+            $datas = Detail::findOrFail($data_id);
+            $datas->update([
+                'amount' => $total_amount,
+                'remaining' => $remaining-$amount,
+                'rpaid_date' => date("Y-m-d"),
+                'rpaid_date_np' => date("Y-m-d"),
+            ]);
+            return ['message' => 'Data Updated'];
+        }                    
 
     }
 
