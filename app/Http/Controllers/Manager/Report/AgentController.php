@@ -64,7 +64,7 @@ class AgentController extends Controller
             $totalwithcommision = $amount + $commisionamount; 
         }
     
-        $posts = $posts->with('getClientInfo')->paginate(100);
+        $posts = $posts->with('getClientInfo')->paginate(300);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),
