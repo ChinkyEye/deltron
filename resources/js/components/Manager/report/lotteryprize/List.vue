@@ -76,7 +76,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <!-- <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination> -->
+                <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="searchdata"></pagination>
               </div>
             </div>
           </div>
@@ -141,9 +141,8 @@
       getAllPrizeReport(){
         var avar = this.$store.getters.getLotteryPrizeReport;
         this.total = avar[2];
-        if(avar.length==2)
+        if(avar.length==3)
           this.pagination = avar[1];
-        console.log(avar[0]);
         return avar[0];
       },
     },
@@ -152,8 +151,6 @@
         this.pagechange();
         this.$store.dispatch("allSelectLuckyDraw")
         this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
-        // this.$store.dispatch("allTpnplReport", [this.luckydraw_id,this.kista_id]);
-
       },
       pagechange(){
         this.$Progress.start()
@@ -189,7 +186,7 @@
       },
       searchdata()
       {
-        this.$store.dispatch("allLotteryPrizeReport", [this.luckydraw_id,this.kista_id,this.search]);
+        this.$store.dispatch("allLotteryPrizeReport", [this.luckydraw_id,this.kista_id,this.search,this.pagination.current_page]);
 
       },
     }

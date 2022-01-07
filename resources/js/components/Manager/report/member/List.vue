@@ -110,7 +110,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="searchSetting"></pagination>
+                    <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="savedata"></pagination>
                   </div>
                 </div>
               </div>

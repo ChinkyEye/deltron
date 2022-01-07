@@ -323,13 +323,13 @@ export default{
 				})
 		},
 		allTpnplReport(context, params){
-			axios.get("/manager/report/tpnpl/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&type="+params[2])
+			axios.get("/manager/report/tpnpl/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&type="+params[2]+"&page="+params[3])
 				.then((response)=>{
 					context.commit('tpnplreports', [response.data.tpnplreports.data,response.data.pagination,response.data.total])
 				})
 		},
 		allAgentReport(context, params){
-			axios.get("/manager/report/agent/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&agentid="+params[2]+"&type="+params[3])
+			axios.get("/manager/report/agent/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&agentid="+params[2]+"&type="+params[3]+"&page="+params[4])
 				.then((response)=>{
 					context.commit('agentreports', [response.data.agentreports.data,response.data.pagination,response.data.commisionamount])
 				})
@@ -343,7 +343,7 @@ export default{
 				})
 		},
 		allLotteryPrizeReport(context, params){
-			axios.get("/manager/report/lotteryprize/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&search="+params[2])
+			axios.get("/manager/report/lotteryprize/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&search="+params[2]+"&page="+params[3])
 				.then((response)=>{
 					context.commit('lotteryprizereports', [response.data.lotteryprizereports.data,response.data.pagination,response.data.total])
 				})
@@ -415,7 +415,7 @@ export default{
 		},
 		allMemberReport(context, params){
 			// console.log(params);
-			axios.get("/manager/report/member/"+"?luckydrawid="+params[0]+"&agentid="+params[1]+"&page")
+			axios.get("/manager/report/member/"+"?luckydrawid="+params[0]+"&agentid="+params[1]+"&page="+params[2])
 				.then((response)=>{
 					context.commit('memberreports', [response.data.memberreports.data,
 													response.data.pagination,

@@ -93,7 +93,7 @@
                           </tr>
                         </tbody>
                       </table>
-                      <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
+                      <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="searchdata"></pagination>
                     </div>
                     <div class="table-responsive col-sm-4">
                       <table class="table table-bordered table-hover table-sm m-0">
@@ -173,7 +173,6 @@
       getAgentreport(){
         var avar = this.$store.getters.getAgentReport;
         this.commisionamount = parseFloat(avar[2]).toFixed(2);
-        console.log(avar.length);
         if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];
@@ -189,12 +188,9 @@
         this.pagechange();
         this.$store.dispatch("allSelectLuckyDraw")
         this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
-        // this.$store.dispatch("allTpnplReport", [this.luckydraw_id,this.kista_id]);
-
       },
       pagechange(){
         this.$Progress.start()
-        // console.log(this.lottery_status);
         this.$Progress.finish()
       },
       lotterystatuschange(){
@@ -232,7 +228,7 @@
       },
       searchdata()
       {
-        this.$store.dispatch("allAgentReport", [this.luckydraw_id,this.kista_id,this.agent_id,this.lottery_status]);
+        this.$store.dispatch("allAgentReport", [this.luckydraw_id,this.kista_id,this.agent_id,this.lottery_status,this.pagination.current_page]);
 
       },
     }

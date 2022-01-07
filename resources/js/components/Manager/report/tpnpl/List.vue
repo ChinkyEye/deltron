@@ -84,7 +84,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
+                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="searchdata"></pagination>
                 </div>
                 <div class="table-responsive col-sm-2">
                   <table class="table table-bordered table-hover table-sm m-0">
@@ -212,7 +212,7 @@
       },
       searchdata()
       {
-        this.$store.dispatch("allTpnplReport", [this.luckydraw_id,this.kista_id,this.lottery_status]);
+        this.$store.dispatch("allTpnplReport", [this.luckydraw_id,this.kista_id,this.lottery_status,this.pagination.current_page]);
 
       },
     }
