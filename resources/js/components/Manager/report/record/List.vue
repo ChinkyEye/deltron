@@ -87,7 +87,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                <!-- <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination> -->
+                <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
               </div>
             </div>
 
@@ -146,6 +146,8 @@
       getAllRecord(){
         var b = this.$store.getters.getRecordReport;
         this.total = b[2];
+        if(b.length==3)
+          this.pagination = b[1];
         return b[0];
       },
 
