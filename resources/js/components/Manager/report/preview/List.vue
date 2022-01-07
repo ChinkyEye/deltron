@@ -158,8 +158,8 @@
       getAllPreviewReport(){
         var avar = this.$store.getters.getPreviewReport;
         this.total = avar[2];
-        // if(avar.length==4)
-        //   this.pagination = avar[1];
+        if(avar.length==5)
+          this.pagination = avar[1];
         return avar[0];
       },
       getAllPreviewReport2(){
