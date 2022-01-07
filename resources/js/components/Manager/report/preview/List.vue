@@ -41,12 +41,13 @@
               </div>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body pt-0">
             <div id="printMe">
               <div class="row">
-                <!-- <div class="col-md-12 text-center mb-2">
+                <div class="col-md-12 text-center mb-2">
+                  <span>{{auth_name}},{{auth_address}}</span><br>
                   <span>Preview Report</span>
-                </div> -->
+                </div>
                 <div class="table-responsive col-md">
                   <table class="table table-bordered table-hover table-sm m-0">
                     <thead class="table-primary">                  
@@ -139,13 +140,19 @@
             end: new Date()    // Jan 19th, 2018
           },
           search:'',
-          // exampleItems,
-          // pageOfItems: []
-
+          auth_name:'',
+          auth_address:'',
         }
     },
     mounted(){
+      this.$Progress.start()
       this.fetchPosts();
+      axios.get(`/currentuser`)
+        .then((response)=>{
+          this.auth_name = response.data.currentuser.name;
+          this.auth_address = response.data.currentuser.address;
+      })
+      this.$Progress.finish()
     },
     computed:{
       getAllPreviewReport(){

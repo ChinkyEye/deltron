@@ -64,7 +64,7 @@
                         <td>
                           <!-- <router-link :to="`/kista/has/expense/${data.id}`" class="btn btn-xs btn-outline-info" title="Add Expense"><i class="fas fa-plus"></i></router-link> --> 
                           <router-link :to="`/kista/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i></router-link> 
-                          <!-- <a href="" @click.prevent="deleteLuckyDraw(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a> -->
+                          <a href="" @click.prevent="deleteLuckyDraw(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
                         </td>
                       </tr>
                     </tbody>

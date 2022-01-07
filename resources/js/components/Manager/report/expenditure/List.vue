@@ -77,7 +77,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                <!-- <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination> -->
+                <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
               </div>
             </div>
 
@@ -142,8 +142,10 @@
       },
       getAllIncomeExpenditures(){
         var avar = this.$store.getters.getExpenditureReport;
+        // console.log(avar.length);
+        // console.log(avar[1]);
         this.total = avar[2];
-        if(avar.length==2)
+        if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];
       },

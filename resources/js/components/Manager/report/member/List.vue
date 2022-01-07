@@ -110,7 +110,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
+                    <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="searchSetting"></pagination>
                   </div>
                 </div>
               </div>
@@ -170,6 +170,9 @@
       },
       getAllMember(){
         var d = this.$store.getters.getMemberReport
+        // console.log(d[1]);
+        if(d.length==5)
+          this.pagination = d[1];
         return d[0];
       },
       getAllName(){
