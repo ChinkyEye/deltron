@@ -73,7 +73,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchPosts"></pagination>
+                  <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="savedata"></pagination>
 
                 </div>
               </div>
@@ -138,9 +138,6 @@
         this.$store.dispatch("allClientList", [this.agent_id,this.pagination.current_page]);
         this.click = true; 
       },
-    
-     
-     
       searchSetting(){
         this.fetchPosts();
       },

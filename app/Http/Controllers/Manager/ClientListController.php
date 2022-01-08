@@ -24,7 +24,7 @@ class ClientListController extends Controller
             $posts = $posts->where('agent_id',$agent_id);
         }
 
-        $posts = $posts->with('getAgent')->paginate(100);
+        $posts = $posts->with('getAgent')->paginate(50);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),
