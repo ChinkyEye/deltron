@@ -84,7 +84,7 @@
                         <tbody>
                           <tr v-for="(agent,index) in getAgentreport" :key="agent.id">
                             <td>{{index+1}}</td>
-                            <td>{{agent.get_client_info.name}} ({{agent.get_client_info.address}}, {{agent.get_client_info.phone}})</td>
+                            <td>{{agent.get_client_info.name}} ({{agent.get_client_info.address}}, {{agent.get_client_info.phone}}) ({{agent.get_client_info.serial_no}})</td>
                             <td v-if="agent.lottery_status == '1'">Unpaid</td>
                             <td v-else-if="agent.lottery_status == '2'">Paid</td>
                             <td v-else>Leave</td>

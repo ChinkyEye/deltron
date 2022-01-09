@@ -78,7 +78,7 @@
                     <tbody>
                       <tr v-for="(tpnpl,index) in getAllTpnpreport" :key="tpnpl.id">
                         <td>{{index+1}}</td>
-                        <td>{{tpnpl.get_client_info.name}} ({{tpnpl.get_client_info.address}}, {{tpnpl.get_client_info.phone}})</td>
+                        <td>{{tpnpl.get_client_info.name}} ({{tpnpl.get_client_info.address}}, {{tpnpl.get_client_info.phone}}) ({{tpnpl.get_client_info.serial_no}})</td>
                         <td>{{tpnpl.amount}}</td>
                         <td>{{tpnpl.remaining}}</td>
                       </tr>
