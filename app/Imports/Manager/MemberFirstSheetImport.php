@@ -12,6 +12,7 @@ use App\Agent;
 use App\Client;
 use App\Detail;
 use App\Kista;
+use App\LuckyDraw;
 use Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -34,6 +35,7 @@ class MemberFirstSheetImport implements ToCollection
                     $last_part = array_key_last($row) + 1;
                     $agents = Agent::firstOrCreate([
                         'name' => $row[4],
+                        'created_by' => Auth::user()->id,
                     ], [
                         'address' => '',
                         'phone' => '98',
@@ -42,7 +44,6 @@ class MemberFirstSheetImport implements ToCollection
                         'date' => date("Y-m-d"),
                         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
                         'time' => date("H:i:s"),
-                        'created_by' => Auth::user()->id,
                     ]);
                     $format = sprintf('%04d', $row[0]);
                     // dd($row[0],$format,$lo);
@@ -62,15 +63,18 @@ class MemberFirstSheetImport implements ToCollection
                         'time' => date("H:i:s"),
                         'created_by' => Auth::user()->id,
                     ]);
-                    $kista  = Kista::where('luckydraw_id','1')->pluck('id');
-                    $kista_amount = Kista::where('luckydraw_id','1')->pluck('amount');
+                    $firstschemeid = LuckyDraw::where('created_by', Auth::user()->id)->first();
+                    $kista  = Kista::where('luckydraw_id',$firstschemeid->id)->pluck('id');
+                    $kista_amount = Kista::where('luckydraw_id',$firstschemeid->id)->pluck('amount');
                     // dd($kista,$kista_amount);
                     // 15 25
+                    // dd($firstschemeid->id);
                     $count = 0;
                     for ($i=6; $i < $last_part ; $i++) {
                          if($row[$i] != NULL){
                             $details = Detail::create([
-                                'luckydraw_id' => '1',
+                                'luckydraw_id' => $firstschemeid->id,
+                                // 'luckydraw_id' => '1',
                                 'kista_id' => $kista[$count],
                                 // 'kista_id' => $i - 5,
                                 'agent_id' =>$agents->id,
@@ -86,7 +90,7 @@ class MemberFirstSheetImport implements ToCollection
                         }
                         else{
                             $details = Detail::create([
-                                'luckydraw_id' => '1',
+                                'luckydraw_id' => $firstschemeid->id,
                                 'kista_id' => $kista[$count],
                                 // 'kista_id' => $i - 5,
                                 'agent_id' =>$agents->id,
