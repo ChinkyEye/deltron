@@ -75,7 +75,7 @@ class DetailController extends Controller
         }
         else{
             $posts = Client::orderBy('id','DESC')
-                            ->select('id','name','agent_id','is_leave')
+                            ->select('id','name','agent_id','is_leave','serial_no')
                             ->where('agent_id',$agentid)
                             ->where('is_leave','1')
                             ->get();

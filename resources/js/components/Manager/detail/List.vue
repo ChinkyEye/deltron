@@ -66,7 +66,7 @@
                         <td>{{index+1}}</td>
                         <td class="text-left">
                           <input type="hidden" class="form-control" name="id" v-model="detail.id">
-                          <span class="text-primary">{{detail.name}}</span>
+                          <span class="text-primary">{{detail.name}} ({{detail.serial_no}})</span>
                         </td>
                         <td v-if="detail.is_leave == '1'">
                           <input type="radio" id="unpaid[index]" value="1" v-model="lottery_status[index]" >
@@ -87,7 +87,7 @@
                       <tr v-for="(play,ind) in getAllDetail" :key="play.id">
                         <td>{{ind+1}}</td>
                         <td class="text-left">
-                          <span class="text-primary">{{play.get_client_info.name}}</span>
+                          <span class="text-primary">{{play.get_client_info.name}} ({{play.get_client_info.serial_no}})</span>
                         </td>
                         <td>
                           <span class="text-danger" v-if="play.lottery_status == '1'">UnPaid {{play.amount}}</span>
