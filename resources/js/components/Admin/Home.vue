@@ -21,9 +21,8 @@
   <div class="container-fluid">
     
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
                 <h3></h3>
@@ -36,9 +35,7 @@
               <router-link to="/unit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></router-link>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
                 <h3></h3>
@@ -51,9 +48,7 @@
               <router-link to="/stock" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></router-link>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
                 <h3></h3>
@@ -65,9 +60,7 @@
               <router-link to="/table" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></router-link>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3></h3>
@@ -79,8 +72,7 @@
               <router-link to="/order" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></router-link>
             </div>
           </div>
-          <!-- ./col -->
-        </div>
+        </div> -->
 <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->
 </section>

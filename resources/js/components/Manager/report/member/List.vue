@@ -109,6 +109,11 @@
                           </td>
                         </tr>
                       </tbody>
+                      <tfoot>
+                        <tr>
+                          <!-- <td><strong>count({{count}})</strong></td> -->
+                        </tr>
+                      </tfoot>
                     </table>
                     <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="savedata"></pagination>
                   </div>
@@ -152,6 +157,7 @@
           click: true,
           auth_name:'',
           auth_address:'',
+          count:'0',
         }
     },
     mounted(){
@@ -170,7 +176,7 @@
       },
       getAllMember(){
         var d = this.$store.getters.getMemberReport
-        // console.log(d[1]);
+        this.count = d[4];
         if(d.length==5)
           this.pagination = d[1];
         return d[0];

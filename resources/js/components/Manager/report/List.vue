@@ -164,7 +164,7 @@ export default{
             getAllOrder(){
                 var bvar = this.$store.getters.getReportDashboard;
                 if(bvar.length == 0) return [];
-                console.log(bvar[0]);
+                // console.log(bvar[0]);
                 this.tpnp_count = bvar[0].tpnp_count;
                 this.tpnpl_count = bvar[0].tpnp_count;
                 this.agent_count = bvar[0].agent_count;

@@ -421,6 +421,7 @@ export default{
 													response.data.pagination,
 													response.data.total,
 													response.data.kista_name,
+													response.data.count,
 													response.data.check])
 				})
 		},

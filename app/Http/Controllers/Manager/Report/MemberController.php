@@ -44,6 +44,7 @@ class MemberController extends Controller
         {            
             $posts = $posts->where('agent_id',$request->agentid);
         }
+        $count = $posts->count();
         $posts = $posts->with('getAgent','getCount')
                         ->with(array('getClientDetail'=>function($query) use ($luckydraw_id){
                                $query->select()->where('luckydraw_id',$luckydraw_id);
@@ -59,6 +60,7 @@ class MemberController extends Controller
            ],
            'memberreports' => $posts,
            'kista_name' => $kista_name,
+           'count' => $count,
            // 'check' => $check,
         ];
         return response()->json($response);

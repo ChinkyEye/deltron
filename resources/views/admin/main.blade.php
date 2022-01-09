@@ -71,8 +71,8 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image pt-1">
-            {{-- @php preg_match_all('/(?<=\s|^)[a-z]/i', Auth::user()->name, $matches); @endphp --}}
-            {{-- <span class="border border-light rounded-circle py-1 {{count($matches[0]) == 1 ? 'px-2' : 'px-'.(3-count($matches[0]))}} bg-success text-light text-capitalize elevation-3">{{strtoupper(implode('', $matches[0]))}}</span> --}}
+            @php preg_match_all('/(?<=\s|^)[a-z]/i', Auth::user()->name, $matches); @endphp
+            <span class="border border-light rounded-circle py-1 {{count($matches[0]) == 1 ? 'px-2' : 'px-'.(3-count($matches[0]))}} bg-success text-light text-capitalize elevation-3">{{strtoupper(implode('', $matches[0]))}}</span>
           </div>
           <div class="info">
             <router-link :to="{ name: 'dashboard' }" class="d-block">{{Auth::user()->name}}</router-link>
