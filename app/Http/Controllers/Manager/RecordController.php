@@ -112,8 +112,10 @@ class RecordController extends Controller
             'title' => $request['title'],
             'amount' => $request['amount'],
             'description' => $request['description'],
-            'date_np' => $this->helper->date_np_con(),
-            'date' => date("Y-m-d"),
+            'date_np' => $this->helper->date_np_con_parm($request['date']),
+            'date' => $request['date'],
+            // 'date_np' => $this->helper->date_np_con(),
+            // 'date' => date("Y-m-d"),
             'updated_by' => Auth::user()->id,
         ]);
         return ['message' => 'Data Updated'];

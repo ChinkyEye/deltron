@@ -79,7 +79,7 @@
                     <div class="callout callout-success">
                       <h5>Title : {{form.title}}</h5>
                       <h5>Amount : {{form.amount}}</h5>
-                      <h5>Date : {{form.date}}</h5>
+                      <!-- <h5>Date : {{form.date}}</h5> -->
                     </div>
                   </div>
                 </div>

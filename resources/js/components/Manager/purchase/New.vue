@@ -50,17 +50,17 @@
                         </div>
                         <div class="form-group col-md-12">
                           <label for="quantity">Quantity<code>*</code></label>
-                          <input type="text" class="form-control" id="quantity" placeholder="Add quantity" v-model="form.quantity" name="quantity" :class="{ 'is-invalid': form.errors.has('quantity') }" autocomplete="off">
+                          <input type="text" class="form-control" id="quantity" placeholder="Add quantity" v-model="form.quantity" name="quantity" :class="{ 'is-invalid': form.errors.has('quantity') }" autocomplete="off" @keypress="isNumber($event)">
                           <has-error :form="form" field="quantity"></has-error>
                         </div>
                         <div class="form-group col-md-12">
                           <label for="rate">Rate<code></code></label>
-                          <input type="text" class="form-control" id="rate" placeholder="Add rate" v-model="form.rate" name="rate" :class="{ 'is-invalid': form.errors.has('rate') }" autocomplete="off">
+                          <input type="text" class="form-control" id="rate" placeholder="Add rate" v-model="form.rate" name="rate" :class="{ 'is-invalid': form.errors.has('rate') }" autocomplete="off" @keypress="isNumber($event)">
                           <has-error :form="form" field="rate"></has-error>
                         </div>
                         <div class="form-group col-md-12">
                           <label for="amount">Amount<code>*</code></label>
-                          <input type="text" class="form-control" id="amount" placeholder="Add amount" v-model="form.amount" name="amount" :class="{ 'is-invalid': form.errors.has('amount') }" autocomplete="off">
+                          <input type="text" class="form-control" id="amount" placeholder="Add amount" v-model="form.amount" name="amount" :class="{ 'is-invalid': form.errors.has('amount') }" autocomplete="off" @keypress="isNumber($event)">
                           <has-error :form="form" field="amount"></has-error>
                         </div>
                         <div class="form-group col-md-12">

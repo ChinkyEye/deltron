@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group col-md-12">
                           <label for="phone">Phone:</label>
-                          <input type="text" class="form-control" id="phone" placeholder="Add phone" v-model="form.phone" name="phone" :class="{ 'is-invalid': form.errors.has('phone') }" autocomplete="off">
+                          <input type="text" class="form-control" id="phone" placeholder="Add phone" v-model="form.phone" name="phone" :class="{ 'is-invalid': form.errors.has('phone') }" autocomplete="off" @keypress="isNumber($event)">
                           <has-error :form="form" field="phone"></has-error>
                         </div>
                         <div class="form-group col-md-12">
