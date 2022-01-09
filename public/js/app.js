@@ -3250,6 +3250,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
   components: {},
@@ -3257,6 +3266,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _ref;
 
     return _ref = {
+      manager_id: '',
       luckydraw_id: '',
       kista_id: '',
       agent_id: '',
@@ -3280,6 +3290,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }, _defineProperty(_ref, "state", true), _defineProperty(_ref, "count", ''), _ref;
   },
   mounted: function mounted() {
+    this.$store.dispatch("allSelectManager");
     this.$store.dispatch("allSelectLuckyDraw");
   },
   computed: {
@@ -3299,6 +3310,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var data = this.$store.getters.getDetail;
       if (data.length == 0) return [];
       return data[0].kistadetails;
+    },
+    getAllSelectManager: function getAllSelectManager() {
+      var d = this.$store.getters.getSelectManager[0];
+      return d;
+    },
+    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
+      var a = this.$store.getters.getSelectMLuckyDraw[0];
+      return a;
     }
   },
   methods: {
@@ -3379,6 +3398,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           });
         }
       });
+    },
+    managerChange: function managerChange() {
+      this.$store.dispatch("allSelectMLuckyDraw", [this.manager_id]);
+      this.luckydrawChange();
     },
     agentChange: function agentChange() {
       this.$store.dispatch("allSelectAgent", [this.kista_id]);
@@ -89335,6 +89358,62 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
+                            value: _vm.manager_id,
+                            expression: "manager_id",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "manager_id", name: "manager_id" },
+                        on: {
+                          change: [
+                            function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.manager_id = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                            _vm.managerChange,
+                          ],
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
+                          _vm._v("Select one manager"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.getAllSelectManager, function (manager) {
+                          return _c(
+                            "option",
+                            { domProps: { value: manager.id } },
+                            [
+                              _vm._v(
+                                "\n                      " +
+                                  _vm._s(manager.name) +
+                                  "\n                    "
+                              ),
+                            ]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
                             value: _vm.luckydraw_id,
                             expression: "luckydraw_id",
                           },
@@ -89365,7 +89444,7 @@ var render = function () {
                           _vm._v("Select one scheme"),
                         ]),
                         _vm._v(" "),
-                        _vm._l(_vm.allSelectLuckyDraws, function (luckydraw) {
+                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
                           return _c(
                             "option",
                             { domProps: { value: luckydraw.id } },

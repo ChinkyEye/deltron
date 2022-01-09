@@ -27,9 +27,18 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-md">
+                    <select class="form-control" id="manager_id" v-model="manager_id" name="manager_id" @change="managerChange"> 
+                      <option disabled value="">Select one manager</option>
+                      <option :value="manager.id" v-for="manager in getAllSelectManager">
+                        {{manager.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md">
                     <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" name="luckydraw_id" @change="luckydrawChange"> 
                       <option disabled value="">Select one scheme</option>
-                      <option :value="luckydraw.id" v-for="luckydraw in allSelectLuckyDraws">
+                      <!-- <option :value="luckydraw.id" v-for="luckydraw in allSelectLuckyDraws"> -->
+                      <option :value="luckydraw.id" v-for="luckydraw in allSelectMLuckyDraws">
                         {{luckydraw.name}}
                       </option>
                     </select>
@@ -106,6 +115,7 @@
     },
     data(){
       return{
+            manager_id:'',
             luckydraw_id: '',
             kista_id: '',
             agent_id: '',
@@ -129,6 +139,7 @@
         }
     },
 		mounted(){
+      this.$store.dispatch("allSelectManager")
       this.$store.dispatch("allSelectLuckyDraw")
 
 		},
@@ -149,6 +160,14 @@
         var data = this.$store.getters.getDetail;
         if(data.length == 0) return [];
         return data[0].kistadetails;
+      },
+      getAllSelectManager(){
+        var d = this.$store.getters.getSelectManager[0]
+        return d;
+      },
+      allSelectMLuckyDraws(){
+        var a = this.$store.getters.getSelectMLuckyDraw[0]
+        return a;
       },
     },
     methods:{
@@ -232,8 +251,10 @@
           }
         })
       },
-
-
+      managerChange(){
+        this.$store.dispatch("allSelectMLuckyDraw", [this.manager_id]);
+        this.luckydrawChange();
+      },
       agentChange(){
         this.$store.dispatch("allSelectAgent", [this.kista_id]);
       },

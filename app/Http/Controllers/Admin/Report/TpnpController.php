@@ -24,7 +24,7 @@ class TpnpController extends Controller
     public function tpnpreport(Request $request)
     {
         $played_count = Detail::orderBy('id','DESC')
-                                ->where('created_by', Auth::user()->id)
+                                // ->where('created_by', Auth::user()->id)
                                 ->where('lottery_status',2)
                                 ->where('kista_id',$request->kistaid)
                                 ->where('luckydraw_id',$request->luckydrawid)
