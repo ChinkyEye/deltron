@@ -9,7 +9,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><router-link to="/#">Home</router-link></li>
-              <li class="breadcrumb-item active">Client List</li>
+              <li class="breadcrumb-item active">Member List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
