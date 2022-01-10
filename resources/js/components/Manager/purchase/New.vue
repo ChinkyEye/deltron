@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group col-md-12">
                           <label for="quantity">Quantity<code>*</code></label>
-                          <input type="text" class="form-control" id="quantity" placeholder="Add quantity" v-model="form.quantity" name="quantity" :class="{ 'is-invalid': form.errors.has('quantity') }" autocomplete="off" @keypress="isNumber($event)">
+                          <input type="text" class="form-control" id="quantity" placeholder="Add quantity" v-model="form.quantity" name="quantity" :class="{ 'is-invalid': form.errors.has('quantity') }" autocomplete="off">
                           <has-error :form="form" field="quantity"></has-error>
                         </div>
                         <div class="form-group col-md-12">
