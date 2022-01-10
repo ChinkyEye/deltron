@@ -40,7 +40,7 @@
                         
                         <div class="form-group col-md-12">
                           <label for="lottery_prize">Scheme Prize<code>*</code></label>
-                          <input type="text" class="form-control" id="lottery_prize" placeholder="Add lottery_prize" v-model="form.lottery_prize" name="lottery_prize" :class="{ 'is-invalid': form.errors.has('lottery_prize') }" autocomplete="off">
+                          <input type="text" class="form-control" id="lottery_prize" placeholder="Add prize" v-model="form.lottery_prize" name="lottery_prize" :class="{ 'is-invalid': form.errors.has('lottery_prize') }" autocomplete="off">
                           <has-error :form="form" field="lottery_prize"></has-error>
                         </div>
                       </div>
