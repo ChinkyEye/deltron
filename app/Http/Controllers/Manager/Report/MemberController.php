@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Detail;
 use App\Client;
 use App\Kista;
+use App\LuckyDraw;
+use App\Agent;
 use Auth;
 use Response;
 use App\Exports\Manager\MemberExport;
@@ -23,6 +25,9 @@ class MemberController extends Controller
      */
     public function index(Request $request)
     {
+        $luckydraw_name = LuckyDraw::where('id',$request->luckydrawid)->value('name');
+        $agent_name = Agent::where('id',$request->agentid)->value('name');
+
         $luckydraw_id = $request->luckydrawid;
         $agent_id = $request->agentid;
         $kista_name = Kista::where('luckydraw_id',$luckydraw_id)
@@ -61,6 +66,8 @@ class MemberController extends Controller
            'memberreports' => $posts,
            'kista_name' => $kista_name,
            'count' => $count,
+           'luckydraw_name'=>$luckydraw_name,
+           'agent_name'=>$agent_name,
            // 'check' => $check,
         ];
         return response()->json($response);

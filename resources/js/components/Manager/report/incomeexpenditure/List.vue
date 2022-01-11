@@ -70,7 +70,8 @@
       <div class="row">
         <div class="col-md-12 text-center mb-2">
           <span>{{auth_name}},{{auth_address}}</span><br>
-          <span>Income Expenditure Report</span>
+          <span>Income Expenditure Report</span><br>
+          <span>{{luckydraw_name}} {{kista_name}}</span>
         </div>
         <div class="table-responsive col-sm-6">
           <table class="table table-bordered table-hover table-sm m-0">
@@ -188,6 +189,8 @@
           grandtotal2:'',
           auth_name:'',
           auth_address:'',
+          luckydraw_name:'',
+          kista_name:'',
         }
     },
     mounted(){
@@ -214,6 +217,8 @@
         this.opening_balance = avar[7];
         this.income_total = avar[2];
         this.total1 = this.latest_income + this.opening_balance + this.income_total;
+        this.luckydraw_name = avar[8];
+        this.kista_name = avar[9];
         return avar[0];
       },
       getAllExpenditure(){

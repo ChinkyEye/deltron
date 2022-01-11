@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use App\Detail;
+use App\LuckyDraw;
+use App\Kista;
 use Auth;
 use Response;
 
@@ -18,6 +20,9 @@ class TpnplController extends Controller
      */
     public function index(Request $request)
     {
+        $luckydraw_name = LuckyDraw::where('id',$request->luckydrawid)->value('name');
+        $kista_name = Kista::where('id',$request->kistaid)->value('name');
+
         $posts = Detail::orderBy('id','DESC')->where('created_by', Auth::user()->id);
         $total = 0;
         if($request->has('luckydrawid') && $request->get('luckydrawid')!="")
@@ -58,6 +63,8 @@ class TpnplController extends Controller
              ],
              'tpnplreports' => $posts,
              'total' => $total,
+             'luckydraw_name'=>$luckydraw_name,
+             'kista_name'=>$kista_name,
          ];
          return response()->json($response);
     }

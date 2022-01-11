@@ -68,7 +68,8 @@
                   <div class="row">
                     <div class="col-md-12 text-center mb-2">
                       <span>{{auth_name}},{{auth_address}}</span><br>
-                      <span>Agent Commission Report</span>
+                      <span>Agent Commission Report</span><br>
+                      <span>{{luckydraw_name}} {{kista_name}} {{agent_name}}</span>
                     </div>
                     <div class="table-responsive col-sm-8">
                       <table class="table table-bordered table-hover table-sm m-0">
@@ -165,6 +166,9 @@
           },
           auth_name:'',
           auth_address:'',
+          luckydraw_name:'',
+          kista_name:'',
+          agent_name:'',
         }
     },
     mounted(){
@@ -189,6 +193,9 @@
         var avar = this.$store.getters.getAgentReport;
         this.commisionamount = parseFloat(avar[2]).toFixed(2);
         this.total = avar[3];
+        this.luckydraw_name = avar[4];
+        this.kista_name = avar[5];
+        this.agent_name = avar[6];
         if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];

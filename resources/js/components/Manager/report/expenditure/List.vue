@@ -54,7 +54,9 @@
             <div id="printMe" class="row">
               <div class="col-md-12 text-center mb-2">
                 <span>{{auth_name}},{{auth_address}}</span><br>
-                <span>Expenditure Report</span>
+                <span>Expenditure Report</span><br>
+                <span>{{luckydraw_name}} {{kista_name}}</span>
+
               </div>
               <div class="table-responsive col-sm">
                 <table class="table table-bordered table-hover table-sm m-0">
@@ -120,6 +122,8 @@
           click: true,
           auth_name:'',
           auth_address:'',
+          luckydraw_name:'',
+          kista_name:'',
         }
     },
     mounted(){
@@ -142,9 +146,9 @@
       },
       getAllIncomeExpenditures(){
         var avar = this.$store.getters.getExpenditureReport;
-        // console.log(avar.length);
-        // console.log(avar[1]);
         this.total = avar[2];
+        this.luckydraw_name = avar[3];
+        this.kista_name = avar[4];
         if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];

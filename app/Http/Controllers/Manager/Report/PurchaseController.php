@@ -40,6 +40,8 @@ class PurchaseController extends Controller
              ],
              'purchasereports' => $posts,
              'totals' => $totalamount,
+             'to_date' => $request->date1,
+             'from_date' =>$request->date2,
          ];
          return response()->json($response);
     }

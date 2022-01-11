@@ -63,7 +63,8 @@
               <div class="row">
                 <div class="col-md-12 text-center mb-2">
                   <span>{{auth_name}},{{auth_address}}</span><br>
-                  <span>TPNPL Report</span>
+                  <span>TPNPL Report</span><br>
+                  <span>{{luckydraw_name}} {{kista_name}}</span>
                 </div>
                 <div class="table-responsive col-sm-10">
                   <table class="table table-bordered table-hover table-sm m-0">
@@ -140,7 +141,8 @@
           },
           auth_name:'',
           auth_address:'',
-
+          luckydraw_name:'',
+          kista_name:'',
         }
     },
     mounted(){
@@ -163,9 +165,9 @@
       },
       getAllTpnpreport(){
         var avar = this.$store.getters.getTpnplReport;
-        // console.log(avar.length);
-        // console.log(avar[1]);
         this.total = avar[2];
+        this.luckydraw_name = avar[3];
+        this.kista_name = avar[4];
         if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];

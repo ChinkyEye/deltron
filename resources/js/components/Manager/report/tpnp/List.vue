@@ -51,7 +51,8 @@
                   <div class="row">
                     <div class="col-md-12 text-center mb-2">
                       <span>{{auth_name}},{{auth_address}}</span><br>
-                      <span>TPNP Report</span>
+                      <span>TPNP Report</span><br>
+                      <span>{{luckydraw_name}} {{kista_name}}</span>
                     </div>
                     <div class="table-responsive col-sm-5">
                       <table class="table table-bordered table-hover table-sm m-0">
@@ -152,6 +153,8 @@
           leave:'',
           auth_name:'',
           auth_address:'',
+          luckydraw_name:'',
+          kista_name:'',
         }
     },
     mounted(){
@@ -181,6 +184,8 @@
         this.playedamount = c[2];
         this.notplayedamount = c[3];
         this.leave = c[4];
+        this.luckydraw_name = c[5];
+        this.kista_name = c[6];
         return c[1];
       }
 

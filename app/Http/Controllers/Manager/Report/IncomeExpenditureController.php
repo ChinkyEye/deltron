@@ -8,6 +8,7 @@ use App\IncomeExpenditure;
 use App\BankBalance;
 use App\Detail;
 use App\Kista;
+use App\LuckyDraw;
 use App\KistaHasOpening;
 use Auth;
 use Response;
@@ -21,6 +22,8 @@ class IncomeExpenditureController extends Controller
      */
     public function index(Request $request)
     {
+        $luckydraw_name = LuckyDraw::where('id',$request->luckydrawid)->value('name');
+        $kista_name = Kista::where('id',$request->kistaid)->value('name');
 
         // dd($request->kistaid -1,$preId->id);
         $posts_income = IncomeExpenditure::orderBy('id','DESC')
@@ -91,6 +94,8 @@ class IncomeExpenditureController extends Controller
           'bank_details' => $bank_details,
           'latest_income' => $latest_income,
           'opening_amount' => $opening_amount,
+          'luckydraw_name'=>$luckydraw_name,
+          'kista_name'=>$kista_name,
       ];
       return response()->json($response);
     }

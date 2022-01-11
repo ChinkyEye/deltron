@@ -315,17 +315,24 @@ export default{
 		allTpnpReport(context, params){
 			axios.get("/manager/report/tpnp/"+"?kistaid="+params[0]+"&luckydrawid="+params[1])
 				.then((response)=>{
+					// console.log(response);
 					context.commit('tpnpreports', [response.data.played,
 												response.data.notplayed,
 												response.data.playedamount,
 												response.data.notplayamount,
-												response.data.leave])
+												response.data.leave,
+												response.data.luckydraw_name,
+												response.data.kista_name])
 				})
 		},
 		allTpnplReport(context, params){
 			axios.get("/manager/report/tpnpl/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&type="+params[2]+"&page="+params[3])
 				.then((response)=>{
-					context.commit('tpnplreports', [response.data.tpnplreports.data,response.data.pagination,response.data.total])
+					context.commit('tpnplreports', [response.data.tpnplreports.data,
+													response.data.pagination,
+													response.data.total,
+													response.data.luckydraw_name,
+													response.data.kista_name])
 				})
 		},
 		allAgentReport(context, params){
@@ -335,6 +342,9 @@ export default{
 													response.data.pagination,
 													response.data.commisionamount,
 													response.data.total,
+													response.data.luckydraw_name,
+													response.data.kista_name,
+													response.data.agent_name,
 													])
 				})
 		},
@@ -355,7 +365,11 @@ export default{
 		allPurchaseReport(context, params){
 			axios.get("/manager/report/purchase/"+"?page="+params[0]+"&date1="+params[1]+"&date2="+params[2])
 				.then((response)=>{
-					context.commit('purchasereports', [response.data.purchasereports.data,response.data.pagination,response.data.totals])
+					context.commit('purchasereports', [response.data.purchasereports.data,
+														response.data.pagination,
+														response.data.totals,
+														response.data.to_date,
+														response.data.from_date])
 				})	
 		},
 		allIncomeExpenditureReport(context, params){
@@ -369,7 +383,9 @@ export default{
 																response.data.bank_balance,
 																response.data.bank_details,
 																response.data.latest_income,
-																response.data.opening_amount])
+																response.data.opening_amount,
+																response.data.luckydraw_name,
+																response.data.kista_name])
 				})	
 		},
 		// allIncomeExpenditureReport(context, params){
@@ -397,13 +413,19 @@ export default{
 				.then((response)=>{
 					context.commit('expenditurereports',[response.data.expenditurereports.data,
 														response.data.pagination,
-														response.data.total])
+														response.data.total,
+														response.data.luckydraw_name,
+														response.data.kista_name])
 				})
 		},
 		allRecordReport(context, params){
 			axios.get("/manager/report/record/"+"?page="+params[0]+"&date1="+params[1]+"&date2="+params[2])
 				.then((response)=>{
-					context.commit('recordreports', [response.data.recordreports.data,response.data.pagination,response.data.totals])
+					context.commit('recordreports', [response.data.recordreports.data,
+													response.data.pagination,
+													response.data.totals,
+													response.data.to_date,
+													response.data.from_date])
 				})
 		},
 		allPreviewReport(context, params){
@@ -418,7 +440,6 @@ export default{
 				})
 		},
 		allMemberReport(context, params){
-			// console.log(params);
 			axios.get("/manager/report/member/"+"?luckydrawid="+params[0]+"&agentid="+params[1]+"&page="+params[2])
 				.then((response)=>{
 					context.commit('memberreports', [response.data.memberreports.data,
@@ -426,6 +447,8 @@ export default{
 													response.data.total,
 													response.data.kista_name,
 													response.data.count,
+													response.data.luckydraw_name,
+													response.data.agent_name,
 													response.data.check])
 				})
 		},

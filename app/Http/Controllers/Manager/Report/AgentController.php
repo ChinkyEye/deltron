@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use App\Detail;
+use App\LuckyDraw;
+use App\Kista;
+use App\Agent;
 use App\AgentHasCommision;
 use Response;
 use Auth;
@@ -21,6 +24,10 @@ class AgentController extends Controller
 
     public function index(Request $request)
     {
+        $luckydraw_name = LuckyDraw::where('id',$request->luckydrawid)->value('name');
+        $kista_name = Kista::where('id',$request->kistaid)->value('name');
+        $agent_name = Agent::where('id',$request->agentid)->value('name');
+
         $posts = Detail::orderBy('id','DESC')->where('created_by', Auth::user()->id);
         $total = 0;
         $commisionamount = 0;
@@ -76,6 +83,9 @@ class AgentController extends Controller
             'agentreports' => $posts,
             'commisionamount' => $commisionamount,
             'total' => $total,
+            'luckydraw_name'=>$luckydraw_name,
+            'kista_name'=>$kista_name,
+            'agent_name'=>$agent_name,
         ];
         return response()->json($response);
     }

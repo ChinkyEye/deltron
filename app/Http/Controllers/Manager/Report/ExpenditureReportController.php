@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Manager\Report;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\IncomeExpenditure;
+use App\LuckyDraw;
+use App\Kista;
 use Auth;
 use Response;
 use App\Exports\Manager\ExpenditureExport;
@@ -19,6 +21,9 @@ class ExpenditureReportController extends Controller
      */
     public function index(Request $request)
     {
+        $luckydraw_name = LuckyDraw::where('id',$request->luckydrawid)->value('name');
+        $kista_name = Kista::where('id',$request->kistaid)->value('name');
+
         $posts = IncomeExpenditure::orderBy('id','DESC')
                                     ->where('created_by', Auth::user()->id);
         $total = 0;
@@ -48,6 +53,8 @@ class ExpenditureReportController extends Controller
            ],
            'expenditurereports' => $posts,
            'total' => $total,
+           'luckydraw_name'=>$luckydraw_name,
+           'kista_name'=>$kista_name,
         ];
          return response()->json($response);
     }

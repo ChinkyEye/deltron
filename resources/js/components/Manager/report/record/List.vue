@@ -53,7 +53,8 @@
             <div id="printMe" class="row">
               <div class="col-md-12 text-center mb-2">
                 <span>{{auth_name}},{{auth_address}}</span><br>
-                <span>Record Report</span>
+                <span>Record Report</span><br>
+                <span>{{to_date}} / {{from_date}}</span>
               </div>
               <div class="table-responsive col-sm">
                 <table class="table table-bordered table-hover table-sm m-0">
@@ -130,6 +131,8 @@
           search:'',
           auth_name:'',
           auth_address:'',
+          to_date:'',
+          from_date:'',
         }
     },
     mounted(){
@@ -146,6 +149,8 @@
       getAllRecord(){
         var b = this.$store.getters.getRecordReport;
         this.total = b[2];
+        this.to_date = b[3];
+        this.from_date = b[4];
         if(b.length==3)
           this.pagination = b[1];
         return b[0];

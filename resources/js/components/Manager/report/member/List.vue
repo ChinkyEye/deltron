@@ -63,7 +63,8 @@
                 <div id="printMe">
                   <div class="col-md-12 text-center mb-2">
                     <span>{{auth_name}},{{auth_address}}</span><br>
-                    <span>Member Payment Report</span>
+                    <span>Member Payment Report</span><br>
+                    <span>{{luckydraw_name}} {{agent_name}}</span>
                   </div>
                   <div class="table-responsive">
                     <table class="table table-bordered table-hover table-sm m-0">
@@ -158,6 +159,8 @@
           auth_name:'',
           auth_address:'',
           count:'0',
+          luckydraw_name:'',
+          agent_name:'',
         }
     },
     mounted(){
@@ -177,6 +180,8 @@
       getAllMember(){
         var d = this.$store.getters.getMemberReport
         this.count = d[4];
+        this.luckydraw_name = d[5];
+        this.agent_name = d[6];
         if(d.length==5)
           this.pagination = d[1];
         return d[0];
