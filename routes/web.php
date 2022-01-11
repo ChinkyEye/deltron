@@ -83,6 +83,7 @@ Route::group(["middleware" => 'manager'], function(){
     Route::get('/manager/agent_name/{id}', 'Manager\ClientController@agent_name');
     Route::get('/manager/client/status/{id}/{status}', 'Manager\ClientController@status');
     Route::get('/manager/client/leave/{id}/{leaveId}', 'Manager\ClientController@leave');
+    Route::get('/manager/export','Manager\ClientController@fileExport');
 
     Route::post('/manager/detail/prize','Manager\DetailController@prize');
     Route::get('/manager/mdetail','Manager\DetailController@detail');

@@ -8,6 +8,8 @@ use App\Client;
 use App\Agent;
 use App\Booking;
 use Auth;
+use App\Exports\Manager\MemberListExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClientController extends Controller
 {
@@ -261,5 +263,11 @@ class ClientController extends Controller
         $user = Client::findOrFail($id);
         $user->is_leave = !$leaveId;
         $user->update();
+    }
+    public function fileExport(Request $request)
+    {
+        $current_date = date("Y-m-d");
+        $filename = 'memberlistreports'.$current_date.'.xlsx';
+        return Excel::download(new MemberListExport($request->agentid), $filename);
     }
 }

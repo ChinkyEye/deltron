@@ -46,7 +46,6 @@ class ExpenseReportController extends Controller
     }
 
     public function fileExport(Request $request){
-        dd($request);
        $current_date = date("Y-m-d");
        $filename = 'expenditurereports'.$current_date.'.xlsx';
        return Excel::download(new ExpenditureExport($request->name, $request->customer_id, $request->start_date, $request->end_date), $filename);
