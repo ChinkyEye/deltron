@@ -51,7 +51,7 @@
                       </tr>
                     </thead>
                     <tbody class="text-center">
-                      <tr v-for="(data,index) in getAllSubAgent" :key="data.id" :class="colorchange(data.is_active)">
+                     <!--  <tr v-for="(data,index) in getAllSubAgent" :key="data.id" :class="colorchange(data.is_active)">
                         <td>{{index+1}}</td>
                         <td class="text-left">{{data.name}}</td>
                         <td class="text-left">{{data.address}}</td>
@@ -72,7 +72,7 @@
                             <a href="" @click.prevent="deleteLuckyDraw(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
                           </div>
                         </td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table>
 
@@ -106,7 +106,7 @@
         }
     },
     mounted(){
-    this.fetchPosts();
+    // this.fetchPosts();
     },
     computed:{
       getAllSubAgent(){

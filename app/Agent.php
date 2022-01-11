@@ -25,4 +25,8 @@ class Agent extends Model
     {
         return $this->belongsTo(Client::class,'id','agent_id')->where('is_active','1')->groupBy('agent_id')->selectRaw('agent_id,Count(agent_id) as total');
     }
+    public function getHeadAgent()
+    {
+        return $this->hasOne(Agent::class,'id','is_head');
+    }
 }

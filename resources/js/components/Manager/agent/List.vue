@@ -54,7 +54,10 @@
                     <tbody class="text-center">
                       <tr v-for="(data,index) in getAllAgent" :key="data.id" :class="colorchange(data.is_active)">
                         <td>{{index+1}}</td>
-                        <td class="text-left">{{data.name}}</td>
+                        <td class="text-left">{{data.name}}
+                            <span v-if="data.get_head_agent != null" class="text-danger">(subagent of {{data.get_head_agent.name}})</span>
+                            <span v-else></span>
+                          </td>
                         <td class="text-left">{{data.address}}</td>
                         <td class="text-left">{{data.phone}}</td>
                         <td v-if="data.is_active == '0'">Inactive <a href="javascript:void(0)" @click.prevent="AgentStatus(data.id, data.is_active)" title="Click to Publish"><i class="nav-icon fas fa-times-circle text-danger"></i></a></td>

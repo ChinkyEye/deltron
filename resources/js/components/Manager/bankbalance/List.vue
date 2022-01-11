@@ -41,7 +41,7 @@
                       <tr>
                         <th width="10">SN</th>
                         <th>Bank</th>
-                        <th>Account</th>
+                        <th>Account No</th>
                         <th>Amount</th>
                         <th>Info</th>
                         <th>Description</th>
