@@ -43,8 +43,8 @@ class MemberExport implements  FromView,WithEvents,WithColumnWidths
         $kista_name = Kista::where('luckydraw_id',$luckydraw_id)
                             ->where('is_active','1')
                             ->pluck('name');
-        $title = User::where('id', Auth::user()->id)
-                        ->value('name'); 
+        $title = User::where('id', Auth::user()->id)->first();
+                        // ->value('name'); 
         $agent_name = Agent::where('is_active','1')
                             ->where('created_by',Auth::user()->id)
                             ->where('id',$agent_id)

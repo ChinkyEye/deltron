@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Report of  MonthlyPurchase</title>
+    <title>Report of  Record</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
   </head>
   <body>
     <div>
       <h1 class="text-center">{{$title}}</h1>
-      <h3 class="text-center">Record Report({{$start_date}} -- {{$end_date}})</h3>
+      <h3 class="text-center">Record Report({{$start_date}} Record{{$end_date}})</h3>
       <h6>{{ date('Y') }}</h6>
     </div>
     <div class="row">
