@@ -331,7 +331,11 @@ export default{
 		allAgentReport(context, params){
 			axios.get("/manager/report/agent/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&agentid="+params[2]+"&type="+params[3]+"&page="+params[4])
 				.then((response)=>{
-					context.commit('agentreports', [response.data.agentreports.data,response.data.pagination,response.data.commisionamount])
+					context.commit('agentreports', [response.data.agentreports.data,
+													response.data.pagination,
+													response.data.commisionamount,
+													response.data.total,
+													])
 				})
 		},
 		allExpenseReport(context, params){

@@ -63,7 +63,6 @@ class AgentController extends Controller
             $total = $amount ; 
             $totalwithcommision = $amount + $commisionamount; 
         }
-    
         $posts = $posts->with('getClientInfo')->paginate(100);
         $response = [
             'pagination' => [
@@ -76,6 +75,7 @@ class AgentController extends Controller
             ],
             'agentreports' => $posts,
             'commisionamount' => $commisionamount,
+            'total' => $total,
         ];
         return response()->json($response);
     }

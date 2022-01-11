@@ -95,7 +95,7 @@
                       </table>
                       <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="searchdata"></pagination>
                     </div>
-                    <div class="table-responsive col-sm-4">
+                    <div class="table-responsive col-sm-2">
                       <table class="table table-bordered table-hover table-sm m-0">
                         <thead class="table-primary"> 
                           <tr>
@@ -105,6 +105,20 @@
                         <tbody>
                           <tr>
                             <td>Rs.{{commisionamount}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="table-responsive col-sm-2">
+                      <table class="table table-bordered table-hover table-sm m-0">
+                        <thead class="table-primary"> 
+                          <tr>
+                            <th>Total Collected Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Rs.{{total}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -144,6 +158,7 @@
           agent_id:'',
           lottery_status:'',
           commisionamount:'0',
+          total:'0',
           date:{
             start: moment().subtract(1,'months')._d, // Jan 16th, 2018
             end: new Date()    // Jan 19th, 2018
@@ -173,6 +188,7 @@
       getAgentreport(){
         var avar = this.$store.getters.getAgentReport;
         this.commisionamount = parseFloat(avar[2]).toFixed(2);
+        this.total = avar[3];
         if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];
