@@ -44,6 +44,7 @@
                         <th>Account</th>
                         <th>Amount</th>
                         <th>Info</th>
+                        <th>Description</th>
                         <th>Status</th>
                         <th>Created At</th>
                         <th>Action</th>
@@ -56,6 +57,7 @@
                         <td>{{data.account_no}}</td>
                         <td>{{data.amount}}</td>
                         <td>{{data.get_lucky_draw.name}} | {{data.get_kista.name}}</td>
+                        <td>{{data.description}}</td>
                         <td v-if="data.is_active == '0'">Inactive <a href="javascript:void(0)" @click.prevent="BankBalanceStatus(data.id, data.is_active)" title="Click to Publish"><i class="nav-icon fas fa-times-circle text-danger"></i></a></td>
                         <td v-else>Active <a href="javascript:void(0)" @click.prevent="BankBalanceStatus(data.id, data.is_active)" title="Click to Unpublish"><i class="nav-icon fas fa-check-circle text-success"></i></a></td>
                         <td>

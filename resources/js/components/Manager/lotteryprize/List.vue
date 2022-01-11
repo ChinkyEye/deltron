@@ -75,7 +75,7 @@
                         <td>
                           <span class="text-danger" v-if="play.lottery_status == '1'">UnPaid {{play.amount}}</span>
                           <span class="text-primary" v-if="play.lottery_status == '2'">Paid {{play.amount}}
-                          <router-link :to="`/client/prize/${play.id}`" class="btn btn-xs btn-outline-info" title="Add Lottery Prize"><i class="fas fa-plus fa-sm"></i>
+                          <router-link :to="`/client/prize/${play.id}`" class="btn btn-xs btn-outline-info" title="Add Prize"><i class="fas fa-plus fa-sm"></i>
                           </router-link>
                           <span class="badge badge-warning text-info float-sm-right" v-if="play.lottery_prize != null ">{{play.lottery_prize}} is allocated</span> 
                           </span>

@@ -110,7 +110,7 @@
       .then((response)=>{
         this.$router.push(`/lotteryprize`);
         // this.$store.dispatch("allKistaDetail");
-        location.reload();
+        // location.reload();
         Toast.fire({
           icon: 'success',
           title: 'Prize Added successfully'
