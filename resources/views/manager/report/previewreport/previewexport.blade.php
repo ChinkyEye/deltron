@@ -12,7 +12,7 @@
     <div>
       <h1 class="text-center">{{$title->name}},{{$title->address}}</h1>
       <h3 class="text-center">Serial Number Report</h3>
-      <h6>{{$agent_name}},{{ date('Y') }}</h6>
+      <h6>{{$agent_name}} {{ date('Y') }}</h6>
     </div>
     <div class="row">
       <div class="table-responsive col-md">
