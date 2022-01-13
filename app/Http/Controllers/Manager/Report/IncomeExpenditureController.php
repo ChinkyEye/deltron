@@ -96,6 +96,8 @@ class IncomeExpenditureController extends Controller
           'opening_amount' => $opening_amount,
           'luckydraw_name'=>$luckydraw_name,
           'kista_name'=>$kista_name,
+          'to_date' => $request->date1,
+          'from_date' =>$request->date2,
       ];
       return response()->json($response);
     }

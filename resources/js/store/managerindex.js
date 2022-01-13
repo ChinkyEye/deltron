@@ -375,7 +375,7 @@ export default{
 		allIncomeExpenditureReport(context, params){
 			axios.get("/manager/report/incomeexpenditure/"+"?page="+params[0]+"&kistaid="+params[1]+"&luckydrawid="+params[2]+"&date1="+params[3]+"&date2="+params[4])
 				.then((response)=>{
-					// console.log(response);
+					console.log(response);
 					context.commit('incomeexpenditurereports', [response.data.incomeexpenditurereports_income.data,
 																response.data.incomeexpenditurereports_expenditure.data,
 																response.data.income_total,
@@ -385,7 +385,9 @@ export default{
 																response.data.latest_income,
 																response.data.opening_amount,
 																response.data.luckydraw_name,
-																response.data.kista_name])
+																response.data.kista_name,
+																response.data.to_date,
+																response.data.from_date])
 				})	
 		},
 		// allIncomeExpenditureReport(context, params){

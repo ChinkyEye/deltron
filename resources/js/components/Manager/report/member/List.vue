@@ -64,7 +64,7 @@
                   <div class="col-md-12 text-center mb-2">
                     <span>{{auth_name}},{{auth_address}}</span><br>
                     <span>Member Payment Report</span><br>
-                    <span>{{luckydraw_name}} {{agent_name}}</span>
+                    <span>{{luckydraw_name}} <span v-if="clicked">,</span>{{agent_name}}</span>
                   </div>
                   <div class="table-responsive">
                     <table class="table table-bordered table-hover table-sm m-0">
@@ -156,6 +156,7 @@
           luckydraw_id:'',
           agent_id: '',
           click: true,
+          clicked: '',
           auth_name:'',
           auth_address:'',
           count:'0',
@@ -214,6 +215,8 @@
       savedata()
       {
         this.$store.dispatch("allMemberReport", [this.luckydraw_id,this.agent_id,this.pagination.current_page]);
+        this.clicked = true;
+
       },
       searchSetting(){
         this.fetchPosts();

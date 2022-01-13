@@ -55,7 +55,7 @@
               <div class="col-md-12 text-center mb-2">
                 <span>{{auth_name}},{{auth_address}}</span><br>
                 <span>Expenditure Report</span><br>
-                <span>{{luckydraw_name}} {{kista_name}} {{expendituretype}}</span>
+                <span>{{luckydraw_name}}<span v-if="clicked">,</span> {{kista_name}}<span v-if="clicked">,</span> {{expendituretype}}</span>
 
               </div>
               <div class="table-responsive col-sm">
@@ -120,6 +120,7 @@
           },
           search:'',
           click: true,
+          clicked: '',
           auth_name:'',
           auth_address:'',
           luckydraw_name:'',
@@ -185,6 +186,7 @@
       },
       expendituretypechange(){
         this.pagechange();
+        this.clicked = true;
       },
       categoryChange(){
         this.pagechange();

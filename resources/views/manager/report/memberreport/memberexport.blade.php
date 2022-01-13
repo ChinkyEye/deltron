@@ -12,7 +12,7 @@
     <div>
       <p class="text-center">{{$title->name}},{{$title->address}}</p>
       <p class="text-center">Member Report</p>
-      <p>{{$agent_name}}({{$scheme_name}}),{{ date('Y') }}</p>
+      <p>{{$scheme_name}},{{$agent_name}},{{ date('Y') }}</p>
 
     </div>
     <table class="table table-bordered table-hover table-sm m-0">

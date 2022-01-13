@@ -71,7 +71,7 @@
         <div class="col-md-12 text-center mb-2">
           <span>{{auth_name}},{{auth_address}}</span><br>
           <span>Income Expenditure Report</span><br>
-          <span>{{luckydraw_name}} {{kista_name}}</span>
+          <span v-if="luckydraw_id && kista_id" >{{luckydraw_name}},{{kista_name}} ({{to_date}} / {{from_date}})</span>
         </div>
         <div class="table-responsive col-sm-6">
           <table class="table table-bordered table-hover table-sm m-0">
@@ -191,6 +191,8 @@
           auth_address:'',
           luckydraw_name:'',
           kista_name:'',
+          to_date:'',
+          from_date:'',
         }
     },
     mounted(){
@@ -219,6 +221,8 @@
         this.total1 = this.latest_income + this.opening_balance + this.income_total;
         this.luckydraw_name = avar[8];
         this.kista_name = avar[9];
+        this.to_date = avar[10];
+        this.from_date = avar[11];
         return avar[0];
       },
       getAllExpenditure(){
@@ -247,21 +251,11 @@
         this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
          this.pagechange();
       },
-      lotterystatuschange(){
-         this.pagechange();
-      },
       luckydraw_change(){
-        this.kistaChange();
         this.pagechange();
+        this.kistaChange();
       },
       dateChange(){
-        this.pagechange();
-      },
-      categoryChange(){
-        this.pagechange();
-        this.subCatchange();
-      },
-      subCatchange(){
         this.pagechange();
       },
       print () {
