@@ -43,36 +43,32 @@
                         <th class="text-left">Name</th>
                         <th class="text-left">Address</th>
                         <th class="text-left">Phone</th>
-                        <th class="text-left">Commision</th>
-                        <th class="text-left">Kista</th>
                         <th>Status</th>
                         <th>Created At</th>
-                        <th>Action</th>
+                        <!-- <th>Action</th> -->
                       </tr>
                     </thead>
                     <tbody class="text-center">
-                     <!--  <tr v-for="(data,index) in getAllSubAgent" :key="data.id" :class="colorchange(data.is_active)">
+                      <tr v-for="(data,index) in getAllSubAgent" :key="data.id" :class="colorchange(data.is_active)">
                         <td>{{index+1}}</td>
                         <td class="text-left">{{data.name}}</td>
                         <td class="text-left">{{data.address}}</td>
                         <td class="text-left">{{data.phone}}</td>
-                        <td class="text-left">{{data.commission}}</td>
-                        <td>{{data.get_kista.name}}</td>
                         <td v-if="data.is_active == '0'">Inactive <a href="javascript:void(0)" @click.prevent="AgentStatus(data.id, data.is_active)" title="Click to Publish"><i class="nav-icon fas fa-times-circle text-danger"></i></a></td>
                         <td v-else>Active <a href="javascript:void(0)" @click.prevent="AgentStatus(data.id, data.is_active)" title="Click to Unpublish"><i class="nav-icon fas fa-check-circle text-success"></i></a></td>
                         <td>
                           {{data.created_at | timeformat}} 
                           <span class="badge badge-warning text-danger">{{data.created_at  | formatDate}}</span>
                         </td>
-                        <td>
+                        <!-- <td>
                           <div class="btn-group">
                             <router-link :to="`/agent/add/subagent/${data.id}`" class="btn btn-xs btn-outline-danger" title="Add Agent"><i class="fas fa-plus"></i></router-link> 
                             <router-link :to="`/agent/add/client/${data.id}`" class="btn btn-xs btn-outline-info"><i class="fas fa-plus"></i></router-link> 
                             <router-link :to="`/agent/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i></router-link> 
                             <a href="" @click.prevent="deleteLuckyDraw(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
                           </div>
-                        </td>
-                      </tr> -->
+                        </td> -->
+                      </tr>
                     </tbody>
                   </table>
 
@@ -106,7 +102,7 @@
         }
     },
     mounted(){
-    // this.fetchPosts();
+      this.fetchPosts();
     },
     computed:{
       getAllSubAgent(){
@@ -125,7 +121,7 @@
       AgentStatus(clkid, show){
           axios.get('/manager/agent/status/'+clkid+'/'+show)
           .then(()=>{
-              this.$store.dispatch("allFiscalYear", [0,0]);
+              this.$store.dispatch("allSubAgent", [0,0,this.$route.params.agentid]);
               Toast.fire({
                   icon: 'success',
                   title: 'Status changed successfully'

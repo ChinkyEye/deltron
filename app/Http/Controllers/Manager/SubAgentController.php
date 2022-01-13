@@ -19,11 +19,12 @@ class SubAgentController extends Controller
 
     }
 
-    public function subagentlist(Request $request,$id){
+    public function subagentlist(Request $request,$id)
+    {
         $posts = Agent::orderBy('id','DESC')
                         ->where('created_by', Auth::user()->id)
                         ->where('is_head',$id)
-                        ->select('id','name','address','phone','commission','created_by','kista_id','is_active')
+                        ->select('id','name','address','phone','created_by','is_active')
                         ->with('getKista');
         if(empty($request->search))
         {            
