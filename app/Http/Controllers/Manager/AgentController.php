@@ -49,7 +49,7 @@ class AgentController extends Controller
             $search = $request->search;
             $posts = $posts->where('name', 'LIKE',"%{$search}%");
         }
-        $posts = $posts->with('getKista','countMember','getHeadAgent')->paginate(25);
+        $posts = $posts->with('getKista','countMember','getHeadAgent','countSubAgent')->paginate(25);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),

@@ -53,6 +53,7 @@
                     </thead>
                     <tbody class="text-center">
                       <tr v-for="(data,index) in getAllAgent" :key="data.id" :class="colorchange(data.is_active)">
+                        <!-- {{data.count_sub_agent}} -->
                         <td>{{index+1}}</td>
                         <td class="text-left">{{data.name}}
                             <span v-if="data.get_head_agent != null" class="text-danger">(subagent of {{data.get_head_agent.name}})</span>
@@ -67,7 +68,12 @@
                           <span class="badge badge-warning text-danger">{{data.created_at  | formatDate}}</span>
                         </td>                        
                         <td>
-                          <router-link :to="`/agent/add/subagent/${data.id}`" class="btn btn-xs btn-outline-danger" title="Add Sub Agent"><i class="fas fa-plus"></i></router-link> 
+                          <router-link :to="`/agent/add/subagent/${data.id}`" class="btn btn-xs btn-outline-danger" title="Add Sub Agent">
+                            <i class="fas fa-plus">
+                              <span v-if="data.count_sub_agent == null">0</span>
+                              <span v-else>{{data.count_sub_agent.totals}}</span>
+                            </i>
+                          </router-link> 
                           <router-link :to="`/agent/add/client/${data.id}`" class="btn btn-xs btn-outline-info" title="Add Member">
                             <i class="fas fa-plus">
                               <span v-if="data.count_member == null">0</span>
