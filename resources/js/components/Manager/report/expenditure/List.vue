@@ -55,7 +55,7 @@
               <div class="col-md-12 text-center mb-2">
                 <span>{{auth_name}},{{auth_address}}</span><br>
                 <span>Expenditure Report</span><br>
-                <span>{{luckydraw_name}} {{kista_name}}</span>
+                <span>{{luckydraw_name}} {{kista_name}} {{expendituretype}}</span>
 
               </div>
               <div class="table-responsive col-sm">
@@ -124,6 +124,7 @@
           auth_address:'',
           luckydraw_name:'',
           kista_name:'',
+          expendituretype:'',
         }
     },
     mounted(){
@@ -149,6 +150,7 @@
         this.total = avar[2];
         this.luckydraw_name = avar[3];
         this.kista_name = avar[4];
+        this.expendituretype = avar[5];
         if(avar.length==3)
           this.pagination = avar[1];
         return avar[0];

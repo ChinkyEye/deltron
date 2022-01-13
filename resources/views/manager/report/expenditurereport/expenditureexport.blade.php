@@ -10,9 +10,9 @@
   </head>
   <body>
     <div>
-      <h1 class="text-center">{{$title}}</h1>
+      <h1 class="text-center">{{$title->name}},{{$title->address}}</h1>
       <h3 class="text-center">Expenditure Report</h3>
-      <h6>{{ date('Y') }}</h6>
+      <h6>{{$scheme_name}},{{$kista_name}}({{$expendituretype}}),{{ date('Y') }}</h6>
     </div>
     <div class="row">
       <div class="table-responsive col-md">

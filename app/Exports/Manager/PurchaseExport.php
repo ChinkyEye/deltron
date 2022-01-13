@@ -28,8 +28,8 @@ class PurchaseExport implements FromView,WithEvents,WithColumnWidths
     }
     public function view(): View
     {
-        $title = User::where('id', Auth::user()->id)
-                        ->value('name');
+        $title = User::where('id', Auth::user()->id)->first();
+                        // ->value('name');
         $posts = Purchase::orderBy('id','DESC')
                         ->where('created_by', Auth::user()->id);
         if(($this->start_date != NULL) || ($this->end_date != NULL))

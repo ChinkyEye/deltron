@@ -58,8 +58,8 @@ class BookingExport implements FromView,WithEvents,WithColumnWidths
         $booking_arrays = array_diff($booking_array,$common_value);
         //end of new added
 
-        $title = User::where('id', Auth::user()->id)
-                        ->value('name');
+        $title = User::where('id', Auth::user()->id)->first();
+                        // ->value('name');
 
         if(empty($this->search))
         {            

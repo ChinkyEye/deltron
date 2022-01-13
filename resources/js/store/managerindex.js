@@ -415,7 +415,8 @@ export default{
 														response.data.pagination,
 														response.data.total,
 														response.data.luckydraw_name,
-														response.data.kista_name])
+														response.data.kista_name,
+														response.data.expendituretype])
 				})
 		},
 		allRecordReport(context, params){

@@ -60,8 +60,8 @@ class PreviewExport implements  FromView,WithEvents,WithColumnWidths
         $booking_arrays = array_diff($booking_array,$common_value);
         //end of new added
 
-        $title = User::where('id', Auth::user()->id)
-                        ->value('name');
+        $title = User::where('id', Auth::user()->id)->first();
+                        // ->value('name');
         $agent_name = Agent::where('is_active','1')
                             ->where('created_by',Auth::user()->id)
                             ->where('id',$agent_id)

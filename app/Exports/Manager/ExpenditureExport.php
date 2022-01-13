@@ -10,6 +10,8 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use App\IncomeExpenditure;
 use App\User;
+use App\LuckyDraw;
+use App\Kista;
 use Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\View\View;
@@ -32,8 +34,25 @@ class ExpenditureExport implements FromView,WithEvents,WithColumnWidths
     }
     public function view(): View
     {
-        $title = User::where('id', Auth::user()->id)
-                    ->value('name');
+        $title = User::where('id', Auth::user()->id)->first();
+        $kista_name = Kista::where('is_active','1')
+                            ->where('created_by',Auth::user()->id)
+                            ->where('id',$this->kista_id)
+                            ->value('name');
+        $scheme_name = LuckyDraw::where('is_active','1')
+                                ->where('created_by', Auth::user()->id)
+                                ->where('id',$this->luckydraw_id)
+                                ->value('name');
+        $expendituretype = '';
+        if($this->expenditure_type == '1')
+        {
+            $expendituretype = 'Direct';
+
+        }
+        elseif($this->expenditure_type == '2')
+        {
+            $expendituretype = 'Indirect';
+        }                        
         $posts = IncomeExpenditure::orderBy('id','DESC')
                                 ->where('type','Expenditure');
         if($this->luckydraw_id != NULL)
@@ -52,6 +71,10 @@ class ExpenditureExport implements FromView,WithEvents,WithColumnWidths
         return view('manager.report.expenditurereport.expenditureexport',[
             'expenditurereports' => $posts,
             'title' => $title,
+            'scheme_name' => $scheme_name,
+            'kista_name' => $kista_name,
+            'expendituretype' => $expendituretype,
+
         ]);
     }
     

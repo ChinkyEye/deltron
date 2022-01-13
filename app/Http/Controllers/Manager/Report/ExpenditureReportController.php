@@ -23,6 +23,16 @@ class ExpenditureReportController extends Controller
     {
         $luckydraw_name = LuckyDraw::where('id',$request->luckydrawid)->value('name');
         $kista_name = Kista::where('id',$request->kistaid)->value('name');
+        $expendituretype = '';
+        if($request->expendituretype == '1')
+        {
+            $expendituretype = 'Direct';
+
+        }
+        elseif($request->expendituretype == '2')
+        {
+            $expendituretype = 'Indirect';
+        }
 
         $posts = IncomeExpenditure::orderBy('id','DESC')
                                     ->where('created_by', Auth::user()->id);
@@ -55,6 +65,7 @@ class ExpenditureReportController extends Controller
            'total' => $total,
            'luckydraw_name'=>$luckydraw_name,
            'kista_name'=>$kista_name,
+           'expendituretype'=> $expendituretype,
         ];
          return response()->json($response);
     }
