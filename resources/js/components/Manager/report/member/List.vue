@@ -64,7 +64,7 @@
                   <div class="col-md-12 text-center mb-2">
                     <span>{{auth_name}},{{auth_address}}</span><br>
                     <span>Member Payment Report</span><br>
-                    <span>{{luckydraw_name}} <span v-if="clicked">,</span>{{agent_name}}</span>
+                    <span>{{luckydraw_name}} <span v-if="clicked && luckydraw_id && agent_id">,</span>{{agent_name}}</span>
                   </div>
                   <div class="table-responsive">
                     <table class="table table-bordered table-hover table-sm m-0">

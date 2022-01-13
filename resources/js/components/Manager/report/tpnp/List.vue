@@ -52,7 +52,7 @@
                     <div class="col-md-12 text-center mb-2">
                       <span>{{auth_name}},{{auth_address}}</span><br>
                       <span>TPNP Report</span><br>
-                      <span>{{luckydraw_name}} {{kista_name}}</span>
+                      <span>{{luckydraw_name}}<span v-if="kista_id && clicked">,</span> {{kista_name}}</span>
                     </div>
                     <div class="table-responsive col-sm-5">
                       <table class="table table-bordered table-hover table-sm m-0">
@@ -155,6 +155,7 @@
           auth_address:'',
           luckydraw_name:'',
           kista_name:'',
+          clicked:'',
         }
     },
     mounted(){
@@ -203,6 +204,7 @@
       searchdata()
       {
         this.$store.dispatch("allTpnpReport", [this.kista_id,this.luckydraw_id]);
+        this.clicked = true;
       },
       print () {
         this.$htmlToPaper('printMe');
