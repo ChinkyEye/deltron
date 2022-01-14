@@ -234,7 +234,9 @@
       	let file = event.target.value;
       	let rem_amount = amt;
       	let p_amount = this.rec_amount
-        let value = parseInt(p_amount[index]);
+        let value = p_amount[index];
+        // let value = parseInt(p_amount[index]);
+        // console.log(value);
         // console.log(file,rem_amount,p_amount,value);
         // if(value > rem_amount){
         if(value != rem_amount)
