@@ -34,23 +34,45 @@ class MemberController extends Controller
                             ->where('is_active','1')
                             ->pluck('name','id');
 
-        // $posts = Detail::orderBy('id','DESC')
-        //                 ->where('created_by', Auth::user()->id)
-        //                 ->groupBy('client_id')
-        //                 ->get();
-        //                 dd($posts);                    
-       
+        $dues = Detail::orderBy('id','ASC')
+                        ->where('created_by', Auth::user()->id);
+
         $posts = Client::orderBy('id','DESC')
                          ->where('created_by', Auth::user()->id)
                             ->whereHas('getClientDetail', function(Builder $query) use ($luckydraw_id){
                               $query->where('luckydraw_id', $luckydraw_id);
                             });
+        if($request->has('kistaid') && $request->get('kistaid')!="")
+        {            
+            $dues = $dues->where('kista_id',$request->kistaid);
+        }
+        $due_amount = [];
+        $collected_amount = [];
         if($request->has('agentid') && $request->get('agentid')!="")
         {            
+            $commisionamount = $dues->where('agent_id',$request->agentid)
+                                        ->with(array('getAgentCommision'=>function($query) use ($request){
+                                            $query->select()->where('agent_id',$request->agentid)
+                                                            ->where('kista_id',$request->kistaid);
+                                        }))
+                                        ->get();
+                                        // dd($commisionamount);
             $posts = $posts->where('agent_id',$request->agentid);
+            $due_amount[] = $dues->where('agent_id',$request->agentid)->groupBy('agent_id')->sum('remaining');
+            $collected_amount[] = $dues->where('agent_id',$request->agentid)->groupBy('agent_id')->sum('amount'); 
+        }
+        else
+        {
+            $dues = $dues->groupBy('agent_id')
+                        ->pluck('agent_id');
+            foreach ($dues as $key => $child) {
+                $due_amount[] = Detail::where('agent_id',$child)->sum('remaining');
+                $collected_amount[] = Detail::where('agent_id',$child)->sum('amount');
+            }            
+
         }
         $count = $posts->count();
-        $posts = $posts->with('getAgent','getCount')
+        $posts = $posts->with('getAgent','getCount','getAgent.getHeadAgent')
                         ->with(array('getClientDetail'=>function($query) use ($luckydraw_id){
                                $query->select()->where('luckydraw_id',$luckydraw_id);
                            }))->paginate(100);
@@ -69,6 +91,9 @@ class MemberController extends Controller
            'luckydraw_name'=>$luckydraw_name,
            'agent_name'=>$agent_name,
            // 'check' => $check,
+           'due_amount' => $due_amount,
+           'collected_amount' => $collected_amount,
+           'commisionamount' => $commisionamount,
         ];
         return response()->json($response);
     }

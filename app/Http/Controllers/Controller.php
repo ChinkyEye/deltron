@@ -17,5 +17,5 @@ class Controller extends BaseController
     {
         $this->request = $request;
         $this->helper = $helper;
-     }
+    }
 }

@@ -55,6 +55,12 @@
                       </option>
                     </select>
                   </div>
+                  <div class="col-md">
+                    <select class="form-control" id="kista_id" name="kista_id" v-model="kista_id"> 
+                      <option value="">Select one kista</option>
+                      <option :value="kista.id" v-for="kista in getAllKista">{{kista.name}}</option>
+                    </select>
+                  </div>
                   <button class="btn btn-primary btn-block col" @click="savedata">{{"Click to continue"}}
                   </button>
                 </div>
@@ -74,6 +80,7 @@
                           <th class="text-left">Member Name</th>
                           <th>Address</th>
                           <th>Phone</th>
+                          <th>Through</th>
                           <th>Agent</th>
                           <th>S.N</th>
                           <th v-for="(data,index) in getAllName" :key="data.id">
@@ -87,6 +94,12 @@
                           <td class="text-left">{{data.name}}</td>
                           <td>{{data.address}}</td>
                           <td>{{data.phone}}</td>
+                          <td v-if="data.get_agent.get_head_agent">
+                            {{data.get_agent.get_head_agent.name}}
+                          </td>
+                          <td v-else>
+                            
+                          </td>
                           <td>{{data.get_agent.name}}</td>
                           <td v-if="data.get_count">
                             <span v-if="data.get_count.total == null">
@@ -118,6 +131,70 @@
                     </table>
                     <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="savedata"></pagination>
                   </div>
+
+                  <!-- <div class="table-responsive mt-4" v-for="(data,index) in getAllDues" :key="data.id"> -->
+                  <div class="table-responsive mt-4" v-for="(data,index) in getAllDue" :key="data.id">
+                    <div>
+                      <select class="form-control col-md-1" id="kista_id" name="kista_id" v-model="kista_id"> 
+                        <option value="">Kista:</option>
+                        <option :value="kista.id" v-for="kista in getAllKista">{{kista.name}}</option>
+                      </select>
+                    </div>
+                    <table class="table table-bordered table-hover table-sm m-0">
+                      <tbody class="text-center">
+                        <tr>
+                          <td class="col-sm-3">Old Dues</td>
+                          <td>1000 *</td>
+                          <td>Rs {{data}}</td>
+                          <td rowspan="4" class="col-sm-6"></td>
+                        </tr>
+                        <tr>
+                          <td class="col-sm-3">Entry Memeber</td>
+                          <td>500 * </td>
+                          <!-- <td></td> -->
+                          <td>Rs {{collected_amount[index]}}</td>
+                        </tr>
+                        <tr>
+                          <td class="col-sm-3">Commision</td>
+                          <td>100 * </td>
+                          <td>{{amount.commission}}</td>
+                        </tr>
+                        <tr>
+                          <td class="col-sm-3">Total</td>
+                          <td>50 * </td>
+                          <td><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td>
+                        </tr>
+                        <tr>
+                          <td class="col-sm-3">New mem</td>
+                          <td>20 *</td>
+                          <td></td>
+                          <td rowspan="4" class="col-sm-6"></td>
+                        </tr>
+                        <tr>
+                          <td class="col-sm-3">Grant Total</td>
+                          <td>10 * </td>
+                          <td><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td>
+                        </tr>
+                        <tr>
+                          <td class="col-sm-3">Cash Received</td>
+                          <td>5 * </td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td class="col-sm-3">Dues</td>
+                          <td>IC * </td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td colspan="2" class="text-right">Total:</td>
+                          <td>0</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -155,6 +232,7 @@
           showPreview: false,
           luckydraw_id:'',
           agent_id: '',
+          kista_id:'',
           click: true,
           clicked: '',
           auth_name:'',
@@ -162,6 +240,9 @@
           count:'0',
           luckydraw_name:'',
           agent_name:'',
+          due_amount:'',
+          collected_amount:'',
+          amount:'',
         }
     },
     mounted(){
@@ -191,8 +272,28 @@
         var e = this.$store.getters.getMemberReport
         return e[3];
       },
+      getAllDue(){
+        var a = this.$store.getters.getMemberReport
+        if(a.length == 0) return [];
+        this.collected_amount = this.$store.getters.getMemberReport[9]
+        if(a[10].length > 0)
+        {
+          this.amount = a[10][0].get_agent_commision[0]
+        }
+        else{
+          this.amount = '0';
+        }
+        // this.amount = z[10].map(function (kd, i) {
+        //   return kd + i.get_agent_commission.commision;
+        // });
+        return a[8];
+      },
       getAllAgent(){
         var b = this.$store.getters.getSelectAgent
+        return b[0];
+      },
+      getAllKista(){
+        var b = this.$store.getters.getSelectKista
         return b[0];
       },
      
@@ -205,16 +306,27 @@
         this.$store.dispatch("allSelectLuckyDraw")
         this.$Progress.finish()
       },
+      totalOrders: function (values,values2,values3) {
+        return values + values2 + values3;
+        // console.log(values,values2, values3);
+        //  return values.reduce((acc, val) => {
+        //   return acc + parseInt(val.get_room.price) * val.get_check_in.days_stay;
+        // }, 0);
+      },
       agentChange(){
          this.$store.dispatch("allSelectAgent", [this.kista_id]);
       },
+      kistaChange(){
+        this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
+      },
       LuckyDrawChange()
       {
+        this.kistaChange();
         this.click = false;
       },
       savedata()
       {
-        this.$store.dispatch("allMemberReport", [this.luckydraw_id,this.agent_id,this.pagination.current_page]);
+        this.$store.dispatch("allMemberReport", [this.luckydraw_id,this.agent_id,this.pagination.current_page,this.kista_id]);
         this.clicked = true;
 
       },

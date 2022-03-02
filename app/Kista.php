@@ -22,4 +22,8 @@ class Kista extends Model
     public  function getAmount(){
         return $this->belongsTo(Detail::class,'id','kista_id')->groupBy('kista_id')->selectRaw('kista_id,SUM(amount) as totals');
     }
+    public function getKistaName()
+    {
+        return $this->hasOne(Kista::class,'id','id');
+    }
 }
