@@ -94,12 +94,18 @@
                           <td class="text-left">{{data.name}}</td>
                           <td>{{data.address}}</td>
                           <td>{{data.phone}}</td>
-                          <td v-if="data.get_agent.get_head_agent">
-                            {{data.get_agent.get_head_agent.name}}
+                          <td v-if="data.get_refer_person">
+                            {{data.get_refer_person.referperson_name}}
                           </td>
                           <td v-else>
                             
                           </td>
+                          <!-- <td v-if="data.get_agent.get_head_agent">
+                            {{data.get_agent.get_head_agent.name}}
+                          </td>
+                          <td v-else>
+                            
+                          </td> -->
                           <td>{{data.get_agent.name}}</td>
                           <td v-if="data.get_count">
                             <span v-if="data.get_count.total == null">
@@ -157,12 +163,12 @@
                         <tr>
                           <td class="col-sm-3">Commision</td>
                           <td>100 * </td>
-                          <td>{{amount.commission}}</td>
+                          <td v-if="amount">{{amount.commission}}</td>
                         </tr>
                         <tr>
                           <td class="col-sm-3">Total</td>
                           <td>50 * </td>
-                          <td><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td>
+                          <td v-if="amount"><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td>
                         </tr>
                         <tr>
                           <td class="col-sm-3">New mem</td>
@@ -173,7 +179,7 @@
                         <tr>
                           <td class="col-sm-3">Grant Total</td>
                           <td>10 * </td>
-                          <td><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td>
+                          <td v-if="amount"><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td>
                         </tr>
                         <tr>
                           <td class="col-sm-3">Cash Received</td>
@@ -266,6 +272,7 @@
         this.agent_name = d[6];
         if(d.length==5)
           this.pagination = d[1];
+        console.log(d[0]);
         return d[0];
       },
       getAllName(){

@@ -13,8 +13,10 @@ use App\Client;
 use App\Detail;
 use App\Kista;
 use App\LuckyDraw;
+use App\ClientHasRefer;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 
 class MemberFirstSheetImport implements ToCollection
@@ -26,9 +28,21 @@ class MemberFirstSheetImport implements ToCollection
 
     public function collection(Collection $collection)
     {
+        // dd($collection);
+
         try{
             return DB::transaction(function() use ($collection)
             {
+                // Validator::make($collection->toArray(), [
+                Validator::make(array_slice($collection->toArray(), 1), [
+                    '*.1' => 'required|distinct|unique:clients,name',
+                ])->validate();
+
+                // dd(array_slice($collection->toArray(), 1));
+                // Validator::make($collection->toArray(), [
+                //     '*.Member Name' => 'required',
+                // ])->validate();
+
                 $helper = new Helper();
                 foreach (array_slice($collection->toArray(), 1) as $row) 
                 {
@@ -63,6 +77,20 @@ class MemberFirstSheetImport implements ToCollection
                         'time' => date("H:i:s"),
                         'created_by' => Auth::user()->id,
                     ]);
+                    if($row[5] != NULL){
+                        $clienthasrefer = ClientHasRefer::create([
+                            'client_id' => $clients->id,
+                            'referperson_name' => $row[5],
+                            'date' => date("Y-m-d"),
+                            'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
+                            'time' => date("H:i:s"),
+                            'is_active'  => '1',
+                            'created_by' => Auth::user()->id,
+                        ]);
+                    }
+
+                    
+
                     $firstschemeid = LuckyDraw::where('created_by', Auth::user()->id)->first();
                     $kista  = Kista::where('luckydraw_id',$firstschemeid->id)->pluck('id');
                     $kista_amount = Kista::where('luckydraw_id',$firstschemeid->id)->pluck('amount');
@@ -70,7 +98,7 @@ class MemberFirstSheetImport implements ToCollection
                     // 15 25
                     // dd($firstschemeid->id);
                     $count = 0;
-                    for ($i=6; $i < $last_part ; $i++) {
+                    for ($i=7; $i < $last_part ; $i++) {
                          if($row[$i] != NULL){
                             $details = Detail::create([
                                 'luckydraw_id' => $firstschemeid->id,
@@ -108,188 +136,7 @@ class MemberFirstSheetImport implements ToCollection
                         $count++;
 
                     }
-                    // dd($count);
-                    
-                    // $agents = Agent::firstOrCreate([
-                    //     'name' => $row['agent_name'],
-                    // ], [
-                    //     'address' => '',
-                    //     'phone' => '98',
-                    //     'is_active'  => '1',
-                    //     'is_head'  => null,
-                    //     'date' => date("Y-m-d"),
-                    //     'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //     'time' => date("H:i:s"),
-                    //     'created_by' => Auth::user()->id,
-                    // ]);
 
-                    // $clients = Client::create([
-                    //     'name' => $row['member_name'],
-                    //     'address' => $row['address'],
-                    //     'phone' => $row['phone_no'],
-                    //     'serial_no' => $row['sn_mem'],
-                    //     'agent_id' =>$agents->id,
-                    //     'is_active'  => '1',
-                    //     'is_leave' => '1',
-                    //     'date' => date("Y-m-d"),
-                    //     'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //     'time' => date("H:i:s"),
-                    //     'created_by' => Auth::user()->id,
-                    // ]);
-                    // $kista_id = Kista::where('created_by', Auth::user()->id)->pluck('name');
-                    // dd($kista_id->toArray());
-                    // if($row['1st'] != NULL){
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '1',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => $row['1st'],
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-                    // else{
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '1',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => '',
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-                    // if($row['2nd'] != NULL){
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '2',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => $row['2nd'],
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-                    // else{
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '2',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => '',
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-
-                    // if($row['3rd'] != NULL){
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '3',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => $row['3rd'],
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-                    // else{
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '3',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => '',
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-
-                    // if($row['4th'] != NULL){
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '4',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => $row['4th'],
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-                    // else{
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '4',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => '',
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-                    // if($row['5th'] != NULL){
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '5',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => $row['5th'],
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
-                    // else{
-                    //     $details = Detail::create([
-                    //         'luckydraw_id' => '1',
-                    //         'kista_id' => '5',
-                    //         'agent_id' =>$agents->id,
-                    //         'client_id' => $clients->id,
-                    //         'lottery_status' => '2',
-                    //         'amount' => '',
-                    //         'remaining' => '0',
-                    //         'date' => date("Y-m-d"),
-                    //         'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
-                    //         'time' => date("H:i:s"),
-                    //         'created_by' => Auth::user()->id,
-                    //     ]);
-                    // }
                 }
                     // dd($lol);
             });

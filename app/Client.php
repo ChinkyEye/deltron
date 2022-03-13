@@ -28,6 +28,11 @@ class Client extends Model
     {
         return $this->hasMany('App\Detail','client_id')->select('id','client_id','kista_id');
     }
+
+    public function getReferPerson()
+    {
+        return $this->hasOne('App\ClientHasRefer','client_id','id');
+    }
     // public function getPayment()
     // {
     //     return $this->hasOne('App\Detail','client_id');

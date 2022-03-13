@@ -72,7 +72,7 @@ class MemberController extends Controller
 
         }
         $count = $posts->count();
-        $posts = $posts->with('getAgent','getCount','getAgent.getHeadAgent')
+        $posts = $posts->with('getAgent','getCount','getAgent.getHeadAgent','getReferPerson')
                         ->with(array('getClientDetail'=>function($query) use ($luckydraw_id){
                                $query->select()->where('luckydraw_id',$luckydraw_id);
                            }))->paginate(100);
