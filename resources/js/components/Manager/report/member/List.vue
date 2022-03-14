@@ -26,6 +26,9 @@
             <div class="row">
               <div>
                 <button @click="print" class="btn btn-primary rounded-0"><i class="fas fa-print">Print</i></button>
+               <!--  <span v-if="arrors">
+                  
+                </span> -->
                <button @click.prevent="memberreportexport()" class="btn btn-success rounded-0" :disabled="click"><i class="fas fa-print" title="Export To Excel"></i>Excel</button>
               </div>
               <div class="ml-1">
@@ -151,35 +154,42 @@
                         <tr>
                           <td class="col-sm-3">Old Dues</td>
                           <td>1000 *</td>
-                          <td>Rs {{data}}</td>
-                          <td rowspan="4" class="col-sm-6"></td>
+                          <td></td>
+                          <!-- <td>Rs {{data}}</td> -->
+                          <td rowspan="4" class="col-sm-6"> Agent Signature</td>
                         </tr>
                         <tr>
                           <td class="col-sm-3">Entry Memeber</td>
                           <td>500 * </td>
                           <!-- <td></td> -->
-                          <td>Rs {{collected_amount[index]}}</td>
+                          <td></td>
+                          <!-- <td>Rs {{collected_amount[index]}}</td> -->
                         </tr>
                         <tr>
                           <td class="col-sm-3">Commision</td>
                           <td>100 * </td>
-                          <td v-if="amount">{{amount.commission}}</td>
+                          <td></td>
+                          <!-- <td v-if="amount">{{amount.commission}}</td> -->
                         </tr>
                         <tr>
                           <td class="col-sm-3">Total</td>
                           <td>50 * </td>
-                          <td v-if="amount"><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td>
+                          <td></td>
+                          <!-- <td><strong>{{ totalOrders(data,collected_amount[index]) }}</strong></td> -->
+                          <!-- <td v-if="amount"><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td> -->
                         </tr>
                         <tr>
                           <td class="col-sm-3">New mem</td>
                           <td>20 *</td>
                           <td></td>
-                          <td rowspan="4" class="col-sm-6"></td>
+                          <td rowspan="4" class="col-sm-6">Client Signature</td>
                         </tr>
                         <tr>
                           <td class="col-sm-3">Grant Total</td>
                           <td>10 * </td>
-                          <td v-if="amount"><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td>
+                          <td></td>
+                          <!-- <td><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td> -->
+                          <!-- <td v-if="amount"><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td> -->
                         </tr>
                         <tr>
                           <td class="col-sm-3">Cash Received</td>
@@ -195,7 +205,7 @@
                       <tfoot>
                         <tr>
                           <td colspan="2" class="text-right">Total:</td>
-                          <td>0</td>
+                          <td></td>
                         </tr>
                       </tfoot>
                     </table>
@@ -272,7 +282,6 @@
         this.agent_name = d[6];
         if(d.length==5)
           this.pagination = d[1];
-        console.log(d[0]);
         return d[0];
       },
       getAllName(){
@@ -283,13 +292,15 @@
         var a = this.$store.getters.getMemberReport
         if(a.length == 0) return [];
         this.collected_amount = this.$store.getters.getMemberReport[9]
-        if(a[10].length > 0)
-        {
-          this.amount = a[10][0].get_agent_commision[0]
-        }
-        else{
-          this.amount = '0';
-        }
+
+        // if(a[10].length > 0)
+        // {
+        //   this.amount = a[10][0].get_agent_commision[0]
+        // }
+        // else{
+        //   this.amount = '0';
+        // }
+
         // this.amount = z[10].map(function (kd, i) {
         //   return kd + i.get_agent_commission.commision;
         // });
@@ -314,8 +325,9 @@
         this.$Progress.finish()
       },
       totalOrders: function (values,values2,values3) {
-        return values + values2 + values3;
         // console.log(values,values2, values3);
+        // return values + values2 + values 3;
+        // return values + values2;
         //  return values.reduce((acc, val) => {
         //   return acc + parseInt(val.get_room.price) * val.get_check_in.days_stay;
         // }, 0);

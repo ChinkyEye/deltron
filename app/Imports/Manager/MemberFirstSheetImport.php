@@ -28,17 +28,14 @@ class MemberFirstSheetImport implements ToCollection
 
     public function collection(Collection $collection)
     {
-        // dd($collection);
 
         try{
             return DB::transaction(function() use ($collection)
             {
-                // Validator::make($collection->toArray(), [
                 Validator::make(array_slice($collection->toArray(), 1), [
                     '*.1' => 'required|distinct|unique:clients,name',
                 ])->validate();
 
-                // dd(array_slice($collection->toArray(), 1));
                 // Validator::make($collection->toArray(), [
                 //     '*.Member Name' => 'required',
                 // ])->validate();
@@ -99,7 +96,12 @@ class MemberFirstSheetImport implements ToCollection
                     // dd($firstschemeid->id);
                     $count = 0;
                     for ($i=7; $i < $last_part ; $i++) {
-                         if($row[$i] != NULL){
+                        $lols = Detail::where('luckydraw_id',$firstschemeid->id)
+                                        ->where('agent_id',$agents->id)
+                                        ->where('kista_id',$kista[$count])
+                                        ->count();
+                    // if($lols == '0'){
+                        if($row[$i] != NULL){
                             $details = Detail::create([
                                 'luckydraw_id' => $firstschemeid->id,
                                 // 'luckydraw_id' => '1',
@@ -133,7 +135,8 @@ class MemberFirstSheetImport implements ToCollection
                                 'created_by' => Auth::user()->id,
                             ]);
                         }
-                        $count++;
+                    // }
+                    $count++;
 
                     }
 

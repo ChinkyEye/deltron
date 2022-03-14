@@ -445,7 +445,7 @@ export default{
 		allMemberReport(context, params){
 			axios.get("/manager/report/member/"+"?luckydrawid="+params[0]+"&agentid="+params[1]+"&page="+params[2]+"&kistaid="+params[3])
 				.then((response)=>{
-					console.log(response.data);
+					// console.log(response.data);
 					context.commit('memberreports', [response.data.memberreports.data,
 													response.data.pagination,
 													response.data.total,

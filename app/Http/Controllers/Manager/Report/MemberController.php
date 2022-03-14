@@ -50,13 +50,12 @@ class MemberController extends Controller
         $collected_amount = [];
         if($request->has('agentid') && $request->get('agentid')!="")
         {            
-            $commisionamount = $dues->where('agent_id',$request->agentid)
-                                        ->with(array('getAgentCommision'=>function($query) use ($request){
-                                            $query->select()->where('agent_id',$request->agentid)
-                                                            ->where('kista_id',$request->kistaid);
-                                        }))
-                                        ->get();
-                                        // dd($commisionamount);
+            // $commisionamount = $dues->where('agent_id',$request->agentid)
+            //                             ->with(array('getAgentCommision'=>function($query) use ($request){
+            //                                 $query->select()->where('agent_id',$request->agentid)
+            //                                                 ->where('kista_id',$request->kistaid);
+            //                             }))
+            //                             ->get();
             $posts = $posts->where('agent_id',$request->agentid);
             $due_amount[] = $dues->where('agent_id',$request->agentid)->groupBy('agent_id')->sum('remaining');
             $collected_amount[] = $dues->where('agent_id',$request->agentid)->groupBy('agent_id')->sum('amount'); 
@@ -93,7 +92,7 @@ class MemberController extends Controller
            // 'check' => $check,
            'due_amount' => $due_amount,
            'collected_amount' => $collected_amount,
-           'commisionamount' => $commisionamount,
+           // 'commisionamount' => $commisionamount,
         ];
         return response()->json($response);
     }
