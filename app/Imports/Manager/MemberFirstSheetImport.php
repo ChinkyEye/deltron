@@ -45,7 +45,7 @@ class MemberFirstSheetImport implements ToCollection
                 {
                     $last_part = array_key_last($row) + 1;
                     $agents = Agent::firstOrCreate([
-                        'name' => $row[4],
+                        'name' => $row[5],
                         'created_by' => Auth::user()->id,
                     ], [
                         'address' => '',
@@ -74,10 +74,10 @@ class MemberFirstSheetImport implements ToCollection
                         'time' => date("H:i:s"),
                         'created_by' => Auth::user()->id,
                     ]);
-                    if($row[5] != NULL){
+                    if($row[4] != NULL){
                         $clienthasrefer = ClientHasRefer::create([
                             'client_id' => $clients->id,
-                            'referperson_name' => $row[5],
+                            'referperson_name' => $row[4],
                             'date' => date("Y-m-d"),
                             'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
                             'time' => date("H:i:s"),
@@ -95,7 +95,7 @@ class MemberFirstSheetImport implements ToCollection
                     // 15 25
                     // dd($firstschemeid->id);
                     $count = 0;
-                    for ($i=7; $i < $last_part ; $i++) {
+                    for ($i=8; $i < $last_part ; $i++) {
                         $lols = Detail::where('luckydraw_id',$firstschemeid->id)
                                         ->where('agent_id',$agents->id)
                                         ->where('kista_id',$kista[$count])
@@ -113,7 +113,8 @@ class MemberFirstSheetImport implements ToCollection
                                 'amount' => $row[$i],
                                 'remaining' => '0',
                                 'date' => date("Y-m-d"),
-                                'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
+                                'date_np' => $row[6] == null ? $helper->date_np_con_parm(date("Y-m-d")) : $row[6] ,
+                                // 'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
                                 'time' => date("H:i:s"),
                                 'created_by' => Auth::user()->id,
                             ]);
@@ -130,7 +131,10 @@ class MemberFirstSheetImport implements ToCollection
                                 'remaining' => $kista_amount[$count],
                                 // 'remaining' => '0',
                                 'date' => date("Y-m-d"),
-                                'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
+                                'date_np' => $row[6] == null ? $helper->date_np_con_parm(date("Y-m-d")) : $row[6] ,
+
+                                // 'date_np' => $row[6],
+                                // 'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
                                 'time' => date("H:i:s"),
                                 'created_by' => Auth::user()->id,
                             ]);

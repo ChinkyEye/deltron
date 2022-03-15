@@ -33,6 +33,7 @@ class MemberController extends Controller
         $kista_name = Kista::where('luckydraw_id',$luckydraw_id)
                             ->where('is_active','1')
                             ->pluck('name','id');
+                            
 
         $dues = Detail::orderBy('id','ASC')
                         ->where('created_by', Auth::user()->id);

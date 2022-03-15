@@ -103,12 +103,6 @@
                           <td v-else>
                             
                           </td>
-                          <!-- <td v-if="data.get_agent.get_head_agent">
-                            {{data.get_agent.get_head_agent.name}}
-                          </td>
-                          <td v-else>
-                            
-                          </td> -->
                           <td>{{data.get_agent.name}}</td>
                           <td v-if="data.get_count">
                             <span v-if="data.get_count.total == null">
@@ -132,11 +126,7 @@
                           </td>
                         </tr>
                       </tbody>
-                      <tfoot>
-                        <tr>
-                          <!-- <td><strong>count({{count}})</strong></td> -->
-                        </tr>
-                      </tfoot>
+                      
                     </table>
                     <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="savedata"></pagination>
                   </div>
@@ -161,15 +151,8 @@
                         <tr>
                           <td class="col-sm-3">Entry Memeber</td>
                           <td>500 * </td>
-                          <!-- <td></td> -->
                           <td></td>
                           <!-- <td>Rs {{collected_amount[index]}}</td> -->
-                        </tr>
-                        <tr>
-                          <td class="col-sm-3">Commision</td>
-                          <td>100 * </td>
-                          <td></td>
-                          <!-- <td v-if="amount">{{amount.commission}}</td> -->
                         </tr>
                         <tr>
                           <td class="col-sm-3">Total</td>
@@ -177,6 +160,12 @@
                           <td></td>
                           <!-- <td><strong>{{ totalOrders(data,collected_amount[index]) }}</strong></td> -->
                           <!-- <td v-if="amount"><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td> -->
+                        </tr>
+                        <tr>
+                          <td class="col-sm-3">Commision</td>
+                          <td>100 * </td>
+                          <td></td>
+                          <!-- <td v-if="amount">{{amount.commission}}</td> -->
                         </tr>
                         <tr>
                           <td class="col-sm-3">New mem</td>
@@ -188,7 +177,6 @@
                           <td class="col-sm-3">Grant Total</td>
                           <td>10 * </td>
                           <td></td>
-                          <!-- <td><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td> -->
                           <!-- <td v-if="amount"><strong>{{ totalOrders(data,collected_amount[index],amount.commission) }}</strong></td> -->
                         </tr>
                         <tr>
@@ -282,6 +270,7 @@
         this.agent_name = d[6];
         if(d.length==5)
           this.pagination = d[1];
+        // console.log(d[0]);
         return d[0];
       },
       getAllName(){
@@ -301,9 +290,6 @@
         //   this.amount = '0';
         // }
 
-        // this.amount = z[10].map(function (kd, i) {
-        //   return kd + i.get_agent_commission.commision;
-        // });
         return a[8];
       },
       getAllAgent(){
@@ -324,10 +310,13 @@
         this.$store.dispatch("allSelectLuckyDraw")
         this.$Progress.finish()
       },
+      totalSum: function (values) {
+         return values.reduce((acc, val) => {
+          return acc + parseInt(val);
+        }, 0);
+      },
       totalOrders: function (values,values2,values3) {
-        // console.log(values,values2, values3);
-        // return values + values2 + values 3;
-        // return values + values2;
+        return values + values2;
         //  return values.reduce((acc, val) => {
         //   return acc + parseInt(val.get_room.price) * val.get_check_in.days_stay;
         // }, 0);
@@ -359,28 +348,6 @@
       let file = event.target.files[0];
         this.form.file = file;
 
-     //  if((file.size>5242880) || ((file.type != 'image/jpeg') && (file.type != 'image/jpg'))){
-     //    this.state.isSending = true;
-     //    Swal.fire({
-     //     icon: 'error',
-     //     title: 'Oops...',
-     //     text: 'Something went wrong!',
-     //     footer: '<a href>Why do I have this issue?</a>'
-     //   })
-     // }else{
-     //  let reader  = new FileReader();
-     //  reader.addEventListener("load", function () {
-     //      this.showPreview = true;
-     //      this.imagePreview = reader.result;
-     //      this.state.isSending = false;
-     //  }.bind(this), false);
-     //  if( file ){
-     //    this.form.photo = file;
-     //      if ( /\.(jpe?g|jpg)$/i.test( file.name ) ) {
-     //          reader.readAsDataURL( file );
-     //      }
-     //    }
-     //  }
     },
     addSlider(){
       this.state.isSending = true;
