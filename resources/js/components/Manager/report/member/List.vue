@@ -58,12 +58,12 @@
                       </option>
                     </select>
                   </div>
-                  <div class="col-md">
+                  <!-- <div class="col-md">
                     <select class="form-control" id="kista_id" name="kista_id" v-model="kista_id"> 
                       <option value="">Select one kista</option>
                       <option :value="kista.id" v-for="kista in getAllKista">{{kista.name}}</option>
                     </select>
-                  </div>
+                  </div> -->
                   <button class="btn btn-primary btn-block col" @click="savedata">{{"Click to continue"}}
                   </button>
                 </div>
@@ -85,6 +85,7 @@
                           <th>Phone</th>
                           <th>Through</th>
                           <th>Agent</th>
+                          <!-- <th>Date</th> -->
                           <th>S.N</th>
                           <th v-for="(data,index) in getAllName" :key="data.id">
                             {{data}}
@@ -104,6 +105,7 @@
                             
                           </td>
                           <td>{{data.get_agent.name}}</td>
+                          <!-- <td>{{data}}</td> -->
                           <td v-if="data.get_count">
                             <span v-if="data.get_count.total == null">
                                 1
@@ -126,6 +128,15 @@
                           </td>
                         </tr>
                       </tbody>
+                      <!-- <tfoot>
+                          <tr v-for="(data,index) in getAllMember" :key="data.id">
+                            <td colspan="7"><strong class="text-right">Total:</strong></td>
+                              <td v-for="(detail,index) in data.get_client_detail">
+                                {{ totalSum(detail.amount) }}
+                              </td>
+                          </tr>
+                      </tfoot> -->
+
                       
                     </table>
                     <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="savedata"></pagination>
@@ -144,9 +155,9 @@
                         <tr>
                           <td class="col-sm-3">Old Dues</td>
                           <td>1000 *</td>
-                          <td></td>
+                          <td class="col-sm-1"></td>
                           <!-- <td>Rs {{data}}</td> -->
-                          <td rowspan="4" class="col-sm-6"> Agent Signature</td>
+                          <td rowspan="4" class="col-sm-6"> <u>Agent Signature</u></td>
                         </tr>
                         <tr>
                           <td class="col-sm-3">Entry Memeber</td>
@@ -171,7 +182,7 @@
                           <td class="col-sm-3">New mem</td>
                           <td>20 *</td>
                           <td></td>
-                          <td rowspan="4" class="col-sm-6">Client Signature</td>
+                          <td rowspan="4" class="col-sm-6"><u>Client Signature</u></td>
                         </tr>
                         <tr>
                           <td class="col-sm-3">Grant Total</td>
