@@ -50,25 +50,35 @@ class ManagerController extends Controller
             'phone' => 'required',
             'password' => 'required',
             'address' => 'required',
-            'photo' => 'mimes:jpg,jpeg,png|max:1024',
         ]);
         if($request->hasFile('photo')){
+            $this->validate($request, [
+                'photo' => 'required|mimes:jpg,jpeg,png|max:1024',
+            ]);
             $file = $request->file('photo');
             $destinationPath = 'image/manager';
             $name_enc = date('YmdHis') . "." . $file->getClientOriginalExtension();
             $name = $file->getClientOriginalName();
             $destinationThumbPath = 'image/manager/thumbnail/'.$name_enc;
-            // dd($file->getRealPath());
-            // if (!file_exists($destinationThumbPath)) {
-            //     mkdir($destinationThumbPath, 666, true);
-            // }
-            // dd($destinationThumbPath);
-            // if (!file_exists($destinationThumbPath))
-            // {
-            //     mkdir($destinationThumbPath);
-            // }
             Image::make($file->getRealPath())->save($destinationThumbPath);
             $file->move($destinationPath, $name_enc);
+            return User::create([
+               'name' => $request['name'],
+               'user_code' => strtotime("now"),
+               'email' => $request->email,
+               'password' => Hash::make($request->password),
+               'phone' => $request['phone'],
+               'address' => $request['address'],
+               'is_active' => '1',
+               'user_type' => '2',
+               'image' => $name,
+               'image_enc' => $name_enc,
+               'date' => date("Y-m-d"),
+               'date_np' => $this->helper->date_np_con(),
+               'time' => date("H:i:s"),
+           ]);
+        }
+        else{
             return User::create([
              'name' => $request['name'],
              'user_code' => strtotime("now"),
@@ -78,27 +88,10 @@ class ManagerController extends Controller
              'address' => $request['address'],
              'is_active' => '1',
              'user_type' => '2',
-             'image' => $name,
-             'image_enc' => $name_enc,
              'date' => date("Y-m-d"),
              'date_np' => $this->helper->date_np_con(),
              'time' => date("H:i:s"),
          ]);
-        }
-        else{
-            return User::create([
-           'name' => $request['name'],
-           'user_code' => strtotime("now"),
-           'email' => $request->email,
-           'password' => Hash::make($request->password),
-           'phone' => $request['phone'],
-           'address' => $request['address'],
-           'is_active' => '1',
-           'user_type' => '2',
-           'date' => date("Y-m-d"),
-           'date_np' => $this->helper->date_np_con(),
-           'time' => date("H:i:s"),
-        ]);
         }
     }
 
@@ -111,44 +104,43 @@ class ManagerController extends Controller
 
     public function update(Request $request, $id)
     {   
-        // dd($request);
         $this->validate($request, [
             'name' => 'required',
         ]);
         $user = User::findOrFail($id);
-        // $user->update($request->all());
-
-
         $name = User::where('id',$id)->value('image');
         $name_enc = User::where('id',$id)->value('image_enc');
         if($request->hasFile('photo')){
             $this->validate($request, [
                 'photo' => 'required|mimes:jpg,jpeg,png|max:1024',
             ]);
-          $path_old_file = "image/manager/".$name_enc;
-          $path_old_file_thumb = "image/manager/thumbnail/".$name_enc;
+            $path_old_file = "image/manager/".$name_enc;
+            $path_old_file_thumb = "image/manager/thumbnail/".$name_enc;
 
-          $file = $request->file('photo');
-          $destinationPath = 'image/manager';
-          $name_enc = date('YmdHis') . "." . $file->getClientOriginalExtension();
-          $name = $file->getClientOriginalName();
-          $destinationThumbPath = 'image/manager/thumbnail/'.$name_enc;
-          // ->resize(150, 150)
-          Image::make($file->getRealPath())->save($destinationThumbPath);
-          $file->move($destinationPath, $name_enc);
-          unlink($path_old_file);
-          unlink($path_old_file_thumb);
-      }
-      $user->update([
-          'name' => $request['name'],
-          'address' => $request['address'],
-          'email' => $request['email'],
-          'phone' => $request['phone'],
-          'image' => $name,
-          'image_enc' => $name_enc,
-          'updated_by' => Auth::user()->id,
-      ]);
-      return ['message' => 'Manager Updated'];
+            $file = $request->file('photo');
+            $destinationPath = 'image/manager';
+            $name_enc = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $name = $file->getClientOriginalName();
+            $destinationThumbPath = 'image/manager/thumbnail/'.$name_enc;
+            Image::make($file->getRealPath())->save($destinationThumbPath);
+            $file->move($destinationPath, $name_enc);
+            if(File::exists($path_old_file)) {
+                File::delete($path_old_file);
+            }
+            if(File::exists($path_old_file_thumb)) {
+                File::delete($path_old_file_thumb);
+            }
+        }
+        $user->update([
+            'name' => $request['name'],
+            'address' => $request['address'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'image' => $name,
+            'image_enc' => $name_enc,
+            'updated_by' => Auth::user()->id,
+        ]);
+        return ['message' => 'Manager Updated'];
     }
 
     public function destroy($id){

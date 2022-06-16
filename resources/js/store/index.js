@@ -9,7 +9,13 @@ export default{
 		selectmluckydraw:[],
 		detail:[],
 		tpnpreport:[],
-		
+		tpnplreport:[],
+		agentreport:[],
+		purchasereport:[],
+		incomeexpenditurereport:[],
+
+
+
 	},
 	getters:{
 		getDashboard(state){
@@ -38,6 +44,18 @@ export default{
 		},
 		getTpnpReport(state){
 			return state.tpnpreport
+		},
+		getTpnplReport(state){
+			return state.tpnplreport
+		},
+		getAgentReport(state){
+			return state.agentreport
+		},
+		getPurchaseReport(state){
+			return state.purchasereport
+		},
+		getIncomeExpenditureReport(state){
+			return state.incomeexpenditurereport
 		},
 		
 	},
@@ -106,6 +124,57 @@ export default{
 												response.data.leave])
 				})
 		},
+		allTpnplReport(context, params){
+			axios.get("/home/report/tpnpl/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&type="+params[2]+"&page="+params[3]+"&managerid="+params[4])
+				.then((response)=>{
+					context.commit('tpnplreports', [response.data.tpnplreports.data,
+													response.data.pagination,
+													response.data.total,
+													response.data.luckydraw_name,
+													response.data.kista_name])
+				})
+		},
+		allAgentReport(context, params){
+			axios.get("/home/report/agent/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&agentid="+params[2]+"&type="+params[3]+"&page="+params[4]+"&managerid="+params[5])
+				.then((response)=>{
+					context.commit('agentreports', [response.data.agentreports.data,
+													response.data.pagination,
+													response.data.commisionamount,
+													response.data.total,
+													response.data.luckydraw_name,
+													response.data.kista_name,
+													response.data.agent_name,
+													])
+				})
+		},
+		allPurchaseReport(context, params){
+			axios.get("/home/report/purchase/"+"?page="+params[0]+"&date1="+params[1]+"&date2="+params[2]+"&managerid="+params[3])
+				.then((response)=>{
+					context.commit('purchasereports', [response.data.purchasereports.data,
+														response.data.pagination,
+														response.data.totals,
+														response.data.to_date,
+														response.data.from_date])
+				})	
+		},
+		allIncomeExpenditureReport(context, params){
+			axios.get("/home/report/incomeexpenditure/"+"?page="+params[0]+"&kistaid="+params[1]+"&luckydrawid="+params[2]+"&date1="+params[3]+"&date2="+params[4]+"&managerid="+params[5])
+				.then((response)=>{
+					context.commit('incomeexpenditurereports', [response.data.incomeexpenditurereports_income.data,
+																response.data.incomeexpenditurereports_expenditure.data,
+																response.data.income_total,
+																response.data.expenditure_total,
+																response.data.bank_balance,
+																response.data.bank_details,
+																response.data.latest_income,
+																response.data.opening_amount,
+																response.data.luckydraw_name,
+																response.data.kista_name,
+																response.data.to_date,
+																response.data.from_date])
+				})	
+		},
+
 
 
 		
@@ -137,6 +206,18 @@ export default{
 		},
 		tpnpreports(state, data){
 			return state.tpnpreport = data
+		},
+		tpnplreports(state, data){
+			return state.tpnplreport = data
+		},
+		agentreports(state, data){
+			return state.agentreport = data
+		},
+		purchasereports(state, data){
+			return state.purchasereport = data
+		},
+		incomeexpenditurereports(state, data){
+			return state.incomeexpenditurereport = data
 		},
 		
 	}

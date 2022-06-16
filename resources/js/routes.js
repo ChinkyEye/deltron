@@ -11,6 +11,10 @@ import Revise from './components/admin/revise/List.vue'
 import Report from './components/admin/report/List.vue'
 
 import TpnpReport from './components/admin/report/tpnp/List.vue'
+import TpnplReport from './components/admin/report/tpnpl/List.vue'
+import AgentReport from './components/admin/report/agent/List.vue'
+import PurchaseReport from './components/admin/report/purchase/List.vue'
+import IncomeExpenditureReport from './components/admin/report/incomeexpenditure/List.vue'
 
 
 
@@ -55,6 +59,26 @@ export const routes = [
 	{
 		path:'/report/tpnp',
 		component: TpnpReport,
+		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/report/tpnpl',
+		component: TpnplReport,
+		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/report/agent',
+		component: AgentReport,
+		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/report/purchase',
+		component: PurchaseReport,
+		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/report/incomeexpenditure',
+		component: IncomeExpenditureReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 

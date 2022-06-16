@@ -78,8 +78,13 @@
                       <h5>Email : {{form.email}}</h5>
                       <h5>Phone No : {{form.phone}}</h5>
                       <h5>Address : {{form.address}}</h5>
-                      <img :src="updateImage(form.image_enc)" class="img-thumbnail" v-show="state.isDisplay">
-                      <img :src="imagePreview" class="img-thumbnail" v-show="showPreview"/>
+                      <div v-if="form.image_enc">
+                        <img :src="updateImage(form.image_enc)" class="img-thumbnail" v-show="state.isDisplay">
+                        <img :src="imagePreview" class="img-thumbnail" v-show="showPreview"/>
+                      </div>
+                      <div v-else>
+                        <img :src="imagePreview" class="img-thumbnail" v-show="showPreview"/>
+                      </div>
                     </div>
                   </div>
                 </div>

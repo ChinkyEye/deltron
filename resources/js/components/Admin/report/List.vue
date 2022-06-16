@@ -19,12 +19,72 @@
   <div class="container-fluid">
     <div class="row">
       <!-- <div  v-for="(detail,index) in getAllOrder"></div> -->
-      <div class="col-lg-3 col-6">
+      <div class="col-lg-3">
         <router-link to="/report/tpnp">
           <div class="small-box bg-info">
             <div class="inner">
               <h3>0</h3>
               <p>TPNP Report</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-lg-3">
+        <router-link to="/report/tpnpl">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>0</h3>
+              <p>TPNPL Report</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-lg-3">
+        <router-link to="/report/agent">
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>{{agent_count}}</h3>
+              <p>Agent Report</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-lg-3">
+        <router-link to="/report/lotteryprize">
+          <div class="small-box bg-primary">
+            <div class="inner">
+              <h3>{{lotteryprize_count}}</h3>
+              <p>Scheme Prize Report</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-lg-3">
+        <router-link to="/report/purchase">
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{purchase_count}}</h3>
+              <p>Purchase Report</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-lg-3 col-6">
+        <router-link to="/report/incomeexpenditure">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{incomeexpenditure_count}}</h3>
+              <p>Income Expenditure Report</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-lg-3 col-6">
+        <router-link to="/report/expenditure">
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>{{expenditure_count}}</h3>
+              <p>Expenditure Report</p>
             </div>
           </div>
         </router-link>

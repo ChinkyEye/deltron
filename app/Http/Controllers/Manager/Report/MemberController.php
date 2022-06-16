@@ -76,6 +76,7 @@ class MemberController extends Controller
                         ->with(array('getClientDetail'=>function($query) use ($luckydraw_id){
                                $query->select()->where('luckydraw_id',$luckydraw_id);
                            }))->paginate(100);
+                        
         $response = [
            'pagination' => [
                'total' => $posts->total(),

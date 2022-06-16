@@ -85,7 +85,7 @@
                           <th>Phone</th>
                           <th>Through</th>
                           <th>Agent</th>
-                          <!-- <th>Date</th> -->
+                          <th>Date</th>
                           <th>S.N</th>
                           <th v-for="(data,index) in getAllName" :key="data.id">
                             {{data}}
@@ -105,7 +105,9 @@
                             
                           </td>
                           <td>{{data.get_agent.name}}</td>
-                          <!-- <td>{{data}}</td> -->
+                          <td>
+                             {{data.get_client_detail[(data.get_client_detail.length - 1)].date_np}}
+                          </td>
                           <td v-if="data.get_count">
                             <span v-if="data.get_count.total == null">
                                 1
@@ -125,6 +127,7 @@
                           </td>
                           <td v-for="(detail,index) in data.get_client_detail">
                             {{detail.amount}}
+                            
                           </td>
                         </tr>
                       </tbody>
@@ -132,7 +135,7 @@
                           <tr v-for="(data,index) in getAllMember" :key="data.id">
                             <td colspan="7"><strong class="text-right">Total:</strong></td>
                               <td v-for="(detail,index) in data.get_client_detail">
-                                {{ totalSum(detail.amount) }}
+                                {{data.get_client_detail}}{{index}}
                               </td>
                           </tr>
                       </tfoot> -->
@@ -323,7 +326,7 @@
       },
       totalSum: function (values) {
          return values.reduce((acc, val) => {
-          return acc + parseInt(val);
+          return acc+=  parseInt(val.amount);
         }, 0);
       },
       totalOrders: function (values,values2,values3) {

@@ -363,8 +363,10 @@ export default{
 				})
 		},
 		allPurchaseReport(context, params){
+			console.log(params);
 			axios.get("/manager/report/purchase/"+"?page="+params[0]+"&date1="+params[1]+"&date2="+params[2])
 				.then((response)=>{
+					console.log(response.data.purchasereports.data);
 					context.commit('purchasereports', [response.data.purchasereports.data,
 														response.data.pagination,
 														response.data.totals,
