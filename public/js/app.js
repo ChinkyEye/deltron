@@ -4145,6 +4145,209 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../components/PaginationComponent.vue */ "./resources/js/components/PaginationComponent.vue");
+/* harmony import */ var v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! v-calendar/lib/components/date-picker.umd */ "./node_modules/v-calendar/lib/components/date-picker.umd.js");
+/* harmony import */ var v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "List",
+  components: {
+    pagination: _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    DatePicker: v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_1___default.a
+  },
+  data: function data() {
+    return {
+      pagination: {
+        'current_page': 1
+      },
+      manager_id: '',
+      luckydraw_id: '',
+      cost_price: '',
+      total: '',
+      kista_id: '',
+      lottery_status: '',
+      date: {
+        start: moment__WEBPACK_IMPORTED_MODULE_2___default()().subtract(1, 'months')._d,
+        // Jan 16th, 2018
+        end: new Date() // Jan 19th, 2018
+
+      },
+      search: '',
+      auth_name: '',
+      auth_address: ''
+    };
+  },
+  mounted: function mounted() {
+    this.$Progress.start();
+    this.fetchPosts();
+    this.$Progress.finish();
+  },
+  computed: {
+    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
+      var a = this.$store.getters.getSelectMLuckyDraw[0];
+      return a;
+    },
+    getAllKista: function getAllKista() {
+      var b = this.$store.getters.getSelectKista;
+      return b[0];
+    },
+    getAllPrizeReport: function getAllPrizeReport() {
+      var avar = this.$store.getters.getLotteryPrizeReport;
+      this.total = avar[2];
+      if (avar.length == 3) this.pagination = avar[1];
+      return avar[0];
+    },
+    getAllSelectManager: function getAllSelectManager() {
+      var d = this.$store.getters.getSelectManager[0];
+      return d;
+    }
+  },
+  methods: {
+    fetchPosts: function fetchPosts() {
+      this.pagechange();
+      this.$store.dispatch("allSelectManager"); // this.$store.dispatch("allSelectLuckyDraw")
+      // this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
+    },
+    managerChange: function managerChange() {
+      this.$store.dispatch("allSelectMLuckyDraw", [this.manager_id]);
+      this.luckydrawChange();
+    },
+    pagechange: function pagechange() {
+      this.$Progress.start();
+      this.$Progress.finish();
+    },
+    kistaChange: function kistaChange() {
+      this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
+      this.pagechange();
+    },
+    luckydrawChange: function luckydrawChange() {
+      this.kistaChange();
+      this.pagechange();
+    },
+    print: function print() {
+      this.$htmlToPaper('printMe');
+    },
+    searchdata: function searchdata() {
+      this.$store.dispatch("allLotteryPrizeReport", [this.luckydraw_id, this.kista_id, this.search, this.pagination.current_page, this.manager_id]);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/report/purchase/List.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/report/purchase/List.vue?vue&type=script&lang=js& ***!
@@ -92172,6 +92375,395 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=template&id=6b8e7858&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=template&id=6b8e7858&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c(
+                "li",
+                { staticClass: "breadcrumb-item" },
+                [_c("router-link", { attrs: { to: "/#" } }, [_vm._v("Home")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Dashboard v1"),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("section", { staticClass: "col-lg-12 connectedSortable" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary rounded-0",
+                on: { click: _vm.print },
+              },
+              [_c("i", { staticClass: "fas fa-print" }, [_vm._v("Print")])]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "card card-info card-outline" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.manager_id,
+                            expression: "manager_id",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "manager_id", name: "manager_id" },
+                        on: {
+                          change: [
+                            function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.manager_id = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                            _vm.managerChange,
+                          ],
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
+                          _vm._v("Select one manager"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.getAllSelectManager, function (manager) {
+                          return _c(
+                            "option",
+                            { domProps: { value: manager.id } },
+                            [
+                              _vm._v(
+                                "\r\n                  " +
+                                  _vm._s(manager.name) +
+                                  "\r\n                "
+                              ),
+                            ]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.luckydraw_id,
+                            expression: "luckydraw_id",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "luckydraw_id" },
+                        on: {
+                          change: [
+                            function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.luckydraw_id = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                            _vm.luckydrawChange,
+                          ],
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Select one Scheme"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
+                          return _c(
+                            "option",
+                            { domProps: { value: luckydraw.id } },
+                            [_vm._v(_vm._s(luckydraw.name))]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.kista_id,
+                            expression: "kista_id",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "kista_id", name: "kista_id" },
+                        on: {
+                          change: [
+                            function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.kista_id = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                            _vm.kistaChange,
+                          ],
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Select one kista"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.getAllKista, function (kista) {
+                          return _c(
+                            "option",
+                            { domProps: { value: kista.id } },
+                            [_vm._v(_vm._s(kista.name))]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md m-md-0" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.search,
+                          expression: "search",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "search",
+                        placeholder: "Search by Name or serial_no",
+                      },
+                      domProps: { value: _vm.search },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.search = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-block col",
+                        on: { click: _vm.searchdata },
+                      },
+                      [
+                        _vm._v(
+                          _vm._s("Click to continue") + "\r\n                "
+                        ),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row", attrs: { id: "printMe" } }, [
+                  _c("div", { staticClass: "col-md-12 text-center mb-2" }, [
+                    _c("span", [
+                      _vm._v(
+                        _vm._s(_vm.auth_name) + "," + _vm._s(_vm.auth_address)
+                      ),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("Scheme Prize Report")]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "table-responsive col-sm" },
+                    [
+                      _c(
+                        "table",
+                        {
+                          staticClass:
+                            "table table-bordered table-hover table-sm m-0",
+                        },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(
+                              _vm.getAllPrizeReport,
+                              function (detail, index) {
+                                return _c("tr", { key: detail.id }, [
+                                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(detail.get_client_info.name) +
+                                        " (" +
+                                        _vm._s(detail.get_client_info.address) +
+                                        ", " +
+                                        _vm._s(detail.get_client_info.phone) +
+                                        ") (" +
+                                        _vm._s(
+                                          detail.get_client_info.serial_no
+                                        ) +
+                                        ")"
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(detail.get_luckydraw_info.name) +
+                                        " | " +
+                                        _vm._s(detail.get_kista_info.name)
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(_vm._s(detail.get_agent_info.name)),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "badge badge-warning text-danger",
+                                      },
+                                      [_vm._v(_vm._s(detail.lottery_prize))]
+                                    ),
+                                  ]),
+                                ])
+                              }
+                            ),
+                            0
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.pagination.last_page > 1
+                        ? _c("pagination", {
+                            attrs: { pagination: _vm.pagination, offset: 5 },
+                            on: { paginate: _vm.searchdata },
+                          })
+                        : _vm._e(),
+                    ],
+                    1
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-6" }, [
+      _c("h5", { staticClass: "m-0 text-dark" }, [
+        _vm._v("Scheme Prize Report"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "table-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("SN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Member")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Info")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Agent")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Allocated Prize")]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/report/purchase/List.vue?vue&type=template&id=0f878f88&scoped=true&":
 /*!*****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/report/purchase/List.vue?vue&type=template&id=0f878f88&scoped=true& ***!
@@ -111717,6 +112309,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/report/lotteryprize/List.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/admin/report/lotteryprize/List.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _List_vue_vue_type_template_id_6b8e7858_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./List.vue?vue&type=template&id=6b8e7858&scoped=true& */ "./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=template&id=6b8e7858&scoped=true&");
+/* harmony import */ var _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _List_vue_vue_type_template_id_6b8e7858_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _List_vue_vue_type_template_id_6b8e7858_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "6b8e7858",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/report/lotteryprize/List.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=template&id=6b8e7858&scoped=true&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=template&id=6b8e7858&scoped=true& ***!
+  \***************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_6b8e7858_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=template&id=6b8e7858&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/report/lotteryprize/List.vue?vue&type=template&id=6b8e7858&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_6b8e7858_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_6b8e7858_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/report/purchase/List.vue":
 /*!****************************************************************!*\
   !*** ./resources/js/components/admin/report/purchase/List.vue ***!
@@ -112154,6 +112815,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/admin/report/incomeexpenditure/List.vue */ "./resources/js/components/admin/report/incomeexpenditure/List.vue");
 /* harmony import */ var _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/admin/report/expenditure/List.vue */ "./resources/js/components/admin/report/expenditure/List.vue");
 /* harmony import */ var _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/admin/report/record/List.vue */ "./resources/js/components/admin/report/record/List.vue");
+/* harmony import */ var _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/admin/report/lotteryprize/List.vue */ "./resources/js/components/admin/report/lotteryprize/List.vue");
 // dashboard
  // manager component
 
@@ -112161,6 +112823,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  //
+
 
 
 
@@ -112239,6 +112902,12 @@ var routes = [// dashboard
   meta: {
     bodyClass: 'sidebar-collapse'
   }
+}, {
+  path: '/report/lotteryprize',
+  component: _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
+  meta: {
+    bodyClass: 'sidebar-collapse'
+  }
 }];
 
 /***/ }),
@@ -112268,7 +112937,8 @@ __webpack_require__.r(__webpack_exports__);
     purchasereport: [],
     incomeexpenditurereport: [],
     expenditurereport: [],
-    recordreport: []
+    recordreport: [],
+    lotteryprizereport: []
   },
   getters: {
     getDashboard: function getDashboard(state) {
@@ -112315,6 +112985,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getRecordReport: function getRecordReport(state) {
       return state.recordreport;
+    },
+    getLotteryPrizeReport: function getLotteryPrizeReport(state) {
+      return state.lotteryprizereport;
     }
   },
   actions: {
@@ -112397,6 +113070,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/home/report/record/" + "?page=" + params[0] + "&date1=" + params[1] + "&date2=" + params[2] + "&managerid=" + params[3]).then(function (response) {
         context.commit('recordreports', [response.data.recordreports.data, response.data.pagination, response.data.totals, response.data.to_date, response.data.from_date]);
       });
+    },
+    allLotteryPrizeReport: function allLotteryPrizeReport(context, params) {
+      axios.get("/home/report/lotteryprize/" + "?luckydrawid=" + params[0] + "&kistaid=" + params[1] + "&search=" + params[2] + "&page=" + params[3] + "&managerid=" + params[4]).then(function (response) {
+        context.commit('lotteryprizereports', [response.data.lotteryprizereports.data, response.data.pagination, response.data.total]);
+      });
     }
   },
   mutations: {
@@ -112444,6 +113122,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     recordreports: function recordreports(state, data) {
       return state.recordreport = data;
+    },
+    lotteryprizereports: function lotteryprizereports(state, data) {
+      return state.lotteryprizereport = data;
     }
   }
 });

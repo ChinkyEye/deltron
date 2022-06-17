@@ -18,7 +18,6 @@ class RecordController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request);
         $posts = Record::orderBy('id','DESC');
         $totalamount = 0;
         if($request->managerid)

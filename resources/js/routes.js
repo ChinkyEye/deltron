@@ -17,10 +17,7 @@ import PurchaseReport from './components/admin/report/purchase/List.vue'
 import IncomeExpenditureReport from './components/admin/report/incomeexpenditure/List.vue'
 import ExpenditureReport from './components/admin/report/expenditure/List.vue'
 import RecordReport from './components/admin/report/record/List.vue'
-
-
-
-
+import LotteryPrizeReport from './components/admin/report/lotteryprize/List.vue'
 
 
 export const routes = [
@@ -91,6 +88,11 @@ export const routes = [
 	{
 		path:'/report/record',
 		component: RecordReport,
+		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/report/lotteryprize',
+		component: LotteryPrizeReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 

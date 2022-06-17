@@ -15,6 +15,8 @@ export default{
 		incomeexpenditurereport:[],
 		expenditurereport:[],
 		recordreport:[],
+		lotteryprizereport:[],
+
 
 	},
 	getters:{
@@ -62,6 +64,9 @@ export default{
 		},
 		getRecordReport(state){
 			return state.recordreport
+		},
+		getLotteryPrizeReport(state){
+			return state.lotteryprizereport
 		},
 		
 	},
@@ -201,6 +206,12 @@ export default{
 													response.data.from_date])
 				})
 		},
+		allLotteryPrizeReport(context, params){
+			axios.get("/home/report/lotteryprize/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&search="+params[2]+"&page="+params[3]+"&managerid="+params[4])
+				.then((response)=>{
+					context.commit('lotteryprizereports', [response.data.lotteryprizereports.data,response.data.pagination,response.data.total])
+				})
+		},
 
 
 
@@ -251,6 +262,9 @@ export default{
 		},
 		recordreports(state, data){
 			return state.recordreport = data
+		},
+		lotteryprizereports(state, data){
+			return state.lotteryprizereport = data
 		},
 		
 	}

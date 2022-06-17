@@ -50,7 +50,7 @@ Route::group(["middleware" => 'admin'], function(){
     Route::get('/home/report/incomeexpenditure','Admin\Report\IncomeExpenditureController@index');
     Route::get('/home/report/expenditure','Admin\Report\ExpenditureReportController@index');
     Route::get('/home/report/record','Admin\Report\RecordController@index');
-
+    Route::get('/home/report/lotteryprize','Admin\Report\LotteryPrizeController@index');
 
 });
 
