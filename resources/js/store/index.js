@@ -16,7 +16,7 @@ export default{
 		expenditurereport:[],
 		recordreport:[],
 		lotteryprizereport:[],
-
+		reportdashboard:[],
 
 	},
 	getters:{
@@ -67,6 +67,9 @@ export default{
 		},
 		getLotteryPrizeReport(state){
 			return state.lotteryprizereport
+		},
+		getReportDashboard(state){
+			return state.reportdashboard
 		},
 		
 	},
@@ -212,6 +215,12 @@ export default{
 					context.commit('lotteryprizereports', [response.data.lotteryprizereports.data,response.data.pagination,response.data.total])
 				})
 		},
+		allReportDashboard(context){
+			axios.get("/home/report")
+				.then((response)=>{
+					context.commit('reportdashboards', [response.data])
+				})
+		},
 
 
 
@@ -265,6 +274,9 @@ export default{
 		},
 		lotteryprizereports(state, data){
 			return state.lotteryprizereport = data
+		},
+		reportdashboards(state, payload){
+			return state.reportdashboard = payload
 		},
 		
 	}

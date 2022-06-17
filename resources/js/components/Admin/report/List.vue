@@ -18,12 +18,12 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <!-- <div  v-for="(detail,index) in getAllOrder"></div> -->
+      <div  v-for="(detail,index) in getAllOrder"></div>
       <div class="col-lg-3">
         <router-link to="/report/tpnp">
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>0</h3>
+              <h3>{{tpnp_count}}</h3>
               <p>TPNP Report</p>
             </div>
           </div>
@@ -33,7 +33,7 @@
         <router-link to="/report/tpnpl">
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>0</h3>
+              <h3>{{tpnpl_count}}</h3>
               <p>TPNPL Report</p>
             </div>
           </div>
@@ -125,39 +125,31 @@ export default{
         }
     },
         mounted(){
-            // this.$Progress.start()
-            // this.fetchPosts();
-            // this.$Progress.finish()
+            this.$Progress.start()
+            this.fetchPosts();
+            this.$Progress.finish()
         },
-        // computed:{
-        //     getAllOrder(){
-        //         var bvar = this.$store.getters.getReportDashboard;
-        //         if(bvar.length == 0) return [];
-        //         // console.log(bvar[0].tpnp_count);
-        //         this.tpnp_count = bvar[0].tpnp_count;
-        //         this.tpnpl_count = bvar[0].tpnp_count;
-        //         this.agent_count = bvar[0].tpnp_count;
-        //         this.lotteryprize_count = bvar[0].lotteryprize_count;
-        //         this.purchase_count = bvar[0].purchase_count;
-        //         this.incomeexpenditure_count = bvar[0].incomeexpenditure_count;
-        //         this.expenditure_count = bvar[0].expenditure_count;
-        //         this.record_count = bvar[0].record_count;
-        //         this.member_count = bvar[0].member_count;
-        //         // this.order_count = bvar[0].order_count;
-        //         // this.stock_level_count = bvar[0].stock_level_count;
-        //         // this.counter_count = bvar[0].counter_count;
-        //         // this.bill_count = bvar[0].bill_count;
-        //         // this.bill_ageing_count = bvar[0].bill_ageing_count;
-        //         // this.purchase_return_count = bvar[0].purchase_return_count;
-        //         // this.top_item_sale = bvar[0].top_item_sale;
-        //         // this.top_item_customer = bvar[0].top_item_customer;
-        //     }
-        // },
-        // methods:{
-        //     fetchPosts() {
-        //         this.$store.dispatch("allReportDashboard")
-        //     }
-        // }
+        computed:{
+            getAllOrder(){
+                var bvar = this.$store.getters.getReportDashboard;
+                if(bvar.length == 0) return [];
+                // console.log(bvar[0].tpnp_count);
+                this.tpnp_count = bvar[0].tpnp_count;
+                this.tpnpl_count = bvar[0].tpnp_count;
+                this.agent_count = bvar[0].tpnp_count;
+                this.lotteryprize_count = bvar[0].lotteryprize_count;
+                this.purchase_count = bvar[0].purchase_count;
+                this.incomeexpenditure_count = bvar[0].incomeexpenditure_count;
+                this.expenditure_count = bvar[0].expenditure_count;
+                this.record_count = bvar[0].record_count;
+                this.member_count = bvar[0].member_count;
+            }
+        },
+        methods:{
+            fetchPosts() {
+                this.$store.dispatch("allReportDashboard")
+            }
+        }
     }
 </script>
 

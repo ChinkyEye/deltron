@@ -3320,39 +3320,32 @@ __webpack_require__.r(__webpack_exports__);
       stock_level_count: 0
     };
   },
-  mounted: function mounted() {// this.$Progress.start()
-    // this.fetchPosts();
-    // this.$Progress.finish()
-  } // computed:{
-  //     getAllOrder(){
-  //         var bvar = this.$store.getters.getReportDashboard;
-  //         if(bvar.length == 0) return [];
-  //         // console.log(bvar[0].tpnp_count);
-  //         this.tpnp_count = bvar[0].tpnp_count;
-  //         this.tpnpl_count = bvar[0].tpnp_count;
-  //         this.agent_count = bvar[0].tpnp_count;
-  //         this.lotteryprize_count = bvar[0].lotteryprize_count;
-  //         this.purchase_count = bvar[0].purchase_count;
-  //         this.incomeexpenditure_count = bvar[0].incomeexpenditure_count;
-  //         this.expenditure_count = bvar[0].expenditure_count;
-  //         this.record_count = bvar[0].record_count;
-  //         this.member_count = bvar[0].member_count;
-  //         // this.order_count = bvar[0].order_count;
-  //         // this.stock_level_count = bvar[0].stock_level_count;
-  //         // this.counter_count = bvar[0].counter_count;
-  //         // this.bill_count = bvar[0].bill_count;
-  //         // this.bill_ageing_count = bvar[0].bill_ageing_count;
-  //         // this.purchase_return_count = bvar[0].purchase_return_count;
-  //         // this.top_item_sale = bvar[0].top_item_sale;
-  //         // this.top_item_customer = bvar[0].top_item_customer;
-  //     }
-  // },
-  // methods:{
-  //     fetchPosts() {
-  //         this.$store.dispatch("allReportDashboard")
-  //     }
-  // }
+  mounted: function mounted() {
+    this.$Progress.start();
+    this.fetchPosts();
+    this.$Progress.finish();
+  },
+  computed: {
+    getAllOrder: function getAllOrder() {
+      var bvar = this.$store.getters.getReportDashboard;
+      if (bvar.length == 0) return []; // console.log(bvar[0].tpnp_count);
 
+      this.tpnp_count = bvar[0].tpnp_count;
+      this.tpnpl_count = bvar[0].tpnp_count;
+      this.agent_count = bvar[0].tpnp_count;
+      this.lotteryprize_count = bvar[0].lotteryprize_count;
+      this.purchase_count = bvar[0].purchase_count;
+      this.incomeexpenditure_count = bvar[0].incomeexpenditure_count;
+      this.expenditure_count = bvar[0].expenditure_count;
+      this.record_count = bvar[0].record_count;
+      this.member_count = bvar[0].member_count;
+    }
+  },
+  methods: {
+    fetchPosts: function fetchPosts() {
+      this.$store.dispatch("allReportDashboard");
+    }
+  }
 });
 
 /***/ }),
@@ -90807,147 +90800,156 @@ var render = function () {
     _vm._v(" "),
     _c("section", { staticClass: "content" }, [
       _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            { staticClass: "col-lg-3" },
-            [
-              _c("router-link", { attrs: { to: "/report/tpnp" } }, [
-                _c("div", { staticClass: "small-box bg-info" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v("0")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("TPNP Report")]),
-                  ]),
-                ]),
-              ]),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-lg-3" },
-            [
-              _c("router-link", { attrs: { to: "/report/tpnpl" } }, [
-                _c("div", { staticClass: "small-box bg-success" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v("0")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("TPNPL Report")]),
-                  ]),
-                ]),
-              ]),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-lg-3" },
-            [
-              _c("router-link", { attrs: { to: "/report/agent" } }, [
-                _c("div", { staticClass: "small-box bg-warning" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v(_vm._s(_vm.agent_count))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Agent Report")]),
-                  ]),
-                ]),
-              ]),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-lg-3" },
-            [
-              _c("router-link", { attrs: { to: "/report/lotteryprize" } }, [
-                _c("div", { staticClass: "small-box bg-primary" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v(_vm._s(_vm.lotteryprize_count))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Scheme Prize Report")]),
-                  ]),
-                ]),
-              ]),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-lg-3" },
-            [
-              _c("router-link", { attrs: { to: "/report/purchase" } }, [
-                _c("div", { staticClass: "small-box bg-info" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v(_vm._s(_vm.purchase_count))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Purchase Report")]),
-                  ]),
-                ]),
-              ]),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-lg-3 col-6" },
-            [
-              _c(
-                "router-link",
-                { attrs: { to: "/report/incomeexpenditure" } },
-                [
-                  _c("div", { staticClass: "small-box bg-success" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _vm._l(_vm.getAllOrder, function (detail, index) {
+              return _c("div")
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c("router-link", { attrs: { to: "/report/tpnp" } }, [
+                  _c("div", { staticClass: "small-box bg-info" }, [
                     _c("div", { staticClass: "inner" }, [
-                      _c("h3", [_vm._v(_vm._s(_vm.incomeexpenditure_count))]),
+                      _c("h3", [_vm._v(_vm._s(_vm.tpnp_count))]),
                       _vm._v(" "),
-                      _c("p", [_vm._v("Income Expenditure Report")]),
+                      _c("p", [_vm._v("TPNP Report")]),
                     ]),
                   ]),
-                ]
-              ),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-lg-3 col-6" },
-            [
-              _c("router-link", { attrs: { to: "/report/expenditure" } }, [
-                _c("div", { staticClass: "small-box bg-warning" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v(_vm._s(_vm.expenditure_count))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Expenditure Report")]),
+                ]),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c("router-link", { attrs: { to: "/report/tpnpl" } }, [
+                  _c("div", { staticClass: "small-box bg-success" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.tpnpl_count))]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("TPNPL Report")]),
+                    ]),
                   ]),
                 ]),
-              ]),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-lg-3 col-6" },
-            [
-              _c("router-link", { attrs: { to: "/report/record" } }, [
-                _c("div", { staticClass: "small-box bg-primary" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v(_vm._s(_vm.record_count))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Record Report")]),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c("router-link", { attrs: { to: "/report/agent" } }, [
+                  _c("div", { staticClass: "small-box bg-warning" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.agent_count))]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Agent Report")]),
+                    ]),
                   ]),
                 ]),
-              ]),
-            ],
-            1
-          ),
-        ]),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c("router-link", { attrs: { to: "/report/lotteryprize" } }, [
+                  _c("div", { staticClass: "small-box bg-primary" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.lotteryprize_count))]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Scheme Prize Report")]),
+                    ]),
+                  ]),
+                ]),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c("router-link", { attrs: { to: "/report/purchase" } }, [
+                  _c("div", { staticClass: "small-box bg-info" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.purchase_count))]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Purchase Report")]),
+                    ]),
+                  ]),
+                ]),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3 col-6" },
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: "/report/incomeexpenditure" } },
+                  [
+                    _c("div", { staticClass: "small-box bg-success" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.incomeexpenditure_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Income Expenditure Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3 col-6" },
+              [
+                _c("router-link", { attrs: { to: "/report/expenditure" } }, [
+                  _c("div", { staticClass: "small-box bg-warning" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.expenditure_count))]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Expenditure Report")]),
+                    ]),
+                  ]),
+                ]),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3 col-6" },
+              [
+                _c("router-link", { attrs: { to: "/report/record" } }, [
+                  _c("div", { staticClass: "small-box bg-primary" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.record_count))]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Record Report")]),
+                    ]),
+                  ]),
+                ]),
+              ],
+              1
+            ),
+          ],
+          2
+        ),
       ]),
     ]),
   ])
@@ -112938,7 +112940,8 @@ __webpack_require__.r(__webpack_exports__);
     incomeexpenditurereport: [],
     expenditurereport: [],
     recordreport: [],
-    lotteryprizereport: []
+    lotteryprizereport: [],
+    reportdashboard: []
   },
   getters: {
     getDashboard: function getDashboard(state) {
@@ -112988,6 +112991,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getLotteryPrizeReport: function getLotteryPrizeReport(state) {
       return state.lotteryprizereport;
+    },
+    getReportDashboard: function getReportDashboard(state) {
+      return state.reportdashboard;
     }
   },
   actions: {
@@ -113075,6 +113081,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/home/report/lotteryprize/" + "?luckydrawid=" + params[0] + "&kistaid=" + params[1] + "&search=" + params[2] + "&page=" + params[3] + "&managerid=" + params[4]).then(function (response) {
         context.commit('lotteryprizereports', [response.data.lotteryprizereports.data, response.data.pagination, response.data.total]);
       });
+    },
+    allReportDashboard: function allReportDashboard(context) {
+      axios.get("/home/report").then(function (response) {
+        context.commit('reportdashboards', [response.data]);
+      });
     }
   },
   mutations: {
@@ -113125,6 +113136,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     lotteryprizereports: function lotteryprizereports(state, data) {
       return state.lotteryprizereport = data;
+    },
+    reportdashboards: function reportdashboards(state, payload) {
+      return state.reportdashboard = payload;
     }
   }
 });
