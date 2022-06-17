@@ -15,6 +15,8 @@ import TpnplReport from './components/admin/report/tpnpl/List.vue'
 import AgentReport from './components/admin/report/agent/List.vue'
 import PurchaseReport from './components/admin/report/purchase/List.vue'
 import IncomeExpenditureReport from './components/admin/report/incomeexpenditure/List.vue'
+import ExpenditureReport from './components/admin/report/expenditure/List.vue'
+import RecordReport from './components/admin/report/record/List.vue'
 
 
 
@@ -79,6 +81,16 @@ export const routes = [
 	{
 		path:'/report/incomeexpenditure',
 		component: IncomeExpenditureReport,
+		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/report/expenditure',
+		component: ExpenditureReport,
+		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/report/record',
+		component: RecordReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 

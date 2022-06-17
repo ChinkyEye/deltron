@@ -13,8 +13,8 @@ export default{
 		agentreport:[],
 		purchasereport:[],
 		incomeexpenditurereport:[],
-
-
+		expenditurereport:[],
+		recordreport:[],
 
 	},
 	getters:{
@@ -56,6 +56,12 @@ export default{
 		},
 		getIncomeExpenditureReport(state){
 			return state.incomeexpenditurereport
+		},
+		getExpenditureReport(state){
+			return state.expenditurereport
+		},
+		getRecordReport(state){
+			return state.recordreport
 		},
 		
 	},
@@ -174,6 +180,27 @@ export default{
 																response.data.from_date])
 				})	
 		},
+		allExpenditureReport(context, params){
+			axios.get("/home/report/expenditure/"+"?page="+params[0]+"&luckydrawid="+params[1]+"&kistaid="+params[2]+"&expendituretype="+params[3]+"&managerid="+params[6])
+				.then((response)=>{
+					context.commit('expenditurereports',[response.data.expenditurereports.data,
+														response.data.pagination,
+														response.data.total,
+														response.data.luckydraw_name,
+														response.data.kista_name,
+														response.data.expendituretype])
+				})
+		},
+		allRecordReport(context, params){
+			axios.get("/home/report/record/"+"?page="+params[0]+"&date1="+params[1]+"&date2="+params[2]+"&managerid="+params[3])
+				.then((response)=>{
+					context.commit('recordreports', [response.data.recordreports.data,
+													response.data.pagination,
+													response.data.totals,
+													response.data.to_date,
+													response.data.from_date])
+				})
+		},
 
 
 
@@ -218,6 +245,12 @@ export default{
 		},
 		incomeexpenditurereports(state, data){
 			return state.incomeexpenditurereport = data
+		},
+		expenditurereports(state, data){
+			return state.expenditurereport = data
+		},
+		recordreports(state, data){
+			return state.recordreport = data
 		},
 		
 	}

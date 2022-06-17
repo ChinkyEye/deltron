@@ -48,6 +48,8 @@ Route::group(["middleware" => 'admin'], function(){
     Route::get('/home/report/agent','Admin\Report\AgentController@index');
     Route::get('/home/report/purchase','Admin\Report\PurchaseController@index');
     Route::get('/home/report/incomeexpenditure','Admin\Report\IncomeExpenditureController@index');
+    Route::get('/home/report/expenditure','Admin\Report\ExpenditureReportController@index');
+    Route::get('/home/report/record','Admin\Report\RecordController@index');
 
 
 });

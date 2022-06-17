@@ -89,6 +89,16 @@
           </div>
         </router-link>
       </div>
+      <div class="col-lg-3 col-6">
+        <router-link to="/report/record">
+          <div class="small-box bg-primary">
+            <div class="inner">
+              <h3>{{record_count}}</h3>
+              <p>Record Report</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
     </div>
 </div>
 </section>
