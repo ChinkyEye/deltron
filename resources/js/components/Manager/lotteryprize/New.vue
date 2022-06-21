@@ -109,7 +109,7 @@
       this.form.post('/manager/detail/prize')
       .then((response)=>{
         this.$router.push(`/lotteryprize`);
-        // this.$store.dispatch("allKistaDetail");
+        // that.$store.dispatch("allKistaDetail");
         // location.reload();
         Toast.fire({
           icon: 'success',

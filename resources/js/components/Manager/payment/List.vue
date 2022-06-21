@@ -50,7 +50,6 @@
                   </button>
                 </div>
               </div><!-- /.card-header -->
-              <!-- <form role="form" @submit.prevent="addDetail()"> -->
               <form role="form">
               <div class="card-body">
                 <div class="table-responsive">
@@ -147,8 +146,6 @@
         var data = this.$store.getters.getPayment;
         if(data.length == 0) return [];
         // this.status = data[0].status;
-        console.log(data[0].kista_id);
-        // console.log(data[0].kistacount)
         this.kistaid = data[0].kista_id;
         this.kistacount = data[0].kistacount;
         this.amount = data[0].kistadetails.map(function (kd, i) {
@@ -162,45 +159,6 @@
       },
     },
     methods:{
-      addDetail: function addDetail() {
-        var that = this;
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, Save it!',
-          cancelButtonText: 'No, cancel!',
-          buttonsStyling: true
-        }).then(function (isConfirm) {
-          if (isConfirm.value === true) {
-            axios.post('/manager/detail', {
-              data: that.getAllDetail,
-              lottery_status: that.lottery_status,
-              amount: that.amount,
-              agent_id: that.agent_id,
-              luckydraw_id: that.luckydraw_id,
-              kista_id: that.kista_id
-            }).then(function (response) {
-              window.location.reload();
-              if (response) {
-                that.state.isSending = true;
-                Toast.fire({
-                  icon: 'success',
-                  title: 'Detail Updated successfully'
-                });
-              }
-            })["catch"](function () {});
-          } else {
-            Toast.fire({
-              icon: 'error',
-              title: 'Data couldnot save'
-            });
-          }
-        });
-      },
       storeData(detail,amount,status){
         axios.post('/manager/payment',{
               data: detail,
