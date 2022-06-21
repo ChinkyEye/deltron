@@ -99,6 +99,16 @@
           </div>
         </router-link>
       </div>
+      <div class="col-lg-3 col-6">
+        <router-link to="/report/member">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <!-- <h3>{{member_count}}</h3> -->
+              <p>Member Report</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
     </div>
 </div>
 </section>

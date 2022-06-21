@@ -64,6 +64,7 @@ class DetailController extends Controller
         $kistaid = $request->kistaid;
 
         $checkDetail = Detail::where('agent_id',$agentid)->where('kista_id',$kistaid)->count();
+        // dd($checkDetail);
         if($checkDetail){
             $posts = Detail::orderBy('id','DESC')
                             ->where('agent_id',$agentid)
@@ -81,6 +82,7 @@ class DetailController extends Controller
                             ->get();
             $kista = Kista::where('id',$kistaid)->value('amount');
             $status = False;
+            // dd($posts);
         }
 
         $response = [

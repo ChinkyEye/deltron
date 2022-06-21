@@ -111,10 +111,8 @@
         }
     },
     mounted(){
-      // console.log(this.$route.params.agentid);
       this.$store.dispatch("allSelectLuckyDraw");
       this.$store.dispatch("allAgentCommision");
-      // this.$store.dispatch("allAgentCommision", [this.$route.params.agentid,this.search]);
     },
     computed:{
       allSelectLuckyDraws(){
@@ -174,19 +172,21 @@
           })
         .then((response)=>{
           this.$store.dispatch("allAgentCommision", [0,0]);
-          // this.$router.push(`/agent/commision/${this.$route.params.agentid}`)
           if(response.data.message == 'Data Updated'){
+           this.pagechange();
             Toast.fire({
               icon: 'success',
               title: 'Detail Updated successfully'
             })
           }else{
+            this.pagechange();
             Toast.fire({
               icon: 'success',
               title: 'Detail Added successfully'
             })
           }
-          location.reload()
+            // this.$router.push(`/agent/commision/${this.$route.params.agentid}`)
+          // location.reload()
         })
         .catch(()=>{
         })

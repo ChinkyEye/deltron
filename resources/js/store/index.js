@@ -17,6 +17,7 @@ export default{
 		recordreport:[],
 		lotteryprizereport:[],
 		reportdashboard:[],
+		memberreport:[],
 
 	},
 	getters:{
@@ -70,6 +71,9 @@ export default{
 		},
 		getReportDashboard(state){
 			return state.reportdashboard
+		},
+		getMemberReport(state){
+			return state.memberreport
 		},
 		
 	},
@@ -221,7 +225,22 @@ export default{
 					context.commit('reportdashboards', [response.data])
 				})
 		},
-
+		allMemberReport(context, params){
+			axios.get("/home/report/member/"+"?luckydrawid="+params[0]+"&agentid="+params[1]+"&page="+params[2]+"&kistaid="+params[3]+"&managerid="+params[4])
+				.then((response)=>{
+					context.commit('memberreports', [response.data.memberreports.data,
+													response.data.pagination,
+													response.data.total,
+													response.data.kista_name,
+													response.data.count,
+													response.data.luckydraw_name,
+													response.data.agent_name,
+													response.data.check,
+													response.data.due_amount,
+													response.data.collected_amount,
+													response.data.commisionamount])
+				})
+		},
 
 
 		
@@ -277,6 +296,9 @@ export default{
 		},
 		reportdashboards(state, payload){
 			return state.reportdashboard = payload
+		},
+		memberreports(state, data){
+			return state.memberreport = data
 		},
 		
 	}

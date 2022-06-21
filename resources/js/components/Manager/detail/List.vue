@@ -61,12 +61,13 @@
                         <th>Status</th>
                       </tr>
                     </thead>
+                    {{this.status}}
+
                     <tbody class="text-center"  v-if="status == false && click">
                       <tr v-for="(detail,index) in getAllDetail" :key="detail.id">
                         <td>{{index+1}}</td>
                         <td class="text-left">
                           <input type="hidden" class="form-control" name="id" v-model="detail.id">
-                          <!-- <span class="text-primary">{{detail.name}} ({{detail.serial_no}})</span> -->
                           <span class="text-primary">{{detail.name}}</span>
                         </td>
                         <td v-if="detail.is_leave == '1'">
@@ -88,15 +89,12 @@
                       <tr v-for="(play,ind) in getAllDetail" :key="play.id">
                         <td>{{ind+1}}</td>
                         <td class="text-left">
-                          <!-- <span class="text-primary">{{play.get_client_info.name}} ({{play.get_client_info.serial_no}})</span> -->
-                          <span class="text-primary">{{play.get_client_info.name}}</span>
+                          <span class="text-primary" v-if="play.get_client_info">{{play.get_client_info.name}}</span>
+                          <span class="text-primary" v-else></span>
                         </td>
                         <td>
                           <span class="text-danger" v-if="play.lottery_status == '1'">UnPaid {{play.amount}}</span>
                           <span class="text-primary" v-if="play.lottery_status == '2'">Paid {{play.amount}}
-                         <!--  <router-link :to="`/client/prize/${play.id}`" class="btn btn-xs btn-outline-info" title="Add Lottery Prize"><i class="fas fa-plus fa-sm"></i>
-                          </router-link>
-                          <span class="badge badge-warning text-info float-sm-right" v-if="play.lottery_prize != null ">{{play.lottery_prize}} is allocated</span>  -->
                           </span>
                           <span class="text-warning" v-if="play.lottery_status == '3'">Leave</span>
                           <span class="float-right">
@@ -185,13 +183,13 @@
         this.lottery_status = data[0].kistadetails.map(function (kd, i) {
           return 2;
         }); // console.log(data[0].kistadetails);
-        // console.log(data[0].kistadetails);
         this.$Progress.finish()
         return data[0].kistadetails;
       },
     },
     methods:{
       addDetail: function addDetail() {
+
         var that = this;
         Swal.fire({
           title: 'Are you sure?',
@@ -213,9 +211,8 @@
               luckydraw_id: that.luckydraw_id,
               kista_id: that.kista_id
             }).then(function (response) {
-              window.location.reload();
-              // that.$store.dispatch("allDetail");
               if (response) {
+                that.savedata();
                 that.state.isSending = true;
                 Toast.fire({
                   icon: 'success',
@@ -248,15 +245,13 @@
             axios.get('/manager/detail/revise/'+id+'/'+lotteryStatus)
             .then((response)=>
               {
+              that.savedata();
               Toast.fire({
                 icon: 'success',
                 title: 'Data Changed successfully'
               })
-              window.location.reload();
-              this.$store.dispatch("allDetail", [0,0,0]);
-              // this.$router.push('/home/revise');
-              // this.$router.go()
-               // this.$store.dispatch("allDetail",[0,0]);
+              // window.location.reload();
+              // this.$store.dispatch("allDetail", [0,0,0]);
             })
             .catch((response)=>{
               // Toast.fire({
@@ -273,8 +268,6 @@
           }
         })
       },
-
-
       agentChange(){
         this.$store.dispatch("allSelectAgent", [this.kista_id]);
       },
