@@ -93185,27 +93185,6 @@ var render = function () {
                   },
                   [_c("i", { staticClass: "fas fa-print" }, [_vm._v("Print")])]
                 ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success rounded-0",
-                    attrs: { disabled: _vm.click },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        return _vm.memberreportexport()
-                      },
-                    },
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fas fa-print",
-                      attrs: { title: "Export To Excel" },
-                    }),
-                    _vm._v("Excel"),
-                  ]
-                ),
               ]),
             ]),
             _vm._v(" "),
@@ -94440,26 +94419,6 @@ var render = function () {
                 on: { click: _vm.print },
               },
               [_c("i", { staticClass: "fas fa-print" }, [_vm._v("Print")])]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success rounded-0",
-                on: {
-                  click: function ($event) {
-                    $event.preventDefault()
-                    return _vm.tpnpExport()
-                  },
-                },
-              },
-              [
-                _c("i", {
-                  staticClass: "fas fa-print",
-                  attrs: { title: "Export To Excel" },
-                }),
-                _vm._v(" Excel"),
-              ]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "card card-info card-outline" }, [

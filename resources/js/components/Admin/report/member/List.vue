@@ -29,7 +29,7 @@
                <!--  <span v-if="arrors">
                   
                 </span> -->
-               <button @click.prevent="memberreportexport()" class="btn btn-success rounded-0" :disabled="click"><i class="fas fa-print" title="Export To Excel"></i>Excel</button>
+               <!-- <button @click.prevent="memberreportexport()" class="btn btn-success rounded-0" :disabled="click"><i class="fas fa-print" title="Export To Excel"></i>Excel</button> -->
               </div>
             </div>
             <div class="card card-info card-outline">

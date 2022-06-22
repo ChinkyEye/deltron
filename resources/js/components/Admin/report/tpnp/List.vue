@@ -24,7 +24,7 @@
           <section class="col-lg-12 connectedSortable">
             <!-- main page load here-->
             <button  @click="print" class="btn btn-primary rounded-0"><i class="fas fa-print">Print</i></button>
-            <button @click.prevent="tpnpExport()" class="btn btn-success rounded-0"><i class="fas fa-print" title="Export To Excel"></i> Excel</button>
+            <!-- <button @click.prevent="tpnpExport()" class="btn btn-success rounded-0"><i class="fas fa-print" title="Export To Excel"></i> Excel</button> -->
             <div class="card card-info card-outline">
               <div class="card-header">
                 <div class="row">

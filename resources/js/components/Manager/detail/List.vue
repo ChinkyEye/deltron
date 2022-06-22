@@ -42,7 +42,7 @@
                   </div>
                   <div class="col-md">
                     <select class="form-control" id="agent_id" name="agent_id"  v-model="agent_id" @change="agentChange"> 
-                      <option value="">Select Agent</option>
+                      <option value="" disabled>Select Agent</option>
                       <option :value="agent.id" v-for="agent in getAllAgent">{{agent.name}}</option>
                     </select>
                   </div>
