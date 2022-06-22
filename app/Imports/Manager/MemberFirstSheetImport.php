@@ -28,21 +28,18 @@ class MemberFirstSheetImport implements ToCollection
 
     public function collection(Collection $collection)
     {
-
         try{
             return DB::transaction(function() use ($collection)
             {
                 Validator::make(array_slice($collection->toArray(), 1), [
-                    '*.1' => 'required|distinct|unique:clients,name',
+                    // '*.1' => 'required|distinct|unique:clients,name,created_by,'.Auth::id(),
+                    '*.1' => 'required|distinct|unique:clients,name,NULL,id,created_by,'.Auth::user() -> id.'',
                 ])->validate();
-
-                // Validator::make($collection->toArray(), [
-                //     '*.Member Name' => 'required',
-                // ])->validate();
 
                 $helper = new Helper();
                 foreach (array_slice($collection->toArray(), 1) as $row) 
                 {
+                // dd(array_key_last($row) + 1);
                     $last_part = array_key_last($row) + 1;
                     $agents = Agent::firstOrCreate([
                         'name' => $row[5],
@@ -57,7 +54,6 @@ class MemberFirstSheetImport implements ToCollection
                         'time' => date("H:i:s"),
                     ]);
                     $format = sprintf('%04d', $row[0]);
-                    // dd($row[0],$format,$lo);
                     $clients = Client::create([
                         'name' => $row[1],
                         'address' => $row[2],
