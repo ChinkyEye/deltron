@@ -15,7 +15,7 @@ class LuckyDrawController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $posts = LuckyDraw::orderBy('id','DESC');
         if(empty($request->search))
@@ -26,7 +26,7 @@ class LuckyDrawController extends Controller
             $search = $request->search;
             $posts = $posts->where('name', 'LIKE',"%{$search}%");
         }
-        $posts = $posts->paginate(15);
+        $posts = $posts->with('getUserName')->paginate(15);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),

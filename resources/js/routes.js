@@ -10,6 +10,14 @@ import ChangePassword from './components/admin/manager/Password.vue'
 import Revise from './components/admin/revise/List.vue'
 import Report from './components/admin/report/List.vue'
 
+import LuckyDraw from './components/admin/luckydraw/List.vue'
+import Kista from './components/admin/kista/List.vue'
+import Agent from './components/admin/agent/List.vue'
+import ClientList from './components/admin/clientlist/List.vue'
+
+
+
+
 import TpnpReport from './components/admin/report/tpnp/List.vue'
 import TpnplReport from './components/admin/report/tpnpl/List.vue'
 import AgentReport from './components/admin/report/agent/List.vue'
@@ -51,6 +59,21 @@ export const routes = [
 		path:'/revise',
 		component: Revise
 	},
+	{
+		path:'/luckydraw',
+		name: 'luckydraw',
+		component:LuckyDraw
+	},
+	{
+		path:'/kista',
+		name: 'kista',
+		component:Kista
+	},
+	{
+		path:'/agent',
+		component: Agent
+	},
+	
 	{
 		path:'/report',
 		name: 'report',
@@ -100,6 +123,10 @@ export const routes = [
 		path:'/report/member',
 		component: MemberReport,
 		meta: { bodyClass: 'sidebar-collapse' },
+	},
+	{
+		path:'/clientlist',
+		component: ClientList
 	},
 
 ]

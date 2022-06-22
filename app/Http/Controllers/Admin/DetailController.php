@@ -37,6 +37,7 @@ class DetailController extends Controller
     }
 
     public function detail(Request $request){
+            $managerid = $request->managerid;
             $luckydrawid = $request->luckydrawid;
             $kistaid = $request->kistaid;
             $agentid = $request->agentid;
@@ -46,6 +47,7 @@ class DetailController extends Controller
                             ->where('kista_id',$kistaid)
                             ->where('agent_id',$agentid)
                             ->with('getClientInfo')
+                            ->where('created_by', $managerid)
                             ->get();
             $kista = '1';
             $status = True;

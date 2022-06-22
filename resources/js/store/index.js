@@ -18,6 +18,11 @@ export default{
 		lotteryprizereport:[],
 		reportdashboard:[],
 		memberreport:[],
+		luckydraw:[],
+		kista:[],
+		agent:[],
+		clientlist:[],
+
 
 	},
 	getters:{
@@ -75,6 +80,18 @@ export default{
 		getMemberReport(state){
 			return state.memberreport
 		},
+		getLuckyDraw(state){
+			return state.luckydraw
+		},
+		getKista(state){
+			return state.kista
+		},
+		getAgent(state){
+			return state.agent
+		},
+		getClientList(state){
+			return state.clientlist
+		},
 		
 	},
 	actions:{
@@ -119,9 +136,8 @@ export default{
 				})
 		},
 		allDetail(context, params){
-			axios.get("/home/mdetail/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&agentid="+params[2])
+			axios.get("/home/mdetail/"+"?luckydrawid="+params[0]+"&kistaid="+params[1]+"&agentid="+params[2]+"&managerid="+params[3])
 				.then((response)=>{
-					console.log(response);
 					context.commit('details', [response.data])
 				})
 		},
@@ -241,6 +257,30 @@ export default{
 													response.data.commisionamount])
 				})
 		},
+		allLuckyDraw(context, params){
+			axios.get("/home/luckydraw?page="+params[0]+"&search="+params[1])
+				.then((response)=>{
+					context.commit('luckydraws', [response.data.luckydraws.data,response.data.pagination])
+				})
+		},
+		allKista(context, params){
+			axios.get("/home/kista?page="+params[0]+"&search="+params[1])
+				.then((response)=>{
+					context.commit('kistas', [response.data.kistas.data,response.data.pagination])
+				})
+		},
+		allAgent(context, params){
+			axios.get("/home/agent/"+"?page="+params[0]+"&search="+params[1])
+				.then((response)=>{
+					context.commit('agents', [response.data.agents.data,response.data.pagination])
+				})
+		},
+		allClientList(context, params){
+			axios.get("/home/clientlist/"+"?agent_id="+params[0]+"&page="+params[1])
+				.then((response)=>{
+					context.commit('clientlists', [response.data.clientlists.data,response.data.pagination])
+				})
+		},
 
 
 		
@@ -299,6 +339,18 @@ export default{
 		},
 		memberreports(state, data){
 			return state.memberreport = data
+		},
+		luckydraws(state, data){
+			return state.luckydraw = data
+		},
+		kistas(state, data){
+			return state.kista = data
+		},
+		agents(state, data){
+			return state.agent = data
+		},
+		clientlists(state, data){
+			return state.clientlist = data
 		},
 		
 	}

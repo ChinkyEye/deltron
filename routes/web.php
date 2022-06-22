@@ -35,12 +35,19 @@ Route::group(["middleware" => 'admin'], function(){
     Route::get('/home/luckydraw/select/getAllLuckyDraw', 'Admin\LuckyDrawController@getAllLuckyDraw');
     Route::get('/home/luckydraw/mselect/getAllMLuckyDraw', 'Admin\LuckyDrawController@getAllMLuckyDraw');
     Route::resource('/home/luckydraw','Admin\LuckyDrawController');
+    Route::get('/home/luckydraw/status/{id}/{status}', 'Admin\LuckyDrawController@status');
+
     Route::get('/home/kista/select/getAllKista', 'Admin\KistaController@getAllKista');
+    Route::get('/home/kista/status/{id}/{status}', 'Admin\KistaController@status');
+
     Route::resource('/home/kista','Admin\KistaController');
     Route::get('/home/agent/select/getAllAgent', 'Admin\AgentController@getAllAgent');
     Route::resource('/home/agent','Admin\AgentController');
+    Route::get('/home/agent/status/{id}/{status}', 'Admin\AgentController@status');
     Route::get('/home/mdetail','Admin\DetailController@detail');
     Route::get('/home/detail/revise/{id}/{lotteryStatus}', 'Admin\DetailController@revise');
+
+    Route::get('/home/clientlist', 'Admin\ClientListController@index');
 
     //report
     Route::get('/home/report','Admin\Report\HomeController@loadDashboard');

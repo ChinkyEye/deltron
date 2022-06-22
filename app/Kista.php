@@ -26,4 +26,7 @@ class Kista extends Model
     {
         return $this->hasOne(Kista::class,'id','id');
     }
+    public  function getUserName(){
+        return $this->belongsTo(User::class,'created_by');
+    }
 }

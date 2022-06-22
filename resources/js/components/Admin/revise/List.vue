@@ -159,6 +159,7 @@
       getAllDetail(){
         var data = this.$store.getters.getDetail;
         if(data.length == 0) return [];
+        console.log(data[0].kistadetails);
         return data[0].kistadetails;
       },
       getAllSelectManager(){
@@ -226,21 +227,17 @@
             axios.get('/home/detail/revise/'+id+'/'+lotteryStatus)
             .then((response)=>
               {
+              that.savedata();
               Toast.fire({
                 icon: 'success',
                 title: 'Data Changed successfully'
               })
-              window.location.reload();
-              this.$store.dispatch("allDetail", [0,0,0]);
-              // this.$router.push('/home/revise');
-              // this.$router.go()
-               // this.$store.dispatch("allDetail",[0,0]);
             })
             .catch((response)=>{
-              // Toast.fire({
-              //   icon: 'error',
-              //   title: 'Something went wrong'
-              // })
+              Toast.fire({
+                icon: 'error',
+                title: 'Something went wrong'
+              })
             })
           }
           else{
@@ -267,7 +264,7 @@
       },
       savedata()
       {
-        this.$store.dispatch("allDetail", [this.luckydraw_id,this.kista_id,this.agent_id,]);
+        this.$store.dispatch("allDetail", [this.luckydraw_id,this.kista_id,this.agent_id,this.manager_id]);
       },
 
     }

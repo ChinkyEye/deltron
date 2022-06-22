@@ -40,7 +40,7 @@ class AgentController extends Controller
 
     public function index(Request $request)
     {
-        $posts = Agent::orderBy('id','DESC')->where('created_by', Auth::user()->id);
+        $posts = Agent::orderBy('id','DESC');
         if(empty($request->search))
         {            
             $posts = $posts;
@@ -49,7 +49,7 @@ class AgentController extends Controller
             $search = $request->search;
             $posts = $posts->where('name', 'LIKE',"%{$search}%");
         }
-        $posts = $posts->with('getKista')->paginate(15);
+        $posts = $posts->with('getKista','getUserName')->paginate(15);
         $response = [
             'pagination' => [
                 'total' => $posts->total(),
@@ -77,11 +77,7 @@ class AgentController extends Controller
             'address' => 'required',
             'phone' => 'required',
         ]);
-        // $kista = Kista::find($request->kistaid);
-        // $luckydraw = LuckyDraw::find($kista->luckydraw_id);
         Agent::create([
-            // 'luckydraw_id' => $luckydraw->id,
-            // 'kista_id' => $request->kistaid,
             'name' => $request['name'],
             'address' => $request['address'],
             'phone' => $request['phone'],
