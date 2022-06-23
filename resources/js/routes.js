@@ -14,8 +14,7 @@ import LuckyDraw from './components/admin/luckydraw/List.vue'
 import Kista from './components/admin/kista/List.vue'
 import Agent from './components/admin/agent/List.vue'
 import ClientList from './components/admin/clientlist/List.vue'
-
-
+import BankBalance from './components/admin/bankbalance/List.vue'
 
 
 import TpnpReport from './components/admin/report/tpnp/List.vue'
@@ -127,6 +126,10 @@ export const routes = [
 	{
 		path:'/clientlist',
 		component: ClientList
+	},
+	{
+		path:'/bankbalance',
+		component: BankBalance
 	},
 
 ]

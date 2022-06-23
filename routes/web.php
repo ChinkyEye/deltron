@@ -48,6 +48,9 @@ Route::group(["middleware" => 'admin'], function(){
     Route::get('/home/detail/revise/{id}/{lotteryStatus}', 'Admin\DetailController@revise');
 
     Route::get('/home/clientlist', 'Admin\ClientListController@index');
+    Route::resource('/home/bankbalance','Admin\BankBalanceController');
+
+
 
     //report
     Route::get('/home/report','Admin\Report\HomeController@loadDashboard');

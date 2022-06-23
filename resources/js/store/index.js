@@ -22,6 +22,7 @@ export default{
 		kista:[],
 		agent:[],
 		clientlist:[],
+		bankbalance:[],
 
 
 	},
@@ -91,6 +92,9 @@ export default{
 		},
 		getClientList(state){
 			return state.clientlist
+		},
+		getBankBalance(state){
+			return state.bankbalance
 		},
 		
 	},
@@ -281,8 +285,12 @@ export default{
 					context.commit('clientlists', [response.data.clientlists.data,response.data.pagination])
 				})
 		},
-
-
+		allBankBalance(context, params){
+			axios.get("/home/bankbalance/"+"?page="+params[0])
+				.then((response)=>{
+					context.commit('bankbalances', [response.data.bankbalances.data,response.data.pagination])
+				})
+		},
 		
 	},
 	mutations:{
@@ -351,6 +359,9 @@ export default{
 		},
 		clientlists(state, data){
 			return state.clientlist = data
+		},
+		bankbalances(state, data){
+			return state.bankbalance = data
 		},
 		
 	}

@@ -41,7 +41,6 @@
               <div class="card-body">
                 <div id="printMe">
                   <div class="col-md-12 text-center mb-2">
-                    <span>{{auth_name}},{{auth_address}}</span><br>
                     <span>Member List</span>
                   </div>
                   <div class="table-responsive">

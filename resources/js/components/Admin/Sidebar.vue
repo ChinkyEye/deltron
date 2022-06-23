@@ -64,6 +64,16 @@
           </router-link>
         </li>
       </ul>
+      <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+          <router-link to="/bankbalance" class="nav-link">
+            <i class="nav-icon fas fa-landmark"></i>
+            <p>
+              Bank Balance
+            </p>
+          </router-link>
+        </li>
+      </ul>
     </li>
   </ul>
 </template>
