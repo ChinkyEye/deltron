@@ -49,8 +49,10 @@ Route::group(["middleware" => 'admin'], function(){
 
     Route::get('/home/clientlist', 'Admin\ClientListController@index');
     Route::resource('/home/bankbalance','Admin\BankBalanceController');
+    Route::get('/home/bankbalance/status/{id}/{status}', 'Admin\BankBalanceController@status');
 
-
+    Route::resource('/home/incomeexpenditure','Admin\IncomeExpenditureController');
+    Route::get('/home/incomeexpenditure/status/{id}/{status}', 'Admin\IncomeExpenditureController@status');
 
     //report
     Route::get('/home/report','Admin\Report\HomeController@loadDashboard');

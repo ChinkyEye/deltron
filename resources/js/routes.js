@@ -15,7 +15,7 @@ import Kista from './components/admin/kista/List.vue'
 import Agent from './components/admin/agent/List.vue'
 import ClientList from './components/admin/clientlist/List.vue'
 import BankBalance from './components/admin/bankbalance/List.vue'
-
+import IncomeExpenditureList from './components/admin/incomeexpenditure/List.vue'
 
 import TpnpReport from './components/admin/report/tpnp/List.vue'
 import TpnplReport from './components/admin/report/tpnpl/List.vue'
@@ -130,6 +130,10 @@ export const routes = [
 	{
 		path:'/bankbalance',
 		component: BankBalance
+	},
+	{
+		path:'/incomeexpenditurelist',
+		component: IncomeExpenditureList
 	},
 
 ]

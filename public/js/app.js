@@ -3025,6 +3025,190 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/PaginationComponent.vue */ "./resources/js/components/PaginationComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "List",
+  components: {
+    pagination: _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      pagination: {
+        'current_page': 1
+      },
+      search: ''
+    };
+  },
+  mounted: function mounted() {
+    this.fetchPosts();
+  },
+  computed: {
+    getAllIncomeExpenditure: function getAllIncomeExpenditure() {
+      this.$Progress.start();
+      var avar = this.$store.getters.getIncomeExpenditure;
+      if (avar.length == 2) this.pagination = avar[1];
+      this.$Progress.finish();
+      return avar[0];
+    }
+  },
+  methods: {
+    fetchPosts: function fetchPosts() {
+      this.$Progress.start();
+      this.$store.dispatch("allIncomeExpenditure", [this.pagination.current_page]);
+      this.$Progress.finish();
+    },
+    IncomeExpenseStatus: function IncomeExpenseStatus(clkid, show) {
+      var _this = this;
+
+      axios.get('/home/incomeexpenditure/status/' + clkid + '/' + show).then(function () {
+        _this.$store.dispatch("allIncomeExpenditure", [0, 0]);
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Status changed successfully'
+        });
+      })["catch"](function () {});
+    },
+    colorchange: function colorchange(id) {
+      return {
+        'table-danger': !id,
+        'table-default': id
+      };
+    },
+    deleteIncomeExpenditure: function deleteIncomeExpenditure(id) {
+      var that = this;
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        buttonsStyling: true
+      }).then(function (isConfirm) {
+        if (isConfirm.value === true) {
+          axios["delete"]('/home/incomeexpenditure/' + id).then(function (response) {
+            Toast.fire({
+              icon: 'success',
+              title: 'Data Deleted successfully'
+            });
+            that.$store.dispatch("allIncomeExpenditure", [0, 0]);
+          })["catch"](function (response) {
+            Toast.fire({
+              icon: 'error',
+              title: 'Something went wrong'
+            });
+          });
+        } else {
+          Toast.fire({
+            icon: 'error',
+            title: 'Setting not Deleted'
+          });
+        }
+      });
+    },
+    searchSetting: function searchSetting() {
+      this.fetchPosts();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/kista/List.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/kista/List.vue?vue&type=script&lang=js& ***!
@@ -90633,6 +90817,36 @@ var render = function () {
               [
                 _c(
                   "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { to: "/incomeexpenditurelist" },
+                  },
+                  [
+                    _c("i", { staticClass: "nav-icon fas fa-comments-dollar" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n              Income and Expenditure\n            "
+                      ),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "nav nav-treeview", staticStyle: { display: "none" } },
+          [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
                   { staticClass: "nav-link", attrs: { to: "/bankbalance" } },
                   [
                     _c("i", { staticClass: "nav-icon fas fa-landmark" }),
@@ -91426,6 +91640,307 @@ var staticRenderFns = [
         _c("th", [_vm._v("Phone")]),
         _vm._v(" "),
         _c("th", [_vm._v("Agent")]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=template&id=0ca97ffc&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=template&id=0ca97ffc& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c(
+                "li",
+                { staticClass: "breadcrumb-item" },
+                [_c("router-link", { attrs: { to: "/#" } }, [_vm._v("Home")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Income-Expense"),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("section", { staticClass: "col-lg-12 connectedSortable" }, [
+            _c("div", { staticClass: "card card-info card-outline" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  { staticClass: "table-responsive" },
+                  [
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-bordered table-hover table-sm m-0",
+                      },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          { staticClass: "text-center" },
+                          _vm._l(
+                            _vm.getAllIncomeExpenditure,
+                            function (data, index) {
+                              return _c(
+                                "tr",
+                                {
+                                  key: data.id,
+                                  class: _vm.colorchange(data.is_active),
+                                },
+                                [
+                                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                                  _vm._v(" "),
+                                  data.type == "Expenditure"
+                                    ? _c("td", [
+                                        _vm._v(_vm._s(data.type) + "("),
+                                        data.expenditure_type == "1"
+                                          ? _c("span", [_vm._v("Direct")])
+                                          : _c("span", [_vm._v("Indirect")]),
+                                        _vm._v(")\n                      "),
+                                      ])
+                                    : _c("td", [_vm._v(_vm._s(data.type))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(data.topic))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(data.amount))]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(data.get_lucky_draw.name) +
+                                        " | " +
+                                        _vm._s(data.get_kista.name)
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(data.description))]),
+                                  _vm._v(" "),
+                                  data.is_active == "0"
+                                    ? _c("td", [
+                                        _vm._v("Inactive "),
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: {
+                                              href: "javascript:void(0)",
+                                              title: "Click to Publish",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                $event.preventDefault()
+                                                return _vm.IncomeExpenseStatus(
+                                                  data.id,
+                                                  data.is_active
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "nav-icon fas fa-times-circle text-danger",
+                                            }),
+                                          ]
+                                        ),
+                                      ])
+                                    : _c("td", [
+                                        _vm._v("Active "),
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: {
+                                              href: "javascript:void(0)",
+                                              title: "Click to Unpublish",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                $event.preventDefault()
+                                                return _vm.IncomeExpenseStatus(
+                                                  data.id,
+                                                  data.is_active
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "nav-icon fas fa-check-circle text-success",
+                                            }),
+                                          ]
+                                        ),
+                                      ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "\n                        " +
+                                        _vm._s(data.date_np) +
+                                        " \n                        "
+                                    ),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "badge badge-warning text-danger",
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm._f("formatDate")(
+                                              data.created_at
+                                            )
+                                          )
+                                        ),
+                                      ]
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(_vm._s(data.get_user_name.name)),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    [
+                                      _c(
+                                        "router-link",
+                                        {
+                                          staticClass:
+                                            "btn btn-xs btn-outline-info",
+                                          attrs: {
+                                            to:
+                                              "/incomeexpenditure/" +
+                                              data.id +
+                                              "/edit",
+                                          },
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-pencil-alt",
+                                            attrs: { title: "Click to edit" },
+                                          }),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "btn btn-xs btn-outline-danger",
+                                          attrs: { href: "" },
+                                          on: {
+                                            click: function ($event) {
+                                              $event.preventDefault()
+                                              return _vm.deleteIncomeExpenditure(
+                                                data.id
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-trash-alt",
+                                            attrs: { title: "Click to delete" },
+                                          }),
+                                        ]
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ]
+                              )
+                            }
+                          ),
+                          0
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.pagination.last_page > 1
+                      ? _c("pagination", {
+                          attrs: { pagination: _vm.pagination, offset: 5 },
+                          on: { paginate: _vm.fetchPosts },
+                        })
+                      : _vm._e(),
+                  ],
+                  1
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-6" }, [
+      _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+        _vm._v("Income/Expenditure List"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "table-primary text-center" }, [
+      _c("tr", [
+        _c("th", { attrs: { width: "10" } }, [_vm._v("SN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Topic")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Info")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created At")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created By")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")]),
       ]),
     ])
   },
@@ -115178,6 +115693,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/incomeexpenditure/List.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/admin/incomeexpenditure/List.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _List_vue_vue_type_template_id_0ca97ffc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./List.vue?vue&type=template&id=0ca97ffc& */ "./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=template&id=0ca97ffc&");
+/* harmony import */ var _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _List_vue_vue_type_template_id_0ca97ffc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _List_vue_vue_type_template_id_0ca97ffc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/incomeexpenditure/List.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=template&id=0ca97ffc&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=template&id=0ca97ffc& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_0ca97ffc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=template&id=0ca97ffc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/incomeexpenditure/List.vue?vue&type=template&id=0ca97ffc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_0ca97ffc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_0ca97ffc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/kista/List.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/admin/kista/List.vue ***!
@@ -116441,15 +117025,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_agent_List_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/admin/agent/List.vue */ "./resources/js/components/admin/agent/List.vue");
 /* harmony import */ var _components_admin_clientlist_List_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/admin/clientlist/List.vue */ "./resources/js/components/admin/clientlist/List.vue");
 /* harmony import */ var _components_admin_bankbalance_List_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/admin/bankbalance/List.vue */ "./resources/js/components/admin/bankbalance/List.vue");
-/* harmony import */ var _components_admin_report_tpnp_List_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/admin/report/tpnp/List.vue */ "./resources/js/components/admin/report/tpnp/List.vue");
-/* harmony import */ var _components_admin_report_tpnpl_List_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/admin/report/tpnpl/List.vue */ "./resources/js/components/admin/report/tpnpl/List.vue");
-/* harmony import */ var _components_admin_report_agent_List_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/admin/report/agent/List.vue */ "./resources/js/components/admin/report/agent/List.vue");
-/* harmony import */ var _components_admin_report_purchase_List_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/admin/report/purchase/List.vue */ "./resources/js/components/admin/report/purchase/List.vue");
-/* harmony import */ var _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/admin/report/incomeexpenditure/List.vue */ "./resources/js/components/admin/report/incomeexpenditure/List.vue");
-/* harmony import */ var _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/admin/report/expenditure/List.vue */ "./resources/js/components/admin/report/expenditure/List.vue");
-/* harmony import */ var _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/admin/report/record/List.vue */ "./resources/js/components/admin/report/record/List.vue");
-/* harmony import */ var _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/admin/report/lotteryprize/List.vue */ "./resources/js/components/admin/report/lotteryprize/List.vue");
-/* harmony import */ var _components_admin_report_member_List_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/admin/report/member/List.vue */ "./resources/js/components/admin/report/member/List.vue");
+/* harmony import */ var _components_admin_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/admin/incomeexpenditure/List.vue */ "./resources/js/components/admin/incomeexpenditure/List.vue");
+/* harmony import */ var _components_admin_report_tpnp_List_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/admin/report/tpnp/List.vue */ "./resources/js/components/admin/report/tpnp/List.vue");
+/* harmony import */ var _components_admin_report_tpnpl_List_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/admin/report/tpnpl/List.vue */ "./resources/js/components/admin/report/tpnpl/List.vue");
+/* harmony import */ var _components_admin_report_agent_List_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/admin/report/agent/List.vue */ "./resources/js/components/admin/report/agent/List.vue");
+/* harmony import */ var _components_admin_report_purchase_List_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/admin/report/purchase/List.vue */ "./resources/js/components/admin/report/purchase/List.vue");
+/* harmony import */ var _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/admin/report/incomeexpenditure/List.vue */ "./resources/js/components/admin/report/incomeexpenditure/List.vue");
+/* harmony import */ var _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/admin/report/expenditure/List.vue */ "./resources/js/components/admin/report/expenditure/List.vue");
+/* harmony import */ var _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/admin/report/record/List.vue */ "./resources/js/components/admin/report/record/List.vue");
+/* harmony import */ var _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/admin/report/lotteryprize/List.vue */ "./resources/js/components/admin/report/lotteryprize/List.vue");
+/* harmony import */ var _components_admin_report_member_List_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/admin/report/member/List.vue */ "./resources/js/components/admin/report/member/List.vue");
 // dashboard
  // manager component
 
@@ -116457,6 +117042,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  //
+
 
 
 
@@ -116513,55 +117099,55 @@ var routes = [// dashboard
   component: _components_admin_report_List_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
   path: '/report/tpnp',
-  component: _components_admin_report_tpnp_List_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+  component: _components_admin_report_tpnp_List_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
   path: '/report/tpnpl',
-  component: _components_admin_report_tpnpl_List_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
+  component: _components_admin_report_tpnpl_List_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
   path: '/report/agent',
-  component: _components_admin_report_agent_List_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
+  component: _components_admin_report_agent_List_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
   path: '/report/purchase',
-  component: _components_admin_report_purchase_List_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
+  component: _components_admin_report_purchase_List_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
   path: '/report/incomeexpenditure',
-  component: _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
+  component: _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
   path: '/report/expenditure',
-  component: _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
+  component: _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
   path: '/report/record',
-  component: _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
+  component: _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_19__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
   path: '/report/lotteryprize',
-  component: _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_19__["default"],
+  component: _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_20__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
   path: '/report/member',
-  component: _components_admin_report_member_List_vue__WEBPACK_IMPORTED_MODULE_20__["default"],
+  component: _components_admin_report_member_List_vue__WEBPACK_IMPORTED_MODULE_21__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
@@ -116571,6 +117157,9 @@ var routes = [// dashboard
 }, {
   path: '/bankbalance',
   component: _components_admin_bankbalance_List_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+}, {
+  path: '/incomeexpenditurelist',
+  component: _components_admin_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
 }];
 
 /***/ }),
@@ -116608,7 +117197,8 @@ __webpack_require__.r(__webpack_exports__);
     kista: [],
     agent: [],
     clientlist: [],
-    bankbalance: []
+    bankbalance: [],
+    incomeexpenditure: []
   },
   getters: {
     getDashboard: function getDashboard(state) {
@@ -116679,6 +117269,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getBankBalance: function getBankBalance(state) {
       return state.bankbalance;
+    },
+    getIncomeExpenditure: function getIncomeExpenditure(state) {
+      return state.incomeexpenditure;
     }
   },
   actions: {
@@ -116800,6 +117393,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/home/bankbalance/" + "?page=" + params[0]).then(function (response) {
         context.commit('bankbalances', [response.data.bankbalances.data, response.data.pagination]);
       });
+    },
+    allIncomeExpenditure: function allIncomeExpenditure(context, params) {
+      axios.get("/home/incomeexpenditure/" + "?page=" + params[0]).then(function (response) {
+        context.commit('incomeexpenditures', [response.data.incomeexpenditures.data, response.data.pagination]);
+      });
     }
   },
   mutations: {
@@ -116871,6 +117469,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     bankbalances: function bankbalances(state, data) {
       return state.bankbalance = data;
+    },
+    incomeexpenditures: function incomeexpenditures(state, data) {
+      return state.incomeexpenditure = data;
     }
   }
 });

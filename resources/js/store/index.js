@@ -23,7 +23,7 @@ export default{
 		agent:[],
 		clientlist:[],
 		bankbalance:[],
-
+		incomeexpenditure:[],
 
 	},
 	getters:{
@@ -95,6 +95,9 @@ export default{
 		},
 		getBankBalance(state){
 			return state.bankbalance
+		},
+		getIncomeExpenditure(state){
+			return state.incomeexpenditure
 		},
 		
 	},
@@ -291,6 +294,12 @@ export default{
 					context.commit('bankbalances', [response.data.bankbalances.data,response.data.pagination])
 				})
 		},
+		allIncomeExpenditure(context, params){
+			axios.get("/home/incomeexpenditure/"+"?page="+params[0])
+				.then((response)=>{
+					context.commit('incomeexpenditures', [response.data.incomeexpenditures.data,response.data.pagination])
+				})
+		},
 		
 	},
 	mutations:{
@@ -362,6 +371,9 @@ export default{
 		},
 		bankbalances(state, data){
 			return state.bankbalance = data
+		},
+		incomeexpenditures(state, data){
+			return state.incomeexpenditure = data
 		},
 		
 	}

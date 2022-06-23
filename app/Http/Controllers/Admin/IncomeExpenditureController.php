@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\BankBalance;
+use App\IncomeExpenditure;
 use Auth;
 use Response;
 
-class BankBalanceController extends Controller
+class IncomeExpenditureController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class BankBalanceController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = BankBalance::orderBy('id','DESC');
+        $posts = IncomeExpenditure::orderBy('id','DESC');
         $posts = $posts->with('getKista','getLuckyDraw','getUserName')->paginate(25);
         $response = [
             'pagination' => [
@@ -28,7 +28,7 @@ class BankBalanceController extends Controller
                 'from' => $posts->firstItem(),
                 'to' => $posts->lastItem()
             ],
-            'bankbalances' => $posts
+            'incomeexpenditures' => $posts
         ];
         return response()->json($response);
     }
@@ -96,14 +96,13 @@ class BankBalanceController extends Controller
      */
     public function destroy($id)
     {
-        $bankbalances = BankBalance::findOrFail($id);
-        $bankbalances->delete();
-       return ['message'=>'ok'];
+        $incomeexpenses = IncomeExpenditure::findOrFail($id);
+        $incomeexpenses->delete();
+        return ['message'=>'ok'];
     }
-
     public function status($id, $avi){
-      $user = BankBalance::findOrFail($id);
-      $user->is_active = !$avi;
-      $user->save();
+        $user = IncomeExpenditure::findOrFail($id);
+        $user->is_active = !$avi;
+        $user->save();
     }
 }
