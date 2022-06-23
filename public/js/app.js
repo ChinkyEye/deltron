@@ -3116,7 +3116,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
@@ -3196,7 +3195,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: 'error',
-            title: 'Setting not Deleted'
+            title: 'Data not Deleted'
           });
         }
       });
@@ -91831,54 +91830,30 @@ var render = function () {
                                     _vm._v(_vm._s(data.get_user_name.name)),
                                   ]),
                                   _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    [
-                                      _c(
-                                        "router-link",
-                                        {
-                                          staticClass:
-                                            "btn btn-xs btn-outline-info",
-                                          attrs: {
-                                            to:
-                                              "/incomeexpenditure/" +
-                                              data.id +
-                                              "/edit",
+                                  _c("td", [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "btn btn-xs btn-outline-danger",
+                                        attrs: { href: "" },
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.deleteIncomeExpenditure(
+                                              data.id
+                                            )
                                           },
                                         },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-pencil-alt",
-                                            attrs: { title: "Click to edit" },
-                                          }),
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "a",
-                                        {
-                                          staticClass:
-                                            "btn btn-xs btn-outline-danger",
-                                          attrs: { href: "" },
-                                          on: {
-                                            click: function ($event) {
-                                              $event.preventDefault()
-                                              return _vm.deleteIncomeExpenditure(
-                                                data.id
-                                              )
-                                            },
-                                          },
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-trash-alt",
-                                            attrs: { title: "Click to delete" },
-                                          }),
-                                        ]
-                                      ),
-                                    ],
-                                    1
-                                  ),
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fas fa-trash-alt",
+                                          attrs: { title: "Click to delete" },
+                                        }),
+                                      ]
+                                    ),
+                                  ]),
                                 ]
                               )
                             }
