@@ -84,6 +84,26 @@
           </router-link>
         </li>
       </ul>
+      <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+          <router-link to="/record" class="nav-link">
+            <i class="nav-icon fa fa-file"></i>
+            <p>
+              Record
+            </p>
+          </router-link>
+        </li>
+      </ul>
+      <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+          <router-link to="/purchase" class="nav-link">
+            <i class="nav-icon fas fa-circle"></i>
+            <p>
+              Purchase
+            </p>
+          </router-link>
+        </li>
+      </ul>
     </li>
   </ul>
 </template>

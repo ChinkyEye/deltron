@@ -54,6 +54,14 @@ Route::group(["middleware" => 'admin'], function(){
     Route::resource('/home/incomeexpenditure','Admin\IncomeExpenditureController');
     Route::get('/home/incomeexpenditure/status/{id}/{status}', 'Admin\IncomeExpenditureController@status');
 
+    Route::resource('/home/record','Admin\RecordController');
+    Route::get('/home/record/status/{id}/{status}', 'Admin\RecordController@status');
+
+    Route::resource('/home/purchase','Admin\PurchaseController');
+    Route::get('/home/purchase/status/{id}/{status}', 'Admin\PurchaseController@status');
+
+
+
     //report
     Route::get('/home/report','Admin\Report\HomeController@loadDashboard');
     Route::get('/home/report/tpnp','Admin\Report\TpnpController@tpnpreport');

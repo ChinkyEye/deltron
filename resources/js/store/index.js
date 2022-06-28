@@ -24,6 +24,8 @@ export default{
 		clientlist:[],
 		bankbalance:[],
 		incomeexpenditure:[],
+		record:[],
+		purchase:[],
 
 	},
 	getters:{
@@ -98,6 +100,12 @@ export default{
 		},
 		getIncomeExpenditure(state){
 			return state.incomeexpenditure
+		},
+		getRecord(state){
+			return state.record
+		},
+		getPurchase(state){
+			return state.purchase
 		},
 		
 	},
@@ -300,6 +308,18 @@ export default{
 					context.commit('incomeexpenditures', [response.data.incomeexpenditures.data,response.data.pagination])
 				})
 		},
+		allRecord(context, params){
+			axios.get("/home/record/"+"?page="+params[0])
+				.then((response)=>{
+					context.commit('records', [response.data.records.data,response.data.pagination])
+				})
+		},
+		allPurchase(context, params){
+			axios.get("/home/purchase/"+"?page="+params[0])
+				.then((response)=>{
+					context.commit('purchases', [response.data.purchases.data,response.data.pagination])
+				})
+		},
 		
 	},
 	mutations:{
@@ -374,6 +394,12 @@ export default{
 		},
 		incomeexpenditures(state, data){
 			return state.incomeexpenditure = data
+		},
+		records(state, data){
+			return state.record = data
+		},
+		purchases(state, data){
+			return state.purchase = data
 		},
 		
 	}

@@ -19,6 +19,12 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-lg-12 my-4">
+        <h1 class="text-center text-success">Welcome to Admin Dashboard</h1>
+      </div>
+    </div>
     
 
         <!-- <div class="row">
