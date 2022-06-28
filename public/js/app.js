@@ -94977,6 +94977,8 @@ var render = function () {
                 _c("router-link", { attrs: { to: "/report/member" } }, [
                   _c("div", { staticClass: "small-box bg-success" }, [
                     _c("div", { staticClass: "inner" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.member_count))]),
+                      _vm._v(" "),
                       _c("p", [_vm._v("Member Report")]),
                     ]),
                   ]),

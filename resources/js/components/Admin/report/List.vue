@@ -103,7 +103,7 @@
         <router-link to="/report/member">
           <div class="small-box bg-success">
             <div class="inner">
-              <!-- <h3>{{member_count}}</h3> -->
+              <h3>{{member_count}}</h3>
               <p>Member Report</p>
             </div>
           </div>
