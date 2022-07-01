@@ -96848,18 +96848,14 @@ var render = function () {
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
           _c("section", { staticClass: "col-lg-12 connectedSortable" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary rounded-0",
-                    on: { click: _vm.print },
-                  },
-                  [_c("i", { staticClass: "fas fa-print" }, [_vm._v("Print")])]
-                ),
-              ]),
-            ]),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary rounded-0",
+                on: { click: _vm.print },
+              },
+              [_c("i", { staticClass: "fas fa-print" }, [_vm._v("Print")])]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "card card-info card-outline" }, [
               _c("div", { staticClass: "card-header" }, [
@@ -97453,18 +97449,14 @@ var render = function () {
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
           _c("section", { staticClass: "col-lg-12 connectedSortable" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary rounded-0",
-                    on: { click: _vm.print },
-                  },
-                  [_c("i", { staticClass: "fas fa-print" }, [_vm._v("Print")])]
-                ),
-              ]),
-            ]),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary rounded-0",
+                on: { click: _vm.print },
+              },
+              [_c("i", { staticClass: "fas fa-print" }, [_vm._v("Print")])]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "card card-info card-outline" }, [
               _c("div", { staticClass: "card-header" }, [

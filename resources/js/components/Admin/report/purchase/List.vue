@@ -23,12 +23,12 @@
           <!-- Left col -->
           <section class="col-lg-12 connectedSortable">
            <!-- main page load here -->
-           <div class="row">
-            <div>
+           <!-- <div class="row"> -->
+            <!-- <div> -->
               <button @click="print" class="btn btn-primary rounded-0"><i class="fas fa-print">Print</i></button>
               <!-- <button @click.prevent="purchaseReportExport()" class="btn btn-success rounded-0"><i class="fas fa-print" title="Export To Excel"></i> Excel</button> -->
-            </div>
-          </div>
+            <!-- </div> -->
+          <!-- </div> -->
           <div class="card card-info card-outline">
             <div class="card-header">
               <div class="row">
