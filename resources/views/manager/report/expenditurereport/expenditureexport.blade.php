@@ -23,6 +23,7 @@
               <th>Info</th>
               <th>Expenditure Topic</th>
               <th>Amount</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +33,7 @@
               <td>{{$data->getLuckyDraw->name}} | {{$data->getKista->name}}</td>
               <td>{{$data->topic}}</td>
               <td>{{$data->amount}}</td>
+              <td>{{$data->date_np}}</td>
             </tr>
             @endforeach
           </tbody>

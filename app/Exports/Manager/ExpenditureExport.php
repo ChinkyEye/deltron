@@ -146,44 +146,55 @@ class ExpenditureExport implements FromView,WithEvents,WithColumnWidths
                       ->getPageSetup()
                       ->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
                 // header
-                $event->sheet->mergeCells('A1:C1');
+                $event->sheet->mergeCells('A1:D1');
                 $event->sheet
-                      ->getStyle('A1:C1')
+                      ->getStyle('A1:D1')
                       ->getFont()
                       ->setBold(true)
                       ->setSize(16)
                       ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
                 $event->sheet
-                      ->getStyle('A1:C1')
+                      ->getStyle('A1:D1')
                       ->getAlignment()
                       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-                $event->sheet->mergeCells('A2:C2');
+                $event->sheet->mergeCells('A2:D2');
                 $event->sheet
-                      ->getStyle('A2:C2')
+                      ->getStyle('A2:D2')
                       ->getFont()
                       ->setBold(true)
                       ->setSize(14)
                       ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
                 $event->sheet
-                      ->getStyle('A2:C2')
+                      ->getStyle('A2:D2')
                       ->getAlignment()
                       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-                $event->sheet->mergeCells('A3:C3');
+                $event->sheet->mergeCells('A3:D3');
                 $event->sheet
-                      ->getStyle('A3:C3')
+                      ->getStyle('A3:D3')
                       ->getFont()
                       ->setBold(true)
                       ->setSize(10)
                       ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
                 $event->sheet
-                      ->getStyle('A3:C3')
+                      ->getStyle('A3:D3')
                       ->getAlignment()
                       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                // $event->sheet->mergeCells('A4:D4');
+                // $event->sheet
+                //       ->getStyle('A4:D4')
+                //       ->getFont()
+                //       ->setBold(true)
+                //       ->setSize(10)
+                //       ->setColor( new \PhpOffice\PhpSpreadsheet\Style\Color( \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_DARKGREEN ) );
+                // $event->sheet
+                //       ->getStyle('A4:D4')
+                //       ->getAlignment()
+                //       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);      
 
                 // content
-                $event->sheet->getStyle('A4:C4')->applyFromArray([
+                $event->sheet->getStyle('A4:D4')->applyFromArray([
                     'font' => [
                         'bold' => True,
                         'size' => 12,
@@ -200,7 +211,7 @@ class ExpenditureExport implements FromView,WithEvents,WithColumnWidths
         return [
             'A' => 25,
             'B' => 35,
-            // 'C' => 35,            
+            'D' => 25,            
         ];
     }
 }
