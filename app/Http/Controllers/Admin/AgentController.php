@@ -40,7 +40,7 @@ class AgentController extends Controller
 
     public function index(Request $request)
     {
-        $posts = Agent::orderBy('id','DESC');
+        $posts = Agent::orderBy('id','DESC')->where('created_by',$request->managerid);
         if(empty($request->search))
         {            
             $posts = $posts;

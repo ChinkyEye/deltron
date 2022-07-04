@@ -14,9 +14,10 @@ class KistaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Kista::orderBy('id','DESC');
+        $posts = Kista::orderBy('id','DESC')
+                        ->where('created_by',$request->managerid);
         if(empty($request->search))
         {            
             $posts = $posts;

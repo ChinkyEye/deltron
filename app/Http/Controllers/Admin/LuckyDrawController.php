@@ -17,7 +17,8 @@ class LuckyDrawController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = LuckyDraw::orderBy('id','DESC');
+        $posts = LuckyDraw::orderBy('id','DESC')
+                            ->where('created_by',$request->managerid);
         if(empty($request->search))
         {            
             $posts = $posts;

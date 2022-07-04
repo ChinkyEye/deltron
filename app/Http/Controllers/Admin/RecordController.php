@@ -17,7 +17,7 @@ class RecordController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Record::orderBy('id','DESC');
+        $posts = Record::orderBy('id','DESC')->where('created_by',$request->managerid);
         $posts = $posts->with('getKista','getLuckyDraw','getUserName')->paginate(25);
         $response = [
             'pagination' => [

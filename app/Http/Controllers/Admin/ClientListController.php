@@ -17,7 +17,8 @@ class ClientListController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Client::orderBy('id','DESC');
+        $posts = Client::orderBy('id','DESC')
+                        ->where('created_by',$request->managerid);
         if(empty($request->agent_id))
         {            
             $posts = $posts;

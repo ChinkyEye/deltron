@@ -17,7 +17,7 @@ class IncomeExpenditureController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = IncomeExpenditure::orderBy('id','DESC');
+        $posts = IncomeExpenditure::orderBy('id','DESC')->where('created_by', $request->managerid);
         $posts = $posts->with('getKista','getLuckyDraw','getUserName')->paginate(25);
         $response = [
             'pagination' => [

@@ -105,13 +105,13 @@
     methods:{
       fetchPosts(){
         this.$Progress.start()
-        this.$store.dispatch("allRecord", [this.pagination.current_page]);
+        this.$store.dispatch("allRecord", [this.pagination.current_page,this.$route.params.managerid]);
         this.$Progress.finish()
       },
       RecordStatus(clkid, show){
           axios.get('/home/record/status/'+clkid+'/'+show)
           .then(()=>{
-              this.$store.dispatch("allRecord", [0,0]);
+              this.$store.dispatch("allRecord", [0,this.$route.params.managerid]);
               Toast.fire({
                   icon: 'success',
                   title: 'Status changed successfully'

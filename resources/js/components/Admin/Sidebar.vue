@@ -20,11 +20,19 @@
       <router-link to="/overview" class="nav-link">
         <i class="nav-icon fas fa-eye"></i>
         <p>
-          Overview
+          Overview Report
         </p>
       </router-link>
     </li>
     <li class="nav-item">
+      <router-link to="/detail" class="nav-link">
+        <i class="nav-icon fas fa-eye"></i>
+        <p>
+          Detail
+        </p>
+      </router-link>
+    </li>
+    <!-- <li class="nav-item">
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-copy"></i>
         <p>
@@ -112,7 +120,7 @@
           </router-link>
         </li>
       </ul>
-    </li>
+    </li> -->
   </ul>
 </template>
 

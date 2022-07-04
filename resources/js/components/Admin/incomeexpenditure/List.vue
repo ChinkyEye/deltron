@@ -111,13 +111,13 @@
     methods:{
       fetchPosts(){
         this.$Progress.start()
-        this.$store.dispatch("allIncomeExpenditure", [this.pagination.current_page]);
+        this.$store.dispatch("allIncomeExpenditure", [this.pagination.current_page,this.$route.params.managerid]);
         this.$Progress.finish()
       },
       IncomeExpenseStatus(clkid, show){
           axios.get('/home/incomeexpenditure/status/'+clkid+'/'+show)
           .then(()=>{
-              this.$store.dispatch("allIncomeExpenditure", [0,0]);
+              this.$store.dispatch("allIncomeExpenditure", [0,this.$route.params.managerid]);
               Toast.fire({
                   icon: 'success',
                   title: 'Status changed successfully'

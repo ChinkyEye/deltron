@@ -20,6 +20,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
+
           <!-- Left col -->
           <section class="col-lg-12 connectedSortable">
             <!-- main page load here-->
@@ -49,6 +50,7 @@
                         </td>
                         <td>{{data.get_user_name.name}}</td>                        
                         <td>
+                          <router-link :to="`/luckydraw/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i></router-link> 
                           <a href="" @click.prevent="deleteLuckyDraw(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
                         </td>
                       </tr>
@@ -100,13 +102,13 @@
 	  methods:{
       fetchPosts(){
         this.$Progress.start()
-        this.$store.dispatch("allLuckyDraw", [this.pagination.current_page,this.search]);
+        this.$store.dispatch("allLuckyDraw", [this.pagination.current_page,this.search,this.$route.params.managerid]);
         this.$Progress.finish()
       },
       LuckyStatus(clkid, show){
           axios.get('/home/luckydraw/status/'+clkid+'/'+show)
           .then(()=>{
-              this.$store.dispatch("allLuckyDraw", [0,0]);
+              this.$store.dispatch("allLuckyDraw", [0,0,this.$route.params.managerid]);
               Toast.fire({
                   icon: 'success',
                   title: 'Status changed successfully'

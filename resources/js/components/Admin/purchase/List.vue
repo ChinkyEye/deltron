@@ -104,13 +104,13 @@
 	  methods:{
       fetchPosts(){
         this.$Progress.start()
-        this.$store.dispatch("allPurchase", [this.pagination.current_page]);
+        this.$store.dispatch("allPurchase", [this.pagination.current_page,this.$route.params.managerid]);
         this.$Progress.finish()
       },
       PurchaseStatus(clkid, show){
           axios.get('/home/purchase/status/'+clkid+'/'+show)
           .then(()=>{
-              this.$store.dispatch("allPurchase", [0,0]);
+              this.$store.dispatch("allPurchase", [0,this.$route.params.managerid]);
               Toast.fire({
                   icon: 'success',
                   title: 'Status changed successfully'

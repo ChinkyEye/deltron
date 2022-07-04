@@ -104,13 +104,13 @@
 	  methods:{
       fetchPosts(){
         this.$Progress.start()
-        this.$store.dispatch("allKista", [this.pagination.current_page,this.search]);
+        this.$store.dispatch("allKista", [this.pagination.current_page,this.search,this.$route.params.managerid]);
         this.$Progress.finish()
       },
       KistaStatus(clkid, show){
           axios.get('/home/kista/status/'+clkid+'/'+show)
           .then(()=>{
-              this.$store.dispatch("allKista", [0,0]);
+              this.$store.dispatch("allKista", [0,0,this.$route.params.managerid]);
               Toast.fire({
                   icon: 'success',
                   title: 'Status changed successfully'

@@ -123,15 +123,15 @@
       fetchPosts(){
         this.$Progress.start()
         this.$store.dispatch("allClientList", [this.agent_id]);
-        this.$store.dispatch("allSelectAgent", [this.kista_id]);
+        this.$store.dispatch("allSelectAgent", [this.$route.params.managerid]);
         this.$Progress.finish()
       },
       agentChange(){
-         this.$store.dispatch("allSelectAgent", [this.kista_id]);
+         this.$store.dispatch("allSelectAgent", [this.$route.params.managerid]);
       },
       savedata()
       {
-        this.$store.dispatch("allClientList", [this.agent_id,this.pagination.current_page]);
+        this.$store.dispatch("allClientList", [this.agent_id,this.pagination.current_page,this.$route.params.managerid]);
         this.click = true; 
       },
       searchSetting(){

@@ -16,7 +16,7 @@ class PurchaseController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Purchase::orderBy('id','DESC');
+        $posts = Purchase::orderBy('id','DESC')->where('created_by',$request->managerid);
         $posts = $posts->paginate(25);
         $response = [
             'pagination' => [

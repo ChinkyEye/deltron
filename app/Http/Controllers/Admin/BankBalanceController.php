@@ -17,7 +17,7 @@ class BankBalanceController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = BankBalance::orderBy('id','DESC');
+        $posts = BankBalance::orderBy('id','DESC')->where('created_by', $request->managerid);
         $posts = $posts->with('getKista','getLuckyDraw','getUserName')->paginate(25);
         $response = [
             'pagination' => [

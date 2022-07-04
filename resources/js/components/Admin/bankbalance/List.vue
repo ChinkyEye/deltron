@@ -107,13 +107,13 @@
     methods:{
       fetchPosts(){
         this.$Progress.start()
-        this.$store.dispatch("allBankBalance", [this.pagination.current_page]);
+        this.$store.dispatch("allBankBalance", [this.pagination.current_page,this.$route.params.managerid]);
         this.$Progress.finish()
       },
       BankBalanceStatus(clkid, show){
           axios.get('/home/bankbalance/status/'+clkid+'/'+show)
           .then(()=>{
-              this.$store.dispatch("allBankBalance", [0,0]);
+              this.$store.dispatch("allBankBalance", [0,this.$route.params.managerid]);
               Toast.fire({
                   icon: 'success',
                   title: 'Status changed successfully'

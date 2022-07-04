@@ -11,6 +11,8 @@ import Revise from './components/admin/revise/List.vue'
 import Report from './components/admin/report/List.vue'
 
 import LuckyDraw from './components/admin/luckydraw/List.vue'
+import LuckyDrawEdit from './components/admin/luckydraw/Edit.vue'
+
 import Kista from './components/admin/kista/List.vue'
 import Agent from './components/admin/agent/List.vue'
 import ClientList from './components/admin/clientlist/List.vue'
@@ -20,6 +22,9 @@ import Record from './components/admin/record/List.vue'
 import Purchase from './components/admin/purchase/List.vue'
 import Overview from './components/admin/overview/List.vue'
 import Viewall from './components/admin/overview/viewall.vue'
+import Detail from './components/admin/detail/List.vue'
+import AllDetail from './components/admin/detail/alldetail.vue'
+
 
 
 
@@ -65,17 +70,21 @@ export const routes = [
 		component: Revise
 	},
 	{
-		path:'/luckydraw',
+		path:'/luckydraw/:managerid',
 		name: 'luckydraw',
 		component:LuckyDraw
 	},
 	{
-		path:'/kista',
+		path:'/luckydraw/:luckydrawid/edit',
+		component: LuckyDrawEdit
+	},
+	{
+		path:'/kista/:managerid',
 		name: 'kista',
 		component:Kista
 	},
 	{
-		path:'/agent',
+		path:'/agent/:managerid',
 		component: Agent
 	},
 	
@@ -130,23 +139,23 @@ export const routes = [
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/clientlist',
+		path:'/clientlist/:managerid',
 		component: ClientList
 	},
 	{
-		path:'/bankbalance',
+		path:'/bankbalance/:managerid',
 		component: BankBalance
 	},
 	{
-		path:'/incomeexpenditurelist',
+		path:'/incomeexpenditurelist/:managerid',
 		component: IncomeExpenditureList
 	},
 	{
-		path:'/record',
+		path:'/record/:managerid',
 		component: Record
 	},
 	{
-		path:'/purchase',
+		path:'/purchase/:managerid',
 		component:Purchase
 	},
 	{
@@ -156,6 +165,14 @@ export const routes = [
 	{
 		path:'/overview/:managerid/viewall',
 		component: Viewall
+	},
+	{
+		path:'/detail',
+		component:Detail
+	},
+	{
+		path:'/detail/:managerid/alldetail',
+		component: AllDetail
 	},
 
 ]

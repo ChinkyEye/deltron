@@ -273,49 +273,50 @@ export default{
 				})
 		},
 		allLuckyDraw(context, params){
-			axios.get("/home/luckydraw?page="+params[0]+"&search="+params[1])
+			console.log(params);
+			axios.get("/home/luckydraw?page="+params[0]+"&search="+params[1]+"&managerid="+params[2])
 				.then((response)=>{
 					context.commit('luckydraws', [response.data.luckydraws.data,response.data.pagination])
 				})
 		},
 		allKista(context, params){
-			axios.get("/home/kista?page="+params[0]+"&search="+params[1])
+			axios.get("/home/kista?page="+params[0]+"&search="+params[1]+"&managerid="+params[2])
 				.then((response)=>{
 					context.commit('kistas', [response.data.kistas.data,response.data.pagination])
 				})
 		},
 		allAgent(context, params){
-			axios.get("/home/agent/"+"?page="+params[0]+"&search="+params[1])
+			axios.get("/home/agent/"+"?page="+params[0]+"&search="+params[1]+"&managerid="+params[2])
 				.then((response)=>{
 					context.commit('agents', [response.data.agents.data,response.data.pagination])
 				})
 		},
 		allClientList(context, params){
-			axios.get("/home/clientlist/"+"?agent_id="+params[0]+"&page="+params[1])
+			axios.get("/home/clientlist/"+"?agent_id="+params[0]+"&page="+params[1]+"&managerid="+params[2])
 				.then((response)=>{
 					context.commit('clientlists', [response.data.clientlists.data,response.data.pagination])
 				})
 		},
 		allBankBalance(context, params){
-			axios.get("/home/bankbalance/"+"?page="+params[0])
+			axios.get("/home/bankbalance/"+"?page="+params[0]+"&managerid="+params[1])
 				.then((response)=>{
 					context.commit('bankbalances', [response.data.bankbalances.data,response.data.pagination])
 				})
 		},
 		allIncomeExpenditure(context, params){
-			axios.get("/home/incomeexpenditure/"+"?page="+params[0])
+			axios.get("/home/incomeexpenditure/"+"?page="+params[0]+"&managerid="+params[1])
 				.then((response)=>{
 					context.commit('incomeexpenditures', [response.data.incomeexpenditures.data,response.data.pagination])
 				})
 		},
 		allRecord(context, params){
-			axios.get("/home/record/"+"?page="+params[0])
+			axios.get("/home/record/"+"?page="+params[0]+"&managerid="+params[1])
 				.then((response)=>{
 					context.commit('records', [response.data.records.data,response.data.pagination])
 				})
 		},
 		allPurchase(context, params){
-			axios.get("/home/purchase/"+"?page="+params[0])
+			axios.get("/home/purchase/"+"?page="+params[0]+"&managerid="+params[1])
 				.then((response)=>{
 					context.commit('purchases', [response.data.purchases.data,response.data.pagination])
 				})
