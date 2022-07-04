@@ -18,7 +18,7 @@
     </li>
     <li class="nav-item">
       <router-link to="/overview" class="nav-link">
-        <i class="nav-icon fas fa-eye"></i>
+        <i class="nav-icon fas fa-file"></i>
         <p>
           Overview Report
         </p>

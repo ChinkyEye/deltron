@@ -91795,7 +91795,7 @@ var render = function () {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/overview" } },
             [
-              _c("i", { staticClass: "nav-icon fas fa-eye" }),
+              _c("i", { staticClass: "nav-icon fas fa-file" }),
               _vm._v(" "),
               _c("p", [_vm._v("\n          Overview Report\n        ")]),
             ]
