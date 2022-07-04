@@ -28,33 +28,33 @@ class TpnpController extends Controller
                                 ->where('lottery_status',2)
                                 ->where('kista_id',$request->kistaid)
                                 ->where('luckydraw_id',$request->luckydrawid)
-                                ->where('created_by',$request->managerid)
+                                // ->where('created_by',$request->managerid)
                                 ->count();
         $amount = Detail::orderBy('id','DESC')
                         ->where('lottery_status',2)
                         ->where('kista_id',$request->kistaid)
                         ->where('luckydraw_id',$request->luckydrawid)
-                        ->where('created_by',$request->managerid)
+                        // ->where('created_by',$request->managerid)
                         ->sum('amount');                        
 
         $notplayed_count =  Detail::orderBy('id','DESC')
                                 ->where('lottery_status',1)
                                 ->where('kista_id',$request->kistaid)
                                 ->where('luckydraw_id',$request->luckydrawid)
-                                ->where('created_by',$request->managerid)
+                                // ->where('created_by',$request->managerid)
                                 ->count();
         $amount2 = Detail::orderBy('id','DESC')
                         ->where('lottery_status',1)
                         ->where('kista_id',$request->kistaid)
                         ->where('luckydraw_id',$request->luckydrawid)
-                        ->where('created_by',$request->managerid)
+                        // ->where('created_by',$request->managerid)
                         ->sum('remaining');
 
         $leave_count = Detail::orderBy('id','DESC')
                                 ->where('lottery_status',3)
                                 ->where('kista_id',$request->kistaid)
                                 ->where('luckydraw_id',$request->luckydrawid)
-                                ->where('created_by',$request->managerid)
+                                // ->where('created_by',$request->managerid)
                                 ->count();
                                 // dd($played_count,$amount,$notplayed_count,$amount2,$leave_count);
                                                 
@@ -69,7 +69,6 @@ class TpnpController extends Controller
     }
 
     public function fileExport(Request $request){
-        // dd($request);
         $current_date = date("Y-m-d");
         $filename = 'purchaseReport'.$current_date.'.xlsx';
         return Excel::download(new PurchaseExport($request->start_date, $request->end_date), $filename);

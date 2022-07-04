@@ -34,13 +34,13 @@ class ExpenditureReportController extends Controller
             $expendituretype = 'Indirect';
         }
 
-        $posts = IncomeExpenditure::orderBy('id','DESC');
-                                    // ->where('created_by', Auth::user()->id);
+        $posts = IncomeExpenditure::orderBy('id','DESC')
+                                    ->where('created_by', $request->managerid);
         $total = 0;
-        if($request->managerid)
-        {
-            $posts = $posts->where('created_by',$request->managerid);
-        }
+        // if($request->managerid)
+        // {
+        //     $posts = $posts->where('created_by',$request->managerid);
+        // }
         if($request->has('luckydrawid') && $request->get('luckydrawid')!="")
         {   
            $posts = $posts->where('luckydraw_id', 'LIKE',"%{$request->luckydrawid}%");         

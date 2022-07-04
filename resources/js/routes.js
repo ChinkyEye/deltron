@@ -18,6 +18,8 @@ import BankBalance from './components/admin/bankbalance/List.vue'
 import IncomeExpenditureList from './components/admin/incomeexpenditure/List.vue'
 import Record from './components/admin/record/List.vue'
 import Purchase from './components/admin/purchase/List.vue'
+import Overview from './components/admin/overview/List.vue'
+import Viewall from './components/admin/overview/viewall.vue'
 
 
 
@@ -83,47 +85,47 @@ export const routes = [
 		component:Report
 	},
 	{
-		path:'/report/tpnp',
+		path:'/report/tpnp/:managerid',
 		component: TpnpReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/report/tpnpl',
+		path:'/report/tpnpl/:managerid',
 		component: TpnplReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/report/agent',
+		path:'/report/agent/:managerid',
 		component: AgentReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/report/purchase',
+		path:'/report/purchase/:managerid',
 		component: PurchaseReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/report/incomeexpenditure',
+		path:'/report/incomeexpenditure/:managerid',
 		component: IncomeExpenditureReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/report/expenditure',
+		path:'/report/expenditure/:managerid',
 		component: ExpenditureReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/report/record',
+		path:'/report/record/:managerid',
 		component: RecordReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/report/lotteryprize',
+		path:'/report/lotteryprize/:managerid',
 		component: LotteryPrizeReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
 	{
-		path:'/report/member',
+		path:'/report/member/:managerid',
 		component: MemberReport,
 		meta: { bodyClass: 'sidebar-collapse' },
 	},
@@ -146,6 +148,14 @@ export const routes = [
 	{
 		path:'/purchase',
 		component:Purchase
+	},
+	{
+		path:'/overview',
+		component:Overview
+	},
+	{
+		path:'/overview/:managerid/viewall',
+		component: Viewall
 	},
 
 ]

@@ -124,8 +124,8 @@ export default{
 					context.commit('managers', [response.data.managers.data,response.data.pagination])
 				})
 		},
-		allSelectLuckyDraw(context){
-			axios.get("/home/luckydraw/select/getAllLuckyDraw")
+		allSelectLuckyDraw(context,params){
+			axios.get("/home/luckydraw/select/getAllLuckyDraw"+"?managerid="+params[0])
 				.then((response)=>{
 					// console.log(response.data.selectluckdraws);
 					context.commit('selectluckydraws', [response.data.selectluckdraws])
@@ -144,8 +144,8 @@ export default{
 					context.commit('selectkistas', [response.data.selectkistas])
 				})
 		},
-		allSelectAgent(context, kista_id){
-			axios.get("/home/agent/select/getAllAgent"+ (typeof kista_id=="undefined"?"":"?kista_id=" + kista_id))
+		allSelectAgent(context, manager_id){
+			axios.get("/home/agent/select/getAllAgent"+ (typeof manager_id=="undefined"?"":"?manager_id=" + manager_id))
 				.then((response)=>{
 					context.commit('selectagents', [response.data.selectagents])
 				})
@@ -250,8 +250,8 @@ export default{
 					context.commit('lotteryprizereports', [response.data.lotteryprizereports.data,response.data.pagination,response.data.total])
 				})
 		},
-		allReportDashboard(context){
-			axios.get("/home/report")
+		allReportDashboard(context, params){
+			axios.get("/home/report/"+"?managerid="+params[0])
 				.then((response)=>{
 					context.commit('reportdashboards', [response.data])
 				})

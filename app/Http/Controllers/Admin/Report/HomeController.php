@@ -10,6 +10,7 @@ use App\IncomeExpenditure;
 use App\Record;
 use App\Client;
 use App\Agent;
+use App\User;
 use Auth;
 use Response;
 
@@ -24,25 +25,33 @@ class HomeController extends Controller
     {
         //
     }
-    public function loadDashboard()
+    public function loadDashboard(Request $request)
     {
         $current_date = date("Y-m-d");
         $tpnp_count = Detail::where('is_active','1')
+                            ->where('created_by', $request->managerid)
                             ->count();
         $lotteryprize_count = Detail::where('lottery_prize', '!=' , null)
+                                    ->where('created_by', $request->managerid)
                                     ->count();
         $purchase_count = Purchase::where('is_active','1')
+                                    ->where('created_by', $request->managerid)
                                     ->count();
         $incomeexpenditure_count = IncomeExpenditure::where('is_active','1')
+                                                    ->where('created_by', $request->managerid)
                                                     ->count();
         $expenditure_count = IncomeExpenditure::where('type','Expenditure')
+                                                ->where('created_by', $request->managerid)
                                                 ->where('is_active','1')
                                                 ->count();
         $record_count = Record::where('is_active','1')
+                                ->where('created_by', $request->managerid)
                                 ->count();
         $member_count = Client::where('is_active','1')
+                                ->where('created_by', $request->managerid)
                                 ->count();
         $agent_count = Agent::where('is_active','1')
+                            ->where('created_by', $request->managerid)
                             ->count();                        
         $response = [
            'tpnp_count' => $tpnp_count,
@@ -55,6 +64,14 @@ class HomeController extends Controller
            'agent_count' => $agent_count,
         ];
         return response()->json($response);
+    }
+
+    public function currentmanager($id)
+    {
+        $response = [
+            'currentuser' => User::find($id),
+        ];
+        return $response;
     }
 
     /**

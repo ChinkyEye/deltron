@@ -51,9 +51,9 @@
             <i class="fas fa-th-large"></i>
           </a>
         </li> --}}
-        <li class="nav-item">
+       {{--  <li class="nav-item">
              <router-link :to="{ name: 'report' }" class="nav-link"><i class="fas fa-th-large"></i></router-link>
-        </li>
+        </li> --}}
       </ul>
     </nav>
     <!-- /.navbar -->

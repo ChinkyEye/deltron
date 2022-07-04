@@ -29,7 +29,8 @@ class TpnplController extends Controller
         $luckydraw_name = LuckyDraw::where('id',$request->luckydrawid)->value('name');
         $kista_name = Kista::where('id',$request->kistaid)->value('name');
 
-        $posts = Detail::orderBy('id','DESC')->where('created_by',$request->managerid)
+        $posts = Detail::orderBy('id','DESC')
+                        ->where('created_by',$request->managerid)
 ;
         $total = 0;
         if($request->has('luckydrawid') && $request->get('luckydrawid')!="")

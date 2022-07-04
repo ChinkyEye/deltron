@@ -19,12 +19,13 @@ class LotteryPrizeController extends Controller
     public function index(Request $request)
     {
         $posts = Detail::orderBy('id','DESC')
-                        ->where('lottery_prize','!=','Null');
+                        ->where('lottery_prize','!=','Null')
+                        ->where('created_by',$request->managerid);
         $total = 0;
-        if($request->managerid)
-        {
-            $posts = $posts->where('created_by',$request->managerid);
-        }
+        // if($request->managerid)
+        // {
+        //     $posts = $posts->where('created_by',$request->managerid);
+        // }
         if(empty($request->search))
         {            
             $posts = $posts;

@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark">Purchase Report</h5>
+            <h5 class="m-0 text-dark">Purchase Report ({{this.manager_name}})</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -32,14 +32,14 @@
           <div class="card card-info card-outline">
             <div class="card-header">
               <div class="row">
-                <div class="col-md">
+               <!--  <div class="col-md">
                   <select class="form-control" id="manager_id" v-model="manager_id" name="manager_id" @change="managerChange"> 
                     <option disabled value="">Select one manager</option>
                     <option :value="manager.id" v-for="manager in getAllSelectManager">
                       {{manager.name}}
                     </option>
                   </select>
-                </div>
+                </div> -->
                 <div class="form-group col-md-5">
                   <date-picker mode='range' v-model="date" lang="en" type="date" format="YYYY-MM-dd" v-on:input="dateChange" is-range>
                     <template v-slot="{ inputValue, inputEvents }">
@@ -150,11 +150,16 @@
           auth_address:'',
           to_date:'',
           from_date:'',
+          manager_name:'',
         }
     },
     mounted(){
       this.$Progress.start()
       this.fetchPosts();
+      axios.get(`/currentmanager/${this.$route.params.managerid}`)
+      .then((response)=>{
+        this.manager_name = response.data.currentuser.name;
+      })
       this.$Progress.finish()
     },
     computed:{
@@ -175,7 +180,7 @@
     },
     methods:{
       fetchPosts() {
-        this.$store.dispatch("allSelectManager")
+        // this.$store.dispatch("allSelectManager")
         this.pagechange();
 
       },
@@ -184,7 +189,7 @@
       },
       pagechange(){
         this.$Progress.start()
-        this.$store.dispatch("allPurchaseReport", [this.pagination.current_page,moment(this.date.start).format('YYYY-MM-DD'),moment(this.date.end).format('YYYY-MM-DD'),this.manager_id]);
+        this.$store.dispatch("allPurchaseReport", [this.pagination.current_page,moment(this.date.start).format('YYYY-MM-DD'),moment(this.date.end).format('YYYY-MM-DD'),this.$route.params.managerid]);
         this.$Progress.finish()
       },
       dateChange(){

@@ -135,8 +135,9 @@ class AgentController extends Controller
 
     public function getAllAgent(Request $request)
     {
-        $data_id = $request->kista_id;
+        $data_id = $request->manager_id;
         $posts = Agent::orderBy('id','ASC')
+                        ->where('created_by',$data_id)
                         ->get();
         $response = [
             'selectagents' => $posts

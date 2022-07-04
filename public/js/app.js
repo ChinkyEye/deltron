@@ -4253,6 +4253,293 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/overview/List.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/overview/List.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/PaginationComponent.vue */ "./resources/js/components/PaginationComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "List",
+  components: {
+    pagination: _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      pagination: {
+        'current_page': 1
+      },
+      search: ''
+    };
+  },
+  mounted: function mounted() {
+    this.fetchPosts();
+  },
+  computed: {
+    getAllManager: function getAllManager() {
+      this.$Progress.start();
+      var avar = this.$store.getters.getManager;
+      console.log(avar[0]);
+      if (avar.length == 2) this.pagination = avar[1];
+      this.$Progress.finish();
+      return avar[0];
+    }
+  },
+  methods: {
+    fetchPosts: function fetchPosts() {
+      this.$store.dispatch("allManager", [this.pagination.current_page, 0]);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/overview/viewall.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/overview/viewall.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/PaginationComponent.vue */ "./resources/js/components/PaginationComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "List",
+  components: {
+    pagination: _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      pagination: {
+        'current_page': 1
+      },
+      search: '',
+      url_data: null,
+      manager_name: null,
+      manager_address: null,
+      tpnp_count: '',
+      tpnpl_count: 0,
+      agent_count: 0,
+      lotteryprize_count: 0,
+      purchase_count: 0,
+      incomeexpenditure_count: 0,
+      expenditure_count: 0,
+      record_count: 0,
+      member_count: '',
+      top_item_customer: 0,
+      stock_level_count: 0
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      console.log(response);
+      _this.manager_name = response.data.currentuser.name;
+      _this.manager_address = response.data.currentuser.address;
+    });
+    this.url_data = this.$route.params.managerid;
+  },
+  computed: {
+    getAllManager: function getAllManager() {
+      this.$Progress.start();
+      var avar = this.$store.getters.getManager;
+      if (avar.length == 2) this.pagination = avar[1];
+      this.$Progress.finish();
+      return avar[0];
+    },
+    getAllOrder: function getAllOrder() {
+      var bvar = this.$store.getters.getReportDashboard;
+      if (bvar.length == 0) return [];
+      this.tpnp_count = bvar[0].tpnp_count;
+      this.tpnpl_count = bvar[0].tpnp_count;
+      this.agent_count = bvar[0].tpnp_count;
+      this.lotteryprize_count = bvar[0].lotteryprize_count;
+      this.purchase_count = bvar[0].purchase_count;
+      this.incomeexpenditure_count = bvar[0].incomeexpenditure_count;
+      this.expenditure_count = bvar[0].expenditure_count;
+      this.record_count = bvar[0].record_count;
+      this.member_count = bvar[0].member_count;
+    }
+  },
+  methods: {
+    fetchPosts: function fetchPosts() {
+      this.$store.dispatch("allManager", [this.pagination.current_page, 0]);
+      this.$store.dispatch("allReportDashboard", [this.$route.params.managerid]);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/purchase/List.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/purchase/List.vue?vue&type=script&lang=js& ***!
@@ -4944,6 +5231,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4976,19 +5272,29 @@ __webpack_require__.r(__webpack_exports__);
       luckydraw_name: '',
       kista_name: '',
       agent_name: '',
-      clicked: ''
+      clicked: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
-    getAllSelectManager: function getAllSelectManager() {
-      var d = this.$store.getters.getSelectManager[0];
-      return d;
-    },
-    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
-      var a = this.$store.getters.getSelectMLuckyDraw[0];
+    // getAllSelectManager(){
+    //   var d = this.$store.getters.getSelectManager[0]
+    //   return d;
+    // },
+    // allSelectMLuckyDraws(){
+    //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+    //   return a;
+    // },
+    allSelectLuckyDraws: function allSelectLuckyDraws() {
+      var a = this.$store.getters.getSelectLuckyDraw[0];
       return a;
     },
     getAllKista: function getAllKista() {
@@ -5012,7 +5318,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPosts: function fetchPosts() {
-      this.$store.dispatch("allSelectManager");
+      this.$store.dispatch("allSelectLuckyDraw", [this.$route.params.managerid]);
     },
     luckydrawChange: function luckydrawChange() {
       this.kistaChange();
@@ -5026,7 +5332,7 @@ __webpack_require__.r(__webpack_exports__);
       this.agentChange();
     },
     agentChange: function agentChange() {
-      this.$store.dispatch("allSelectAgent", [this.kista_id]);
+      this.$store.dispatch("allSelectAgent", [this.$route.params.managerid]);
     },
     lotterystatuschange: function lotterystatuschange() {
       this.pagechange();
@@ -5045,7 +5351,7 @@ __webpack_require__.r(__webpack_exports__);
       location.href = '/home/report/purchase/export?name=' + this.name + '&supplier_id=' + this.supplier_id + '&category_id=' + this.category_id + '&subcategory_id=' + this.sub_category_id + '&start_date=' + moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD') + '&end_date=' + moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD');
     },
     searchdata: function searchdata() {
-      this.$store.dispatch("allAgentReport", [this.luckydraw_id, this.kista_id, this.agent_id, this.lottery_status, this.pagination.current_page, this.manager_id]);
+      this.$store.dispatch("allAgentReport", [this.luckydraw_id, this.kista_id, this.agent_id, this.lottery_status, this.pagination.current_page, this.$route.params.managerid]);
       this.clicked = true;
     }
   }
@@ -5067,6 +5373,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5201,17 +5515,27 @@ __webpack_require__.r(__webpack_exports__);
       auth_address: '',
       luckydraw_name: '',
       kista_name: '',
-      expendituretype: ''
+      expendituretype: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$Progress.start();
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
     this.$Progress.finish();
   },
   computed: {
-    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
-      var a = this.$store.getters.getSelectMLuckyDraw[0];
+    // allSelectMLuckyDraws(){
+    //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+    //   return a;
+    // },
+    allSelectLuckyDraws: function allSelectLuckyDraws() {
+      var a = this.$store.getters.getSelectLuckyDraw[0];
       return a;
     },
     getAllKista: function getAllKista() {
@@ -5235,7 +5559,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchPosts: function fetchPosts() {
       this.pagechange();
-      this.$store.dispatch("allSelectManager");
+      this.$store.dispatch("allSelectLuckyDraw", [this.$route.params.managerid]); // this.$store.dispatch("allSelectManager")
     },
     managerChange: function managerChange() {
       this.$store.dispatch("allSelectMLuckyDraw", [this.manager_id]);
@@ -5243,7 +5567,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     pagechange: function pagechange() {
       this.$Progress.start();
-      this.$store.dispatch("allExpenditureReport", [this.pagination.current_page, this.luckydraw_id, this.kista_id, this.expenditure_type, moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD'), moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD'), this.manager_id]);
+      this.$store.dispatch("allExpenditureReport", [this.pagination.current_page, this.luckydraw_id, this.kista_id, this.expenditure_type, moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD'), moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD'), this.$route.params.managerid]);
       this.$Progress.finish();
     },
     kistaChange: function kistaChange() {
@@ -5448,6 +5772,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5487,17 +5819,27 @@ __webpack_require__.r(__webpack_exports__);
       luckydraw_name: '',
       kista_name: '',
       to_date: '',
-      from_date: ''
+      from_date: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$Progress.start();
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
     this.$Progress.finish();
   },
   computed: {
-    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
-      return this.$store.getters.getSelectMLuckyDraw[0];
+    // allSelectMLuckyDraws(){
+    //     return this.$store.getters.getSelectMLuckyDraw[0]
+    // },
+    allSelectLuckyDraws: function allSelectLuckyDraws() {
+      var a = this.$store.getters.getSelectLuckyDraw[0];
+      return a;
     },
     getAllKista: function getAllKista() {
       var b = this.$store.getters.getSelectKista;
@@ -5531,7 +5873,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPosts: function fetchPosts() {
-      this.$store.dispatch("allSelectManager");
+      this.$store.dispatch("allSelectLuckyDraw", [this.$route.params.managerid]); // this.$store.dispatch("allSelectManager")
+
       this.pagechange();
     },
     managerChange: function managerChange() {
@@ -5540,7 +5883,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     pagechange: function pagechange() {
       this.$Progress.start();
-      this.$store.dispatch("allIncomeExpenditureReport", [this.pagination.current_page, this.kista_id, this.luckydraw_id, moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD'), moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD'), this.manager_id]);
+      this.$store.dispatch("allIncomeExpenditureReport", [this.pagination.current_page, this.kista_id, this.luckydraw_id, moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD'), moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD'), this.$route.params.managerid]);
       this.$Progress.finish();
     },
     kistaChange: function kistaChange() {
@@ -5682,6 +6025,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5710,17 +6061,27 @@ __webpack_require__.r(__webpack_exports__);
       },
       search: '',
       auth_name: '',
-      auth_address: ''
+      auth_address: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$Progress.start();
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
     this.$Progress.finish();
   },
   computed: {
-    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
-      var a = this.$store.getters.getSelectMLuckyDraw[0];
+    // allSelectMLuckyDraws(){
+    //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+    //   return a;
+    // },
+    allSelectLuckyDraws: function allSelectLuckyDraws() {
+      var a = this.$store.getters.getSelectLuckyDraw[0];
       return a;
     },
     getAllKista: function getAllKista() {
@@ -5741,7 +6102,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchPosts: function fetchPosts() {
       this.pagechange();
-      this.$store.dispatch("allSelectManager"); // this.$store.dispatch("allSelectLuckyDraw")
+      this.$store.dispatch("allSelectLuckyDraw", [this.$route.params.managerid]); // this.$store.dispatch("allSelectManager")
+      // this.$store.dispatch("allSelectLuckyDraw")
       // this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
     },
     managerChange: function managerChange() {
@@ -5764,7 +6126,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$htmlToPaper('printMe');
     },
     searchdata: function searchdata() {
-      this.$store.dispatch("allLotteryPrizeReport", [this.luckydraw_id, this.kista_id, this.search, this.pagination.current_page, this.manager_id]);
+      this.$store.dispatch("allLotteryPrizeReport", [this.luckydraw_id, this.kista_id, this.search, this.pagination.current_page, this.$route.params.managerid]);
     }
   }
 });
@@ -5781,6 +6143,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PaginationComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../components/PaginationComponent.vue */ "./resources/js/components/PaginationComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6022,17 +6392,27 @@ __webpack_require__.r(__webpack_exports__);
       agent_name: '',
       due_amount: '',
       collected_amount: '',
-      amount: ''
+      amount: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$Progress.start();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
     this.fetchPosts();
     this.$Progress.finish();
   },
   computed: {
-    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
-      var a = this.$store.getters.getSelectMLuckyDraw[0];
+    // allSelectMLuckyDraws(){
+    //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+    //   return a;
+    // },
+    allSelectLuckyDraws: function allSelectLuckyDraws() {
+      var a = this.$store.getters.getSelectLuckyDraw[0];
       return a;
     },
     getAllKista: function getAllKista() {
@@ -6070,9 +6450,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchPosts: function fetchPosts() {
       this.$Progress.start();
-      this.$store.dispatch("allSelectAgent", [this.kista_id]);
-      this.$store.dispatch("allSelectLuckyDraw");
+      this.$store.dispatch("allSelectAgent", [this.$route.params.managerid]); // this.$store.dispatch("allSelectLuckyDraw")
+
       this.$store.dispatch("allSelectManager");
+      this.$store.dispatch("allSelectLuckyDraw", [this.$route.params.managerid]);
       this.$Progress.finish();
     },
     managerChange: function managerChange() {
@@ -6088,7 +6469,7 @@ __webpack_require__.r(__webpack_exports__);
       return values + values2;
     },
     agentChange: function agentChange() {
-      this.$store.dispatch("allSelectAgent", [this.kista_id]);
+      this.$store.dispatch("allSelectAgent", [this.$route.params.managerid]);
     },
     kistaChange: function kistaChange() {
       this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
@@ -6098,7 +6479,7 @@ __webpack_require__.r(__webpack_exports__);
       this.click = false;
     },
     savedata: function savedata() {
-      this.$store.dispatch("allMemberReport", [this.luckydraw_id, this.agent_id, this.pagination.current_page, this.kista_id, this.manager_id]);
+      this.$store.dispatch("allMemberReport", [this.luckydraw_id, this.agent_id, this.pagination.current_page, this.kista_id, this.$route.params.managerid]);
       this.clicked = true;
     },
     memberreportexport: function memberreportexport() {
@@ -6278,12 +6659,18 @@ __webpack_require__.r(__webpack_exports__);
       auth_name: '',
       auth_address: '',
       to_date: '',
-      from_date: ''
+      from_date: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$Progress.start();
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
     this.$Progress.finish();
   },
   computed: {
@@ -6302,7 +6689,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPosts: function fetchPosts() {
-      this.$store.dispatch("allSelectManager");
+      // this.$store.dispatch("allSelectManager")
       this.pagechange();
     },
     managerChange: function managerChange() {
@@ -6310,7 +6697,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     pagechange: function pagechange() {
       this.$Progress.start();
-      this.$store.dispatch("allPurchaseReport", [this.pagination.current_page, moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD'), moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD'), this.manager_id]);
+      this.$store.dispatch("allPurchaseReport", [this.pagination.current_page, moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD'), moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD'), this.$route.params.managerid]);
       this.$Progress.finish();
     },
     dateChange: function dateChange() {
@@ -6482,12 +6869,18 @@ __webpack_require__.r(__webpack_exports__);
       auth_name: '',
       auth_address: '',
       to_date: '',
-      from_date: ''
+      from_date: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$Progress.start();
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
     this.$Progress.finish();
   },
   computed: {
@@ -6506,7 +6899,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPosts: function fetchPosts() {
-      this.$store.dispatch("allSelectManager");
+      // this.$store.dispatch("allSelectManager")
       this.pagechange();
     },
     managerChange: function managerChange() {
@@ -6514,7 +6907,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     pagechange: function pagechange() {
       this.$Progress.start();
-      this.$store.dispatch("allRecordReport", [this.pagination.current_page, moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD'), moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD'), this.manager_id]);
+      this.$store.dispatch("allRecordReport", [this.pagination.current_page, moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.start).format('YYYY-MM-DD'), moment__WEBPACK_IMPORTED_MODULE_2___default()(this.date.end).format('YYYY-MM-DD'), this.$route.params.managerid]);
       this.$Progress.finish();
     },
     dateChange: function dateChange() {
@@ -6672,6 +7065,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6699,17 +7100,27 @@ __webpack_require__.r(__webpack_exports__);
       notplayed: '',
       playedamount: '',
       notplayedamount: '',
-      leave: ''
+      leave: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
-    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
-      var a = this.$store.getters.getSelectMLuckyDraw[0];
+    allSelectLuckyDraws: function allSelectLuckyDraws() {
+      var a = this.$store.getters.getSelectLuckyDraw[0];
       return a;
     },
+    // allSelectMLuckyDraws(){
+    //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+    //   return a;
+    // },
     getAllKista: function getAllKista() {
       var b = this.$store.getters.getSelectKista;
       return b[0];
@@ -6730,7 +7141,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPosts: function fetchPosts() {
-      this.$store.dispatch("allSelectManager"); // this.$store.dispatch("allSelectLuckyDraw")
+      // this.$store.dispatch("allSelectManager")
+      this.$store.dispatch("allSelectLuckyDraw", [this.$route.params.managerid]);
     },
     kistaChange: function kistaChange() {
       this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
@@ -6743,7 +7155,7 @@ __webpack_require__.r(__webpack_exports__);
       this.luckydrawChange();
     },
     searchdata: function searchdata() {
-      this.$store.dispatch("allTpnpReport", [this.kista_id, this.luckydraw_id, this.manager_id]);
+      this.$store.dispatch("allTpnpReport", [this.kista_id, this.luckydraw_id, this.$route.params.managerid]);
     },
     print: function print() {
       this.$htmlToPaper('printMe');
@@ -6770,6 +7182,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6920,19 +7340,29 @@ __webpack_require__.r(__webpack_exports__);
       luckydraw_name: '',
       kista_name: '',
       agent_name: '',
-      clicked: ''
+      clicked: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$Progress.start();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
     this.fetchPosts();
     this.$Progress.finish();
   },
   computed: {
-    allSelectMLuckyDraws: function allSelectMLuckyDraws() {
-      var a = this.$store.getters.getSelectMLuckyDraw[0];
+    allSelectLuckyDraws: function allSelectLuckyDraws() {
+      var a = this.$store.getters.getSelectLuckyDraw[0];
       return a;
     },
+    // allSelectMLuckyDraws(){
+    //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+    //   return a;
+    // },
     getAllKista: function getAllKista() {
       var b = this.$store.getters.getSelectKista;
       return b[0];
@@ -6952,7 +7382,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPosts: function fetchPosts() {
-      this.$store.dispatch("allSelectManager");
+      this.$store.dispatch("allSelectLuckyDraw", [this.$route.params.managerid]); // this.$store.dispatch("allSelectManager")
     },
     managerChange: function managerChange() {
       this.$store.dispatch("allSelectMLuckyDraw", [this.manager_id]);
@@ -6972,7 +7402,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     searchdata: function searchdata() {
-      this.$store.dispatch("allTpnplReport", [this.luckydraw_id, this.kista_id, this.lottery_status, this.pagination.current_page, this.manager_id]);
+      this.$store.dispatch("allTpnplReport", [this.luckydraw_id, this.kista_id, this.lottery_status, this.pagination.current_page, this.$route.params.managerid]);
       this.clicked = true;
     },
     print: function print() {
@@ -91079,6 +91509,23 @@ var render = function () {
         1
       ),
       _vm._v(" "),
+      _c(
+        "li",
+        { staticClass: "nav-item" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: "/overview" } },
+            [
+              _c("i", { staticClass: "nav-icon fas fa-eye" }),
+              _vm._v(" "),
+              _c("p", [_vm._v("\n          Overview\n        ")]),
+            ]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("li", { staticClass: "nav-item" }, [
         _vm._m(0),
         _vm._v(" "),
@@ -94275,6 +94722,404 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/overview/List.vue?vue&type=template&id=069b98d9&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/overview/List.vue?vue&type=template&id=069b98d9&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c(
+                "li",
+                { staticClass: "breadcrumb-item" },
+                [_c("router-link", { attrs: { to: "/#" } }, [_vm._v("Home")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Manager"),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.getAllManager, function (manager, index) {
+            return _c("div", { key: manager.id, staticClass: "col-lg-3" }, [
+              _c("div", { staticClass: "col-lg-12 col-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "small-box bg-info" },
+                  [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("p", [_vm._v(_vm._s(manager.name))]),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "small-box-footer",
+                        attrs: { to: "/overview/" + manager.id + "/viewall" },
+                      },
+                      [
+                        _vm._v("More info "),
+                        _c("i", { staticClass: "fas fa-arrow-circle-right" }),
+                      ]
+                    ),
+                  ],
+                  1
+                ),
+              ]),
+            ])
+          }),
+          0
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-6" }, [
+      _c("h5", { staticClass: "m-0 text-dark xyz" }, [_vm._v("Manager List")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-bag" }),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/overview/viewall.vue?vue&type=template&id=12bbbbde&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/overview/viewall.vue?vue&type=template&id=12bbbbde&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Viewall List of " + _vm._s(this.manager_name)),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c(
+                "li",
+                { staticClass: "breadcrumb-item" },
+                [_c("router-link", { attrs: { to: "/#" } }, [_vm._v("Home")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Manager"),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _vm._l(_vm.getAllOrder, function (detail, index) {
+              return _c("div")
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: "/report/tpnp/" + this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-info" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.tpnp_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("TPNP Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: "/report/tpnpl/" + this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-success" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.tpnpl_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("TPNPL Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: "/report/agent/" + this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-warning" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.agent_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Agent Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to:
+                        "/report/lotteryprize/" + this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-primary" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.lotteryprize_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Scheme Prize Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: "/report/purchase/" + this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-info" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.purchase_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Purchase Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3 col-6" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to:
+                        "/report/incomeexpenditure/" +
+                        this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-success" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.incomeexpenditure_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Income Expenditure Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3 col-6" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: "/report/expenditure/" + this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-warning" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.expenditure_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Expenditure Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3 col-6" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: "/report/record/" + this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-primary" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.record_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Record Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-3 col-6" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: "/report/member/" + this.$route.params.managerid,
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "small-box bg-success" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(_vm.member_count))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Member Report")]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ],
+          2
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/purchase/List.vue?vue&type=template&id=78797a51&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/purchase/List.vue?vue&type=template&id=78797a51& ***!
@@ -95028,7 +95873,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark" }, [
+              _vm._v("Agent Report (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -95072,62 +95921,6 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\n                      " +
-                                  _vm._s(manager.name) +
-                                  "\n                    "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
                             value: _vm.luckydraw_id,
                             expression: "luckydraw_id",
                           },
@@ -95158,7 +95951,7 @@ var render = function () {
                           _vm._v("Select one scheme"),
                         ]),
                         _vm._v(" "),
-                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
+                        _vm._l(_vm.allSelectLuckyDraws, function (luckydraw) {
                           return _c(
                             "option",
                             { domProps: { value: luckydraw.id } },
@@ -95370,7 +96163,7 @@ var render = function () {
                               "table table-bordered table-hover table-sm m-0",
                           },
                           [
-                            _vm._m(1),
+                            _vm._m(0),
                             _vm._v(" "),
                             _c(
                               "tbody",
@@ -95432,7 +96225,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(2),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c("tbody", [
                             _c("tr", [
@@ -95453,7 +96246,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(3),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("tbody", [
                             _c("tr", [
@@ -95474,14 +96267,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark" }, [_vm._v("Agent Report")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -95542,7 +96327,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark" }, [
+              _vm._v("Expenditure Report (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -95586,68 +96375,12 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\r\n                    " +
-                                  _vm._s(manager.name) +
-                                  "\r\n                  "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
                             value: _vm.luckydraw_id,
                             expression: "luckydraw_id",
                           },
                         ],
                         staticClass: "form-control",
-                        attrs: { id: "luckydraw_id" },
+                        attrs: { id: "luckydraw_id", name: "luckydraw_id" },
                         on: {
                           change: [
                             function ($event) {
@@ -95668,15 +96401,21 @@ var render = function () {
                         },
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Select one Scheme"),
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
+                          _vm._v("Select one scheme"),
                         ]),
                         _vm._v(" "),
-                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
+                        _vm._l(_vm.allSelectLuckyDraws, function (luckydraw) {
                           return _c(
                             "option",
                             { domProps: { value: luckydraw.id } },
-                            [_vm._v(_vm._s(luckydraw.name))]
+                            [
+                              _vm._v(
+                                "\r\n                    " +
+                                  _vm._s(luckydraw.name) +
+                                  "\r\n                  "
+                              ),
+                            ]
                           )
                         }),
                       ],
@@ -95814,7 +96553,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _vm.expenditure_type
                             ? _c(
@@ -95835,7 +96574,7 @@ var render = function () {
                           _vm._v(" "),
                           _c("tfoot", [
                             _c("tr", [
-                              _vm._m(2),
+                              _vm._m(1),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(_vm.total))]),
                             ]),
@@ -95862,16 +96601,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark" }, [
-        _vm._v("Expenditure Report"),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -95916,7 +96645,13 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark" }, [
+              _vm._v(
+                "Income-Expenditure Report (" + _vm._s(this.manager_name) + ")"
+              ),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -95960,68 +96695,12 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\r\n                    " +
-                                  _vm._s(manager.name) +
-                                  "\r\n                  "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
                             value: _vm.luckydraw_id,
                             expression: "luckydraw_id",
                           },
                         ],
                         staticClass: "form-control",
-                        attrs: { id: "luckydraw_id" },
+                        attrs: { id: "luckydraw_id", name: "luckydraw_id" },
                         on: {
                           change: [
                             function ($event) {
@@ -96042,15 +96721,21 @@ var render = function () {
                         },
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Select One Scheme"),
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
+                          _vm._v("Select one scheme"),
                         ]),
                         _vm._v(" "),
-                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
+                        _vm._l(_vm.allSelectLuckyDraws, function (luckydraw) {
                           return _c(
                             "option",
                             { domProps: { value: luckydraw.id } },
-                            [_vm._v(_vm._s(luckydraw.name))]
+                            [
+                              _vm._v(
+                                "\r\n                    " +
+                                  _vm._s(luckydraw.name) +
+                                  "\r\n                  "
+                              ),
+                            ]
                           )
                         }),
                       ],
@@ -96219,7 +96904,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _vm.luckydraw_id && _vm.kista_id
                             ? _c(
@@ -96259,13 +96944,13 @@ var render = function () {
                           _vm.luckydraw_id && _vm.kista_id
                             ? _c("tfoot", [
                                 _c("tr", [
-                                  _vm._m(2),
+                                  _vm._m(1),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(_vm.total1))]),
                                 ]),
                                 _vm._v(" "),
                                 _c("tr", [
-                                  _vm._m(3),
+                                  _vm._m(2),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(_vm.total1))]),
                                 ]),
@@ -96283,7 +96968,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(4),
+                          _vm._m(3),
                           _vm._v(" "),
                           _vm.luckydraw_id && _vm.kista_id
                             ? _c(
@@ -96315,7 +97000,7 @@ var render = function () {
                           _vm.luckydraw_id && _vm.kista_id
                             ? _c("tfoot", [
                                 _c("tr", [
-                                  _vm._m(5),
+                                  _vm._m(4),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(_vm.total2))]),
                                 ]),
@@ -96327,7 +97012,7 @@ var render = function () {
                                 ]),
                                 _vm._v(" "),
                                 _c("tr", [
-                                  _vm._m(6),
+                                  _vm._m(5),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(_vm.grandtotal2))]),
                                 ]),
@@ -96347,16 +97032,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark" }, [
-        _vm._v("Income-Expenditure Report"),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -96435,7 +97110,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark" }, [
+              _vm._v("Scheme Prize Report (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -96479,68 +97158,12 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\r\n                  " +
-                                  _vm._s(manager.name) +
-                                  "\r\n                "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
                             value: _vm.luckydraw_id,
                             expression: "luckydraw_id",
                           },
                         ],
                         staticClass: "form-control",
-                        attrs: { id: "luckydraw_id" },
+                        attrs: { id: "luckydraw_id", name: "luckydraw_id" },
                         on: {
                           change: [
                             function ($event) {
@@ -96561,15 +97184,21 @@ var render = function () {
                         },
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Select one Scheme"),
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
+                          _vm._v("Select one scheme"),
                         ]),
                         _vm._v(" "),
-                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
+                        _vm._l(_vm.allSelectLuckyDraws, function (luckydraw) {
                           return _c(
                             "option",
                             { domProps: { value: luckydraw.id } },
-                            [_vm._v(_vm._s(luckydraw.name))]
+                            [
+                              _vm._v(
+                                "\r\n                  " +
+                                  _vm._s(luckydraw.name) +
+                                  "\r\n                "
+                              ),
+                            ]
                           )
                         }),
                       ],
@@ -96696,7 +97325,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c(
                             "tbody",
@@ -96774,16 +97403,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark" }, [
-        _vm._v("Scheme Prize Report"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-primary" }, [
       _c("tr", [
         _c("th", [_vm._v("SN")]),
@@ -96824,7 +97443,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Member Report (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -96868,62 +97491,6 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(manager.name) +
-                                  "\n                      "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
                             value: _vm.luckydraw_id,
                             expression: "luckydraw_id",
                           },
@@ -96954,7 +97521,7 @@ var render = function () {
                           _vm._v("Select one scheme"),
                         ]),
                         _vm._v(" "),
-                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
+                        _vm._l(_vm.allSelectLuckyDraws, function (luckydraw) {
                           return _c(
                             "option",
                             { domProps: { value: luckydraw.id } },
@@ -97281,7 +97848,7 @@ var render = function () {
                             ),
                           ]),
                           _vm._v(" "),
-                          _vm._m(1, true),
+                          _vm._m(0, true),
                         ]
                       )
                     }),
@@ -97297,14 +97864,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [_vm._v("Member Report")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -97425,7 +97984,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark" }, [
+              _vm._v("Purchase Report (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -97461,62 +98024,6 @@ var render = function () {
             _c("div", { staticClass: "card card-info card-outline" }, [
               _c("div", { staticClass: "card-header" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\n                      " +
-                                  _vm._s(manager.name) +
-                                  "\n                    "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
                   _c(
                     "div",
                     { staticClass: "form-group col-md-5" },
@@ -97614,7 +98121,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c(
                             "tbody",
@@ -97679,14 +98186,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark" }, [_vm._v("Purchase Report")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-primary" }, [
       _c("tr", [
         _c("th", { attrs: { width: "10" } }, [_vm._v("SN")]),
@@ -97729,7 +98228,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark" }, [
+              _vm._v("Record Report (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -97765,62 +98268,6 @@ var render = function () {
             _c("div", { staticClass: "card card-info card-outline" }, [
               _c("div", { staticClass: "card-header" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\r\n                    " +
-                                  _vm._s(manager.name) +
-                                  "\r\n                  "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
                   _c(
                     "div",
                     { staticClass: "form-group col-md-5" },
@@ -97918,7 +98365,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c(
                             "tbody",
@@ -98003,14 +98450,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark" }, [_vm._v("Record Report")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-primary" }, [
       _c("tr", [
         _c("th", { attrs: { width: "10" } }, [_vm._v("SN")]),
@@ -98053,7 +98492,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark" }, [
+              _vm._v("TPNP Report (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -98097,62 +98540,6 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\n                      " +
-                                  _vm._s(manager.name) +
-                                  "\n                    "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
                             value: _vm.luckydraw_id,
                             expression: "luckydraw_id",
                           },
@@ -98183,7 +98570,7 @@ var render = function () {
                           _vm._v("Select one scheme"),
                         ]),
                         _vm._v(" "),
-                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
+                        _vm._l(_vm.allSelectLuckyDraws, function (luckydraw) {
                           return _c(
                             "option",
                             { domProps: { value: luckydraw.id } },
@@ -98270,7 +98657,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c("tbody", [
                             _c("tr", [
@@ -98293,7 +98680,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(2),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c(
                             "tbody",
@@ -98327,7 +98714,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(3),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("tbody", [
                             _c("tr", [
@@ -98350,14 +98737,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark" }, [_vm._v("TPNP Report")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -98436,7 +98815,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark" }, [
+              _vm._v("TPNPL Report (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -98480,62 +98863,6 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.manager_id,
-                            expression: "manager_id",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "manager_id", name: "manager_id" },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.manager_id = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.managerChange,
-                          ],
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Select one manager"),
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.getAllSelectManager, function (manager) {
-                          return _c(
-                            "option",
-                            { domProps: { value: manager.id } },
-                            [
-                              _vm._v(
-                                "\n                      " +
-                                  _vm._s(manager.name) +
-                                  "\n                    "
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
                             value: _vm.luckydraw_id,
                             expression: "luckydraw_id",
                           },
@@ -98566,7 +98893,7 @@ var render = function () {
                           _vm._v("Select one scheme"),
                         ]),
                         _vm._v(" "),
-                        _vm._l(_vm.allSelectMLuckyDraws, function (luckydraw) {
+                        _vm._l(_vm.allSelectLuckyDraws, function (luckydraw) {
                           return _c(
                             "option",
                             { domProps: { value: luckydraw.id } },
@@ -98718,7 +99045,7 @@ var render = function () {
                               "table table-bordered table-hover table-sm m-0",
                           },
                           [
-                            _vm._m(1),
+                            _vm._m(0),
                             _vm._v(" "),
                             _c(
                               "tbody",
@@ -98774,7 +99101,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(2),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c("tbody", [
                             _c("tr", [
@@ -98795,14 +99122,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark" }, [_vm._v("TPNPL Report")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -117065,6 +117384,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/overview/List.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/admin/overview/List.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _List_vue_vue_type_template_id_069b98d9_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./List.vue?vue&type=template&id=069b98d9&scoped=true& */ "./resources/js/components/admin/overview/List.vue?vue&type=template&id=069b98d9&scoped=true&");
+/* harmony import */ var _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/overview/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _List_vue_vue_type_template_id_069b98d9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _List_vue_vue_type_template_id_069b98d9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "069b98d9",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/overview/List.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/overview/List.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/admin/overview/List.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/overview/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/overview/List.vue?vue&type=template&id=069b98d9&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/admin/overview/List.vue?vue&type=template&id=069b98d9&scoped=true& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_069b98d9_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=template&id=069b98d9&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/overview/List.vue?vue&type=template&id=069b98d9&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_069b98d9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_069b98d9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/overview/viewall.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/admin/overview/viewall.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _viewall_vue_vue_type_template_id_12bbbbde_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./viewall.vue?vue&type=template&id=12bbbbde&scoped=true& */ "./resources/js/components/admin/overview/viewall.vue?vue&type=template&id=12bbbbde&scoped=true&");
+/* harmony import */ var _viewall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./viewall.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/overview/viewall.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _viewall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _viewall_vue_vue_type_template_id_12bbbbde_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _viewall_vue_vue_type_template_id_12bbbbde_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "12bbbbde",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/overview/viewall.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/overview/viewall.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/admin/overview/viewall.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_viewall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./viewall.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/overview/viewall.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_viewall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/overview/viewall.vue?vue&type=template&id=12bbbbde&scoped=true&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/admin/overview/viewall.vue?vue&type=template&id=12bbbbde&scoped=true& ***!
+  \*******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewall_vue_vue_type_template_id_12bbbbde_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./viewall.vue?vue&type=template&id=12bbbbde&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/overview/viewall.vue?vue&type=template&id=12bbbbde&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewall_vue_vue_type_template_id_12bbbbde_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewall_vue_vue_type_template_id_12bbbbde_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/purchase/List.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/admin/purchase/List.vue ***!
@@ -118055,15 +118512,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/admin/incomeexpenditure/List.vue */ "./resources/js/components/admin/incomeexpenditure/List.vue");
 /* harmony import */ var _components_admin_record_List_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/admin/record/List.vue */ "./resources/js/components/admin/record/List.vue");
 /* harmony import */ var _components_admin_purchase_List_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/admin/purchase/List.vue */ "./resources/js/components/admin/purchase/List.vue");
-/* harmony import */ var _components_admin_report_tpnp_List_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/admin/report/tpnp/List.vue */ "./resources/js/components/admin/report/tpnp/List.vue");
-/* harmony import */ var _components_admin_report_tpnpl_List_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/admin/report/tpnpl/List.vue */ "./resources/js/components/admin/report/tpnpl/List.vue");
-/* harmony import */ var _components_admin_report_agent_List_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/admin/report/agent/List.vue */ "./resources/js/components/admin/report/agent/List.vue");
-/* harmony import */ var _components_admin_report_purchase_List_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/admin/report/purchase/List.vue */ "./resources/js/components/admin/report/purchase/List.vue");
-/* harmony import */ var _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/admin/report/incomeexpenditure/List.vue */ "./resources/js/components/admin/report/incomeexpenditure/List.vue");
-/* harmony import */ var _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/admin/report/expenditure/List.vue */ "./resources/js/components/admin/report/expenditure/List.vue");
-/* harmony import */ var _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/admin/report/record/List.vue */ "./resources/js/components/admin/report/record/List.vue");
-/* harmony import */ var _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/admin/report/lotteryprize/List.vue */ "./resources/js/components/admin/report/lotteryprize/List.vue");
-/* harmony import */ var _components_admin_report_member_List_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/admin/report/member/List.vue */ "./resources/js/components/admin/report/member/List.vue");
+/* harmony import */ var _components_admin_overview_List_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/admin/overview/List.vue */ "./resources/js/components/admin/overview/List.vue");
+/* harmony import */ var _components_admin_overview_viewall_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/admin/overview/viewall.vue */ "./resources/js/components/admin/overview/viewall.vue");
+/* harmony import */ var _components_admin_report_tpnp_List_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/admin/report/tpnp/List.vue */ "./resources/js/components/admin/report/tpnp/List.vue");
+/* harmony import */ var _components_admin_report_tpnpl_List_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/admin/report/tpnpl/List.vue */ "./resources/js/components/admin/report/tpnpl/List.vue");
+/* harmony import */ var _components_admin_report_agent_List_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/admin/report/agent/List.vue */ "./resources/js/components/admin/report/agent/List.vue");
+/* harmony import */ var _components_admin_report_purchase_List_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/admin/report/purchase/List.vue */ "./resources/js/components/admin/report/purchase/List.vue");
+/* harmony import */ var _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/admin/report/incomeexpenditure/List.vue */ "./resources/js/components/admin/report/incomeexpenditure/List.vue");
+/* harmony import */ var _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/admin/report/expenditure/List.vue */ "./resources/js/components/admin/report/expenditure/List.vue");
+/* harmony import */ var _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/admin/report/record/List.vue */ "./resources/js/components/admin/report/record/List.vue");
+/* harmony import */ var _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/admin/report/lotteryprize/List.vue */ "./resources/js/components/admin/report/lotteryprize/List.vue");
+/* harmony import */ var _components_admin_report_member_List_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/admin/report/member/List.vue */ "./resources/js/components/admin/report/member/List.vue");
 // dashboard
  // manager component
 
@@ -118071,6 +118530,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
  //
+
+
 
 
 
@@ -118129,56 +118590,56 @@ var routes = [// dashboard
   name: 'report',
   component: _components_admin_report_List_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
-  path: '/report/tpnp',
-  component: _components_admin_report_tpnp_List_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
+  path: '/report/tpnp/:managerid',
+  component: _components_admin_report_tpnp_List_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
-  path: '/report/tpnpl',
-  component: _components_admin_report_tpnpl_List_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
+  path: '/report/tpnpl/:managerid',
+  component: _components_admin_report_tpnpl_List_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
-  path: '/report/agent',
-  component: _components_admin_report_agent_List_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
+  path: '/report/agent/:managerid',
+  component: _components_admin_report_agent_List_vue__WEBPACK_IMPORTED_MODULE_19__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
-  path: '/report/purchase',
-  component: _components_admin_report_purchase_List_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
+  path: '/report/purchase/:managerid',
+  component: _components_admin_report_purchase_List_vue__WEBPACK_IMPORTED_MODULE_20__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
-  path: '/report/incomeexpenditure',
-  component: _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_19__["default"],
+  path: '/report/incomeexpenditure/:managerid',
+  component: _components_admin_report_incomeexpenditure_List_vue__WEBPACK_IMPORTED_MODULE_21__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
-  path: '/report/expenditure',
-  component: _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_20__["default"],
+  path: '/report/expenditure/:managerid',
+  component: _components_admin_report_expenditure_List_vue__WEBPACK_IMPORTED_MODULE_22__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
-  path: '/report/record',
-  component: _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_21__["default"],
+  path: '/report/record/:managerid',
+  component: _components_admin_report_record_List_vue__WEBPACK_IMPORTED_MODULE_23__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
-  path: '/report/lotteryprize',
-  component: _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_22__["default"],
+  path: '/report/lotteryprize/:managerid',
+  component: _components_admin_report_lotteryprize_List_vue__WEBPACK_IMPORTED_MODULE_24__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
 }, {
-  path: '/report/member',
-  component: _components_admin_report_member_List_vue__WEBPACK_IMPORTED_MODULE_23__["default"],
+  path: '/report/member/:managerid',
+  component: _components_admin_report_member_List_vue__WEBPACK_IMPORTED_MODULE_25__["default"],
   meta: {
     bodyClass: 'sidebar-collapse'
   }
@@ -118197,6 +118658,12 @@ var routes = [// dashboard
 }, {
   path: '/purchase',
   component: _components_admin_purchase_List_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+}, {
+  path: '/overview',
+  component: _components_admin_overview_List_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+}, {
+  path: '/overview/:managerid/viewall',
+  component: _components_admin_overview_viewall_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }];
 
 /***/ }),
@@ -118331,8 +118798,8 @@ __webpack_require__.r(__webpack_exports__);
         context.commit('managers', [response.data.managers.data, response.data.pagination]);
       });
     },
-    allSelectLuckyDraw: function allSelectLuckyDraw(context) {
-      axios.get("/home/luckydraw/select/getAllLuckyDraw").then(function (response) {
+    allSelectLuckyDraw: function allSelectLuckyDraw(context, params) {
+      axios.get("/home/luckydraw/select/getAllLuckyDraw" + "?managerid=" + params[0]).then(function (response) {
         // console.log(response.data.selectluckdraws);
         context.commit('selectluckydraws', [response.data.selectluckdraws]);
       });
@@ -118348,8 +118815,8 @@ __webpack_require__.r(__webpack_exports__);
         context.commit('selectkistas', [response.data.selectkistas]);
       });
     },
-    allSelectAgent: function allSelectAgent(context, kista_id) {
-      axios.get("/home/agent/select/getAllAgent" + (typeof kista_id == "undefined" ? "" : "?kista_id=" + kista_id)).then(function (response) {
+    allSelectAgent: function allSelectAgent(context, manager_id) {
+      axios.get("/home/agent/select/getAllAgent" + (typeof manager_id == "undefined" ? "" : "?manager_id=" + manager_id)).then(function (response) {
         context.commit('selectagents', [response.data.selectagents]);
       });
     },
@@ -118404,8 +118871,8 @@ __webpack_require__.r(__webpack_exports__);
         context.commit('lotteryprizereports', [response.data.lotteryprizereports.data, response.data.pagination, response.data.total]);
       });
     },
-    allReportDashboard: function allReportDashboard(context) {
-      axios.get("/home/report").then(function (response) {
+    allReportDashboard: function allReportDashboard(context, params) {
+      axios.get("/home/report/" + "?managerid=" + params[0]).then(function (response) {
         context.commit('reportdashboards', [response.data]);
       });
     },

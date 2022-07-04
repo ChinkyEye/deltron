@@ -36,14 +36,14 @@ class MemberController extends Controller
                         ->where('created_by', Auth::user()->id);
 
         $posts = Client::orderBy('id','DESC')
-                         // ->where('created_by', Auth::user()->id)
+                         ->where('created_by', $request->managerid)
                             ->whereHas('getClientDetail', function(Builder $query) use ($luckydraw_id){
                               $query->where('luckydraw_id', $luckydraw_id);
                             });
-        if($request->managerid)
-        {
-            $posts = $posts->where('created_by',$request->managerid);
-        }                
+        // if($request->managerid)
+        // {
+        //     $posts = $posts->where('created_by',$request->managerid);
+        // }                
         if($request->has('kistaid') && $request->get('kistaid')!="")
         {            
             $dues = $dues->where('kista_id',$request->kistaid);

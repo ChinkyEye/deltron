@@ -27,7 +27,8 @@ class AgentController extends Controller
         $kista_name = Kista::where('id',$request->kistaid)->value('name');
         $agent_name = Agent::where('id',$request->agentid)->value('name');
 
-        $posts = Detail::orderBy('id','DESC')->where('created_by', $request->managerid);
+        $posts = Detail::orderBy('id','DESC')
+                        ->where('created_by', $request->managerid);
         $total = 0;
         $commisionamount = 0;
         $totalwithcommision = 0;

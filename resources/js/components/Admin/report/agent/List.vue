@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark">Agent Report</h5>
+            <h5 class="m-0 text-dark">Agent Report ({{this.manager_name}})</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -23,24 +23,33 @@
           <!-- Left col -->
           <section class="col-lg-12 connectedSortable">
             <!-- main page load here-->
+            <!-- {{this.$route.params.managerid}} -->
             <button @click="print" class="btn btn-primary rounded-0"><i class="fas fa-print">Print</i></button>
             <!-- <button @click.prevent="salesReportExport()" class="btn btn-success rounded-0"><i class="fas fa-print" title="Export To Excel"></i> Excel</button> -->
             <div class="card card-info card-outline">
 
               <div class="card-header">
                 <div class="row">
-                 <div class="col-md">
+                 <!-- <div class="col-md">
                     <select class="form-control" id="manager_id" v-model="manager_id" name="manager_id" @change="managerChange"> 
                       <option disabled value="">Select one manager</option>
                       <option :value="manager.id" v-for="manager in getAllSelectManager">
                         {{manager.name}}
                       </option>
                     </select>
-                  </div>
-                  <div class="col-md">
+                  </div> -->
+                  <!-- <div class="col-md">
                     <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" name="luckydraw_id" @change="luckydrawChange"> 
                       <option disabled value="">Select one scheme</option>
                       <option :value="luckydraw.id" v-for="luckydraw in allSelectMLuckyDraws">
+                        {{luckydraw.name}}
+                      </option>
+                    </select>
+                  </div> -->
+                  <div class="col-md">
+                    <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" name="luckydraw_id" @change="luckydrawChange"> 
+                      <option disabled value="">Select one scheme</option>
+                      <option :value="luckydraw.id" v-for="luckydraw in allSelectLuckyDraws">
                         {{luckydraw.name}}
                       </option>
                     </select>
@@ -180,18 +189,27 @@
           kista_name:'',
           agent_name:'',
           clicked:'',
+          manager_name:'',
         }
     },
     mounted(){
       this.fetchPosts();
+      axios.get(`/currentmanager/${this.$route.params.managerid}`)
+        .then((response)=>{
+          this.manager_name = response.data.currentuser.name;
+      })
     },
     computed:{
-      getAllSelectManager(){
-        var d = this.$store.getters.getSelectManager[0]
-        return d;
-      },
-      allSelectMLuckyDraws(){
-        var a = this.$store.getters.getSelectMLuckyDraw[0]
+      // getAllSelectManager(){
+      //   var d = this.$store.getters.getSelectManager[0]
+      //   return d;
+      // },
+      // allSelectMLuckyDraws(){
+      //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+      //   return a;
+      // },
+      allSelectLuckyDraws(){
+        var a = this.$store.getters.getSelectLuckyDraw[0]
         return a;
       },
       getAllKista(){
@@ -218,7 +236,7 @@
     },
     methods:{
       fetchPosts() {
-        this.$store.dispatch("allSelectManager")
+        this.$store.dispatch("allSelectLuckyDraw",[this.$route.params.managerid])
       },
       luckydrawChange(){
         this.kistaChange();
@@ -232,7 +250,7 @@
         this.agentChange();
       },
       agentChange(){
-        this.$store.dispatch("allSelectAgent", [this.kista_id]);
+        this.$store.dispatch("allSelectAgent", [this.$route.params.managerid]);
       },
       lotterystatuschange(){
          this.pagechange();
@@ -252,7 +270,7 @@
       },
       searchdata()
       {
-        this.$store.dispatch("allAgentReport", [this.luckydraw_id,this.kista_id,this.agent_id,this.lottery_status,this.pagination.current_page,this.manager_id]);
+        this.$store.dispatch("allAgentReport", [this.luckydraw_id,this.kista_id,this.agent_id,this.lottery_status,this.pagination.current_page,this.$route.params.managerid]);
         this.clicked = true;
 
       },

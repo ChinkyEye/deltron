@@ -20,8 +20,11 @@ class PurchaseController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Purchase::orderBy('id','DESC');
-        $totalamount = Purchase::where('is_active', true);
+        // dd($request);
+        $posts = Purchase::orderBy('id','DESC')
+                            ->where('created_by',$request->managerid);
+        $totalamount = Purchase::where('is_active', true)
+                            ->where('created_by',$request->managerid);
         if(($request->has('date1')) || ($request->has('date2')))
         {
             $posts = $posts->whereBetween('date', [$request->date1, $request->date2]);

@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h5 class="m-0 text-dark">Scheme Prize Report</h5>
+        <h5 class="m-0 text-dark">Scheme Prize Report ({{this.manager_name}})</h5>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -27,20 +27,28 @@
         <div class="card card-info card-outline">
           <div class="card-header">
             <div class="row">
-             <div class="col-md">
+             <!-- <div class="col-md">
               <select class="form-control" id="manager_id" v-model="manager_id" name="manager_id" @change="managerChange"> 
                 <option disabled value="">Select one manager</option>
                 <option :value="manager.id" v-for="manager in getAllSelectManager">
                   {{manager.name}}
                 </option>
               </select>
+            </div> -->
+            <!-- <div class="col-md">
+              <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" @change="luckydrawChange"> 
+                <option value="">Select one Scheme</option>
+                <option :value="luckydraw.id" v-for="luckydraw in allSelectMLuckyDraws">{{luckydraw.name}}</option>
+              </select>
+            </div> -->
+            <div class="col-md">
+              <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" name="luckydraw_id" @change="luckydrawChange"> 
+                <option disabled value="">Select one scheme</option>
+                <option :value="luckydraw.id" v-for="luckydraw in allSelectLuckyDraws">
+                  {{luckydraw.name}}
+                </option>
+              </select>
             </div>
-              <div class="col-md">
-                <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" @change="luckydrawChange"> 
-                  <option value="">Select one Scheme</option>
-                  <option :value="luckydraw.id" v-for="luckydraw in allSelectMLuckyDraws">{{luckydraw.name}}</option>
-                </select>
-              </div>
               <div class="form-group col-md">
                 <select class="form-control" id="kista_id" name="kista_id" v-model="kista_id"  @change="kistaChange"> 
                   <option value="">Select one kista</option>
@@ -126,16 +134,25 @@
           search:'',
           auth_name:'',
           auth_address:'',
+          manager_name:'',
         }
     },
     mounted(){
       this.$Progress.start()
       this.fetchPosts();
+      axios.get(`/currentmanager/${this.$route.params.managerid}`)
+      .then((response)=>{
+        this.manager_name = response.data.currentuser.name;
+      })
       this.$Progress.finish()
     },
     computed:{
-      allSelectMLuckyDraws(){
-        var a = this.$store.getters.getSelectMLuckyDraw[0]
+      // allSelectMLuckyDraws(){
+      //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+      //   return a;
+      // },
+      allSelectLuckyDraws(){
+        var a = this.$store.getters.getSelectLuckyDraw[0]
         return a;
       },
       getAllKista(){
@@ -157,7 +174,8 @@
     methods:{
       fetchPosts() {
         this.pagechange();
-        this.$store.dispatch("allSelectManager")
+        this.$store.dispatch("allSelectLuckyDraw",[this.$route.params.managerid])
+        // this.$store.dispatch("allSelectManager")
         
         // this.$store.dispatch("allSelectLuckyDraw")
         // this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
@@ -183,7 +201,7 @@
       },
       searchdata()
       {
-        this.$store.dispatch("allLotteryPrizeReport", [this.luckydraw_id,this.kista_id,this.search,this.pagination.current_page,this.manager_id]);
+        this.$store.dispatch("allLotteryPrizeReport", [this.luckydraw_id,this.kista_id,this.search,this.pagination.current_page,this.$route.params.managerid]);
 
       },
     }

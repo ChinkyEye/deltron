@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark">TPNP Report</h5>
+            <h5 class="m-0 text-dark">TPNP Report ({{this.manager_name}})</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -28,18 +28,26 @@
             <div class="card card-info card-outline">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-md">
+                  <!-- <div class="col-md">
                     <select class="form-control" id="manager_id" v-model="manager_id" name="manager_id" @change="managerChange"> 
                       <option disabled value="">Select one manager</option>
                       <option :value="manager.id" v-for="manager in getAllSelectManager">
                         {{manager.name}}
                       </option>
                     </select>
-                  </div>
-                  <div class="col-md">
+                  </div> -->
+                  <!-- <div class="col-md">
                     <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" name="luckydraw_id" @change="luckydrawChange"> 
                       <option disabled value="">Select one scheme</option>
                       <option :value="luckydraw.id" v-for="luckydraw in allSelectMLuckyDraws">
+                        {{luckydraw.name}}
+                      </option>
+                    </select>
+                  </div> -->
+                  <div class="col-md">
+                    <select class="form-control" id="luckydraw_id" v-model="luckydraw_id" name="luckydraw_id" @change="luckydrawChange"> 
+                      <option disabled value="">Select one scheme</option>
+                      <option :value="luckydraw.id" v-for="luckydraw in allSelectLuckyDraws">
                         {{luckydraw.name}}
                       </option>
                     </select>
@@ -155,16 +163,25 @@
           playedamount:'',
           notplayedamount:'',
           leave:'',
+          manager_name:'',
         }
     },
     mounted(){
       this.fetchPosts();
+      axios.get(`/currentmanager/${this.$route.params.managerid}`)
+        .then((response)=>{
+          this.manager_name = response.data.currentuser.name;
+      })
     },
     computed:{
-      allSelectMLuckyDraws(){
-        var a = this.$store.getters.getSelectMLuckyDraw[0]
+      allSelectLuckyDraws(){
+        var a = this.$store.getters.getSelectLuckyDraw[0]
         return a;
       },
+      // allSelectMLuckyDraws(){
+      //   var a = this.$store.getters.getSelectMLuckyDraw[0]
+      //   return a;
+      // },
       getAllKista(){
         var b = this.$store.getters.getSelectKista
         return b[0];
@@ -186,8 +203,8 @@
     },
     methods:{
       fetchPosts() {
-        this.$store.dispatch("allSelectManager")
-        // this.$store.dispatch("allSelectLuckyDraw")
+        // this.$store.dispatch("allSelectManager")
+        this.$store.dispatch("allSelectLuckyDraw",[this.$route.params.managerid])
       },
       kistaChange(){
         this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
@@ -201,7 +218,7 @@
       },
       searchdata()
       {
-        this.$store.dispatch("allTpnpReport", [this.kista_id,this.luckydraw_id,this.manager_id]);
+        this.$store.dispatch("allTpnpReport", [this.kista_id,this.luckydraw_id,this.$route.params.managerid]);
       },
       print () {
         this.$htmlToPaper('printMe');

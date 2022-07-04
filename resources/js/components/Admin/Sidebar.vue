@@ -17,6 +17,14 @@
       </router-link>
     </li>
     <li class="nav-item">
+      <router-link to="/overview" class="nav-link">
+        <i class="nav-icon fas fa-eye"></i>
+        <p>
+          Overview
+        </p>
+      </router-link>
+    </li>
+    <li class="nav-item">
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-copy"></i>
         <p>

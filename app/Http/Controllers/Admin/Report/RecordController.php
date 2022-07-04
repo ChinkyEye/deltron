@@ -18,16 +18,17 @@ class RecordController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Record::orderBy('id','DESC');
+        $posts = Record::orderBy('id','DESC')
+                        ->where('created_by', $request->managerid);
         $totalamount = 0;
-        if($request->managerid)
-        {
-            $posts = $posts->where('created_by', $request->managerid);
-        }
+        // if($request->managerid)
+        // {
+        //     $posts = $posts->where('created_by', $request->managerid);
+        // }
         if(($request->has('date1')) || ($request->has('date2')))
         {
             $posts = $posts->whereBetween('date', [$request->date1, $request->date2]);
-            $totalamount = Record::where('created_by', Auth::user()->id)
+            $totalamount = Record::where('created_by', $request->managerid)
                                     ->whereBetween('date', [$request->date1, $request->date2])
                                     ->sum('amount');
         }

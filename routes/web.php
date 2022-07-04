@@ -24,6 +24,8 @@ Auth::routes(['reset' => false,
 Route::group(["middleware" => 'admin'], function(){
   // home routes
     Route::get('/home', 'Admin\HomeController@index')->name('home');
+    Route::get('/currentmanager/{id}','Admin\Report\HomeController@currentmanager');
+
 
     // manager routes
     Route::resource('/home/manager','Admin\ManagerController');

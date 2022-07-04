@@ -131,7 +131,9 @@ class LuckyDrawController extends Controller
     }
 
     public function getAllLuckyDraw(Request $request){
+        $manager_id = $request->managerid;
         $luckydraws = LuckyDraw::orderBy('id','ASC')
+                                ->where('created_by',$manager_id)
                                 ->where('is_active','1')
                                 ->get();
         return response()->json([
