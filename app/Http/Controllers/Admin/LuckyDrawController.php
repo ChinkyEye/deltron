@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\LuckyDraw;
+use App\Kista;
 use Auth;
 use Response;
 
@@ -150,6 +151,18 @@ class LuckyDrawController extends Controller
                                 ->get();
         return response()->json([
           'selectmluckdraws'=>$luckydraws
+        ],200);
+    }
+
+    public function getAllManagerLuckyDraw(Request $request){
+        $kista_data = Kista::find($request->kistaid);
+        $manager_id = $kista_data->created_by;
+        $luckydraws = LuckyDraw::orderBy('id','ASC')
+                                ->where('created_by',$manager_id)
+                                ->where('is_active','1')
+                                ->get();
+        return response()->json([
+          'selectmanagerluckdraws'=>$luckydraws
         ],200);
     }
 

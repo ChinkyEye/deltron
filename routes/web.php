@@ -36,6 +36,7 @@ Route::group(["middleware" => 'admin'], function(){
 
     Route::get('/home/luckydraw/select/getAllLuckyDraw', 'Admin\LuckyDrawController@getAllLuckyDraw');
     Route::get('/home/luckydraw/mselect/getAllMLuckyDraw', 'Admin\LuckyDrawController@getAllMLuckyDraw');
+    Route::get('/home/luckydraw/managerselect/getAllManagerLuckyDraw', 'Admin\LuckyDrawController@getAllManagerLuckyDraw');
     Route::resource('/home/luckydraw','Admin\LuckyDrawController');
     Route::get('/home/luckydraw/status/{id}/{status}', 'Admin\LuckyDrawController@status');
 

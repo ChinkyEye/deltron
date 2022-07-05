@@ -4222,7 +4222,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4254,23 +4253,19 @@ __webpack_require__.r(__webpack_exports__);
       _this.form.fill(response.data.kistas);
 
       _this.manager_id = response.data.created_by;
-    });
+    }); // this.$store.dispatch("allSelectLuckyDraw",[this.$route.params.kistaid])
+
+    this.$store.dispatch("allSelectManagerLuckyDraw", [this.$route.params.kistaid]);
     this.$Progress.finish();
-    this.fetchPosts();
   },
   computed: {
     allSelectLuckyDraws: function allSelectLuckyDraws() {
-      var a = this.$store.getters.getSelectLuckyDraw[0];
+      // var a = this.$store.getters.getSelectLuckyDraw[0]
+      var a = this.$store.getters.getSelectManagerLuckyDraw[0];
       return a;
     }
   },
   methods: {
-    fetchPosts: function fetchPosts() {
-      this.pagechnage();
-    },
-    pagechnage: function pagechnage() {
-      this.$store.dispatch("allSelectLuckyDraw", [this.manager_id]);
-    },
     updateLuckyDraw: function updateLuckyDraw() {
       var _this2 = this;
 
@@ -96119,6 +96114,87 @@ var render = function () {
                             [
                               _vm._m(1),
                               _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.luckydraw_id,
+                                      expression: "form.luckydraw_id",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid":
+                                      _vm.form.errors.has("luckydraw_id"),
+                                  },
+                                  attrs: {
+                                    id: "luckydraw_id",
+                                    name: "luckydraw_id",
+                                  },
+                                  on: {
+                                    change: function ($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call(
+                                          $event.target.options,
+                                          function (o) {
+                                            return o.selected
+                                          }
+                                        )
+                                        .map(function (o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "luckydraw_id",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { disabled: "", value: "" } },
+                                    [_vm._v("Select one")]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(
+                                    _vm.allSelectLuckyDraws,
+                                    function (luckydraw) {
+                                      return _c(
+                                        "option",
+                                        { domProps: { value: luckydraw.id } },
+                                        [_vm._v(_vm._s(luckydraw.name))]
+                                      )
+                                    }
+                                  ),
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: {
+                                  form: _vm.form,
+                                  field: "luckydraw_id",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group col-md-12" },
+                            [
+                              _vm._m(2),
+                              _vm._v(" "),
                               _c("input", {
                                 directives: [
                                   {
@@ -96165,7 +96241,7 @@ var render = function () {
                             "div",
                             { staticClass: "form-group col-md-12" },
                             [
-                              _vm._m(2),
+                              _vm._m(3),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -96302,11 +96378,6 @@ var render = function () {
                         _c("h5", [
                           _vm._v("Amount : " + _vm._s(_vm.form.amount)),
                         ]),
-                        _vm._v(
-                          "\n                      " +
-                            _vm._s(this.manager_id) +
-                            "\n                    "
-                        ),
                       ]),
                     ]),
                   ]
@@ -96332,6 +96403,15 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("li", { staticClass: "breadcrumb-item active" }, [_vm._v("Kista")]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "category_id" } }, [
+      _vm._v("Scheme"),
+      _c("code", [_vm._v("*")]),
     ])
   },
   function () {
@@ -124112,6 +124192,7 @@ __webpack_require__.r(__webpack_exports__);
     selectagent: [],
     selectmanager: [],
     selectmluckydraw: [],
+    selectmanagerluckydraw: [],
     detail: [],
     tpnpreport: [],
     tpnplreport: [],
@@ -124144,6 +124225,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getSelectMLuckyDraw: function getSelectMLuckyDraw(state) {
       return state.selectmluckydraw;
+    },
+    getSelectManagerLuckyDraw: function getSelectManagerLuckyDraw(state) {
+      return state.selectmanagerluckydraw;
     },
     getSelectKista: function getSelectKista(state) {
       return state.selectkista;
@@ -124234,6 +124318,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/home/luckydraw/mselect/getAllMLuckyDraw" + "?managerid=" + params[0]).then(function (response) {
         // console.log(response.data.selectluckdraws);
         context.commit('selectmluckydraws', [response.data.selectmluckdraws]);
+      });
+    },
+    allSelectManagerLuckyDraw: function allSelectManagerLuckyDraw(context, params) {
+      axios.get("/home/luckydraw/managerselect/getAllManagerLuckyDraw" + "?kistaid=" + params[0]).then(function (response) {
+        context.commit('selectmanagerluckydraws', [response.data.selectmanagerluckdraws]);
       });
     },
     allSelectKista: function allSelectKista(context, luckydraw_id) {
@@ -124361,6 +124450,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectmluckydraws: function selectmluckydraws(state, data) {
       return state.selectmluckydraw = data;
+    },
+    selectmanagerluckydraws: function selectmanagerluckydraws(state, data) {
+      return state.selectmanagerluckydraw = data;
     },
     selectkistas: function selectkistas(state, data) {
       return state.selectkista = data;

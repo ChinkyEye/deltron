@@ -37,14 +37,14 @@
                   <form role="form" enctype="multipart/form-data" @submit.prevent="updateLuckyDraw()">
                     <div class="card-body">
                       <div class="row">
-                        <!-- <div class="form-group col-md-12">
+                        <div class="form-group col-md-12">
                           <label for="category_id">Scheme<code>*</code></label>
                           <select class="form-control" id="luckydraw_id" v-model="form.luckydraw_id" name="luckydraw_id" :class="{ 'is-invalid': form.errors.has('luckydraw_id') }"> 
                             <option disabled value="">Select one</option>
                             <option :value="luckydraw.id" v-for="luckydraw in allSelectLuckyDraws">{{luckydraw.name}}</option>
                           </select>
                           <has-error :form="form" field="luckydraw_id"></has-error>
-                        </div> -->
+                        </div>
                         <div class="form-group col-md-12">
                           <label for="name">Kista Name <code>*</code></label>
                           <input type="text" class="form-control" id="name" placeholder="Add name" v-model="form.name" name="name" :class="{ 'is-invalid': form.errors.has('name') }" autocomplete="off">
@@ -83,7 +83,6 @@
                     <div class="callout callout-success">
                       <h5>Name : {{form.name}}</h5>
                       <h5>Amount : {{form.amount}}</h5>
-                      {{this.manager_id}}
                     </div>
                   </div>
                 </div>
@@ -130,22 +129,18 @@
     		this.form.fill(response.data.kistas);
     		this.manager_id = response.data.created_by;
     	})
+      // this.$store.dispatch("allSelectLuckyDraw",[this.$route.params.kistaid])
+      this.$store.dispatch("allSelectManagerLuckyDraw",[this.$route.params.kistaid])
       this.$Progress.finish()
-      this.fetchPosts();
     },
     computed:{
       allSelectLuckyDraws(){
-        var a = this.$store.getters.getSelectLuckyDraw[0]
+        // var a = this.$store.getters.getSelectLuckyDraw[0]
+        var a = this.$store.getters.getSelectManagerLuckyDraw[0]
         return a;
       },
     },
     methods:{
-    	fetchPosts(){
-    		this.pagechnage();
-    	},
-    	pagechnage(){
-    		this.$store.dispatch("allSelectLuckyDraw",[this.manager_id])
-    	},
       updateLuckyDraw(){
         this.state.isSending = true;
         this.form.date = moment(this.form.date).format('YYYY-MM-DD');

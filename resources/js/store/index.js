@@ -7,6 +7,7 @@ export default{
 		selectagent:[],
 		selectmanager:[],
 		selectmluckydraw:[],
+		selectmanagerluckydraw:[],
 		detail:[],
 		tpnpreport:[],
 		tpnplreport:[],
@@ -40,6 +41,9 @@ export default{
 		},
 		getSelectMLuckyDraw(state){
 			return state.selectmluckydraw
+		},
+		getSelectManagerLuckyDraw(state){
+			return state.selectmanagerluckydraw
 		},
 		getSelectKista(state){
 			return state.selectkista
@@ -136,6 +140,12 @@ export default{
 				.then((response)=>{
 					// console.log(response.data.selectluckdraws);
 					context.commit('selectmluckydraws', [response.data.selectmluckdraws])
+				})
+		},
+		allSelectManagerLuckyDraw(context, params){
+			axios.get("/home/luckydraw/managerselect/getAllManagerLuckyDraw"+"?kistaid="+params[0])
+				.then((response)=>{
+					context.commit('selectmanagerluckydraws', [response.data.selectmanagerluckdraws])
 				})
 		},
 		allSelectKista(context, luckydraw_id){
@@ -335,6 +345,9 @@ export default{
 		},
 		selectmluckydraws(state, data){
 			return state.selectmluckydraw = data
+		},
+		selectmanagerluckydraws(state, data){
+			return state.selectmanagerluckydraw = data
 		},
 		selectkistas(state, data){
 			return state.selectkista = data
