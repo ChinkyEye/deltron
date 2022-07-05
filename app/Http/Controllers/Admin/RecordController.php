@@ -73,7 +73,10 @@ class RecordController extends Controller
      */
     public function edit($id)
     {
-        //
+        $records = Record::findOrFail($id);
+        return response()->json([
+            'records'=>$records
+        ],200);
     }
 
     /**
@@ -85,7 +88,21 @@ class RecordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+        $datas = Record::findOrFail($id);
+        $datas->update([
+            'title' => $request['title'],
+            'amount' => $request['amount'],
+            'description' => $request['description'],
+            'date_np' => $this->helper->date_np_con_parm($request['date']),
+            'date' => $request['date'],
+            // 'date_np' => $this->helper->date_np_con(),
+            // 'date' => date("Y-m-d"),
+            'updated_by' => Auth::user()->id,
+        ]);
+        return ['message' => 'Data Updated'];
     }
 
     /**

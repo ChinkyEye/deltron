@@ -55,6 +55,8 @@
                           <span class="badge badge-warning text-danger">{{data.created_at  | formatDate}}</span>
                         </td>                        
                         <td>
+                          <router-link :to="`/purchase/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i>
+                          </router-link>
                           <a href="" @click.prevent="deletePurchase(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
                         </td>
                       </tr>

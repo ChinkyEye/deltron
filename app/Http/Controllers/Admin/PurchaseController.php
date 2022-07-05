@@ -72,7 +72,10 @@ class PurchaseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $purchases = Purchase::findOrFail($id);
+        return response()->json([
+            'purchases'=>$purchases
+        ],200);
     }
 
     /**
@@ -84,7 +87,23 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'amount' => 'required',
+
+        ]);
+        $datas = Purchase::findOrFail($id);
+        $datas->update([
+            'supplier_name' => $request['supplier_name'],
+            'item_name' => $request['item_name'],
+            'quantity' => $request['quantity'],
+            'amount' => $request['amount'],
+            'description' => $request['description'],
+            'rate' => $request['rate'],
+            'date' => $request['date'],
+            'date_np' => $this->helper->date_np_con_parm($request['date']),
+            'updated_by' => Auth::user()->id,
+        ]);
+        return ['message' => 'Data Updated'];
     }
 
     /**

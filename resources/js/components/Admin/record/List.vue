@@ -55,6 +55,8 @@
                         </td> 
                         <td>{{data.get_user_name.name}}</td>                       
                         <td>
+                          <router-link :to="`/record/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i>
+                          </router-link> 
                           <a href="" @click.prevent="deleteRecord(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
                         </td>
                       </tr>

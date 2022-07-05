@@ -28,7 +28,11 @@ import IncomeExpenditureList from './components/admin/incomeexpenditure/List.vue
 import IncomeExpenditureEdit from './components/admin/incomeexpenditure/Edit.vue'
 
 import Record from './components/admin/record/List.vue'
+import RecordEdit from './components/admin/record/Edit.vue'
+
 import Purchase from './components/admin/purchase/List.vue'
+import PurchaseEdit from './components/admin/purchase/Edit.vue'
+
 import Overview from './components/admin/overview/List.vue'
 import Viewall from './components/admin/overview/viewall.vue'
 import Detail from './components/admin/detail/List.vue'
@@ -181,8 +185,17 @@ export const routes = [
 		component: Record
 	},
 	{
+		path:'/record/:recordid/edit',
+		component: RecordEdit
+	},
+
+	{
 		path:'/purchase/:managerid',
 		component:Purchase
+	},
+	{
+		path:'/purchase/:purchaseid/edit',
+		component: PurchaseEdit
 	},
 	{
 		path:'/overview',
