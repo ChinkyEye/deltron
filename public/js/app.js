@@ -3353,6 +3353,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
@@ -3392,8 +3396,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPosts: function fetchPosts() {
-      this.$Progress.start();
-      this.$store.dispatch("allClientList", [this.agent_id]);
+      this.$Progress.start(); // this.$store.dispatch("allClientList", [this.agent_id]);
+
       this.$store.dispatch("allSelectAgent", [this.$route.params.managerid]);
       this.$Progress.finish();
     },
@@ -3409,6 +3413,41 @@ __webpack_require__.r(__webpack_exports__);
     },
     print: function print() {
       this.$htmlToPaper('printMe');
+    },
+    deleteClient: function deleteClient(id) {
+      var that = this;
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        buttonsStyling: true
+      }).then(function (isConfirm) {
+        if (isConfirm.value === true) {
+          axios["delete"]('/home/clientlist/' + id).then(function (response) {
+            that.savedata(); // that.$store.dispatch("allClientList", [0,0]);
+
+            Toast.fire({
+              icon: 'success',
+              title: 'Data Deleted successfully'
+            });
+          })["catch"](function (response) {
+            Toast.fire({
+              icon: 'error',
+              title: 'Something went wrong'
+            });
+          });
+        } else {
+          Toast.fire({
+            icon: 'error',
+            title: 'Data not Deleted'
+          });
+        }
+      });
     }
   }
 });
@@ -94747,7 +94786,14 @@ var render = function () {
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("div", { attrs: { id: "printMe" } }, [
-                  _vm._m(0),
+                  _c("div", { staticClass: "col-md-12 text-center mb-2" }, [
+                    _c("span", [_vm._v("Member List")]),
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(this.$route.params.managerid) +
+                        "\n                  "
+                    ),
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -94760,7 +94806,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _vm.click
                             ? _c(
@@ -94815,14 +94861,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 text-center mb-2" }, [
-      _c("span", [_vm._v("Member List")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

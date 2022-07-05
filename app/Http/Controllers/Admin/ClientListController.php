@@ -106,6 +106,8 @@ class ClientListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $clients = Client::findOrFail($id);
+        $clients->delete();
+        return ['message'=>'ok'];
     }
 }

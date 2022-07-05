@@ -42,6 +42,7 @@
                 <div id="printMe">
                   <div class="col-md-12 text-center mb-2">
                     <span>Member List</span>
+                            {{this.$route.params.managerid}}
                   </div>
                   <div class="table-responsive">
                     <table class="table table-bordered table-hover table-sm m-0">
@@ -63,6 +64,9 @@
                           <td>{{data.address}}</td>
                           <td>{{data.phone}}</td>
                           <td>{{data.get_agent.name}}</td>
+                         <!--  <td>
+                            <a href="" @click.prevent="deleteClient(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
+                          </td> -->
                         </tr>
                       </tbody>
                     </table>
@@ -125,7 +129,7 @@
 	  methods:{
       fetchPosts(){
         this.$Progress.start()
-        this.$store.dispatch("allClientList", [this.agent_id]);
+        // this.$store.dispatch("allClientList", [this.agent_id]);
         this.$store.dispatch("allSelectAgent", [this.$route.params.managerid]);
         this.$Progress.finish()
       },
@@ -142,6 +146,44 @@
       },
       print () {
         this.$htmlToPaper('printMe');
+      },
+       deleteClient(id){
+        var that = this;
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          buttonsStyling: true
+        }).then(function (isConfirm) {
+          if(isConfirm.value === true) {
+            axios.delete('/home/clientlist/'+id)
+            .then((response)=>{
+              that.savedata();
+              // that.$store.dispatch("allClientList", [0,0]);
+              Toast.fire({
+                icon: 'success',
+                title: 'Data Deleted successfully'
+              })
+            })
+            .catch((response)=>{
+              Toast.fire({
+                icon: 'error',
+                title: 'Something went wrong'
+              })
+            })
+          }
+          else{
+            Toast.fire({
+              icon: 'error',
+              title: 'Data not Deleted'
+            })
+          }
+        })
       },
 
 	  }
