@@ -14,6 +14,8 @@ import LuckyDraw from './components/admin/luckydraw/List.vue'
 import LuckyDrawEdit from './components/admin/luckydraw/Edit.vue'
 
 import Kista from './components/admin/kista/List.vue'
+import KistaEdit from './components/admin/kista/Edit.vue'
+
 import Agent from './components/admin/agent/List.vue'
 import ClientList from './components/admin/clientlist/List.vue'
 import BankBalance from './components/admin/bankbalance/List.vue'
@@ -82,6 +84,10 @@ export const routes = [
 		path:'/kista/:managerid',
 		name: 'kista',
 		component:Kista
+	},
+	{
+		path:'/kista/:kistaid/edit',
+		component: KistaEdit
 	},
 	{
 		path:'/agent/:managerid',

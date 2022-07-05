@@ -97,8 +97,10 @@ class KistaController extends Controller
     public function edit($id)
     {
         $kistas = Kista::findOrFail($id);
+        $created_by = $kistas->created_by;
         return response()->json([
-            'kistas'=>$kistas
+            'kistas'=>$kistas,
+            'created_by' => $created_by,
         ],200);
     }
 
