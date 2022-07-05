@@ -29,7 +29,7 @@
                   <div class="icon">
                     <i class="ion ion-bag"></i>
                   </div>
-                  <router-link :to="`/detail/${manager.id}/alldetail`" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></router-link>
+                  <router-link :to="`/detail/${manager.id}/alldetail`" class="small-box-footer">Click here <i class="fas fa-arrow-circle-right"></i></router-link>
                 </div>
               </div>
             </div>

@@ -2620,11 +2620,17 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {
         'current_page': 1
       },
-      search: ''
+      search: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
     getAllAgent: function getAllAgent() {
@@ -2640,10 +2646,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch("allAgent", [this.pagination.current_page, this.search, this.$route.params.managerid]);
     },
     AgentStatus: function AgentStatus(clkid, show) {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/home/agent/status/' + clkid + '/' + show).then(function () {
-        _this.$store.dispatch("allAgent", [0, 0, _this.$route.params.managerid]);
+        _this2.$store.dispatch("allAgent", [0, 0, _this2.$route.params.managerid]);
 
         Toast.fire({
           icon: 'success',
@@ -2799,11 +2805,17 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {
         'current_page': 1
       },
-      search: ''
+      search: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
     getAllBankBalance: function getAllBankBalance() {
@@ -2819,10 +2831,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     BankBalanceStatus: function BankBalanceStatus(clkid, show) {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/home/bankbalance/status/' + clkid + '/' + show).then(function () {
-        _this.$store.dispatch("allBankBalance", [0, _this.$route.params.managerid]);
+        _this2.$store.dispatch("allBankBalance", [0, _this2.$route.params.managerid]);
 
         Toast.fire({
           icon: 'success',
@@ -2986,13 +2998,17 @@ __webpack_require__.r(__webpack_exports__);
       },
       agent_id: '',
       click: '',
-      auth_name: '',
-      auth_address: ''
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$Progress.start();
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
     this.$Progress.finish();
   },
   computed: {
@@ -3409,11 +3425,17 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {
         'current_page': 1
       },
-      search: ''
+      search: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
     getAllIncomeExpenditure: function getAllIncomeExpenditure() {
@@ -3431,10 +3453,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     IncomeExpenseStatus: function IncomeExpenseStatus(clkid, show) {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/home/incomeexpenditure/status/' + clkid + '/' + show).then(function () {
-        _this.$store.dispatch("allIncomeExpenditure", [0, _this.$route.params.managerid]);
+        _this2.$store.dispatch("allIncomeExpenditure", [0, _this2.$route.params.managerid]);
 
         Toast.fire({
           icon: 'success',
@@ -3586,11 +3608,17 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {
         'current_page': 1
       },
-      search: ''
+      search: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
     getALLLuckyDraw: function getALLLuckyDraw() {
@@ -3608,10 +3636,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     KistaStatus: function KistaStatus(clkid, show) {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/home/kista/status/' + clkid + '/' + show).then(function () {
-        _this.$store.dispatch("allKista", [0, 0, _this.$route.params.managerid]);
+        _this2.$store.dispatch("allKista", [0, 0, _this2.$route.params.managerid]);
 
         Toast.fire({
           icon: 'success',
@@ -3761,11 +3789,17 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {
         'current_page': 1
       },
-      search: ''
+      search: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
     getALLLuckyDraw: function getALLLuckyDraw() {
@@ -3783,10 +3817,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     LuckyStatus: function LuckyStatus(clkid, show) {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/home/luckydraw/status/' + clkid + '/' + show).then(function () {
-        _this.$store.dispatch("allLuckyDraw", [0, 0, _this.$route.params.managerid]);
+        _this2.$store.dispatch("allLuckyDraw", [0, 0, _this2.$route.params.managerid]);
 
         Toast.fire({
           icon: 'success',
@@ -4916,11 +4950,17 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {
         'current_page': 1
       },
-      search: ''
+      search: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
     getAllPurchase: function getAllPurchase() {
@@ -4936,10 +4976,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     PurchaseStatus: function PurchaseStatus(clkid, show) {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/home/purchase/status/' + clkid + '/' + show).then(function () {
-        _this.$store.dispatch("allPurchase", [0, _this.$route.params.managerid]);
+        _this2.$store.dispatch("allPurchase", [0, _this2.$route.params.managerid]);
 
         Toast.fire({
           icon: 'success',
@@ -5093,11 +5133,17 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {
         'current_page': 1
       },
-      search: ''
+      search: '',
+      manager_name: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.fetchPosts();
+    axios.get("/currentmanager/".concat(this.$route.params.managerid)).then(function (response) {
+      _this.manager_name = response.data.currentuser.name;
+    });
   },
   computed: {
     getAllRecord: function getAllRecord() {
@@ -5113,10 +5159,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     RecordStatus: function RecordStatus(clkid, show) {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/home/record/status/' + clkid + '/' + show).then(function () {
-        _this.$store.dispatch("allRecord", [0, _this.$route.params.managerid]);
+        _this2.$store.dispatch("allRecord", [0, _this2.$route.params.managerid]);
 
         Toast.fire({
           icon: 'success',
@@ -91849,7 +91895,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Agent List (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -91886,7 +91936,7 @@ var render = function () {
                           "table table-bordered table-hover table-sm m-0",
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -92067,14 +92117,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [_vm._v("Agent List")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-primary text-center" }, [
       _c("tr", [
         _c("th", { attrs: { width: "10" } }, [_vm._v("SN")]),
@@ -92121,7 +92163,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Bank Balance List (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -92158,7 +92204,7 @@ var render = function () {
                           "table table-bordered table-hover table-sm m-0",
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -92323,16 +92369,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [
-        _vm._v("Bank Balance List"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-primary text-center" }, [
       _c("tr", [
         _c("th", { attrs: { width: "10" } }, [_vm._v("SN")]),
@@ -92383,7 +92419,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Member List (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -92483,7 +92523,7 @@ var render = function () {
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("div", { attrs: { id: "printMe" } }, [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -92496,7 +92536,7 @@ var render = function () {
                             "table table-bordered table-hover table-sm m-0",
                         },
                         [
-                          _vm._m(2),
+                          _vm._m(1),
                           _vm._v(" "),
                           _vm.click
                             ? _c(
@@ -92551,14 +92591,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [_vm._v("Member List")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -92658,7 +92690,7 @@ var render = function () {
                         attrs: { to: "/detail/" + manager.id + "/alldetail" },
                       },
                       [
-                        _vm._v("More info "),
+                        _vm._v("Click here "),
                         _c("i", { staticClass: "fas fa-arrow-circle-right" }),
                       ]
                     ),
@@ -92767,7 +92799,10 @@ var render = function () {
                       _c("div", { staticClass: "inner" }, [
                         _c("h3"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("Scheme")]),
+                        _c("p", [
+                          _c("i", { staticClass: "fas fa-tachometer-alt" }),
+                          _vm._v(" Scheme"),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -92788,7 +92823,10 @@ var render = function () {
                       _c("div", { staticClass: "inner" }, [
                         _c("h3"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("Kista")]),
+                        _c("p", [
+                          _c("i", { staticClass: "fas fa-tachometer-alt" }),
+                          _vm._v(" Kista"),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -92809,7 +92847,10 @@ var render = function () {
                       _c("div", { staticClass: "inner" }, [
                         _c("h3"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("Agent")]),
+                        _c("p", [
+                          _c("i", { staticClass: "fas fa-users" }),
+                          _vm._v(" Agent"),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -92834,7 +92875,10 @@ var render = function () {
                       _c("div", { staticClass: "inner" }, [
                         _c("h3"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("Member")]),
+                        _c("p", [
+                          _c("i", { staticClass: "fas fa-user" }),
+                          _vm._v(" Member"),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -92861,7 +92905,10 @@ var render = function () {
                       _c("div", { staticClass: "inner" }, [
                         _c("h3"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("Income and Expenditure")]),
+                        _c("p", [
+                          _c("i", { staticClass: "fas fa-comments-dollar" }),
+                          _vm._v(" Income and Expenditure"),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -92886,7 +92933,10 @@ var render = function () {
                       _c("div", { staticClass: "inner" }, [
                         _c("h3"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("Bank Balance")]),
+                        _c("p", [
+                          _c("i", { staticClass: "fas fa-landmark" }),
+                          _vm._v(" Bank Balance"),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -92907,7 +92957,10 @@ var render = function () {
                       _c("div", { staticClass: "inner" }, [
                         _c("h3"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("Record")]),
+                        _c("p", [
+                          _c("i", { staticClass: "fa fa-file" }),
+                          _vm._v(" Record"),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -92930,7 +92983,10 @@ var render = function () {
                       _c("div", { staticClass: "inner" }, [
                         _c("h3"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("Purchase ")]),
+                        _c("p", [
+                          _c("i", { staticClass: "fas fa-circle" }),
+                          _vm._v(" Purchase "),
+                        ]),
                       ]),
                     ]),
                   ]
@@ -92971,7 +93027,13 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v(
+                "Income/Expenditure List (" + _vm._s(this.manager_name) + ")"
+              ),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -93008,7 +93070,7 @@ var render = function () {
                           "table table-bordered table-hover table-sm m-0",
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -93188,16 +93250,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [
-        _vm._v("Income/Expenditure List"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-primary text-center" }, [
       _c("tr", [
         _c("th", { attrs: { width: "10" } }, [_vm._v("SN")]),
@@ -93248,7 +93300,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Kista List (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -93285,7 +93341,7 @@ var render = function () {
                           "table table-bordered table-hover table-sm m-0",
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -93444,14 +93500,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [_vm._v("Kista List")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-primary text-center" }, [
       _c("tr", [
         _c("th", { attrs: { width: "10" } }, [_vm._v("SN")]),
@@ -93498,7 +93546,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Scheme List (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -93535,7 +93587,7 @@ var render = function () {
                           "table table-bordered table-hover table-sm m-0",
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -93705,14 +93757,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [_vm._v("Scheme List")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -95602,7 +95646,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Purchase List (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -95639,7 +95687,7 @@ var render = function () {
                           "table table-bordered table-hover table-sm m-0",
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -95796,14 +95844,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [_vm._v("Purchase List")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-primary text-center" }, [
       _c("tr", [
         _c("th", { attrs: { width: "10" } }, [_vm._v("SN")]),
@@ -95852,7 +95892,11 @@ var render = function () {
     _c("div", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h5", { staticClass: "m-0 text-dark xyz" }, [
+              _vm._v("Record List (" + _vm._s(this.manager_name) + ")"),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -95889,7 +95933,7 @@ var render = function () {
                           "table table-bordered table-hover table-sm m-0",
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -96048,14 +96092,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("h5", { staticClass: "m-0 text-dark xyz" }, [_vm._v("Record List")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

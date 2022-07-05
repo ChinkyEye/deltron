@@ -26,7 +26,7 @@
               <div class="small-box bg-info">
                 <div class="inner">
                   <h3></h3>
-                  <p>Scheme</p>
+                  <p> <i class="fas fa-tachometer-alt"></i> Scheme</p>
                 </div>
               </div>
             </router-link>
@@ -36,7 +36,7 @@
                 <div class="small-box bg-success">
                   <div class="inner">
                     <h3></h3>
-                    <p>Kista</p>
+                    <p><i class="fas fa-tachometer-alt"></i> Kista</p>
                   </div>
                 </div>
               </router-link>
@@ -46,7 +46,7 @@
                 <div class="small-box bg-warning">
                   <div class="inner">
                     <h3></h3>
-                    <p>Agent</p>
+                    <p> <i class="fas fa-users"></i> Agent</p>
                   </div>
                 </div>
               </router-link>
@@ -56,7 +56,7 @@
                 <div class="small-box bg-primary">
                   <div class="inner">
                     <h3></h3>
-                    <p>Member</p>
+                    <p><i class="fas fa-user"></i> Member</p>
                   </div>
                 </div>
               </router-link>
@@ -66,7 +66,7 @@
                 <div class="small-box bg-info">
                   <div class="inner">
                     <h3></h3>
-                    <p>Income and Expenditure</p>
+                    <p><i class="fas fa-comments-dollar"></i> Income and Expenditure</p>
                   </div>
                 </div>
               </router-link>
@@ -76,7 +76,7 @@
                 <div class="small-box bg-success">
                   <div class="inner">
                     <h3></h3>
-                    <p>Bank Balance</p>
+                    <p> <i class="fas fa-landmark"></i> Bank Balance</p>
                   </div>
                 </div>
               </router-link>
@@ -86,7 +86,7 @@
                 <div class="small-box bg-warning">
                   <div class="inner">
                     <h3></h3>
-                    <p>Record</p>
+                    <p><i class="fa fa-file"></i> Record</p>
                   </div>
                 </div>
               </router-link>
@@ -96,7 +96,7 @@
                 <div class="small-box bg-primary">
                   <div class="inner">
                     <h3></h3>
-                    <p>Purchase </p>
+                    <p><i class="fas fa-circle"></i> Purchase </p>
                   </div>
                 </div>
               </router-link>

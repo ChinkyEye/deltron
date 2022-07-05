@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark xyz">Member List</h5>
+            <h5 class="m-0 text-dark xyz">Member List ({{this.manager_name}})</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -97,13 +97,16 @@
           },
           agent_id: '',
           click: '',
-          auth_name:'',
-          auth_address:'',
+          manager_name:'',
         }
     },
     mounted(){
       this.$Progress.start()
       this.fetchPosts();
+      axios.get(`/currentmanager/${this.$route.params.managerid}`)
+      .then((response)=>{
+        this.manager_name = response.data.currentuser.name;
+      })
       this.$Progress.finish()
 	  },
     computed:{

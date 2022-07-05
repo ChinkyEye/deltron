@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h5 class="m-0 text-dark xyz">Scheme List</h5>
+            <h5 class="m-0 text-dark xyz">Scheme List ({{this.manager_name}})</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -83,11 +83,16 @@
           pagination: {
             'current_page': 1
           },
-          search: ''
+          search: '',
+          manager_name:'',
         }
     },
     mounted(){
-		this.fetchPosts();
+      this.fetchPosts();
+      axios.get(`/currentmanager/${this.$route.params.managerid}`)
+      .then((response)=>{
+        this.manager_name = response.data.currentuser.name;
+      })
 	  },
     computed:{
       getALLLuckyDraw(){
