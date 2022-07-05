@@ -20,7 +20,9 @@ import Agent from './components/admin/agent/List.vue'
 import AgentEdit from './components/admin/agent/Edit.vue'
 
 import ClientList from './components/admin/clientlist/List.vue'
+
 import BankBalance from './components/admin/bankbalance/List.vue'
+import BankBalanceEdit from './components/admin/bankbalance/Edit.vue'
 
 import IncomeExpenditureList from './components/admin/incomeexpenditure/List.vue'
 import IncomeExpenditureEdit from './components/admin/incomeexpenditure/Edit.vue'
@@ -161,6 +163,11 @@ export const routes = [
 		path:'/bankbalance/:managerid',
 		component: BankBalance
 	},
+	{
+		path:'/bankbalance/:bankbalanceid/edit',
+		component: BankBalanceEdit
+	},
+
 	{
 		path:'/incomeexpenditurelist/:managerid',
 		component: IncomeExpenditureList

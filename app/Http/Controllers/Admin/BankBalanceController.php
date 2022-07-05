@@ -73,7 +73,10 @@ class BankBalanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bankbalances = BankBalance::findOrFail($id);
+        return response()->json([
+            'bankbalances'=>$bankbalances
+        ],200);
     }
 
     /**
@@ -85,7 +88,23 @@ class BankBalanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'bank_name' => 'required',
+
+        ]);
+        $datas = BankBalance::findOrFail($id);
+        $datas->update([
+            'bank_name' => $request['bank_name'],
+            'account_no' => $request['account_no'],
+            'address' => $request['address'],
+            'phone' => $request['phone'],
+            'amount' => $request['amount'],
+            'description' => $request['description'],
+            'date' => $request['date'],
+            'date_np' => $this->helper->date_np_con_parm($request['date']),
+            'updated_by' => Auth::user()->id,
+        ]);
+        return ['message' => 'Data Updated'];
     }
 
     /**
