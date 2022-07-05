@@ -125,7 +125,6 @@ export default{
 				})
 		},
 		allSelectLuckyDraw(context,params){
-			console.log(params);
 			axios.get("/home/luckydraw/select/getAllLuckyDraw"+"?managerid="+params[0])
 				.then((response)=>{
 					// console.log(response.data.selectluckdraws);

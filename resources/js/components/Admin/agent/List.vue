@@ -68,8 +68,8 @@
                               <span v-else>{{data.count_member.total}}</span>
                             </i>
                           </router-link> --> 
-                        <!--   <router-link :to="`/agent/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i>
-                          </router-link> --> 
+                          <router-link :to="`/agent/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i>
+                          </router-link> 
                           <a href="" @click.prevent="deleteAgent(data.id)" class="btn btn-xs btn-outline-danger" title="Click to delete"><i class="fas fa-trash-alt"></i></a>
                           
                         <!--   <router-link :to="`/agent/commision/${data.id}`" class="btn btn-xs btn-outline-info" title="Click to add commission"><i class="fas fa-coins"></i>

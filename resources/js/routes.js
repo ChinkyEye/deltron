@@ -17,9 +17,14 @@ import Kista from './components/admin/kista/List.vue'
 import KistaEdit from './components/admin/kista/Edit.vue'
 
 import Agent from './components/admin/agent/List.vue'
+import AgentEdit from './components/admin/agent/Edit.vue'
+
 import ClientList from './components/admin/clientlist/List.vue'
 import BankBalance from './components/admin/bankbalance/List.vue'
+
 import IncomeExpenditureList from './components/admin/incomeexpenditure/List.vue'
+import IncomeExpenditureEdit from './components/admin/incomeexpenditure/Edit.vue'
+
 import Record from './components/admin/record/List.vue'
 import Purchase from './components/admin/purchase/List.vue'
 import Overview from './components/admin/overview/List.vue'
@@ -93,6 +98,10 @@ export const routes = [
 		path:'/agent/:managerid',
 		component: Agent
 	},
+	{
+		path:'/agent/:agentid/edit',
+		component: AgentEdit
+	},
 	
 	{
 		path:'/report',
@@ -155,6 +164,10 @@ export const routes = [
 	{
 		path:'/incomeexpenditurelist/:managerid',
 		component: IncomeExpenditureList
+	},
+	{
+		path:'/incomeexpenditure/:incomeexpenditureid/edit',
+		component: IncomeExpenditureEdit
 	},
 	{
 		path:'/record/:managerid',

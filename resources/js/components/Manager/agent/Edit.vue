@@ -117,7 +117,7 @@
     methods:{
       updateAgent(){
         this.state.isSending = true;
-        this.form.put(`/manager/agent/${this.$route.params.agentid}`)
+        this.form.put(`/home/agent/${this.$route.params.agentid}`)
         .then((response)=>{
           // this.$router.push(`/kista/add/agent/${this.form.kista_id}`)
           this.$router.push(`/agent`)

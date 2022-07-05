@@ -73,7 +73,10 @@ class IncomeExpenditureController extends Controller
      */
     public function edit($id)
     {
-        //
+        $incomeexpenditures = IncomeExpenditure::findOrFail($id);
+        return response()->json([
+            'incomeexpenditures'=>$incomeexpenditures
+        ],200);
     }
 
     /**
@@ -85,7 +88,21 @@ class IncomeExpenditureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'amount' => 'required',
+
+        ]);
+        $datas = IncomeExpenditure::findOrFail($id);
+        $datas->update([
+            'type' => $request['type'],
+            'topic' => $request['topic'],
+            'description' => $request['description'],
+            'amount' => $request['amount'],
+            'date' => $request['date'],
+            'date_np' => $this->helper->date_np_con_parm($request['date']),
+            'updated_by' => Auth::user()->id,
+        ]);
+        return ['message' => 'Data Updated'];
     }
 
     /**
