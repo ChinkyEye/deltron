@@ -54,6 +54,7 @@
                           <th>Address</th>
                           <th>Phone</th>
                           <th>Agent</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody class="text-center" v-if="click">
@@ -64,9 +65,10 @@
                           <td>{{data.address}}</td>
                           <td>{{data.phone}}</td>
                           <td>{{data.get_agent.name}}</td>
-                         <!--  <td>
+                          <td>
+                             <router-link :to="`/client/${data.id}/edit`" class="btn btn-xs btn-outline-info"><i class="fas fa-pencil-alt" title="Click to edit"></i></router-link> 
                             <a href="" @click.prevent="deleteClient(data.id)" class="btn btn-xs btn-outline-danger"><i class="fas fa-trash-alt" title="Click to delete"></i></a>
-                          </td> -->
+                          </td>
                         </tr>
                       </tbody>
                     </table>

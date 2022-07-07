@@ -119,8 +119,33 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
+        // $this->validate($request, [
+        //     'name' => 'required',
+        // ]);
+        // $datas = Client::findOrFail($id);
+        // $datas->update([
+        //     'name' => $request['name'],
+        //     'address' => $request['address'],
+        //     'phone' => $request['phone'],
+        //     'serial_no' => $request['serial_no'],
+        //     // 'lottery_no' => $request['lottery_no'],
+        //     'date' => $request['date'],
+        //     'date_np' => $this->helper->date_np_con_parm($request['date']),
+        //     'updated_by' => Auth::user()->id,
+        // ]);
+        // return ['message' => 'Data Updated'];
+
+        $ids = $request->id;
+        $user= Client::find($id);
+        // dd($user); 
+        $request['slug'] = $this->helper->slug_converter($request['serial_no']).'-'.$user->created_by;
         $this->validate($request, [
             'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'slug' => 'required|unique:clients,slug,'.$ids,
+            'serial_no' => 'required|size:4|between:0001,6999',
         ]);
         $datas = Client::findOrFail($id);
         $datas->update([
@@ -128,7 +153,7 @@ class ClientController extends Controller
             'address' => $request['address'],
             'phone' => $request['phone'],
             'serial_no' => $request['serial_no'],
-            // 'lottery_no' => $request['lottery_no'],
+            'slug' =>  $this->helper->slug_converter($request['serial_no']).'-'.Auth::user()->id,
             'date' => $request['date'],
             'date_np' => $this->helper->date_np_con_parm($request['date']),
             'updated_by' => Auth::user()->id,

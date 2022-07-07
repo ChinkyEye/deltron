@@ -20,6 +20,7 @@ import Agent from './components/admin/agent/List.vue'
 import AgentEdit from './components/admin/agent/Edit.vue'
 
 import ClientList from './components/admin/clientlist/List.vue'
+import ClientEdit from './components/admin/clientlist/Edit.vue'
 
 import BankBalance from './components/admin/bankbalance/List.vue'
 import BankBalanceEdit from './components/admin/bankbalance/Edit.vue'
@@ -162,6 +163,10 @@ export const routes = [
 	{
 		path:'/clientlist/:managerid',
 		component: ClientList
+	},
+	{
+		path:'/client/:clientid/edit',
+		component: ClientEdit
 	},
 	{
 		path:'/bankbalance/:managerid',
