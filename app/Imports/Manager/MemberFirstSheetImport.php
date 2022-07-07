@@ -109,7 +109,9 @@ class MemberFirstSheetImport implements ToCollection
                                 'amount' => $row[$i],
                                 'remaining' => '0',
                                 'date' => date("Y-m-d"),
-                                'date_np' => $row[6] == null ? $helper->date_np_con_parm(date("Y-m-d")) : $row[6] ,
+                                'date_np' => $row[6] == null ? $helper->date_np_con_parm(date("Y-m-d")) : \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['6'])->format('Y-m-d') ,
+
+                                // 'date_np' => $row[6] == null ? $helper->date_np_con_parm(date("Y-m-d")) : $row[6] ,
                                 // 'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
                                 'time' => date("H:i:s"),
                                 'created_by' => Auth::user()->id,
@@ -127,7 +129,9 @@ class MemberFirstSheetImport implements ToCollection
                                 'remaining' => $kista_amount[$count],
                                 // 'remaining' => '0',
                                 'date' => date("Y-m-d"),
-                                'date_np' => $row[6] == null ? $helper->date_np_con_parm(date("Y-m-d")) : $row[6] ,
+                                'date_np' => $row[6] == null ? $helper->date_np_con_parm(date("Y-m-d")) : \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['6'])->format('Y-m-d') ,
+
+                                // 'date_np' => $row[6] == null ? $helper->date_np_con_parm(date("Y-m-d")) : $row[6] ,
 
                                 // 'date_np' => $row[6],
                                 // 'date_np' => $helper->date_np_con_parm(date("Y-m-d")),
