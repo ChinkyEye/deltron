@@ -45,13 +45,13 @@
                   </div>
                   <div class="col-md">
                     <select class="form-control" id="kista_id" name="kista_id" v-model="kista_id"  @change="kistaChange"> 
-                      <option value="">Select Kista</option>
+                      <option disabled value="">Select Kista</option>
                       <option :value="kista.id" v-for="kista in getAllKista">{{kista.name}}</option>
                     </select>
                   </div>
                   <div class="col-md">
                     <select class="form-control" id="agent_id" name="agent_id"  v-model="agent_id" @change="agentChange"> 
-                      <option value="">Select Agent</option>
+                      <option disabled value="">Select Agent</option>
                       <option :value="agent.id" v-for="agent in getAllAgent">{{agent.name}}</option>
                     </select>
                   </div>
@@ -253,7 +253,8 @@
         this.luckydrawChange();
       },
       agentChange(){
-        this.$store.dispatch("allSelectAgent", [this.kista_id]);
+        this.$store.dispatch("allSelectAgent", [this.manager_id]);
+        // this.$store.dispatch("allSelectAgent", [this.kista_id]);
       },
       kistaChange(){
         this.$store.dispatch("allSelectKista", [this.luckydraw_id]);

@@ -9338,7 +9338,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.luckydrawChange();
     },
     agentChange: function agentChange() {
-      this.$store.dispatch("allSelectAgent", [this.kista_id]);
+      this.$store.dispatch("allSelectAgent", [this.manager_id]); // this.$store.dispatch("allSelectAgent", [this.kista_id]);
     },
     kistaChange: function kistaChange() {
       this.$store.dispatch("allSelectKista", [this.luckydraw_id]);
@@ -104223,7 +104223,7 @@ var render = function () {
                         },
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
                           _vm._v("Select Kista"),
                         ]),
                         _vm._v(" "),
@@ -104273,7 +104273,7 @@ var render = function () {
                         },
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
                           _vm._v("Select Agent"),
                         ]),
                         _vm._v(" "),
